@@ -1,0 +1,474 @@
+[
+  {
+    "id": "p01",
+    "theme": "sante",
+    "title": "Sport-Santé sur Ordonnance",
+    "description": "Partenariat avec médecins généralistes pour prescrire une activité physique adaptée. Le club accueille des patients en groupes spécifiques.",
+    "partners_types": [
+      "CPAM",
+      "Médecins généralistes",
+      "Mairie"
+    ],
+    "budget_min": 2000,
+    "budget_max": 8000,
+    "duration_months": 12,
+    "indicators": [
+      "Nombre de patients accueillis",
+      "Taux d'abandon",
+      "Amélioration auto-déclarée"
+    ],
+    "funding": [
+      "ANS PST",
+      "ARS",
+      "Mutuelle"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "p02",
+    "theme": "insertion",
+    "title": "Sport & Emploi",
+    "description": "Programme d'accompagnement vers l'emploi via le sport : ateliers CV, mise en réseau avec entreprises locales, bilan de compétences par le sport.",
+    "partners_types": [
+      "Mission Locale",
+      "Pôle Emploi",
+      "Entreprises locales"
+    ],
+    "budget_min": 5000,
+    "budget_max": 20000,
+    "duration_months": 6,
+    "indicators": [
+      "Nombre de participants",
+      "Taux d'insertion à 6 mois",
+      "Partenaires entreprises"
+    ],
+    "funding": [
+      "FSE",
+      "Région",
+      "DREETS"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "p03",
+    "theme": "cohesion",
+    "title": "Tournoi Interculturel",
+    "description": "Tournoi sportif réunissant des équipes composées de personnes d'origines différentes. Repas partagé, animations culturelles.",
+    "partners_types": [
+      "Associations culturelles",
+      "Mairie",
+      "CCAS"
+    ],
+    "budget_min": 1000,
+    "budget_max": 5000,
+    "duration_months": 3,
+    "indicators": [
+      "Nombre de participants",
+      "Diversité des équipes",
+      "Satisfaction"
+    ],
+    "funding": [
+      "FDVA",
+      "Mairie",
+      "Région"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "p04",
+    "theme": "environnement",
+    "title": "Club Zéro Déchet",
+    "description": "Démarche éco-responsable complète : suppression du plastique, compostage, mobilité douce pour les déplacements, bilan carbone.",
+    "partners_types": [
+      "ADEME",
+      "Région",
+      "Collecte déchets"
+    ],
+    "budget_min": 500,
+    "budget_max": 3000,
+    "duration_months": 12,
+    "indicators": [
+      "Kg déchets évités",
+      "% membres mobilité douce",
+      "Bilan carbone"
+    ],
+    "funding": [
+      "ADEME",
+      "Région",
+      "Mécénat"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "p05",
+    "theme": "education",
+    "title": "École du Sport",
+    "description": "Programme périscolaire : entraîneurs du club interviennent dans les écoles pour initier les enfants à la discipline et aux valeurs sportives.",
+    "partners_types": [
+      "Éducation Nationale",
+      "Mairie",
+      "USEP"
+    ],
+    "budget_min": 3000,
+    "budget_max": 12000,
+    "duration_months": 9,
+    "indicators": [
+      "Écoles partenaires",
+      "Enfants touchés",
+      "Conversions en licenciés"
+    ],
+    "funding": [
+      "ANS",
+      "Mairie",
+      "Région"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "p06",
+    "theme": "egalite",
+    "title": "Section Féminine Autonome",
+    "description": "Création ou structuration d'une section féminine indépendante : identité propre, budget dédié, entraîneuses, communication spécifique.",
+    "partners_types": [
+      "Fédération",
+      "DRAJES",
+      "SportpowHER"
+    ],
+    "budget_min": 5000,
+    "budget_max": 25000,
+    "duration_months": 12,
+    "indicators": [
+      "Licenciées",
+      "Budget autonome",
+      "Partenaires dédiés"
+    ],
+    "funding": [
+      "ANS PST",
+      "DRAJES",
+      "Région"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "p07",
+    "theme": "handicap",
+    "title": "Sport Adapté Inclusif",
+    "description": "Ouverture d'une section handisport ou création de créneaux mixtes valides/handicapés. Formation des éducateurs au sport adapté.",
+    "partners_types": [
+      "MDPH",
+      "APF France Handicap",
+      "ESAT"
+    ],
+    "budget_min": 3000,
+    "budget_max": 15000,
+    "duration_months": 12,
+    "indicators": [
+      "Pratiquants handicapés",
+      "Éducateurs formés",
+      "Accessibilité équipements"
+    ],
+    "funding": [
+      "ANS",
+      "CNDS",
+      "Département"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "p08",
+    "theme": "seniors",
+    "title": "Sport & Bien Vieillir",
+    "description": "Créneaux dédiés aux seniors (60+) : gym douce, marche nordique, aquagym. Partenariat avec EHPAD et résidences seniors.",
+    "partners_types": [
+      "EHPAD",
+      "CCAS",
+      "Médecins"
+    ],
+    "budget_min": 1500,
+    "budget_max": 6000,
+    "duration_months": 12,
+    "indicators": [
+      "Seniors actifs",
+      "Partenaires santé",
+      "Chutes évitées (auto-déclaré)"
+    ],
+    "funding": [
+      "Département",
+      "CARSAT",
+      "Mairie"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "p09",
+    "theme": "prevention",
+    "title": "Fair-Play & Valeurs",
+    "description": "Programme de formation arbitres, parents et joueurs aux valeurs sportives. Charte fair-play, journées thématiques, récompenses.",
+    "partners_types": [
+      "Fédération",
+      "Ligue",
+      "Mairie"
+    ],
+    "budget_min": 500,
+    "budget_max": 3000,
+    "duration_months": 12,
+    "indicators": [
+      "Incidents disciplinaires",
+      "Satisfaction arbitres",
+      "Clubs partenaires"
+    ],
+    "funding": [
+      "Fédération",
+      "Mairie",
+      "Mécénat"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "p10",
+    "theme": "culture",
+    "title": "Musée Vivant du Club",
+    "description": "Valorisation de l'histoire du club : exposition photos, interviews anciens joueurs, podcast, archives numériques. Événement annuel.",
+    "partners_types": [
+      "Médiathèque",
+      "Mairie",
+      "Archives"
+    ],
+    "budget_min": 1000,
+    "budget_max": 8000,
+    "duration_months": 6,
+    "indicators": [
+      "Visiteurs",
+      "Contenus produits",
+      "Couverture médias"
+    ],
+    "funding": [
+      "DRAC",
+      "Mairie",
+      "Mécénat"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "p11",
+    "theme": "economie",
+    "title": "Club & Entreprises Locales",
+    "description": "Programme de partenariat structuré avec les TPE/PME locales : visibilité, hospitalités, recrutement. Création d'un club business.",
+    "partners_types": [
+      "CCI",
+      "Chambre des Métiers",
+      "Entreprises"
+    ],
+    "budget_min": 2000,
+    "budget_max": 10000,
+    "duration_months": 12,
+    "indicators": [
+      "Partenaires signés",
+      "CA partenariats",
+      "Emplois créés"
+    ],
+    "funding": [
+      "Autofinancement",
+      "CCI"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "p12",
+    "theme": "tourisme",
+    "title": "Événement Sportif Territorial",
+    "description": "Organisation d'une compétition régionale ou nationale attirant des équipes extérieures. Impact économique mesuré sur le territoire.",
+    "partners_types": [
+      "Office de Tourisme",
+      "Hôtellerie",
+      "Mairie"
+    ],
+    "budget_min": 5000,
+    "budget_max": 30000,
+    "duration_months": 6,
+    "indicators": [
+      "Équipes accueillies",
+      "Nuitées générées",
+      "Retombées économiques"
+    ],
+    "funding": [
+      "Région",
+      "Département",
+      "Sponsors"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "p13",
+    "theme": "mobilite",
+    "title": "Vélo Club Express",
+    "description": "Encourager la mobilité douce : abris vélos sécurisés, indemnité kilométrique pour les bénévoles, partenariat avec loueur de vélos.",
+    "partners_types": [
+      "Mairie",
+      "ADEME",
+      "Loueur vélos"
+    ],
+    "budget_min": 500,
+    "budget_max": 4000,
+    "duration_months": 6,
+    "indicators": [
+      "% membres à vélo",
+      "Abris installés",
+      "CO2 évité"
+    ],
+    "funding": [
+      "ADEME",
+      "Mairie"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "p14",
+    "theme": "numerique",
+    "title": "Application Club Connecté",
+    "description": "Développement ou adoption d'une application club : résultats, convocations, paiement en ligne, communication. Formation des bénévoles.",
+    "partners_types": [
+      "Développeur local",
+      "Fédération",
+      "CINS"
+    ],
+    "budget_min": 2000,
+    "budget_max": 12000,
+    "duration_months": 6,
+    "indicators": [
+      "Taux adoption",
+      "Temps bénévoles économisé",
+      "Satisfaction membres"
+    ],
+    "funding": [
+      "Région",
+      "Mécénat",
+      "Autofinancement"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "p15",
+    "theme": "gouvernance",
+    "title": "Assemblée Participative",
+    "description": "Réforme de la gouvernance : AG participative, vote en ligne, commission jeunes, transparence financière. Formation des dirigeants.",
+    "partners_types": [
+      "FDVA",
+      "Mairie",
+      "Expert-comptable"
+    ],
+    "budget_min": 500,
+    "budget_max": 3000,
+    "duration_months": 6,
+    "indicators": [
+      "Taux participation AG",
+      "Jeunes au CA",
+      "Transparence score"
+    ],
+    "funding": [
+      "FDVA",
+      "Mairie"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "p16",
+    "theme": "haut_niveau",
+    "title": "Académie Territoriale",
+    "description": "Création d'une filière détection-formation pour les jeunes talents : double projet sportif/scolaire, partenariat lycées et CREPS.",
+    "partners_types": [
+      "CREPS",
+      "Lycées",
+      "Fédération"
+    ],
+    "budget_min": 10000,
+    "budget_max": 50000,
+    "duration_months": 24,
+    "indicators": [
+      "Athlètes en filière",
+      "Résultats compétitions",
+      "Taux bac"
+    ],
+    "funding": [
+      "ANS",
+      "Région",
+      "Sponsors"
+    ],
+    "difficulty": 4
+  },
+  {
+    "id": "p17",
+    "theme": "feminin",
+    "title": "Visibilité Sport Féminin",
+    "description": "Campagne de communication dédiée au sport féminin du club : réseaux sociaux, partenariat médias locaux, journée portes ouvertes.",
+    "partners_types": [
+      "Médias locaux",
+      "SportpowHER",
+      "Mairie"
+    ],
+    "budget_min": 1000,
+    "budget_max": 5000,
+    "duration_months": 6,
+    "indicators": [
+      "Abonnés réseaux",
+      "Articles presse",
+      "Nouvelles licenciées"
+    ],
+    "funding": [
+      "ANS",
+      "Région",
+      "Mécénat"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "p18",
+    "theme": "amateur",
+    "title": "Sport Pour Tous — Tarif Solidaire",
+    "description": "Mise en place d'une grille tarifaire solidaire : cotisation réduite pour les familles modestes, partenariat CCAS, fonds de solidarité interne.",
+    "partners_types": [
+      "CCAS",
+      "CAF",
+      "Mairie"
+    ],
+    "budget_min": 500,
+    "budget_max": 3000,
+    "duration_months": 12,
+    "indicators": [
+      "Bénéficiaires tarif solidaire",
+      "Taux de renoncement",
+      "Budget fonds solidarité"
+    ],
+    "funding": [
+      "CAF",
+      "Département",
+      "Mairie"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "p19",
+    "theme": "scolaire",
+    "title": "Classe Sport-Études",
+    "description": "Partenariat avec un établissement scolaire pour créer une section sport-études : aménagement des horaires, entraînements intégrés, suivi scolaire.",
+    "partners_types": [
+      "Éducation Nationale",
+      "DRAJES",
+      "Mairie"
+    ],
+    "budget_min": 5000,
+    "budget_max": 20000,
+    "duration_months": 12,
+    "indicators": [
+      "Élèves en section",
+      "Résultats scolaires",
+      "Résultats sportifs"
+    ],
+    "funding": [
+      "ANS",
+      "Région",
+      "Mairie"
+    ],
+    "difficulty": 3
+  }
+]
