@@ -1,0 +1,435 @@
+[
+  {
+    "id": "CAS-001",
+    "section": "clubs_amateurs",
+    "type_source": "club_sportif",
+    "titre": "Le Quart d'heure lecture",
+    "structure": "US Ronchin — Football — Ronchin (59, Nord)",
+    "niveau_club": "amateur",
+    "thematiques": [
+      "education_jeunesse",
+      "cohesion_sociale"
+    ],
+    "description": "Fayçal JELIL (À Vos Parcours) et Nabil (entraîneur U10) ont mis en place 15 minutes de lecture pour les jeunes joueurs avant/après l'entraînement. Innovation frugale : 0 budget, 2 bénévoles, des livres. Crée un rituel positif autour de la lecture dans un contexte sportif, touchant des publics qui ne fréquentent pas spontanément les bibliothèques.",
+    "ressources": "2 bénévoles, quelques livres. Niveau d'effort : très faible.",
+    "partenaires": [
+      "À Vos Parcours"
+    ],
+    "resultats": "Rituel positif établi, valorisation de la lecture, lien renforcé entre jeunes et adultes engagés.",
+    "budget_reel": 0,
+    "adaptation_club_amateur": "Reproductible à l'identique dans n'importe quel club avec sections jeunes. Démarrer avec 5 livres dans le vestiaire.",
+    "transposabilite": "cle_en_main",
+    "reproductibilite": "tres_facile",
+    "source": "Post LinkedIn Fayçal JELIL — 22 juin 2026",
+    "date_detection": "2026-06-22"
+  },
+  {
+    "id": "CAS-002",
+    "section": "clubs_amateurs",
+    "type_source": "club_sportif",
+    "titre": "L'entraîneur Nabil et ses U10",
+    "structure": "US Ronchin — Football — Ronchin (59, Nord)",
+    "niveau_club": "amateur",
+    "thematiques": [
+      "education_jeunesse",
+      "cohesion_sociale"
+    ],
+    "description": "Nabil, entraîneur U10, obtient des résultats remarquables avec une méthode simple : confiance, exigence bienveillante, valorisation de chaque enfant. Co-porteur du CAS-001. Illustre qu'un club peut être un lieu d'éducation globale quand ses éducateurs sont engagés.",
+    "ressources": "1 entraîneur (bénévole ou salarié). Coût : temps et engagement personnel.",
+    "partenaires": [
+      "À Vos Parcours"
+    ],
+    "resultats": "Résultats sportifs + développement personnel des enfants. Impact qualitatif fort.",
+    "budget_reel": 0,
+    "adaptation_club_amateur": "Dépend de l'engagement de l'éducateur, pas du budget. Reproductible partout.",
+    "transposabilite": "cle_en_main",
+    "reproductibilite": "tres_facile",
+    "source": "Post LinkedIn Fayçal JELIL — 19 mai 2026",
+    "date_detection": "2026-05-19"
+  },
+  {
+    "id": "CAS-003",
+    "section": "clubs_amateurs",
+    "type_source": "club_sportif",
+    "titre": "XV pour l'Emploi",
+    "structure": "Stade Caennais Rugby Club (SCRC) — Rugby — Caen (14, Normandie)",
+    "niveau_club": "semi_pro",
+    "thematiques": [
+      "insertion_emploi",
+      "cohesion_sociale"
+    ],
+    "description": "Dispositif de 3 mois : orientation professionnelle, développement des compétences (numériques, bien-être) et pratique du rugby comme vecteur de soft skills. Stage de 3 semaines + job dating sportif. Basé à la Maison du Rugby de Caen. Partenaires : Afpa, France Travail.",
+    "ressources": "Partenariats institutionnels (Afpa, France Travail). Équipe salariée + bénévoles.",
+    "partenaires": [
+      "Afpa",
+      "France Travail",
+      "Entreprises locales"
+    ],
+    "resultats": "88,2% en situation professionnelle à l'issue du programme. Suivi d'un an post-formation inclus.",
+    "budget_reel": null,
+    "adaptation_club_amateur": "Tout club avec une salle et un réseau local peut s'appuyer sur ce modèle. Finançable via France Travail 'Clubs Sportifs Engagés' (1 000€/bénéficiaire).",
+    "transposabilite": "adaptable",
+    "reproductibilite": "moyenne",
+    "source": "Document XV pour l'Emploi — SCRC Caen + bilan France Travail 2024",
+    "date_detection": "2026-05-28"
+  },
+  {
+    "id": "CAS-004",
+    "section": "clubs_amateurs",
+    "type_source": "club_sportif",
+    "titre": "Ping pour Tous",
+    "structure": "Club de Tennis de Table de la Bayard d'Argentan (BATT) — Tennis de table — Argentan (61, Normandie)",
+    "niveau_club": "amateur",
+    "thematiques": [
+      "inclusion_handicap",
+      "intergenerationnel",
+      "insertion_emploi"
+    ],
+    "description": "Projet régénératif (juin 2026) : inclusion sociale, lien intergénérationnel et insertion professionnelle via le tennis de table. Ateliers ciblant seniors, personnes handicapées et jeunes en décrochage. Budget : 3 000 €. Lancement septembre 2026. Territoire rural — modèle pertinent hors métropoles.",
+    "ressources": "Budget 3 000 €. Bénévoles du club. Partenaires locaux.",
+    "partenaires": [
+      "Structures médico-sociales locales",
+      "Maisons de retraite",
+      "Établissements scolaires"
+    ],
+    "resultats": "En cours de lancement — modèle documenté et finançable (FDVA, CPAM).",
+    "budget_reel": 3000,
+    "adaptation_club_amateur": "Adaptable à toute discipline sportive accessible. Commencer par 1 public cible, 1 créneau/semaine.",
+    "transposabilite": "cle_en_main",
+    "reproductibilite": "facile",
+    "source": "Dossier projet Ping pour Tous — BATT Argentan — juin 2026",
+    "date_detection": "2026-06-01"
+  },
+  {
+    "id": "CAS-005",
+    "section": "clubs_amateurs",
+    "type_source": "club_sportif",
+    "titre": "Sport & Inclusion tous publics",
+    "structure": "L'Extra-Ordinaire — Association sportive — Carpiquet/Caen (14, Normandie) — Label ESS",
+    "niveau_club": "amateur",
+    "thematiques": [
+      "inclusion_handicap",
+      "sport_sante",
+      "intergenerationnel"
+    ],
+    "description": "Fondée en 2024 par Zoé Brebion (Éducatrice Sportive Spécialisée). 8 programmes actifs : APA en EHPAD, sport-santé pour pathologies chroniques, sport adapté pour personnes handicapées, éveil sportif 3-5 ans, stages multisports avec ateliers handisport. Événement Movember : 100+ participants multi-établissements.",
+    "ressources": "2 alternants BPJEPS + fondatrice. Financement : partenaires privés + subventions.",
+    "partenaires": [
+      "IME de Caen",
+      "EHPAD de la Charité",
+      "Stade Malherbe Caen (U16)",
+      "Handisport 14",
+      "CFC Sports"
+    ],
+    "resultats": "8 programmes actifs, 100+ participants Movember, label ESS obtenu.",
+    "budget_reel": null,
+    "adaptation_club_amateur": "Commencer par 1 créneau APA dans 1 EHPAD ou IME local. Coût : quasi nul pour démarrer.",
+    "transposabilite": "cle_en_main",
+    "reproductibilite": "facile",
+    "source": "Dossier L'Extra-Ordinaire — Zoé Brebion — juin 2026",
+    "date_detection": "2026-06-17"
+  },
+  {
+    "id": "CAS-006",
+    "section": "clubs_amateurs",
+    "type_source": "club_sportif",
+    "titre": "Programme RSE mensuel + QPV",
+    "structure": "Valkyries Normandie Rugby Clubs (VNRC) — Rugby féminin — Rouen/Caen (76/14)",
+    "niveau_club": "elite_2",
+    "thematiques": [
+      "inclusion_handicap",
+      "cohesion_sociale",
+      "sport_sante",
+      "sport_feminin"
+    ],
+    "description": "Saison 2025/2026 — 4 axes RSE : (1) Soutien mensuel à une association locale. (2) Interventions hebdomadaires en QPV — séances de soft rugby. (3) Partenariat Fondation des Nids (enfants en difficulté). (4) Programme de réinsertion pour femmes victimes de violences. En parallèle : approvisionnement en producteurs locaux lors des matchs.",
+    "ressources": "Joueuses + staff bénévoles. Partenariats associatifs. Effort régulier mais intégré au calendrier.",
+    "partenaires": [
+      "Fondation des Nids",
+      "Associations QPV locales",
+      "Producteurs locaux"
+    ],
+    "resultats": "4 axes actifs simultanément — saison 2025/2026 en cours.",
+    "budget_reel": null,
+    "adaptation_club_amateur": "Le format 'association du mois' est clé en main. Les interventions QPV nécessitent un accord mairie/préfecture.",
+    "transposabilite": "adaptable",
+    "reproductibilite": "moyenne",
+    "source": "Site officiel Valkyries Normandie RC — page 2025/2026",
+    "date_detection": "2026-06-23"
+  },
+  {
+    "id": "CAS-007",
+    "section": "clubs_amateurs",
+    "type_source": "club_sportif",
+    "titre": "Fresque écologique football × jeunes",
+    "structure": "Stade Bordelais Football — Football — Bordeaux (33)",
+    "niveau_club": "amateur",
+    "thematiques": [
+      "environnement_ecologie",
+      "education_jeunesse"
+    ],
+    "description": "Atelier 'fresque écologique du football' animé par Football Écologie France (FEF) lors d'un stage de printemps. Impacts environnementaux du football + quiz foot/écologie. S'insère dans la semaine de stage habituelle sans modifier le programme sportif. FEF intervient bénévolement.",
+    "ressources": "1 intervenant FEF (bénévole). Matériel fourni par FEF. Coût : 0 €.",
+    "partenaires": [
+      "Football Écologie France (FEF)"
+    ],
+    "resultats": "Sensibilisation concrète des jeunes. Réaction enthousiaste. Communication valorisante pour le club.",
+    "budget_reel": 0,
+    "adaptation_club_amateur": "Contacter footballecologiefrance.org — format proposé à tous les clubs, toutes disciplines.",
+    "transposabilite": "cle_en_main",
+    "reproductibilite": "tres_facile",
+    "source": "Newsletter 'LE STADE S'ENGAGE' — Stade Bordelais Football — 30 avril 2025",
+    "date_detection": "2026-06-10"
+  },
+  {
+    "id": "CAS-008",
+    "section": "clubs_amateurs",
+    "type_source": "club_sportif",
+    "titre": "Match Solidaire : collecte matériel sport",
+    "structure": "Stade Bordelais Football — Football — Bordeaux (33)",
+    "niveau_club": "amateur",
+    "thematiques": [
+      "environnement_ecologie",
+      "cohesion_sociale",
+      "economie_locale"
+    ],
+    "description": "3e édition du Match Solidaire (15 fév. 2025) : collecte de matériel de football inutilisé (maillots, ballons, chaussures) pour redistribuer aux clubs peu dotés. Partenariat Football Mission (redistribution locale + Sénégal, Maroc, Cameroun) + Football Écologie France. Réunit plusieurs clubs de Nouvelle-Aquitaine.",
+    "ressources": "Organisation bénévole. Partenariats avec 2 associations. Coût faible.",
+    "partenaires": [
+      "Football Mission",
+      "Football Écologie France",
+      "Clubs locaux"
+    ],
+    "resultats": "3e édition consécutive — modèle ancré. Redistribution locale et internationale.",
+    "budget_reel": null,
+    "adaptation_club_amateur": "Football Mission accompagne les clubs. Adaptable à toute discipline. Contacter footballmission.fr.",
+    "transposabilite": "cle_en_main",
+    "reproductibilite": "facile",
+    "source": "Newsletter 'LE STADE S'ENGAGE' — Stade Bordelais Football — 18 fév. 2025",
+    "date_detection": "2026-06-10"
+  },
+  {
+    "id": "CAS-009",
+    "section": "clubs_amateurs",
+    "type_source": "club_sportif",
+    "titre": "Du Stade Vers l'Emploi + job dating",
+    "structure": "Stade Bordelais Football — Football — Bordeaux (33)",
+    "niveau_club": "amateur",
+    "thematiques": [
+      "insertion_emploi",
+      "economie_locale"
+    ],
+    "description": "21 mars 2024 : ateliers football (90+ participants) + job dating (100+ personnes). Partenariat GEIQ Gironde + France Travail. Secteurs : BTP, agricole, industrie, aide à domicile, maison de retraite, sport et animation. 2e édition reconduite.",
+    "ressources": "Partenariats institutionnels (GEIQ, France Travail). Bénévoles. Logistique 1 journée.",
+    "partenaires": [
+      "GEIQ de la Gironde",
+      "France Travail",
+      "Employeurs locaux"
+    ],
+    "resultats": "90+ participants ateliers + 100+ au job dating. 2e édition reconduite.",
+    "budget_reel": null,
+    "adaptation_club_amateur": "Contacter l'agence France Travail locale. Finançable 'Match des Métiers' (1 500€/événement).",
+    "transposabilite": "adaptable",
+    "reproductibilite": "moyenne",
+    "source": "Newsletter 'LE STADE S'ENGAGE' — Stade Bordelais Football — 4 avril 2024",
+    "date_detection": "2026-06-10"
+  },
+  {
+    "id": "CAS-010",
+    "section": "clubs_pros",
+    "type_source": "club_sportif",
+    "titre": "Kids Tour itinérant",
+    "structure": "AS Monaco — Football — Monaco",
+    "niveau_club": "ligue1",
+    "thematiques": [
+      "education_jeunesse",
+      "cohesion_sociale"
+    ],
+    "description": "Depuis 2022 : tournée itinérante 22 étapes, 1 300 km, 3 500 enfants/édition, 60 communes. 10 000 jeunes touchés en 3 ans. Le club va vers le territoire — pas l'inverse.",
+    "ressources": "Équipe dédiée, logistique lourde, financement club pro.",
+    "partenaires": [
+      "Collectivités locales",
+      "Associations partenaires"
+    ],
+    "resultats": "10 000 jeunes touchés en 3 ans. Fort impact territorial.",
+    "budget_reel": null,
+    "adaptation_club_amateur": "Version locale : 3-5 communes du territoire, 1 journée/mois, 1 minibus. Budget : 500-1 000 €/édition.",
+    "transposabilite": "inspirant",
+    "reproductibilite": "complexe_a_lidentique_facile_en_local",
+    "source": "LFP 'Jouons La Collectif' — juin 2025",
+    "date_detection": "2026-06-23"
+  },
+  {
+    "id": "CAS-011",
+    "section": "clubs_pros",
+    "type_source": "club_sportif",
+    "titre": "Cap'Foot : journée inclusion sur site",
+    "structure": "FC Nantes — Football — Nantes (44)",
+    "niveau_club": "ligue1",
+    "thematiques": [
+      "inclusion_handicap",
+      "education_jeunesse"
+    ],
+    "description": "170 jeunes en situation de handicap accueillis sur la pelouse de la Beaujoire. 21 établissements spécialisés (IME, ESAT, ITEP...). Journée structurée : ateliers sportifs adaptés + visite des coulisses.",
+    "ressources": "Accès au stade + éducateurs. Budget modéré.",
+    "partenaires": [
+      "21 établissements spécialisés locaux"
+    ],
+    "resultats": "170 jeunes touchés. Fort impact inclusif.",
+    "budget_reel": null,
+    "adaptation_club_amateur": "Accueillir 1-2 établissements spécialisés locaux pour une demi-journée sur le terrain du club. 20-40 jeunes, 2-3 bénévoles formés handisport. Coût : quasi nul.",
+    "transposabilite": "adaptable",
+    "reproductibilite": "facile",
+    "source": "LFP 'Jouons La Collectif' — juin 2025",
+    "date_detection": "2026-06-23"
+  },
+  {
+    "id": "CAS-012",
+    "section": "clubs_pros",
+    "type_source": "club_sportif",
+    "titre": "TyBot : robot téléprésence enfants hospitalisés",
+    "structure": "Stade Brestois 29 — Football — Brest (29)",
+    "niveau_club": "ligue1",
+    "thematiques": [
+      "inclusion_handicap",
+      "sport_sante"
+    ],
+    "description": "Robot de téléprésence TyBot permettant à 28 enfants hospitalisés de 'vivre' les matchs et entraînements à distance. 15 activations. Soutenu par la Région Bretagne.",
+    "ressources": "Financement technologique + partenariat hôpital + Région. Effort important.",
+    "partenaires": [
+      "CHU Brest",
+      "Région Bretagne"
+    ],
+    "resultats": "28 enfants touchés, 15 activations.",
+    "budget_reel": null,
+    "adaptation_club_amateur": "Version low-tech : tablette + appel vidéo avec un enfant hospitalisé pendant l'entraînement. Coût : 0 €. Même intention, sans la technologie.",
+    "transposabilite": "inspirant",
+    "reproductibilite": "complexe_a_lidentique_tres_facile_en_low_tech",
+    "source": "LFP 'Jouons La Collectif' — juin 2025",
+    "date_detection": "2026-06-23"
+  },
+  {
+    "id": "CAS-013",
+    "section": "non_sportif_transposable",
+    "type_source": "asso_non_sportive",
+    "titre": "'Cet été, je lis !'",
+    "structure": "À Vos Parcours + Éducation nationale — France entière",
+    "niveau_club": null,
+    "thematiques": [
+      "education_jeunesse",
+      "cohesion_sociale"
+    ],
+    "description": "2e édition du dispositif 'Cet été, je lis !' : programme de lecture estivale pour les jeunes, en dehors du cadre scolaire. Partenariat institutionnel Éducation nationale. Même logique que le CAS-001 : créer des habitudes de lecture positives chez les jeunes via des contextes non scolaires.",
+    "ressources": "Partenariat institutionnel (Éducation nationale). Effort moyen.",
+    "partenaires": [
+      "Éducation nationale",
+      "À Vos Parcours"
+    ],
+    "resultats": "2e édition — dispositif reconduit. 24 réactions, 10 commentaires.",
+    "budget_reel": 0,
+    "adaptation_club_amateur": "Version club : 'Cet été, je lis au club' — liste de lecture recommandée par les éducateurs, petite bibliothèque dans le vestiaire, défi lecture avec récompense symbolique à la rentrée. Coût : 0 à 200 €.",
+    "transposabilite": "adaptable",
+    "reproductibilite": "facile",
+    "source": "Post LinkedIn Fayçal JELIL — 21 juin 2026",
+    "date_detection": "2026-06-21"
+  },
+  {
+    "id": "CAS-014",
+    "section": "non_sportif_transposable",
+    "type_source": "asso_non_sportive",
+    "titre": "Repair Café",
+    "structure": "Mouvement Repair Café — France et monde — Associations locales",
+    "niveau_club": null,
+    "thematiques": [
+      "environnement_ecologie",
+      "cohesion_sociale",
+      "economie_locale"
+    ],
+    "description": "Ateliers bénévoles où les habitants apportent leurs objets cassés pour les réparer ensemble. En 2024 : 37 000 réparations saisies dans le RepairMonitor mondial, 62% de réparations réussies. En France : certains Repair Cafés comptent 58 bénévoles et 595 entrées/an.",
+    "ressources": "Bénévoles avec compétences (électricité, couture, menuiserie). 1 salle. Coût quasi nul.",
+    "partenaires": [
+      "Mouvement Repair Café international"
+    ],
+    "resultats": "37 000 réparations/an dans le monde. Modèle éprouvé depuis 2009.",
+    "budget_reel": 0,
+    "adaptation_club_amateur": "Repair Café Sport : atelier mensuel de réparation d'équipements sportifs (vélos, raquettes, maillots...) ouvert aux licenciés et au quartier. Coût : 0 €. Kit sur repaircafe.org.",
+    "transposabilite": "cle_en_main",
+    "reproductibilite": "facile",
+    "source": "repaircafe.org — bilan 2024/2025",
+    "date_detection": "2026-06-23"
+  },
+  {
+    "id": "CAS-015",
+    "section": "non_sportif_transposable",
+    "type_source": "asso_non_sportive",
+    "titre": "Interventions citoyennes en lycée",
+    "structure": "À Vos Parcours — France",
+    "niveau_club": null,
+    "thematiques": [
+      "education_jeunesse",
+      "citoyennete"
+    ],
+    "description": "Fayçal JELIL intervient dans des classes de lycée pour partager les valeurs de la République, la diversité des parcours, la dignité du travail manuel. S'appuie sur des témoignages réels de citoyens ordinaires. 40 réactions, 9 commentaires.",
+    "ressources": "1 intervenant, 1h de préparation. Coût quasi nul.",
+    "partenaires": [
+      "Établissements scolaires (lycées)"
+    ],
+    "resultats": "Impact qualitatif fort sur les élèves. Retours positifs.",
+    "budget_reel": 0,
+    "adaptation_club_amateur": "Un dirigeant ou sportif du club intervient dans un lycée local pour parler de son parcours, des valeurs du sport, de la vie associative. Contact : proviseur ou CPE. Coût : 0 €.",
+    "transposabilite": "cle_en_main",
+    "reproductibilite": "tres_facile",
+    "source": "Post LinkedIn Fayçal JELIL — 9 juin 2026",
+    "date_detection": "2026-06-09"
+  },
+  {
+    "id": "CAS-016",
+    "section": "non_sportif_transposable",
+    "type_source": "asso_non_sportive",
+    "titre": "Projection documentaire + débat associatif",
+    "structure": "Association Avec Eux (Coraline) — France",
+    "niveau_club": null,
+    "thematiques": [
+      "cohesion_sociale",
+      "citoyennete",
+      "innovation_sociale"
+    ],
+    "description": "Projection collective d'un documentaire sur les associations, suivie d'un débat. Réunit des acteurs du monde associatif, valorise l'engagement bénévole, crée du lien entre structures. 63 réactions, 14 commentaires — fort engagement.",
+    "ressources": "1 salle, 1 vidéoprojecteur, 1 association porteuse. Coût quasi nul.",
+    "partenaires": [
+      "Réseau associatif local"
+    ],
+    "resultats": "63 réactions, 14 commentaires. Format très apprécié.",
+    "budget_reel": 0,
+    "adaptation_club_amateur": "Soirée ciné-débat au club : projection d'un film/documentaire sur une thématique sociétale + débat avec une association locale invitée. Ouvert aux licenciés, familles, habitants. Coût : 0 à 50 €.",
+    "transposabilite": "cle_en_main",
+    "reproductibilite": "tres_facile",
+    "source": "Post LinkedIn Fayçal JELIL — 20 mai 2026",
+    "date_detection": "2026-05-20"
+  },
+  {
+    "id": "CAS-017",
+    "section": "non_sportif_transposable",
+    "type_source": "asso_non_sportive",
+    "titre": "Animateur sportif en EHPAD — insertion par l'intergénérationnel",
+    "structure": "EHPAD — France (témoignage générique via Fayçal JELIL)",
+    "niveau_club": null,
+    "thematiques": [
+      "intergenerationnel",
+      "insertion_emploi",
+      "sport_sante"
+    ],
+    "description": "Portrait de Maxence, 33 ans, qui a quitté l'école à 14 ans et trouvé sa voie comme animateur en EHPAD. Son parcours illustre comment l'animation sportive et le lien intergénérationnel peuvent être un vecteur d'insertion professionnelle ET de lien social.",
+    "ressources": "1 animateur. Coût pour le club : quasi nul (convention avec l'EHPAD).",
+    "partenaires": [
+      "EHPAD employeur"
+    ],
+    "resultats": "Modèle inspirant pour les clubs qui hésitent à aller vers les EHPAD.",
+    "budget_reel": null,
+    "adaptation_club_amateur": "Proposer à un bénévole ou un alternant du club d'animer 1 créneau/semaine dans l'EHPAD le plus proche. Finançable CPAM (AAP Sport en Santé).",
+    "transposabilite": "adaptable",
+    "reproductibilite": "facile",
+    "source": "Post LinkedIn Fayçal JELIL — 29 mai 2026",
+    "date_detection": "2026-05-29"
+  }
+]
