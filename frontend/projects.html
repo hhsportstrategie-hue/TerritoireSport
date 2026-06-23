@@ -75,7 +75,7 @@
     async function init() {
       [allProjects, themes] = await Promise.all([
         fetch('/api/projects/library').then(r=>r.json()),
-        fetch('/data/themes.json').then(r=>r.json()),
+        fetch('/api/projects/themes').then(r=>r.json()),
       ]);
       buildFilters();
       renderProjects(allProjects);
