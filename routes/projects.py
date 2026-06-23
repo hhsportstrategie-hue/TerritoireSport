@@ -9,12 +9,37 @@ def load_library():
     path = Path("data/projects_library.json")
     return json.loads(path.read_text(encoding="utf-8"))
 
+# ── Routes statiques en premier (AVANT les routes paramétrées) ────
+
+@router.get("/themes")
+async def get_themes():
+    """Retourne la liste des thématiques (data/themes.json)."""
+    path = Path("data/themes.json")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+@router.get("/cas-inspirants")
+async def get_cas_inspirants(section: str = None, type_source: str = None, thematique: str = None):
+    """Retourne les cas inspirants F3 (data/cas_inspirants.json)."""
+    path = Path("data/cas_inspirants.json")
+    if not path.exists():
+        return []
+    cas = json.loads(path.read_text(encoding="utf-8"))
+    if section:
+        cas = [c for c in cas if c.get("section") == section]
+    if type_source:
+        cas = [c for c in cas if c.get("type_source") == type_source]
+    if thematique:
+        cas = [c for c in cas if thematique in c.get("thematiques", [])]
+    return cas
+
 @router.get("/library")
 async def get_library(theme: str = None):
     projects = load_library()
     if theme:
         projects = [p for p in projects if p["theme"] == theme]
     return projects
+
+# ── Route paramétrée EN DERNIER dans le groupe /library ───────────
 
 @router.get("/library/{project_id}")
 async def get_project(project_id: str):
@@ -27,7 +52,6 @@ async def get_project(project_id: str):
 @router.post("/club", response_model=ClubProjectOut, status_code=201)
 async def add_club_project(data: ClubProjectCreate):
     import aiosqlite
-    # Vérifier que le projet existe dans la bibliothèque
     projects = load_library()
     if not any(p["id"] == data.project_id for p in projects):
         raise HTTPException(404, "Projet non trouvé dans la bibliothèque")
@@ -74,24 +98,3 @@ async def update_club_project(cp_id: str, data: ClubProjectUpdate):
         await db.commit()
         async with db.execute("SELECT * FROM club_projects WHERE id = ?", (cp_id,)) as cur:
             return dict(await cur.fetchone())
-
-@router.get("/themes")
-async def get_themes():
-    """Retourne la liste des thématiques (data/themes.json)."""
-    path = Path("data/themes.json")
-    return json.loads(path.read_text(encoding="utf-8"))
-
-@router.get("/cas-inspirants")
-async def get_cas_inspirants(section: str = None, type_source: str = None, thematique: str = None):
-    """Retourne les cas inspirants F3 (data/cas_inspirants.json)."""
-    path = Path("data/cas_inspirants.json")
-    if not path.exists():
-        return []
-    cas = json.loads(path.read_text(encoding="utf-8"))
-    if section:
-        cas = [c for c in cas if c.get("section") == section]
-    if type_source:
-        cas = [c for c in cas if c.get("type_source") == type_source]
-    if thematique:
-        cas = [c for c in cas if thematique in c.get("thematiques", [])]
-    return cas
