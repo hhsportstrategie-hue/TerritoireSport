@@ -1,0 +1,135 @@
+[
+  {
+    "id": "sante",
+    "label": "Santé & bien-être",
+    "icon": "🏥",
+    "color": "#E74C3C",
+    "description": "Programmes de prévention, bien-être physique et mental, sport-santé"
+  },
+  {
+    "id": "insertion",
+    "label": "Insertion professionnelle",
+    "icon": "💼",
+    "color": "#3498DB",
+    "description": "Accompagnement vers l'emploi, formation, développement de compétences via le sport"
+  },
+  {
+    "id": "cohesion",
+    "label": "Cohésion sociale",
+    "icon": "🤝",
+    "color": "#2ECC71",
+    "description": "Vivre-ensemble, mixité sociale, lutte contre l'isolement"
+  },
+  {
+    "id": "environnement",
+    "label": "Environnement",
+    "icon": "🌱",
+    "color": "#27AE60",
+    "description": "Éco-responsabilité, sport nature, transition écologique"
+  },
+  {
+    "id": "education",
+    "label": "Éducation & jeunesse",
+    "icon": "📚",
+    "color": "#9B59B6",
+    "description": "Réussite scolaire, valeurs du sport, programmes périscolaires"
+  },
+  {
+    "id": "egalite",
+    "label": "Égalité femmes-hommes",
+    "icon": "⚖️",
+    "color": "#E91E63",
+    "description": "Féminisation du sport, mixité, lutte contre les discriminations"
+  },
+  {
+    "id": "handicap",
+    "label": "Handicap & inclusion",
+    "icon": "♿",
+    "color": "#FF9800",
+    "description": "Sport adapté, handisport, accessibilité des pratiques"
+  },
+  {
+    "id": "seniors",
+    "label": "Seniors",
+    "icon": "👴",
+    "color": "#795548",
+    "description": "Maintien en forme, lien social, prévention de la dépendance"
+  },
+  {
+    "id": "prevention",
+    "label": "Prévention des violences",
+    "icon": "🛡️",
+    "color": "#F44336",
+    "description": "Lutte contre les violences, fair-play, éthique sportive"
+  },
+  {
+    "id": "culture",
+    "label": "Culture & patrimoine",
+    "icon": "🎭",
+    "color": "#FF5722",
+    "description": "Histoire du club, patrimoine local, arts et sport"
+  },
+  {
+    "id": "economie",
+    "label": "Économie locale",
+    "icon": "🏪",
+    "color": "#4CAF50",
+    "description": "Développement économique territorial, emploi local, circuits courts"
+  },
+  {
+    "id": "tourisme",
+    "label": "Tourisme sportif",
+    "icon": "🗺️",
+    "color": "#00BCD4",
+    "description": "Attractivité territoriale, événements sportifs, accueil de compétitions"
+  },
+  {
+    "id": "mobilite",
+    "label": "Mobilité",
+    "icon": "🚲",
+    "color": "#607D8B",
+    "description": "Mobilité douce, accessibilité des équipements, sport et transport"
+  },
+  {
+    "id": "numerique",
+    "label": "Numérique & innovation",
+    "icon": "💻",
+    "color": "#2196F3",
+    "description": "Digital, applications, innovation technologique dans le sport"
+  },
+  {
+    "id": "gouvernance",
+    "label": "Gouvernance participative",
+    "icon": "🗳️",
+    "color": "#9C27B0",
+    "description": "Démocratie associative, transparence, implication des membres"
+  },
+  {
+    "id": "haut_niveau",
+    "label": "Sport de haut niveau",
+    "icon": "🏆",
+    "color": "#FFD700",
+    "description": "Détection, formation, accompagnement des athlètes de haut niveau"
+  },
+  {
+    "id": "feminin",
+    "label": "Sport féminin",
+    "icon": "👩‍🦰",
+    "color": "#FF4081",
+    "description": "Développement de la pratique féminine, clubs féminins, visibilité"
+  },
+  {
+    "id": "amateur",
+    "label": "Sport amateur",
+    "icon": "⚽",
+    "color": "#8BC34A",
+    "description": "Pratique de loisir, sport pour tous, licenciés amateurs"
+  },
+  {
+    "id": "scolaire",
+    "label": "Sport scolaire",
+    "icon": "🎒",
+    "color": "#FFC107",
+    "description": "Partenariats écoles/collèges/lycées, UNSS, sport en milieu scolaire"
+  }
+]
