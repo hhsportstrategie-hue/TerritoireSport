@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>TerritoireSport — Projets</title>
+  <style>
+    :root{--primary:#1B2A4A;--accent:#2D6A4F;--accent2:#52B788;--gold:#F4A261;--bg:#F8F9FA;--card:#fff;--border:#DEE2E6;--muted:#6C757D;--radius:12px;--shadow:0 4px 16px rgba(0,0,0,.10);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);}
+    header{background:var(--primary);color:white;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;}
+    header h1{font-size:1.3rem;font-weight:700;}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.1rem;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;}
+    .btn-primary{background:var(--primary);color:white;}
+    .btn-accent{background:var(--accent);color:white;}
+    .btn-gold{background:var(--gold);color:var(--primary);}
+    .btn:hover{opacity:.88;}
+    main{max-width:1100px;margin:0 auto;padding:2rem 1rem;}
+    .filters{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem;}
+    .filter-btn{padding:.4rem .9rem;border:2px solid var(--border);border-radius:20px;background:white;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s;}
+    .filter-btn.active{border-color:var(--accent);background:var(--accent);color:white;}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
+    .project-card{background:var(--card);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);cursor:pointer;transition:all .2s;border-left:4px solid var(--accent2);}
+    .project-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.15);}
+    .project-theme{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.4rem;}
+    .project-title{font-size:1.05rem;font-weight:700;color:var(--primary);margin-bottom:.6rem;}
+    .project-desc{font-size:.9rem;color:#495057;line-height:1.5;margin-bottom:1rem;}
+    .project-meta{display:flex;gap:.6rem;flex-wrap:wrap;}
+    .meta-badge{font-size:.78rem;padding:.2rem .6rem;border-radius:20px;background:#f0f0f0;color:var(--muted);}
+    .difficulty-stars{color:var(--gold);}
+    #detail-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:flex-start;justify-content:center;padding:2rem 1rem;overflow-y:auto;}
+    #detail-modal.active{display:flex;}
+    .detail-box{background:white;border-radius:var(--radius);padding:2rem;max-width:600px;width:100%;}
+    .detail-title{font-size:1.4rem;font-weight:800;color:var(--primary);margin-bottom:1rem;}
+    .detail-section{margin-bottom:1rem;}
+    .detail-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.3rem;}
+    .chip-list{display:flex;flex-wrap:wrap;gap:.4rem;}
+    .chip{padding:.25rem .7rem;background:#e8f5ee;color:var(--accent);border-radius:20px;font-size:.82rem;font-weight:600;}
+    .match-score{display:inline-flex;align-items:center;gap:.4rem;background:#fff3cd;color:#856404;padding:.4rem .9rem;border-radius:20px;font-weight:700;font-size:.9rem;margin-bottom:1rem;}
+  </style>
+</head>
+<body>
+  <header>
+    <span style="font-size:1.5rem">🏅</span>
+    <h1>Bibliothèque de projets</h1>
+    <a href="dashboard.html" class="btn btn-gold" style="margin-left:auto;">Mon tableau de bord →</a>
+  </header>
+  <main>
+    <div id="matches-section" style="display:none;margin-bottom:2rem;">
+      <h2 style="color:var(--primary);margin-bottom:.5rem;">🎯 Projets recommandés pour votre club</h2>
+      <p style="color:var(--muted);margin-bottom:1rem;">Basés sur votre diagnostic et votre profil</p>
+      <div class="projects-grid" id="matches-grid"></div>
+      <hr style="margin:2rem 0;border-color:var(--border);">
+    </div>
+    <h2 style="color:var(--primary);margin-bottom:.5rem;">Tous les projets</h2>
+    <div class="filters" id="filters"></div>
+    <div class="projects-grid" id="projects-grid"><p style="color:var(--muted)">Chargement…</p></div>
+  </main>
+
+  <div id="detail-modal">
+    <div class="detail-box">
+      <div id="detail-content"></div>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem;">
+        <button class="btn btn-accent" id="btn-add-project">✚ Ajouter à mes projets</button>
+        <button class="btn btn-outline" onclick="closeDetail()">✕ Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const clubId = localStorage.getItem('ts_club_id');
+    let allProjects = [];
+    let themes = [];
+    let currentProject = null;
+
+    async function init() {
+      [allProjects, themes] = await Promise.all([
+        fetch('/api/projects/library').then(r=>r.json()),
+        fetch('/data/themes.json').then(r=>r.json()),
+      ]);
+      buildFilters();
+      renderProjects(allProjects);
+      if (clubId) loadMatches();
+      // Filtre par URL
+      const params = new URLSearchParams(location.search);
+      if (params.get('theme')) filterByTheme(params.get('theme'));
+    }
+
+    function buildFilters() {
+      const el = document.getElementById('filters');
+      el.innerHTML = `<button class="filter-btn active" onclick="filterByTheme(null,this)">Tous</button>` +
+        themes.map(t => `<button class="filter-btn" onclick="filterByTheme('${t.id}',this)">${t.icon} ${t.label}</button>`).join('');
+    }
+
+    function filterByTheme(theme, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderProjects(theme ? allProjects.filter(p=>p.theme===theme) : allProjects);
+    }
+
+    function renderProjects(projects) {
+      const themeMap = Object.fromEntries(themes.map(t=>[t.id,t]));
+      document.getElementById('projects-grid').innerHTML = projects.map(p => {
+        const t = themeMap[p.theme] || {};
+        return `<div class="project-card" onclick="showDetail('${p.id}')">
+          <div class="project-theme">${t.icon||''} ${t.label||p.theme}</div>
+          <div class="project-title">${p.title}</div>
+          <div class="project-desc">${p.description.substring(0,100)}…</div>
+          <div class="project-meta">
+            <span class="meta-badge difficulty-stars">${'★'.repeat(p.difficulty)}${'☆'.repeat(4-p.difficulty)}</span>
+            <span class="meta-badge">💶 ${p.budget_min.toLocaleString()}–${p.budget_max.toLocaleString()} €</span>
+            <span class="meta-badge">📅 ${p.duration_months} mois</span>
+          </div>
+        </div>`;
+      }).join('') || '<p style="color:var(--muted)">Aucun projet pour cette thématique.</p>';
+    }
+
+    async function loadMatches() {
+      try {
+        const res = await fetch('/api/matching/' + clubId);
+        const data = await res.json();
+        if (!data.matches?.length) return;
+        document.getElementById('matches-section').style.display = 'block';
+        const themeMap = Object.fromEntries(themes.map(t=>[t.id,t]));
+        document.getElementById('matches-grid').innerHTML = data.matches.map(p => {
+          const t = themeMap[p.theme] || {};
+          return `<div class="project-card" onclick="showDetail('${p.id}')" style="border-left-color:var(--gold)">
+            <div class="match-score">🎯 ${p.compatibility_score}% compatible</div>
+            <div class="project-title">${p.title}</div>
+            <div class="project-desc">${p.description.substring(0,100)}…</div>
+            <div class="project-meta">
+              <span class="meta-badge">${t.icon||''} ${t.label||p.theme}</span>
+              <span class="meta-badge">💶 ${p.budget_min.toLocaleString()}–${p.budget_max.toLocaleString()} €</span>
+            </div>
+          </div>`;
+        }).join('');
+      } catch(e){}
+    }
+
+    async function showDetail(id) {
+      const p = allProjects.find(x=>x.id===id) || await fetch('/api/projects/library/'+id).then(r=>r.json());
+      currentProject = p;
+      const themeMap = Object.fromEntries(themes.map(t=>[t.id,t]));
+      const t = themeMap[p.theme] || {};
+      document.getElementById('detail-content').innerHTML = `
+        <div class="detail-title">${t.icon||''} ${p.title}</div>
+        <div class="detail-section"><div class="detail-label">Description</div><p>${p.description}</p></div>
+        <div class="detail-section"><div class="detail-label">Partenaires types</div>
+          <div class="chip-list">${p.partners_types.map(x=>`<span class="chip">${x}</span>`).join('')}</div></div>
+        <div class="detail-section"><div class="detail-label">Budget estimé</div>
+          <p><strong>${p.budget_min.toLocaleString()} – ${p.budget_max.toLocaleString()} €</strong> sur ${p.duration_months} mois</p></div>
+        <div class="detail-section"><div class="detail-label">Sources de financement</div>
+          <div class="chip-list">${p.funding.map(x=>`<span class="chip">${x}</span>`).join('')}</div></div>
+        <div class="detail-section"><div class="detail-label">Indicateurs d'impact</div>
+          <ul style="padding-left:1.2rem;">${p.indicators.map(x=>`<li style="margin:.2rem 0;font-size:.9rem">${x}</li>`).join('')}</ul></div>
+        <div class="detail-section"><div class="detail-label">Difficulté</div>
+          <span class="difficulty-stars" style="font-size:1.2rem">${'★'.repeat(p.difficulty)}${'☆'.repeat(4-p.difficulty)}</span></div>
+      `;
+      document.getElementById('btn-add-project').onclick = addToMyProjects;
+      document.getElementById('detail-modal').classList.add('active');
+    }
+
+    function closeDetail() { document.getElementById('detail-modal').classList.remove('active'); }
+
+    async function addToMyProjects() {
+      if (!clubId) { alert('Connectez-vous pour ajouter un projet.'); return; }
+      try {
+        await fetch('/api/projects/club', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ club_id: clubId, project_id: currentProject.id })
+        });
+        alert('✅ Projet ajouté à votre tableau de bord !');
+        closeDetail();
+      } catch(e) { alert('Erreur : ' + e.message); }
+    }
+
+    init();
+  </script>
+</body>
+</html>
