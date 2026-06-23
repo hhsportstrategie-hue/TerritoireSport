@@ -470,5 +470,398 @@
       "Mairie"
     ],
     "difficulty": 3
+  },
+  {
+    "id": "p20",
+    "theme": "environnement",
+    "title": "Fresque Écologique du Football",
+    "description": "Atelier pédagogique animé par Football Écologie France lors des stages : sensibilisation aux impacts environnementaux du football (eau, CO₂, déchets) via un format interactif. Gratuit, animé par un bénévole FEF.",
+    "partners_types": [
+      "Football Écologie France",
+      "Éducateurs club"
+    ],
+    "budget_min": 0,
+    "budget_max": 200,
+    "duration_months": 1,
+    "indicators": [
+      "Nombre de jeunes sensibilisés",
+      "Ateliers réalisés"
+    ],
+    "difficulty": "Facile",
+    "real_case": {
+      "club": "Stade Bordelais Football",
+      "city": "Bordeaux (33)",
+      "sport": "Football",
+      "source": "Newsletter LE STADE S'ENGAGE — 30 avril 2025",
+      "url": "https://fr.linkedin.com/pulse/%C3%A9cologie-football-nos-jeunes-lions-sengagent-psple",
+      "results": "Sensibilisation lors du stage de printemps. Réaction enthousiaste des enfants."
+    }
+  },
+  {
+    "id": "p21",
+    "theme": "cohesion",
+    "title": "Match Solidaire — Collecte de Matériel Sportif",
+    "description": "Collecte de matériel de football inutilisé (maillots, ballons, chaussures) lors d'un match événement. Redistribution aux clubs locaux peu dotés et à des clubs en Afrique via Football Mission. 3e édition consécutive au Stade Bordelais.",
+    "partners_types": [
+      "Football Mission",
+      "Football Écologie France",
+      "Clubs locaux"
+    ],
+    "budget_min": 0,
+    "budget_max": 500,
+    "duration_months": 1,
+    "indicators": [
+      "Matériel collecté (kg)",
+      "Clubs bénéficiaires",
+      "Participants"
+    ],
+    "difficulty": "Facile",
+    "real_case": {
+      "club": "Stade Bordelais Football",
+      "city": "Bordeaux (33)",
+      "sport": "Football",
+      "source": "Newsletter LE STADE S'ENGAGE — 18 février 2025",
+      "url": "https://fr.linkedin.com/pulse/match-solidaire-stade-bordelais-football-2lyje",
+      "results": "3e édition consécutive. Redistribution locale + Sénégal, Maroc, Cameroun."
+    }
+  },
+  {
+    "id": "p22",
+    "theme": "insertion",
+    "title": "Du Stade Vers l'Emploi — Job Dating Territorial",
+    "description": "Événement combinant ateliers sportifs (90+ participants) et job dating (100+ personnes) avec France Travail et les GEIQ. Valorisation des compétences transférables du sport pour faciliter l'accès à l'emploi local.",
+    "partners_types": [
+      "France Travail",
+      "GEIQ",
+      "Employeurs locaux"
+    ],
+    "budget_min": 500,
+    "budget_max": 3000,
+    "duration_months": 2,
+    "indicators": [
+      "Participants job dating",
+      "Mises en relation emploi",
+      "Secteurs représentés"
+    ],
+    "difficulty": "Moyenne",
+    "real_case": {
+      "club": "Stade Bordelais Football",
+      "city": "Bordeaux (33)",
+      "sport": "Football",
+      "source": "Newsletter LE STADE S'ENGAGE — 4 avril 2024",
+      "url": "https://fr.linkedin.com/pulse/du-stade-vers-lemploi-un-%C3%A9v%C3%A8nement-pour-le-qp1ze",
+      "results": "1re édition : 90+ ateliers foot + 100+ personnes au job dating. Modèle reconduit."
+    }
+  },
+  {
+    "id": "p23",
+    "theme": "insertion",
+    "title": "XV pour l'Emploi — Formation par le Rugby",
+    "description": "Programme de 3 mois combinant orientation professionnelle, développement des compétences (numériques, bien-être), pratique du rugby comme vecteur de soft skills, stage de 3 semaines en entreprise et job dating sportif. Suivi post-formation 1 an.",
+    "partners_types": [
+      "France Travail",
+      "AFPA",
+      "Maison du Rugby",
+      "Entreprises partenaires"
+    ],
+    "budget_min": 5000,
+    "budget_max": 20000,
+    "duration_months": 3,
+    "indicators": [
+      "Taux d'insertion à 3 mois (%)",
+      "Nombre de participants",
+      "Contrats signés"
+    ],
+    "difficulty": "Complexe",
+    "real_case": {
+      "club": "Stade Caennais Rugby Club (SCRC) — Maison du Rugby",
+      "city": "Caen (14)",
+      "sport": "Rugby",
+      "source": "Bilan XV pour l'Emploi — session septembre 2024",
+      "url": "",
+      "results": "88,2% des participants en situation professionnelle. 17 jeunes 18-25 ans accompagnés."
+    }
+  },
+  {
+    "id": "p24",
+    "theme": "economie",
+    "title": "Étude d'Impact Territorial — Club Ambassadeur",
+    "description": "Étude d'impact économique, social et sociétal menée avec la CCI locale pour quantifier les retombées du club sur son territoire. Publication pour renforcer les partenariats publics et privés. Fondation dédiée aux actions sociétales.",
+    "partners_types": [
+      "CCI locale",
+      "Collectivités",
+      "Fondation du club"
+    ],
+    "budget_min": 10000,
+    "budget_max": 50000,
+    "duration_months": 6,
+    "indicators": [
+      "Retombées économiques (€)",
+      "Emplois soutenus (ETP)",
+      "Bénéficiaires actions sociétales"
+    ],
+    "difficulty": "Complexe",
+    "real_case": {
+      "club": "AJ Auxerre",
+      "city": "Auxerre (89)",
+      "sport": "Football (Ligue 1)",
+      "source": "Étude CCI de l'Yonne × AJ Auxerre — saison 2024-2025",
+      "url": "",
+      "results": "Impact total : 27,6 M€. 367 ETP soutenus. 224 emplois directs. 8,3 M€ retombées indirectes. Fondation Horizon AJA active."
+    }
+  },
+  {
+    "id": "p25",
+    "theme": "economie",
+    "title": "Stade Toute l'Année — Événements Hors Matchday",
+    "description": "Transformation du stade en lieu de vie toute l'année : séminaires d'entreprises, concerts, festivals, événements B2C. Le stade devient un équipement territorial multi-usages générant des revenus hors billetterie.",
+    "partners_types": [
+      "Collectivités",
+      "Entreprises locales",
+      "Organisateurs événements"
+    ],
+    "budget_min": 20000,
+    "budget_max": 100000,
+    "duration_months": 12,
+    "indicators": [
+      "CA événementiel (€)",
+      "Événements hors matchday",
+      "Taux d'occupation stade (%)"
+    ],
+    "difficulty": "Complexe",
+    "real_case": {
+      "club": "Dijon FCO",
+      "city": "Dijon (21)",
+      "sport": "Football",
+      "source": "Benchmark diversification économique Dijon FCO 2025",
+      "url": "",
+      "results": "CA événementiel 2024-25 : 460 000€. Objectif 600 000€ en 2025-26. Ambition 1 M€."
+    }
+  },
+  {
+    "id": "p26",
+    "theme": "economie",
+    "title": "Réseau 700 Partenaires TPE-PME Locales",
+    "description": "Stratégie BtoB fondée sur l'ancrage territorial : 700+ partenaires TPE-PME locales, entrées accessibles (dès 850 €/an), 2 000 VIP par match, taux de renouvellement >95%. Le club est le hub économique de son territoire.",
+    "partners_types": [
+      "TPE-PME locales",
+      "Collectivités",
+      "Partenaires premium"
+    ],
+    "budget_min": 30000,
+    "budget_max": 200000,
+    "duration_months": 12,
+    "indicators": [
+      "Nombre de partenaires",
+      "CA partenariats (€)",
+      "Taux de renouvellement (%)"
+    ],
+    "difficulty": "Complexe",
+    "real_case": {
+      "club": "Stade Brestois 29",
+      "city": "Brest (29)",
+      "sport": "Football (Ligue 1 / Champions League)",
+      "source": "Benchmark stratégie BtoB Stade Brestois 29",
+      "url": "",
+      "results": "700+ partenaires TPE-PME Finistère. Taux renouvellement >95%. 2 000 VIP/match. BtoB ≈ 30-50% du CA."
+    }
+  },
+  {
+    "id": "p27",
+    "theme": "economie",
+    "title": "60 Partenaires — Activations Co-construites",
+    "description": "Stratégie partenariale basée sur des activations co-construites avec chaque sponsor plutôt que des affichages passifs. 60 partenaires officiels, réseau de 300 entreprises, objectif 4 M€ de CA partenariats.",
+    "partners_types": [
+      "Partenaires titre",
+      "Partenaires officiels",
+      "Réseau entreprises"
+    ],
+    "budget_min": 50000,
+    "budget_max": 500000,
+    "duration_months": 12,
+    "indicators": [
+      "CA partenariats (€)",
+      "Nombre de partenaires",
+      "Taux de renouvellement (%)"
+    ],
+    "difficulty": "Complexe",
+    "real_case": {
+      "club": "Paris Basketball",
+      "city": "Paris",
+      "sport": "Basketball (EuroLeague / Betclic Elite)",
+      "source": "Benchmark partenariats Paris Basketball 2024-25",
+      "url": "",
+      "results": "60 partenaires officiels. Réseau 300 entreprises. Objectif 4 M€ CA. Nouveaux accords : O'Tacos, OlyBet, Mennen."
+    }
+  },
+  {
+    "id": "p28",
+    "theme": "economie",
+    "title": "500 Entreprises — Seul Club Pro du Territoire",
+    "description": "Club professionnel unique sur son territoire qui fédère 500+ entreprises partenaires. Le B2B représente 58% du budget. Taux de renouvellement >90%. Investissements en espaces VIP pour accompagner la montée en gamme.",
+    "partners_types": [
+      "PME locales",
+      "ETI",
+      "Partenaires premium"
+    ],
+    "budget_min": 20000,
+    "budget_max": 300000,
+    "duration_months": 12,
+    "indicators": [
+      "Nombre de partenaires",
+      "CA B2B (€)",
+      "Part B2B dans le budget (%)"
+    ],
+    "difficulty": "Complexe",
+    "real_case": {
+      "club": "Boulazac Basket Dordogne (BBD)",
+      "city": "Boulazac (24)",
+      "sport": "Basketball (Betclic Elite)",
+      "source": "Benchmark modèle économique B2B BBD",
+      "url": "",
+      "results": "500+ partenaires. 2 M€ revenus B2B (58% budget). Taux renouvellement >90%. Seul club pro de Dordogne."
+    }
+  },
+  {
+    "id": "p29",
+    "theme": "cohesion",
+    "title": "Tables Rondes Supporters — Co-construction Territorial",
+    "description": "Organisation de tables rondes dans plusieurs villes du territoire pour co-construire la stratégie du club avec les supporters. Sujets : identité, expérience stade, transport, communication. Actions concrètes retenues et communiquées.",
+    "partners_types": [
+      "Supporters",
+      "Collectivités locales",
+      "Médias"
+    ],
+    "budget_min": 2000,
+    "budget_max": 8000,
+    "duration_months": 3,
+    "indicators": [
+      "Nombre de participants",
+      "Villes couvertes",
+      "Actions retenues"
+    ],
+    "difficulty": "Facile",
+    "real_case": {
+      "club": "Valenciennes FC (VAFC)",
+      "city": "Valenciennes (59)",
+      "sport": "Football",
+      "source": "Projet Territoire VAFC — Synthèse tables rondes mai 2024",
+      "url": "",
+      "results": "90 personnes dans 6 villes. 5 thématiques co-construites. Actions concrètes retenues pour la saison suivante."
+    }
+  },
+  {
+    "id": "p30",
+    "theme": "education",
+    "title": "Quart d'Heure Lecture avant l'Entraînement",
+    "description": "15 minutes de lecture collective avant ou après l'entraînement, animées par 2 bénévoles. Aucun budget. Crée un rituel positif autour de la lecture pour des jeunes qui ne fréquentent pas spontanément les bibliothèques.",
+    "partners_types": [
+      "Bénévoles",
+      "Associations culturelles"
+    ],
+    "budget_min": 0,
+    "budget_max": 100,
+    "duration_months": 6,
+    "indicators": [
+      "Jeunes participants",
+      "Régularité (séances/mois)",
+      "Retours qualitatifs"
+    ],
+    "difficulty": "Facile",
+    "real_case": {
+      "club": "US Ronchin — À Vos Parcours",
+      "city": "Ronchin (59)",
+      "sport": "Football",
+      "source": "Post LinkedIn Fayçal JELIL — 22 juin 2026",
+      "url": "https://www.linkedin.com/posts/fay%C3%A7al-jelil-b186a828b_innovationfrugale-biencommun-citoyennetaez-ugcPost-7474709196949630976-nwLu/",
+      "results": "Innovation frugale : 0€ de budget, rituel positif instauré, impact éducatif réel."
+    }
+  },
+  {
+    "id": "p31",
+    "theme": "insertion",
+    "title": "Tour du Territoire — Archiver les Parcours de Vie",
+    "description": "Tournée locale pour aller à la rencontre des habitants du territoire (travailleurs, seniors, personnes précaires) et archiver leurs parcours de vie. Le club devient porte-voix des vies ordinaires de son territoire.",
+    "partners_types": [
+      "Médias locaux",
+      "Associations",
+      "Collectivités"
+    ],
+    "budget_min": 500,
+    "budget_max": 5000,
+    "duration_months": 3,
+    "indicators": [
+      "Témoignages collectés",
+      "Portée médiatique",
+      "Retours communauté"
+    ],
+    "difficulty": "Moyenne",
+    "real_case": {
+      "club": "À Vos Parcours + Fondapol",
+      "city": "France entière (adaptable localement)",
+      "sport": "Multisports",
+      "source": "Post LinkedIn Fayçal JELIL — 30 mai 2026",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7460247944613572608",
+      "results": "50 réactions, 8 commentaires. Couverture presse nationale. Livre en préparation."
+    }
+  },
+  {
+    "id": "p32",
+    "theme": "handicap",
+    "title": "Ping pour Tous — Inclusion par le Tennis de Table",
+    "description": "Ateliers tennis de table ciblant seniors en EHPAD, personnes handicapées et jeunes en décrochage. Budget 3 000€. Partenariats avec structures médico-sociales et IME. Modèle d'inclusion multi-publics par un sport accessible.",
+    "partners_types": [
+      "EHPAD",
+      "IME",
+      "Structures médico-sociales",
+      "Collectivités"
+    ],
+    "budget_min": 2000,
+    "budget_max": 5000,
+    "duration_months": 12,
+    "indicators": [
+      "Bénéficiaires",
+      "Structures partenaires",
+      "Ateliers réalisés"
+    ],
+    "difficulty": "Facile",
+    "real_case": {
+      "club": "BATT Argentan (Tennis de Table)",
+      "city": "Argentan (61)",
+      "sport": "Tennis de table",
+      "source": "Dossier Ping pour Tous — BATT Argentan — juin 2026",
+      "url": "",
+      "results": "Projet en lancement (sept. 2026). Budget 3 000€. Partenariats EHPAD, IME, structures médico-sociales identifiés."
+    }
+  },
+  {
+    "id": "p33",
+    "theme": "handicap",
+    "title": "APA Multi-Publics — Sport de 5 à 101 ans",
+    "description": "Programmes d'Activité Physique Adaptée pour tous les publics fragiles : EHPAD, personnes handicapées, malades chroniques, enfants en bas âge. 8 programmes distincts, partenariats avec IME et structures médico-sociales. Événements inclusifs multi-publics.",
+    "partners_types": [
+      "EHPAD",
+      "IME",
+      "CPAM",
+      "Entreprises partenaires",
+      "Handisport"
+    ],
+    "budget_min": 10000,
+    "budget_max": 50000,
+    "duration_months": 12,
+    "indicators": [
+      "Bénéficiaires",
+      "Structures partenaires",
+      "Événements inclusifs"
+    ],
+    "difficulty": "Moyenne",
+    "real_case": {
+      "club": "L'Extra-Ordinaire",
+      "city": "Caen / Carpiquet (14)",
+      "sport": "Multisports / APA",
+      "source": "Dossier L'Extra-Ordinaire — juin 2026",
+      "url": "https://lextra-ordinaire.fr/",
+      "results": "8 programmes actifs. IME de Caen, EHPAD de la Charité, Stade Malherbe Caen U16, Handisport 14 partenaires. Movember : 100+ participants."
+    }
   }
 ]
