@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>TerritoireSport — Mon tableau de bord</title>
+  <style>
+    :root{--primary:#1B2A4A;--accent:#2D6A4F;--accent2:#52B788;--gold:#F4A261;--bg:#F8F9FA;--card:#fff;--border:#DEE2E6;--muted:#6C757D;--danger:#C0392B;--radius:12px;--shadow:0 4px 16px rgba(0,0,0,.10);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);}
+    header{background:var(--primary);color:white;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;}
+    header h1{font-size:1.3rem;font-weight:700;}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.1rem;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;}
+    .btn-primary{background:var(--primary);color:white;}
+    .btn-accent{background:var(--accent);color:white;}
+    .btn-gold{background:var(--gold);color:var(--primary);}
+    .btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary);}
+    .btn-sm{padding:.35rem .8rem;font-size:.82rem;}
+    .btn:hover{opacity:.88;}
+    main{max-width:1100px;margin:0 auto;padding:2rem 1rem;}
+    .tabs{display:flex;gap:.5rem;margin-bottom:2rem;border-bottom:2px solid var(--border);flex-wrap:wrap;}
+    .tab{padding:.7rem 1.2rem;border:none;background:none;cursor:pointer;font-size:.95rem;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;}
+    .tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+    .card{background:var(--card);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1.5rem;}
+    .card-title{font-size:1.05rem;font-weight:700;color:var(--primary);margin-bottom:1rem;border-bottom:2px solid var(--accent2);padding-bottom:.5rem;}
+    .stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-bottom:2rem;}
+    .stat{background:var(--card);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow);text-align:center;}
+    .stat-num{font-size:2rem;font-weight:900;color:var(--accent);}
+    .stat-label{font-size:.82rem;color:var(--muted);margin-top:.2rem;}
+    .project-row{display:flex;align-items:center;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+    .project-row:last-child{border:none;}
+    .status-select{padding:.3rem .6rem;border:1.5px solid var(--border);border-radius:6px;font-size:.85rem;cursor:pointer;}
+    .badge{display:inline-block;padding:.2rem .6rem;border-radius:20px;font-size:.75rem;font-weight:700;}
+    .badge-idea{background:#e9ecef;color:#495057;}
+    .badge-planning{background:#cce5ff;color:#004085;}
+    .badge-active{background:#d4edda;color:#155724;}
+    .badge-done{background:#d1ecf1;color:#0c5460;}
+    .partner-card{background:var(--card);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow);margin-bottom:.8rem;}
+    .partner-type{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+    .partner-name{font-weight:700;color:var(--primary);margin:.2rem 0;}
+    .chip{display:inline-block;padding:.15rem .5rem;background:#e8f5ee;color:var(--accent);border-radius:12px;font-size:.75rem;margin:.15rem;}
+    input,select{padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:8px;font-size:.95rem;}
+    input:focus,select:focus{outline:none;border-color:var(--accent2);}
+  </style>
+</head>
+<body>
+  <header>
+    <span style="font-size:1.5rem">🏅</span>
+    <h1 id="club-name">Mon tableau de bord</h1>
+    <div style="margin-left:auto;display:flex;gap:.6rem;flex-wrap:wrap;">
+      <a href="projects.html" class="btn btn-gold btn-sm">+ Ajouter un projet</a>
+      <button class="btn btn-outline btn-sm" style="color:white;border-color:white" onclick="exportPDF()">📥 Rapport PDF</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('overview')">Vue d'ensemble</button>
+      <button class="tab" onclick="showTab('projects')">Mes projets</button>
+      <button class="tab" onclick="showTab('partners')">Annuaire partenaires</button>
+    </div>
+
+    <!-- Vue d'ensemble -->
+    <div id="tab-overview">
+      <div class="stat-grid" id="stats"></div>
+      <div class="card">
+        <div class="card-title">📊 Mon profil territorial</div>
+        <div id="profile-section"><p style="color:var(--muted)">Chargement…</p></div>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="diagnostic.html" class="btn btn-accent">🔄 Refaire le diagnostic</a>
+        <a href="projects.html"   class="btn btn-outline">Voir tous les projets</a>
+      </div>
+    </div>
+
+    <!-- Mes projets -->
+    <div id="tab-projects" style="display:none;">
+      <div class="card">
+        <div class="card-title">📋 Mes projets en cours</div>
+        <div id="projects-list"><p style="color:var(--muted)">Chargement…</p></div>
+      </div>
+    </div>
+
+    <!-- Annuaire partenaires -->
+    <div id="tab-partners" style="display:none;">
+      <div class="card">
+        <div class="card-title">🤝 Annuaire des partenaires</div>
+        <div style="display:flex;gap:.8rem;margin-bottom:1rem;flex-wrap:wrap;">
+          <input id="dept-filter" placeholder="Département (ex: 50)" style="width:160px"
+                 oninput="filterPartners()">
+          <select id="theme-filter" onchange="filterPartners()">
+            <option value="">Toutes thématiques</option>
+          </select>
+        </div>
+        <div id="partners-list"><p style="color:var(--muted)">Chargement…</p></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const clubId   = localStorage.getItem('ts_club_id');
+    const clubName = localStorage.getItem('ts_club_name');
+    if (!clubId) window.location.href = 'index.html';
+    if (clubName) document.getElementById('club-name').textContent = clubName;
+
+    let allPartners = [];
+
+    async function init() {
+      await Promise.all([loadOverview(), loadProjects(), loadPartners()]);
+    }
+
+    function showTab(name) {
+      ['overview','projects','partners'].forEach(t => {
+        document.getElementById('tab-'+t).style.display = t===name ? 'block' : 'none';
+      });
+      document.querySelectorAll('.tab').forEach((btn,i) => {
+        btn.classList.toggle('active', ['overview','projects','partners'][i] === name);
+      });
+    }
+
+    async function loadOverview() {
+      try {
+        const [diag, projects] = await Promise.all([
+          fetch('/api/diagnostic/latest/' + clubId).then(r=>r.ok?r.json():null),
+          fetch('/api/projects/club/' + clubId).then(r=>r.json()),
+        ]);
+        const active = projects.filter(p=>p.status==='active').length;
+        const done   = projects.filter(p=>p.status==='done').length;
+        document.getElementById('stats').innerHTML = `
+          <div class="stat"><div class="stat-num">${projects.length}</div><div class="stat-label">Projets total</div></div>
+          <div class="stat"><div class="stat-num">${active}</div><div class="stat-label">En cours</div></div>
+          <div class="stat"><div class="stat-num">${done}</div><div class="stat-label">Terminés</div></div>
+          <div class="stat"><div class="stat-num">${diag ? diag.score+'/20' : '—'}</div><div class="stat-label">Score diagnostic</div></div>
+        `;
+        if (diag) {
+          const colors = {pioneer:'#2D6A4F',engaged:'#52B788',emerging:'#F4A261',starter:'#E74C3C'};
+          document.getElementById('profile-section').innerHTML = `
+            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+              <div style="font-size:3rem">${{pioneer:'🏆',engaged:'⭐',emerging:'🌱',starter:'🚀'}[diag.profile]||'📊'}</div>
+              <div>
+                <div style="font-size:1.2rem;font-weight:800;color:${colors[diag.profile]}">${diag.profile_label}</div>
+                <div style="color:var(--muted);font-size:.9rem;max-width:500px;margin-top:.3rem">${diag.profile_desc}</div>
+              </div>
+            </div>
+          `;
+        } else {
+          document.getElementById('profile-section').innerHTML =
+            '<p style="color:var(--muted)">Pas encore de diagnostic. <a href="diagnostic.html" style="color:var(--accent)">Faire le diagnostic →</a></p>';
+        }
+      } catch(e) {}
+    }
+
+    async function loadProjects() {
+      try {
+        const projects = await fetch('/api/projects/club/' + clubId).then(r=>r.json());
+        const el = document.getElementById('projects-list');
+        if (!projects.length) {
+          el.innerHTML = '<p style="color:var(--muted)">Aucun projet. <a href="projects.html" style="color:var(--accent)">Parcourir la bibliothèque →</a></p>';
+          return;
+        }
+        el.innerHTML = projects.map(cp => {
+          const p = cp.project_details || {};
+          return `<div class="project-row">
+            <div style="flex:1">
+              <strong>${p.title||cp.project_id}</strong>
+              <div style="font-size:.82rem;color:var(--muted);margin-top:.2rem">${p.theme||''} • ${p.duration_months||'?'} mois</div>
+            </div>
+            <select class="status-select" onchange="updateStatus('${cp.id}',this.value)">
+              ${['idea','planning','active','done'].map(s=>
+                `<option value="${s}" ${s===cp.status?'selected':''}>${{idea:'💡 Idée',planning:'📋 Planification',active:'▶ En cours',done:'✅ Terminé'}[s]}</option>`
+              ).join('')}
+            </select>
+          </div>`;
+        }).join('');
+      } catch(e) {}
+    }
+
+    async function updateStatus(cpId, status) {
+      await fetch('/api/projects/club/' + cpId, {
+        method:'PATCH',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ status })
+      });
+      loadOverview();
+    }
+
+    async function loadPartners() {
+      try {
+        allPartners = await fetch('/api/partners/').then(r=>r.json());
+        // Peupler le filtre thématique
+        const themes = [...new Set(allPartners.flatMap(p=>p.themes))].sort();
+        document.getElementById('theme-filter').innerHTML =
+          '<option value="">Toutes thématiques</option>' +
+          themes.map(t=>`<option value="${t}">${t}</option>`).join('');
+        renderPartners(allPartners);
+      } catch(e) {}
+    }
+
+    function filterPartners() {
+      const dept  = document.getElementById('dept-filter').value.trim();
+      const theme = document.getElementById('theme-filter').value;
+      let filtered = allPartners;
+      if (dept)  filtered = filtered.filter(p=>p.department===dept);
+      if (theme) filtered = filtered.filter(p=>p.themes.includes(theme));
+      renderPartners(filtered);
+    }
+
+    function renderPartners(partners) {
+      const typeLabel = {public:'🏛️ Public',association:'🤝 Association',company:'🏢 Entreprise'};
+      document.getElementById('partners-list').innerHTML = partners.map(p=>`
+        <div class="partner-card">
+          <div class="partner-type">${typeLabel[p.type]||p.type}</div>
+          <div class="partner-name">${p.name}</div>
+          ${p.city ? `<div style="font-size:.82rem;color:var(--muted)">${p.city} (${p.department||''})</div>` : ''}
+          ${p.description ? `<div style="font-size:.85rem;margin:.4rem 0;color:#495057">${p.description}</div>` : ''}
+          <div>${p.themes.map(t=>`<span class="chip">${t}</span>`).join('')}</div>
+          ${p.contact_url ? `<a href="${p.contact_url}" target="_blank" class="btn btn-outline btn-sm" style="margin-top:.6rem">Voir →</a>` : ''}
+        </div>
+      `).join('') || '<p style="color:var(--muted)">Aucun partenaire trouvé.</p>';
+    }
+
+    async function exportPDF() {
+      window.open('/api/clubs/' + clubId + '/rapport-pdf', '_blank');
+    }
+
+    init();
+  </script>
+</body>
+</html>
