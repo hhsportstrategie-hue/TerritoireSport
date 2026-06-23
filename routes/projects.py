@@ -74,3 +74,24 @@ async def update_club_project(cp_id: str, data: ClubProjectUpdate):
         await db.commit()
         async with db.execute("SELECT * FROM club_projects WHERE id = ?", (cp_id,)) as cur:
             return dict(await cur.fetchone())
+
+@router.get("/themes")
+async def get_themes():
+    """Retourne la liste des thématiques (data/themes.json)."""
+    path = Path("data/themes.json")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+@router.get("/cas-inspirants")
+async def get_cas_inspirants(section: str = None, type_source: str = None, thematique: str = None):
+    """Retourne les cas inspirants F3 (data/cas_inspirants.json)."""
+    path = Path("data/cas_inspirants.json")
+    if not path.exists():
+        return []
+    cas = json.loads(path.read_text(encoding="utf-8"))
+    if section:
+        cas = [c for c in cas if c.get("section") == section]
+    if type_source:
+        cas = [c for c in cas if c.get("type_source") == type_source]
+    if thematique:
+        cas = [c for c in cas if thematique in c.get("thematiques", [])]
+    return cas
