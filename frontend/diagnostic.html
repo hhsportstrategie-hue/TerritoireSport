@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>TerritoireSport — Diagnostic</title>
+  <style>
+    :root{--primary:#1B2A4A;--accent:#2D6A4F;--accent2:#52B788;--gold:#F4A261;--bg:#F8F9FA;--card:#fff;--border:#DEE2E6;--muted:#6C757D;--radius:12px;--shadow:0 4px 16px rgba(0,0,0,.10);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);}
+    header{background:var(--primary);color:white;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;}
+    header h1{font-size:1.3rem;font-weight:700;}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.2rem;border:none;border-radius:8px;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .2s;}
+    .btn-primary{background:var(--primary);color:white;}
+    .btn-accent{background:var(--accent);color:white;}
+    .btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary);}
+    .btn:hover{opacity:.88;transform:translateY(-1px);}
+    main{max-width:700px;margin:0 auto;padding:2rem 1rem;}
+    .progress-bar{height:8px;background:var(--border);border-radius:4px;margin-bottom:2rem;}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:4px;transition:width .4s;}
+    .question-card{background:var(--card);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);margin-bottom:1.5rem;}
+    .q-num{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;}
+    .q-text{font-size:1.2rem;font-weight:700;color:var(--primary);margin-bottom:1.5rem;line-height:1.4;}
+    .options{display:flex;flex-direction:column;gap:.7rem;}
+    .option{padding:1rem 1.2rem;border:2px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;font-size:1rem;}
+    .option:hover{border-color:var(--accent2);background:#f0faf5;}
+    .option.selected{border-color:var(--accent);background:#e8f5ee;font-weight:600;}
+    .nav-btns{display:flex;justify-content:space-between;margin-top:1.5rem;}
+    #result{display:none;}
+    .result-card{background:var(--card);border-radius:var(--radius);padding:3rem 2rem;text-align:center;box-shadow:var(--shadow);}
+    .score-big{font-size:4rem;font-weight:900;color:var(--accent);margin-bottom:.5rem;}
+    .profile-badge{display:inline-block;padding:.5rem 1.5rem;border-radius:20px;font-weight:800;font-size:1.1rem;margin-bottom:1rem;}
+  </style>
+</head>
+<body>
+  <header>
+    <span style="font-size:1.5rem">🏅</span>
+    <h1>Diagnostic territorial</h1>
+    <a href="index.html" style="margin-left:auto;color:white;text-decoration:none;font-size:.9rem;">← Accueil</a>
+  </header>
+  <main>
+    <div id="quiz">
+      <div class="progress-bar"><div class="progress-fill" id="progress" style="width:10%"></div></div>
+      <div id="question-container"></div>
+      <div class="nav-btns">
+        <button class="btn btn-outline" id="btn-prev" onclick="prev()" style="display:none">← Précédent</button>
+        <button class="btn btn-accent" id="btn-next" onclick="next()">Suivant →</button>
+      </div>
+    </div>
+    <div id="result">
+      <div class="result-card">
+        <div class="score-big" id="r-score"></div>
+        <div class="profile-badge" id="r-badge"></div>
+        <p id="r-desc" style="color:#495057;max-width:500px;margin:0 auto 2rem;line-height:1.6;"></p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="projects.html" class="btn btn-accent">Voir mes projets recommandés →</a>
+          <a href="dashboard.html" class="btn btn-outline">Mon tableau de bord</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    const clubId = localStorage.getItem('ts_club_id');
+    if (!clubId) window.location.href = 'index.html';
+
+    let questions = [];
+    let current   = 0;
+    let answers   = {};
+
+    async function loadQuestions() {
+      const r = await fetch('/api/diagnostic/questions');
+      questions = await r.json();
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const q = questions[current];
+      document.getElementById('progress').style.width = ((current+1)/questions.length*100) + '%';
+      document.getElementById('btn-prev').style.display = current > 0 ? 'inline-flex' : 'none';
+      document.getElementById('btn-next').textContent = current === questions.length-1 ? 'Terminer ✓' : 'Suivant →';
+      document.getElementById('question-container').innerHTML = `
+        <div class="question-card">
+          <div class="q-num">Question ${current+1} / ${questions.length}</div>
+          <div class="q-text">${q.text}</div>
+          <div class="options">
+            ${q.options.map((opt, i) => `
+              <div class="option ${answers[q.id]===i?'selected':''}" onclick="selectOption(${i})">
+                ${['🟢','🟡','🔵'][i] || ''} ${opt}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function selectOption(idx) {
+      answers[questions[current].id] = idx;
+      document.querySelectorAll('.option').forEach((el,i) => {
+        el.classList.toggle('selected', i === idx);
+      });
+    }
+
+    function next() {
+      if (answers[questions[current].id] === undefined) {
+        alert('Veuillez choisir une réponse avant de continuer.');
+        return;
+      }
+      if (current < questions.length - 1) {
+        current++;
+        renderQuestion();
+      } else {
+        submitDiagnostic();
+      }
+    }
+
+    function prev() {
+      if (current > 0) { current--; renderQuestion(); }
+    }
+
+    async function submitDiagnostic() {
+      const res = await fetch('/api/diagnostic/submit', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ club_id: clubId, answers })
+      });
+      const data = await res.json();
+      document.getElementById('quiz').style.display = 'none';
+      document.getElementById('result').style.display = 'block';
+      document.getElementById('r-score').textContent = data.score + '/20';
+      const colors = {pioneer:'#2D6A4F',engaged:'#52B788',emerging:'#F4A261',starter:'#E74C3C'};
+      const badge = document.getElementById('r-badge');
+      badge.textContent = '⭐ ' + data.profile_label;
+      badge.style.background = (colors[data.profile] || '#52B788') + '22';
+      badge.style.color = colors[data.profile] || '#52B788';
+      document.getElementById('r-desc').textContent = data.profile_desc;
+    }
+
+    loadQuestions();
+  </script>
+</body>
+</html>
