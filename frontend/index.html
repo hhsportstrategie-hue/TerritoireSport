@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TerritoireSport — Projets à impact local</title>
+  <style>
+    :root{--primary:#1B2A4A;--accent:#2D6A4F;--accent2:#52B788;--gold:#F4A261;--bg:#F8F9FA;--card:#fff;--text:#212529;--muted:#6C757D;--border:#DEE2E6;--radius:12px;--shadow:0 4px 16px rgba(0,0,0,.10);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);}
+    header{background:var(--primary);color:white;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;}
+    header h1{font-size:1.4rem;font-weight:700;}
+    nav{margin-left:auto;display:flex;gap:.8rem;}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.1rem;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;}
+    .btn-primary{background:var(--primary);color:white;}
+    .btn-accent{background:var(--accent);color:white;}
+    .btn-gold{background:var(--gold);color:var(--primary);}
+    .btn-outline{background:transparent;border:2px solid white;color:white;}
+    .btn:hover{opacity:.88;transform:translateY(-1px);}
+    .hero{background:linear-gradient(135deg,var(--primary) 0%,#2c3e6b 50%,var(--accent) 100%);color:white;padding:5rem 2rem;text-align:center;}
+    .hero h2{font-size:2.8rem;font-weight:800;margin-bottom:1rem;}
+    .hero p{font-size:1.2rem;opacity:.9;max-width:600px;margin:0 auto 2.5rem;}
+    .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+    main{max-width:1100px;margin:0 auto;padding:3rem 1rem;}
+    .section-title{font-size:1.8rem;font-weight:800;color:var(--primary);margin-bottom:.5rem;}
+    .section-sub{color:var(--muted);margin-bottom:2rem;}
+    .card{background:var(--card);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1.5rem;}
+    .themes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-bottom:3rem;}
+    .theme-card{background:var(--card);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow);text-align:center;cursor:pointer;transition:all .2s;border:2px solid transparent;}
+    .theme-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.15);}
+    .theme-icon{font-size:2.2rem;margin-bottom:.5rem;}
+    .theme-label{font-size:.9rem;font-weight:700;color:var(--primary);}
+    .form-group{margin-bottom:1rem;}
+    label{display:block;font-weight:600;margin-bottom:.3rem;color:var(--primary);font-size:.9rem;}
+    input,select{width:100%;padding:.6rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-size:1rem;}
+    input:focus,select:focus{outline:none;border-color:var(--accent2);}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .steps{display:flex;gap:1rem;margin-bottom:3rem;flex-wrap:wrap;}
+    .step{flex:1;min-width:200px;background:var(--card);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);text-align:center;}
+    .step-num{width:40px;height:40px;background:var(--accent2);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;margin:0 auto .8rem;}
+    .step h3{color:var(--primary);font-size:1rem;margin-bottom:.4rem;}
+    footer{background:var(--primary);color:white;text-align:center;padding:2rem;font-size:.9rem;opacity:.9;}
+    @media(max-width:600px){.hero h2{font-size:1.8rem;}.grid-2{grid-template-columns:1fr;}}
+    #modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:center;justify-content:center;}
+    #modal.active{display:flex;}
+    .modal-box{background:white;border-radius:var(--radius);padding:2rem;max-width:500px;width:90%;max-height:90vh;overflow-y:auto;}
+    .modal-title{font-size:1.3rem;font-weight:800;color:var(--primary);margin-bottom:1.5rem;}
+  </style>
+</head>
+<body>
+  <header>
+    <span style="font-size:1.6rem">🏅</span>
+    <h1>TerritoireSport</h1>
+    <nav>
+      <a href="diagnostic.html" class="btn btn-outline">Diagnostic</a>
+      <a href="dashboard.html"  class="btn btn-gold">Mon club →</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2>Votre club,<br>acteur du territoire</h2>
+    <p>Diagnostiquez votre potentiel, trouvez les bons projets, montez vos dossiers de financement.</p>
+    <div class="hero-btns">
+      <button class="btn btn-gold" style="font-size:1.1rem;padding:.9rem 2rem;" onclick="showRegister()">
+        🚀 Créer mon espace club
+      </button>
+      <button class="btn btn-outline" style="font-size:1.1rem;padding:.9rem 2rem;" onclick="showLogin()">
+        Se connecter
+      </button>
+    </div>
+  </div>
+
+  <main>
+    <!-- Étapes -->
+    <div class="section-title" style="text-align:center;margin-bottom:.5rem;">Comment ça marche ?</div>
+    <div class="section-sub" style="text-align:center;margin-bottom:2rem;">4 étapes pour lancer votre premier projet à impact</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Créez votre profil</h3><p style="font-size:.85rem;color:var(--muted)">Renseignez votre club, votre sport, votre territoire.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Faites le diagnostic</h3><p style="font-size:.85rem;color:var(--muted)">10 questions pour évaluer votre potentiel territorial.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Trouvez vos projets</h3><p style="font-size:.85rem;color:var(--muted)">Notre algorithme vous propose les projets les plus adaptés.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Lancez & suivez</h3><p style="font-size:.85rem;color:var(--muted)">Tableau de bord, partenaires, rapport d'impact PDF.</p></div>
+    </div>
+
+    <!-- 19 thématiques -->
+    <div class="section-title">19 thématiques sociétales</div>
+    <div class="section-sub">Cliquez sur une thématique pour explorer les projets associés</div>
+    <div class="themes-grid" id="themes-grid">
+      <p style="color:var(--muted)">Chargement…</p>
+    </div>
+  </main>
+
+  <!-- Modal inscription / connexion -->
+  <div id="modal">
+    <div class="modal-box">
+      <div id="modal-content"></div>
+      <button class="btn btn-outline" style="border-color:var(--muted);color:var(--muted);margin-top:1rem;" onclick="closeModal()">✕ Fermer</button>
+    </div>
+  </div>
+
+  <footer>TerritoireSport — H3P Solutions — Normandie 2026</footer>
+
+  <script>
+    const API = '';
+
+    async function api(path, opts={}) {
+      const r = await fetch(API + path, { headers:{'Content-Type':'application/json'}, ...opts });
+      if (!r.ok) { const e = await r.json().catch(()=>({error:r.statusText})); throw new Error(e.detail||e.error||r.statusText); }
+      return r.json();
+    }
+
+    async function loadThemes() {
+      const themes = await api('/api/projects/library').then(projects => {
+        const seen = {};
+        return fetch('/data/themes.json').then(r=>r.json());
+      });
+      document.getElementById('themes-grid').innerHTML = themes.map(t => `
+        <div class="theme-card" onclick="window.location='projects.html?theme=${t.id}'"
+             style="border-color:${t.color}20">
+          <div class="theme-icon">${t.icon}</div>
+          <div class="theme-label" style="color:${t.color}">${t.label}</div>
+        </div>
+      `).join('');
+    }
+    loadThemes();
+
+    function showRegister() {
+      document.getElementById('modal-content').innerHTML = `
+        <div class="modal-title">🏅 Créer mon espace club</div>
+        <div class="grid-2">
+          <div class="form-group"><label>Nom du club</label><input id="r-name" placeholder="US Ducey"></div>
+          <div class="form-group"><label>Sport principal</label><input id="r-sport" placeholder="Football"></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" id="r-email" placeholder="contact@usducey.fr"></div>
+        <div class="form-group"><label>Mot de passe</label><input type="password" id="r-pwd"></div>
+        <div class="grid-2">
+          <div class="form-group"><label>Ville</label><input id="r-city" placeholder="Ducey"></div>
+          <div class="form-group"><label>Département</label><input id="r-dept" placeholder="50" maxlength="3"></div>
+        </div>
+        <div class="form-group"><label>Taille du club</label>
+          <select id="r-size">
+            <option value="micro">Micro (< 50 licenciés)</option>
+            <option value="small" selected>Petit (50-200)</option>
+            <option value="medium">Moyen (200-500)</option>
+            <option value="large">Grand (500+)</option>
+          </select>
+        </div>
+        <button class="btn btn-accent" style="width:100%" onclick="register()">Créer mon espace →</button>
+        <p id="r-error" style="color:#C0392B;margin-top:.5rem;display:none"></p>
+      `;
+      document.getElementById('modal').classList.add('active');
+    }
+
+    function showLogin() {
+      document.getElementById('modal-content').innerHTML = `
+        <div class="modal-title">🔑 Connexion</div>
+        <div class="form-group"><label>Email</label><input type="email" id="l-email" placeholder="contact@usducey.fr"></div>
+        <div class="form-group"><label>Mot de passe</label><input type="password" id="l-pwd"></div>
+        <button class="btn btn-primary" style="width:100%" onclick="login()">Se connecter →</button>
+        <p id="l-error" style="color:#C0392B;margin-top:.5rem;display:none"></p>
+      `;
+      document.getElementById('modal').classList.add('active');
+    }
+
+    function closeModal() { document.getElementById('modal').classList.remove('active'); }
+
+    async function register() {
+      const data = {
+        name: document.getElementById('r-name').value.trim(),
+        email: document.getElementById('r-email').value.trim(),
+        password: document.getElementById('r-pwd').value,
+        sport: document.getElementById('r-sport').value.trim(),
+        city: document.getElementById('r-city').value.trim(),
+        department: document.getElementById('r-dept').value.trim(),
+        size: document.getElementById('r-size').value,
+      };
+      try {
+        const club = await api('/api/clubs/register', { method:'POST', body: JSON.stringify(data) });
+        localStorage.setItem('ts_club_id', club.id);
+        localStorage.setItem('ts_club_name', club.name);
+        window.location.href = 'diagnostic.html';
+      } catch(e) {
+        const el = document.getElementById('r-error');
+        el.textContent = e.message; el.style.display = 'block';
+      }
+    }
+
+    async function login() {
+      try {
+        const res = await api('/api/clubs/login', {
+          method: 'POST',
+          body: JSON.stringify({ email: document.getElementById('l-email').value, password: document.getElementById('l-pwd').value })
+        });
+        localStorage.setItem('ts_club_id', res.club.id);
+        localStorage.setItem('ts_club_name', res.club.name);
+        window.location.href = 'dashboard.html';
+      } catch(e) {
+        const el = document.getElementById('l-error');
+        el.textContent = e.message; el.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
