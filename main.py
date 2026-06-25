@@ -6,10 +6,12 @@ Plateforme d'aide aux clubs sportifs pour monter des projets à impact local.
 import os
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
+from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import aiosqlite
 from pathlib import Path
+
 _DEFAULT_DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "territoiresport.db")
 DB_PATH = os.getenv("DB_PATH", _DEFAULT_DB)
 
@@ -55,7 +57,6 @@ async def seed_demo_partners():
 async def lifespan(app: FastAPI):
     await init_db()
     await seed_demo_partners()
-    # Lancer le seed complet au démarrage (idempotent)
     try:
         import subprocess
         import os as _os
@@ -78,6 +79,15 @@ app = FastAPI(
     description="Plateforme d'aide aux clubs sportifs pour monter des projets à impact local",
     version="1.0.0",
     lifespan=lifespan,
+)
+
+# ── CORS (ajouté) ────────────────────────────────────────────────
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # ── Routes API ────────────────────────────────────────────────────
@@ -126,8 +136,6 @@ async def list_partners(department: str = None, theme: str = None, type: str = N
 app.include_router(partners_router)
 
 # ── Export PDF rapport d'impact (F8) ─────────────────────────────
-from fastapi.responses import Response
-
 @app.get("/api/clubs/{club_id}/rapport-pdf")
 async def export_rapport(club_id: str):
     """Génère un rapport d'impact PDF pour le club."""
@@ -162,20 +170,17 @@ async def export_rapport(club_id: str):
     styles = getSampleStyleSheet()
     story  = []
 
-    # En-tête
     story.append(Paragraph(f"<b>RAPPORT D'IMPACT TERRITORIAL</b>", styles["Title"]))
     story.append(Paragraph(f"<b>{club.get('name','Club')}</b> — {club.get('city','')} ({club.get('department','')})", styles["Heading2"]))
     story.append(Spacer(1, 0.5*cm))
     story.append(Paragraph(f"Sport : {club.get('sport','')} | Taille : {club.get('size','')}", styles["Normal"]))
     story.append(Spacer(1, 1*cm))
 
-    # Diagnostic
     if diag:
         story.append(Paragraph("Diagnostic territorial", styles["Heading2"]))
         story.append(Paragraph(f"Score : <b>{diag['score']}/20</b> — Profil : <b>{diag['profile'].capitalize()}</b>", styles["Normal"]))
         story.append(Spacer(1, 0.5*cm))
 
-    # Projets
     if projects:
         story.append(Paragraph("Projets en cours", styles["Heading2"]))
         lib = {p["id"]: p for p in json.loads(Path("data/projects_library.json").read_text())}
