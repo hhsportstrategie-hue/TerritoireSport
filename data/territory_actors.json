@@ -1,0 +1,202 @@
+[
+  {
+    "id": "act-001",
+    "territory_id": "argentan-intercom",
+    "name": "CCAS d'Argentan",
+    "type": "public",
+    "themes": ["cohesion", "insertion", "intergenerationnel"],
+    "city": "Argentan",
+    "description": "Centre Communal d'Action Sociale — accompagnement social, aide aux personnes âgées, insertion.",
+    "contact_email": "ccas@argentan.fr"
+  },
+  {
+    "id": "act-002",
+    "territory_id": "argentan-intercom",
+    "name": "Mission Locale d'Argentan",
+    "type": "association",
+    "themes": ["insertion", "education"],
+    "city": "Argentan",
+    "description": "Accompagnement des jeunes 16-25 ans vers l'emploi et la formation.",
+    "contact_email": "ml.argentan@missionlocale.fr"
+  },
+  {
+    "id": "act-003",
+    "territory_id": "argentan-intercom",
+    "name": "Association Sport & Santé Orne",
+    "type": "association",
+    "themes": ["sante", "intergenerationnel"],
+    "city": "Argentan",
+    "description": "Promotion de l'activité physique adaptée pour seniors et personnes en convalescence.",
+    "contact_email": "contact@sport-sante-orne.fr"
+  },
+  {
+    "id": "act-004",
+    "territory_id": "argentan-intercom",
+    "name": "IME d'Argentan",
+    "type": "public",
+    "themes": ["handicap", "education"],
+    "city": "Argentan",
+    "description": "Institut Médico-Éducatif — accueil enfants et adolescents en situation de handicap.",
+    "contact_email": "ime.argentan@adapei61.fr"
+  },
+  {
+    "id": "act-005",
+    "territory_id": "argentan-intercom",
+    "name": "EHPAD Les Résidences d'Argentan",
+    "type": "public",
+    "themes": ["intergenerationnel", "sante"],
+    "city": "Argentan",
+    "description": "Établissement d'hébergement pour personnes âgées dépendantes.",
+    "contact_email": "ehpad.argentan@orne.fr"
+  },
+  {
+    "id": "act-006",
+    "territory_id": "argentan-intercom",
+    "name": "Association Culture & Loisirs Argentan",
+    "type": "association",
+    "themes": ["culture", "cohesion"],
+    "city": "Argentan",
+    "description": "Organisation d'événements culturels et de loisirs pour tous publics.",
+    "contact_email": "culture.argentan@gmail.com"
+  },
+  {
+    "id": "act-007",
+    "territory_id": "caen-mer",
+    "name": "CCAS de Caen",
+    "type": "public",
+    "themes": ["cohesion", "insertion", "intergenerationnel"],
+    "city": "Caen",
+    "description": "Centre Communal d'Action Sociale de Caen.",
+    "contact_email": "ccas@caen.fr"
+  },
+  {
+    "id": "act-008",
+    "territory_id": "caen-mer",
+    "name": "Maison du Rugby Caen (SCRC)",
+    "type": "association",
+    "themes": ["insertion", "cohesion", "education"],
+    "city": "Caen",
+    "description": "XV pour l'Emploi — dispositif d'insertion professionnelle par le rugby.",
+    "contact_email": "communication@scrc.fr"
+  },
+  {
+    "id": "act-009",
+    "territory_id": "caen-mer",
+    "name": "L'Extra-Ordinaire",
+    "type": "association",
+    "themes": ["handicap", "sante", "intergenerationnel", "inclusion"],
+    "city": "Carpiquet",
+    "description": "Association sportive inclusive — sport pour tous, publics fragiles, EHPAD, IME.",
+    "contact_email": "lextraordinaire.asso@gmail.com"
+  },
+  {
+    "id": "act-010",
+    "territory_id": "caen-mer",
+    "name": "Caen Training Formations",
+    "type": "association",
+    "themes": ["insertion", "education"],
+    "city": "Bretteville-sur-Odon",
+    "description": "Centre de formation aux métiers du sport — NTCS, ICS.",
+    "contact_email": "contact@caentraining.fr"
+  },
+  {
+    "id": "act-011",
+    "territory_id": "caen-mer",
+    "name": "Fondation de Normandie",
+    "type": "fondation",
+    "themes": ["cohesion", "sante", "environnement", "culture"],
+    "city": "Caen",
+    "description": "Fondation régionale — soutien projets à impact territorial.",
+    "contact_email": "contact@fondation-normandie.fr"
+  },
+  {
+    "id": "act-012",
+    "territory_id": "rouen-metropole",
+    "name": "CCAS de Rouen",
+    "type": "public",
+    "themes": ["cohesion", "insertion", "intergenerationnel"],
+    "city": "Rouen",
+    "description": "Centre Communal d'Action Sociale de Rouen.",
+    "contact_email": "ccas@rouen.fr"
+  },
+  {
+    "id": "act-013",
+    "territory_id": "rouen-metropole",
+    "name": "ReGNR",
+    "type": "association",
+    "themes": ["environnement", "insertion", "economie"],
+    "city": "Rouen",
+    "description": "Logistique circulaire pour les marques de sport — économie sociale et solidaire.",
+    "contact_email": "contact@regnr.fr"
+  },
+  {
+    "id": "act-014",
+    "territory_id": "le-havre",
+    "name": "CCAS du Havre",
+    "type": "public",
+    "themes": ["cohesion", "insertion", "intergenerationnel"],
+    "city": "Le Havre",
+    "description": "Centre Communal d'Action Sociale du Havre.",
+    "contact_email": "ccas@lehavre.fr"
+  },
+  {
+    "id": "act-015",
+    "territory_id": "le-havre",
+    "name": "CFC Sports",
+    "type": "association",
+    "themes": ["insertion", "cohesion", "sante"],
+    "city": "Le Havre",
+    "description": "Complexe Sportif Engagé — sport et inclusion, formation soft skills.",
+    "contact_email": "contact@cfc-sports.fr"
+  },
+  {
+    "id": "act-016",
+    "territory_id": "cherbourg",
+    "name": "CCAS de Cherbourg",
+    "type": "public",
+    "themes": ["cohesion", "insertion", "intergenerationnel"],
+    "city": "Cherbourg-en-Cotentin",
+    "description": "Centre Communal d'Action Sociale de Cherbourg.",
+    "contact_email": "ccas@cherbourg.fr"
+  },
+  {
+    "id": "act-017",
+    "territory_id": "cherbourg",
+    "name": "AS Cherbourg",
+    "type": "association",
+    "themes": ["sport", "insertion", "education"],
+    "city": "Cherbourg-en-Cotentin",
+    "description": "Association sportive cherbourgeoise — formation, partenariats.",
+    "contact_email": "contact@as-cherbourg.fr"
+  },
+  {
+    "id": "act-018",
+    "territory_id": "alencon-agglo",
+    "name": "CCAS d'Alençon",
+    "type": "public",
+    "themes": ["cohesion", "insertion", "intergenerationnel"],
+    "city": "Alençon",
+    "description": "Centre Communal d'Action Sociale d'Alençon.",
+    "contact_email": "ccas@alencon.fr"
+  },
+  {
+    "id": "act-019",
+    "territory_id": "alencon-agglo",
+    "name": "Mission Locale d'Alençon",
+    "type": "association",
+    "themes": ["insertion", "education"],
+    "city": "Alençon",
+    "description": "Accompagnement des jeunes 16-25 ans vers l'emploi.",
+    "contact_email": "ml.alencon@missionlocale.fr"
+  },
+  {
+    "id": "act-020",
+    "territory_id": "evreux",
+    "name": "CCAS d'Évreux",
+    "type": "public",
+    "themes": ["cohesion", "insertion", "intergenerationnel"],
+    "city": "Évreux",
+    "description": "Centre Communal d'Action Sociale d'Évreux.",
+    "contact_email": "ccas@evreux.fr"
+  }
+]

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>TerritoireSport — Carte d'identité territoire</title>
+  <style>
+    :root{--primary:#1B2A4A;--accent:#2D6A4F;--accent2:#52B788;--gold:#F4A261;--bg:#F8F9FA;--card:#fff;--border:#DEE2E6;--muted:#6C757D;--radius:12px;--shadow:0 4px 16px rgba(0,0,0,.10);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);}
+    header{background:var(--primary);color:white;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;}
+    header h1{font-size:1.3rem;font-weight:700;}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.2rem;border:none;border-radius:8px;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none;}
+    .btn-primary{background:var(--primary);color:white;}
+    .btn-accent{background:var(--accent);color:white;}
+    .btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary);}
+    .btn:hover{opacity:.88;transform:translateY(-1px);}
+    main{max-width:1000px;margin:0 auto;padding:2rem 1rem;}
+    .section{background:var(--card);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);margin-bottom:1.5rem;}
+    .section h2{color:var(--primary);margin-bottom:1rem;font-size:1.3rem;}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;}
+    .stat{text-align:center;padding:1rem;background:var(--bg);border-radius:8px;}
+    .stat-value{font-size:1.8rem;font-weight:800;color:var(--primary);}
+    .stat-label{font-size:.85rem;color:var(--muted);margin-top:.3rem;}
+    .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;}
+    .theme-card{border:2px solid var(--border);border-radius:12px;padding:1.2rem;transition:all .2s;}
+    .theme-card:hover{border-color:var(--accent2);transform:translateY(-2px);}
+    .theme-header{display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem;}
+    .theme-icon{font-size:1.8rem;}
+    .theme-name{font-weight:700;color:var(--primary);font-size:1.1rem;}
+    .score-bar{height:8px;background:var(--border);border-radius:4px;margin:.8rem 0;overflow:hidden;}
+    .score-fill{height:100%;border-radius:4px;transition:width .6s;}
+    .score-details{display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted);}
+    .actor-list{display:grid;gap:.8rem;}
+    .actor{background:var(--bg);border-radius:8px;padding:1rem;border-left:4px solid var(--accent);}
+    .actor-name{font-weight:700;color:var(--primary);}
+    .actor-type{font-size:.8rem;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem;}
+    .actor-desc{font-size:.9rem;color:#495057;margin-top:.5rem;}
+    .actor-themes{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem;}
+    .actor-theme{background:var(--accent);color:white;padding:.2rem .6rem;border-radius:12px;font-size:.75rem;}
+    .loading{text-align:center;padding:3rem;color:var(--muted);}
+    .nav{display:flex;justify-content:space-between;margin-top:2rem;}
+  </style>
+</head>
+<body>
+  <header>
+    <span style="font-size:1.5rem">🏅</span>
+    <h1>Carte d'identité territoire</h1>
+    <a href="dashboard.html" style="margin-left:auto;color:white;text-decoration:none;font-size:.9rem;">← Tableau de bord</a>
+  </header>
+  <main>
+    <div id="loading" class="loading">⏳ Chargement du territoire...</div>
+
+    <div id="content" style="display:none">
+      <!-- Carte d'identité -->
+      <div class="section">
+        <h2>📍 <span id="t-name"></span></h2>
+        <p id="t-desc" style="color:#495057;margin-bottom:1.5rem;line-height:1.6;"></p>
+        <div class="stats-grid">
+          <div class="stat">
+            <div class="stat-value" id="t-pop"></div>
+            <div class="stat-label">Population</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="t-density"></div>
+            <div class="stat-label">Densité (hab/km²)</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="t-age"></div>
+            <div class="stat-label">Âge médian</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="t-income"></div>
+            <div class="stat-label">Revenu médian</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="t-unemployment"></div>
+            <div class="stat-label">Chômage (%)</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="t-qpv"></div>
+            <div class="stat-label">QPV</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problématiques territoriales -->
+      <div class="section">
+        <h2>🎯 Problématiques territoriales identifiées</h2>
+        <p style="color:#495057;margin-bottom:1.5rem;">Les thématiques sont scorées selon les indicateurs du territoire (50 pts) et la présence d'acteurs non-marchands (50 pts).</p>
+        <div class="theme-grid" id="themes-container"></div>
+      </div>
+
+      <!-- Acteurs non-marchands -->
+      <div class="section">
+        <h2>🤝 Acteurs non-marchands du territoire</h2>
+        <p style="color:#495057;margin-bottom:1.5rem;">Ces acteurs peuvent accompagner votre club dans la mise en œuvre de projets à impact.</p>
+        <div class="actor-list" id="actors-container"></div>
+      </div>
+
+      <div class="nav">
+        <a href="diagnostic.html" class="btn btn-outline">← Diagnostic</a>
+        <a href="projects.html" class="btn btn-accent">Voir les projets recommandés →</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const clubId = localStorage.getItem('ts_club_id');
+    if (!clubId) window.location.href = 'index.html';
+
+    async function loadTerritory() {
+      try {
+        // 1. Récupérer le territoire du club
+        const tRes = await fetch(`/api/territory/by-club/${clubId}`);
+        if (!tRes.ok) throw new Error('Territoire non trouvé');
+        const territory = await tRes.json();
+
+        // 2. Récupérer le diagnostic territorial
+        const dRes = await fetch(`/api/territory/${territory.id}/diagnostic`);
+        const diagnostics = await dRes.json();
+
+        // 3. Récupérer les acteurs
+        const aRes = await fetch(`/api/territory/${territory.id}/actors`);
+        const actors = await aRes.json();
+
+        // Affichage
+        renderTerritory(territory);
+        renderDiagnostics(diagnostics);
+        renderActors(actors);
+
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+      } catch (err) {
+        document.getElementById('loading').innerHTML = '❌ ' + err.message;
+      }
+    }
+
+    function renderTerritory(t) {
+      document.getElementById('t-name').textContent = `${t.epci} — ${t.bassin_vie || t.city}`;
+      document.getElementById('t-desc').textContent = t.description || '';
+      document.getElementById('t-pop').textContent = (t.population || 0).toLocaleString('fr-FR');
+      document.getElementById('t-density').textContent = t.density || '-';
+      document.getElementById('t-age').textContent = t.median_age || '-';
+      document.getElementById('t-income').textContent = (t.median_income || 0).toLocaleString('fr-FR') + ' €';
+      document.getElementById('t-unemployment').textContent = (t.unemployment || 0) + ' %';
+      document.getElementById('t-qpv').textContent = t.qpv_count || 0;
+    }
+
+    function renderDiagnostics(diagnostics) {
+      const container = document.getElementById('themes-container');
+      if (diagnostics.length === 0) {
+        container.innerHTML = '<p style="color:var(--muted)">Aucune problématique identifiée pour ce territoire.</p>';
+        return;
+      }
+      container.innerHTML = diagnostics.map(d => `
+        <div class="theme-card" style="border-color:${d.theme_color}40">
+          <div class="theme-header">
+            <span class="theme-icon">${d.theme_icon}</span>
+            <span class="theme-name">${d.theme_label}</span>
+            <span style="margin-left:auto;font-weight:800;color:${d.theme_color}">${d.score_total}/100</span>
+          </div>
+          <div class="score-bar">
+            <div class="score-fill" style="width:${d.score_total}%;background:${d.theme_color}"></div>
+          </div>
+          <div class="score-details">
+            <span>📊 Indicateurs: ${d.score_factuel}/50</span>
+            <span>🤝 Acteurs: ${d.score_acteurs}/50</span>
+          </div>
+          ${d.rank ? `<div style="margin-top:.5rem;font-size:.8rem;color:var(--muted)">Rang ${d.rank}</div>` : ''}
+        </div>
+      `).join('');
+    }
+
+    function renderActors(actors) {
+      const container = document.getElementById('actors-container');
+      if (actors.length === 0) {
+        container.innerHTML = '<p style="color:var(--muted)">Aucun acteur non-marchand identifié pour ce territoire.</p>';
+        return;
+      }
+      container.innerHTML = actors.map(a => `
+        <div class="actor">
+          <div class="actor-type">${a.type}</div>
+          <div class="actor-name">${a.name}</div>
+          <div style="font-size:.85rem;color:var(--muted);margin-top:.3rem">📍 ${a.city || ''}</div>
+          <div class="actor-desc">${a.description || ''}</div>
+          <div class="actor-themes">
+            ${a.themes.map(t => `<span class="actor-theme">${t}</span>`).join('')}
+          </div>
+          ${a.contact_email ? `<div style="margin-top:.5rem;font-size:.85rem"><a href="mailto:${a.contact_email}" style="color:var(--accent)">${a.contact_email}</a></div>` : ''}
+        </div>
+      `).join('');
+    }
+
+    loadTerritory();
+  </script>
+</body>
+</html>
