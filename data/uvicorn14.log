@@ -1,0 +1,9 @@
+INFO:     Started server process [15494]
+INFO:     Waiting for application startup.
+✅ Base de données initialisée
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8013 (Press CTRL+C to quit)
+INFO:     127.0.0.1:50956 - "GET /api/admin/seed HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50972 - "GET /api/admin/info HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46562 - "GET /api/admin/info HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46574 - "POST /api/admin/seed HTTP/1.1" 200 OK
