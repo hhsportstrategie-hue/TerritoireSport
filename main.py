@@ -55,6 +55,19 @@ async def seed_demo_partners():
 async def lifespan(app: FastAPI):
     await init_db()
     await seed_demo_partners()
+    # Lancer le seed complet au démarrage (idempotent)
+    try:
+        import subprocess
+        result = subprocess.run(
+            ["python3", "seed.py"],
+            capture_output=True, text=True, timeout=30
+        )
+        if result.returncode == 0:
+            print("✅ Seed complet OK au démarrage")
+        else:
+            print(f"⚠️ Seed warning: {result.stderr[:200]}")
+    except Exception as e:
+        print(f"⚠️ Seed skip: {e}")
     yield
 
 # ── Application ───────────────────────────────────────────────────
