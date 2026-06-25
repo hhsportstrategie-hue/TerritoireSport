@@ -1,68 +1,152 @@
-# TerritoireSport 🏅
+# TerritoireSport v3
 
-**Plateforme d'aide aux clubs et associations sportives pour monter et piloter des projets à impact local.**
+Plateforme d'aide aux clubs sportifs pour monter des projets à impact local.
 
-MVP cible : journée de formation ES Coutances — octobre 2026.
-
-## Concept
-
-TerritoireSport accompagne les clubs sportifs dans leur développement territorial :
-diagnostic, identification de projets pertinents, mise en relation avec des partenaires,
-suivi des projets et mesure de l'impact.
-
-## Fonctionnalités MVP (F0 à F8)
-
-| ID | Fonctionnalité |
-|----|---------------|
-| F0 | Landing page + inscription club |
-| F1 | Profil club (infos, sport, territoire, taille) |
-| F2 | Diagnostic territorial (10 questions → score d'impact potentiel) |
-| F3 | Bibliothèque de projets (19 thématiques) |
-| F4 | Matching automatique club ↔ projets |
-| F5 | Fiche projet détaillée (description, partenaires, budget, indicateurs) |
-| F6 | Tableau de bord club (projets en cours, statuts) |
-| F7 | Annuaire partenaires (par territoire) |
-| F8 | Export rapport d'impact (PDF) |
-
-## Stack technique
-
-- **Backend** : Python FastAPI
-- **Base de données** : SQLite
-- **Frontend** : HTML/CSS/JS vanilla (compatible PWA)
-- **Déployable** partout sans infrastructure complexe
-
-## Installation
+## 🚀 Démarrage rapide (local)
 
 ```bash
+# 1. Installer les dépendances
 pip install -r requirements.txt
-uvicorn main:app --reload
-# Ouvrir http://localhost:8000
+
+# 2. Initialiser la DB + données démo
+python3 seed.py
+
+# 3. Lancer le serveur
+uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
-## Structure
+L'app est accessible sur http://localhost:8000
+
+## 📡 Endpoints API
+
+### Clubs
+- `POST /api/clubs/register` — Inscription
+- `POST /api/clubs/login` — Connexion
+- `GET /api/clubs/{club_id}` — Profil club
+- `PATCH /api/clubs/{club_id}` — Mise à jour profil
+
+### Diagnostic
+- `GET /api/diagnostic/questions` — Questions du diagnostic
+- `POST /api/diagnostic/submit` — Soumettre réponses
+- `GET /api/diagnostic/latest/{club_id}` — Dernier diagnostic
+
+### Affinité
+- `GET /api/affinity/{club_id}` — Top 5 thématiques d'affinité
+
+### Projets
+- `GET /api/projects/library` — Bibliothèque de 33 projets
+- `GET /api/projects/library/{project_id}` — Détail projet
+- `GET /api/projects/themes` — 19 thématiques
+- `GET /api/projects/cas-inspirants` — 17 cas inspirants
+- `POST /api/projects/club` — Créer projet club
+- `GET /api/projects/club/{club_id}` — Projets du club
+
+### Matching
+- `GET /api/matching/{club_id}` — Partenaires matchés (top 5)
+
+### Territoire
+- `GET /api/territory/{territory_id}` — Carte d'identité
+- `GET /api/territory/{territory_id}/diagnostic` — Problématiques scorées
+- `GET /api/territory/{territory_id}/actors` — Acteurs non-marchands
+- `GET /api/territory/{territory_id}/full` — Vue complète
+- `GET /api/territory/by-club/{club_id}` — Territoire d'un club
+
+### Partenaires
+- `GET /api/partners/` — Liste (filtres: department, theme)
+
+### Export
+- `GET /api/clubs/{club_id}/rapport-pdf` — Rapport d'impact PDF
+
+### Santé
+- `GET /api/health` — Status
+
+## 🚂 Déploiement Railway
+
+### Configuration
+- `Procfile` : `web: uvicorn main:app --host 0.0.0.0 --port $PORT`
+- `nixpacks.toml` : Python 3.11 + pip
+- `runtime.txt` : python-3.11.9
+
+### Variables d'environnement
+- `DB_PATH` (optionnel) : chemin vers la DB SQLite. Défaut : `data/territoiresport.db`
+
+### ⚠️ SQLite éphémère
+Par défaut, Railway ne persiste pas les données SQLite entre les redeploys.
+Pour persister, ajouter un **volume** :
+1. Railway Dashboard → Service → Settings → Volumes
+2. Mount path : `/data`
+3. Variable d'env : `DB_PATH=/data/territoiresport.db`
+
+### Alternative : PostgreSQL
+Pour une vraie prod, migrer vers PostgreSQL (Railway fournit un addon gratuit).
+
+## 🧪 Tests
+
+```bash
+# Lancer le seed
+python3 seed.py
+
+# Tester les endpoints
+curl http://localhost:8000/api/health
+curl http://localhost:8000/api/affinity/90f8a193-a4b8-4975-b315-8e1484cdf3a3
+curl http://localhost:8000/api/territory/argentan-intercom/full
+```
+
+## 📁 Structure
 
 ```
-TerritoireSport/
-├── main.py              # FastAPI app + configuration
-├── models/              # Modèles Pydantic + SQLite
-├── routes/              # Endpoints API
-├── data/                # Données statiques (thématiques, projets)
-├── frontend/            # Interface HTML/CSS/JS
-└── docs/                # Documentation
+territoiresport/
+├── main.py              # Point d'entrée FastAPI
+├── seed.py              # Script de seed (idempotent)
+├── db_config.py         # Configuration DB_PATH
+├── routes/              # Routes API par domaine
+│   ├── clubs.py
+│   ├── diagnostic.py
+│   ├── projects.py
+│   ├── matching.py
+│   ├── territory.py
+│   └── affinity.py
+├── models/              # Modèles Pydantic
+├── data/                # Données statiques + DB
+│   ├── schema.sql
+│   ├── territories.json
+│   ├── territory_actors.json
+│   ├── themes.json
+│   ├── projects_library.json
+│   ├── cas_inspirants.json
+│   └── territoiresport.db
+├── frontend/            # HTML/CSS/JS
+│   ├── index.html
+│   ├── dashboard.html
+│   ├── diagnostic.html
+│   ├── projects.html
+│   └── territoire.html
+├── requirements.txt
+├── Procfile
+├── nixpacks.toml
+└── runtime.txt
 ```
 
-## Les 19 thématiques sociétales
+## 🎯 Club de démo
 
-Santé & bien-être, Insertion professionnelle, Cohésion sociale, Environnement,
-Éducation & jeunesse, Égalité femmes-hommes, Handicap & inclusion, Seniors,
-Prévention des violences, Culture & patrimoine, Économie locale, Tourisme,
-Mobilité, Numérique & innovation, Gouvernance participative, Sport de haut niveau,
-Sport féminin, Sport amateur, Sport scolaire.
+- ID : `90f8a193-a4b8-4975-b315-8e1484cdf3a3`
+- Nom : BATT Argentan
+- Sport : Tennis de table
+- Ville : Argentan (61)
+- Diagnostic : score 15/20, profil "Engagé"
+- Top 3 affinités : Santé (85), Handicap (80), Cohésion (75)
 
-## Auteur
+## 📊 Données chargées
 
-Développé par H3P Solutions — Hervé HUET.
-Premier utilisateur cible : US Ducey (club football, Manche).
-
----
-*TerritoireSport — H3P Solutions 2026*
+| Table/Source | Contenu |
+|---|---|
+| clubs | 1 club démo (BATT) |
+| diagnostics | 1 diagnostic (engaged) |
+| club_territories | Lien BATT ↔ Argentan Intercom |
+| partners | 7 partenaires (Mairie, DRAJES, ANS, etc.) |
+| funding_sources | 4 sources (ANS, Région, CD61, FdF) |
+| territories.json | 8 EPCI normands |
+| territory_actors.json | ~50 acteurs non-marchands |
+| themes.json | 19 thématiques |
+| projects_library.json | 33 projets types |
+| cas_inspirants.json | 17 cas inspirants |

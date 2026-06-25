@@ -41,8 +41,8 @@ class TerritoryActorOut(BaseModel):
     type:            str  # 'association' | 'public' | 'fondation'
     themes:          List[str]
     city:            Optional[str]
-    description:     Optional[str]
-    contact_email:   Optional[str]
+    contact_email:   Optional[str] = None
+    contact_phone:   Optional[str] = None
     contact_phone:   Optional[str]
 
 class TerritoryFullOut(BaseModel):

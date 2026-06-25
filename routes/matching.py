@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException
+from db_config import DB_PATH
 import json
 from pathlib import Path
 from models.diagnostic import PROFILES, compute_profile
@@ -18,7 +19,7 @@ async def match_projects(club_id: str, limit: int = 5):
     - Taille du club (budget)
     """
     import aiosqlite
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         # Récupérer le club
         async with db.execute("SELECT * FROM clubs WHERE id = ?", (club_id,)) as cur:

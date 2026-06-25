@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException
+from db_config import DB_PATH
 from models.project import ClubProjectCreate, ClubProjectUpdate, ClubProjectOut
 import uuid, json
 from pathlib import Path
@@ -56,7 +57,7 @@ async def add_club_project(data: ClubProjectCreate):
     if not any(p["id"] == data.project_id for p in projects):
         raise HTTPException(404, "Projet non trouvé dans la bibliothèque")
     cp_id = str(uuid.uuid4())
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         await db.execute(
             "INSERT INTO club_projects (id, club_id, project_id, notes, started_at) VALUES (?,?,?,?,datetime('now'))",
@@ -70,7 +71,7 @@ async def add_club_project(data: ClubProjectCreate):
 async def get_club_projects(club_id: str):
     import aiosqlite
     library = {p["id"]: p for p in load_library()}
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         async with db.execute(
             "SELECT * FROM club_projects WHERE club_id = ? ORDER BY updated_at DESC",
@@ -92,7 +93,7 @@ async def update_club_project(cp_id: str, data: ClubProjectUpdate):
         raise HTTPException(400, "Aucun champ")
     set_clause = ", ".join(f"{k} = ?" for k in updates)
     values = list(updates.values()) + [cp_id]
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         await db.execute(f"UPDATE club_projects SET {set_clause}, updated_at = datetime('now') WHERE id = ?", values)
         await db.commit()

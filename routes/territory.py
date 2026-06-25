@@ -4,6 +4,7 @@ Carte d'identité + Diagnostic territorial + Acteurs non-marchands
 """
 
 from fastapi import APIRouter, HTTPException
+from db_config import DB_PATH
 import json
 from pathlib import Path
 from models.territory import (
@@ -118,7 +119,7 @@ async def get_territory_full(territory_id: str):
 async def get_territory_by_club(club_id: str):
     """Récupère le territoire d'un club"""
     import aiosqlite
-    async with aiosqlite.connect("data/territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         # Vérifier que le club existe
         cursor = await db.execute("SELECT city, department FROM clubs WHERE id = ?", (club_id,))
         club = await cursor.fetchone()

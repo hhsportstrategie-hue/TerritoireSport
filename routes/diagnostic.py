@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException
+from db_config import DB_PATH
 from models.diagnostic import DiagnosticSubmit, DiagnosticOut, DIAGNOSTIC_QUESTIONS, PROFILES, compute_profile
 import uuid, json
 
@@ -16,7 +17,7 @@ async def submit_diagnostic(data: DiagnosticSubmit):
     profile = compute_profile(score)
     profile_data = PROFILES[profile]
     diag_id = str(uuid.uuid4())
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         await db.execute(
             "INSERT INTO diagnostics (id, club_id, answers, score, profile) VALUES (?,?,?,?,?)",
@@ -35,7 +36,7 @@ async def submit_diagnostic(data: DiagnosticSubmit):
 @router.get("/latest/{club_id}")
 async def get_latest_diagnostic(club_id: str):
     import aiosqlite
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         async with db.execute(
             "SELECT * FROM diagnostics WHERE club_id = ? ORDER BY completed_at DESC LIMIT 1",

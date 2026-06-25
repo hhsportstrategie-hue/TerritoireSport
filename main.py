@@ -3,17 +3,20 @@ TerritoireSport — FastAPI Application
 Plateforme d'aide aux clubs sportifs pour monter des projets à impact local.
 """
 
+import os
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from contextlib import asynccontextmanager
 import aiosqlite
 from pathlib import Path
+_DEFAULT_DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "territoiresport.db")
+DB_PATH = os.getenv("DB_PATH", _DEFAULT_DB)
 
 # ── Initialisation de la base de données ─────────────────────────
 async def init_db():
     schema = Path("data/schema.sql").read_text(encoding="utf-8")
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         await db.executescript(schema)
         await db.commit()
     print("✅ Base de données initialisée")
@@ -34,9 +37,10 @@ async def seed_demo_partners():
         ("ANS — Agence Nationale du Sport", "public", "sante", "Paris", "75", None, "https://www.agencedusport.fr",
          "Agence nationale du sport — financement et développement", json.dumps(["sante","insertion","feminin","handicap"])),
     ]
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         async with db.execute("SELECT COUNT(*) as n FROM partners") as cur:
-            if (await cur.fetchone())[0] > 0:
+            row = await cur.fetchone()
+            if row and row[0] > 0:
                 return
         for p in demo_partners:
             await db.execute(
@@ -65,35 +69,32 @@ app = FastAPI(
 from routes.clubs      import router as clubs_router
 from routes.diagnostic import router as diag_router
 from routes.projects   import router as projects_router
-from routes.territory  import router as territory_router
-from routes.affinity   import router as affinity_router
-from routes.territory  import router as territory_router
-from routes.affinity   import router as affinity_router
 from routes.matching   import router as matching_router
+from routes.territory  import router as territory_router
+from routes.affinity   import router as affinity_router
 
 app.include_router(clubs_router)
-app.include_router(territory_router)
-app.include_router(affinity_router)
 app.include_router(diag_router)
 app.include_router(projects_router)
+app.include_router(matching_router)
 app.include_router(territory_router)
 app.include_router(affinity_router)
-app.include_router(matching_router)
 
 # ── Route partenaires (inline — simple) ──────────────────────────
 from fastapi import APIRouter
-import json, uuid
+import json
 
 partners_router = APIRouter(prefix="/api/partners", tags=["partners"])
 
 @partners_router.get("/")
 async def list_partners(department: str = None, theme: str = None):
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         query  = "SELECT * FROM partners WHERE 1=1"
         params = []
         if department:
-            query += " AND department = ?"; params.append(department)
+            query += " AND department = ?"
+            params.append(department)
         async with db.execute(query, params) as cur:
             rows = [dict(r) for r in await cur.fetchall()]
             for r in rows:
@@ -117,10 +118,11 @@ async def export_rapport(club_id: str):
     from reportlab.lib.units import cm
     import io, json
 
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         async with db.execute("SELECT * FROM clubs WHERE id = ?", (club_id,)) as cur:
-            club = dict(await cur.fetchone() or {})
+            club_row = await cur.fetchone()
+            club = dict(club_row) if club_row else {}
         async with db.execute(
             "SELECT * FROM diagnostics WHERE club_id = ? ORDER BY completed_at DESC LIMIT 1",
             (club_id,)

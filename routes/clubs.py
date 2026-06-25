@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends
+from db_config import DB_PATH
 from models.club import ClubCreate, ClubUpdate, ClubOut, ClubLogin
 from typing import List
 import hashlib, uuid, json
@@ -15,7 +16,7 @@ def hash_password(pwd: str) -> str:
 @router.post("/register", response_model=ClubOut, status_code=201)
 async def register_club(data: ClubCreate):
     import aiosqlite
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         # Vérifier email unique
         async with db.execute("SELECT id FROM clubs WHERE email = ?", (data.email,)) as cur:
@@ -37,7 +38,7 @@ async def register_club(data: ClubCreate):
 @router.post("/login")
 async def login(data: ClubLogin):
     import aiosqlite
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         async with db.execute(
             "SELECT * FROM clubs WHERE email = ? AND password_hash = ?",
@@ -53,7 +54,7 @@ async def login(data: ClubLogin):
 @router.get("/{club_id}", response_model=ClubOut)
 async def get_club(club_id: str):
     import aiosqlite
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         async with db.execute("SELECT * FROM clubs WHERE id = ?", (club_id,)) as cur:
             row = await cur.fetchone()
@@ -69,7 +70,7 @@ async def update_club(club_id: str, data: ClubUpdate):
         raise HTTPException(400, "Aucun champ à mettre à jour")
     set_clause = ", ".join(f"{k} = ?" for k in updates)
     values = list(updates.values()) + [club_id]
-    async with aiosqlite.connect("territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         await db.execute(f"UPDATE clubs SET {set_clause}, updated_at = datetime('now') WHERE id = ?", values)
         await db.commit()

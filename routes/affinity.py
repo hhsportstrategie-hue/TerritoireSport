@@ -4,6 +4,7 @@ Croisement entre profil club et problématiques territoire
 """
 
 from fastapi import APIRouter, HTTPException
+from db_config import DB_PATH
 import json
 import uuid
 from pathlib import Path
@@ -55,7 +56,7 @@ async def get_affinity(club_id: str):
     """Calcule l'affinité club-territoire pour toutes les thématiques"""
     import aiosqlite
 
-    async with aiosqlite.connect("data/territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         # Récupérer le club
         cursor = await db.execute(
             "SELECT sport, size, members_count FROM clubs WHERE id = ?",
@@ -142,7 +143,7 @@ async def save_affinity(selection: AffinitySelection):
             detail="Maximum 3 thématiques peuvent être sélectionnées"
         )
 
-    async with aiosqlite.connect("data/territoiresport.db") as db:
+    async with aiosqlite.connect(DB_PATH) as db:
         # Désélectionner toutes les anciennes
         await db.execute(
             "UPDATE affinity_scores SET selected = 0 WHERE club_id = ?",
