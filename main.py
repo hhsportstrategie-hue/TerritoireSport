@@ -58,8 +58,10 @@ async def lifespan(app: FastAPI):
     # Lancer le seed complet au démarrage (idempotent)
     try:
         import subprocess
+        import os as _os
         result = subprocess.run(
             ["python3", "seed.py"],
+            env=_os.environ.copy(),
             capture_output=True, text=True, timeout=30
         )
         if result.returncode == 0:
@@ -102,7 +104,7 @@ import json
 partners_router = APIRouter(prefix="/api/partners", tags=["partners"])
 
 @partners_router.get("/")
-async def list_partners(department: str = None, theme: str = None):
+async def list_partners(department: str = None, theme: str = None, type: str = None):
     async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         query  = "SELECT * FROM partners WHERE 1=1"
@@ -110,6 +112,9 @@ async def list_partners(department: str = None, theme: str = None):
         if department:
             query += " AND department = ?"
             params.append(department)
+        if type:
+            query += " AND type = ?"
+            params.append(type)
         async with db.execute(query, params) as cur:
             rows = [dict(r) for r in await cur.fetchall()]
             for r in rows:
