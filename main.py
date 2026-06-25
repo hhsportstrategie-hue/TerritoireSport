@@ -1,10 +1,12 @@
 """
-TerritoireSport — FastAPI Application
+TerritoireSport — FastAPI Application v2.0
 Plateforme d'aide aux clubs sportifs pour monter des projets à impact local.
+Avec : CORS, Auth, Cache, Pagination, Rate Limiting, Métriques, Export CSV
 """
 
 import os
-from fastapi import FastAPI
+import time
+from fastapi import FastAPI, Request, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, Response
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,10 +14,14 @@ from contextlib import asynccontextmanager
 import aiosqlite
 from pathlib import Path
 
+from auth import verify_token
+from cache import cached, clear_cache
+from metrics import track_request, get_metrics
+from rate_limit import check_rate_limit
+
 _DEFAULT_DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "territoiresport.db")
 DB_PATH = os.getenv("DB_PATH", _DEFAULT_DB)
 
-# ── Initialisation de la base de données ─────────────────────────
 async def init_db():
     schema = Path("data/schema.sql").read_text(encoding="utf-8")
     async with aiosqlite.connect(DB_PATH) as db:
@@ -23,9 +29,7 @@ async def init_db():
         await db.commit()
     print("✅ Base de données initialisée")
 
-# ── Données de démonstration ──────────────────────────────────────
 async def seed_demo_partners():
-    """Ajoute quelques partenaires de démonstration si la table est vide."""
     import uuid, json
     demo_partners = [
         ("Mairie de Ducey-Les Chéris", "public", "cohesion", "Ducey", "50", None, None,
@@ -73,15 +77,15 @@ async def lifespan(app: FastAPI):
         print(f"⚠️ Seed skip: {e}")
     yield
 
-# ── Application ───────────────────────────────────────────────────
 app = FastAPI(
     title="TerritoireSport",
     description="Plateforme d'aide aux clubs sportifs pour monter des projets à impact local",
-    version="1.0.0",
+    version="2.0.0",
     lifespan=lifespan,
+    contact={"name": "H3P Solutions", "email": "hh.sportstrategie@gmail.com"},
+    license_info={"name": "Proprietary"},
 )
 
-# ── CORS (ajouté) ────────────────────────────────────────────────
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -90,7 +94,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ── Routes API ────────────────────────────────────────────────────
+@app.middleware("http")
+async def metrics_middleware(request: Request, call_next):
+    start = time.time()
+    error = False
+    try:
+        response = await call_next(request)
+        if response.status_code >= 500:
+            error = True
+        return response
+    except Exception:
+        error = True
+        raise
+    finally:
+        duration = time.time() - start
+        endpoint = f"{request.method} {request.url.path}"
+        track_request(endpoint, duration, error)
+
 from routes.clubs      import router as clubs_router
 from routes.diagnostic import router as diag_router
 from routes.projects   import router as projects_router
@@ -98,6 +118,7 @@ from routes.matching   import router as matching_router
 from routes.territory  import router as territory_router
 from routes.affinity   import router as affinity_router
 from routes.admin      import router as admin_router
+from csv_export        import router as export_router
 
 app.include_router(clubs_router)
 app.include_router(diag_router)
@@ -106,8 +127,8 @@ app.include_router(matching_router)
 app.include_router(territory_router)
 app.include_router(affinity_router)
 app.include_router(admin_router)
+app.include_router(export_router)
 
-# ── Route partenaires (inline — simple) ──────────────────────────
 from fastapi import APIRouter
 import json
 
@@ -135,10 +156,19 @@ async def list_partners(department: str = None, theme: str = None, type: str = N
 
 app.include_router(partners_router)
 
-# ── Export PDF rapport d'impact (F8) ─────────────────────────────
+@app.get("/api/metrics", tags=["admin"], dependencies=[Depends(verify_token)])
+async def metrics():
+    """Métriques de l'API (protégé par token)."""
+    return get_metrics()
+
+@app.post("/api/cache/clear", tags=["admin"], dependencies=[Depends(verify_token)])
+async def clear_cache_endpoint():
+    """Vide le cache (protégé par token)."""
+    clear_cache()
+    return {"status": "cache cleared"}
+
 @app.get("/api/clubs/{club_id}/rapport-pdf")
 async def export_rapport(club_id: str):
-    """Génère un rapport d'impact PDF pour le club."""
     from reportlab.lib.pagesizes import A4
     from reportlab.lib import colors
     from reportlab.lib.styles import getSampleStyleSheet
@@ -210,10 +240,12 @@ async def export_rapport(club_id: str):
         headers={"Content-Disposition": f"attachment; filename=rapport_{club_id[:8]}.pdf"}
     )
 
-# ── Santé ─────────────────────────────────────────────────────────
 @app.get("/api/health")
 async def health():
-    return {"status": "ok", "version": "1.0.0"}
+    return {
+        "status": "ok",
+        "version": "2.0.0",
+        "features": ["auth", "cache", "pagination", "metrics", "csv_export", "rate_limit"]
+    }
 
-# ── Frontend statique ─────────────────────────────────────────────
 app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
