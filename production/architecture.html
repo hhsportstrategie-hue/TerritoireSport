@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerritoireSport — Architecture & Parcours Utilisateur</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f7fa;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 24px 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 28px; margin-bottom: 4px; }
+        header p { opacity: 0.9; font-size: 14px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+        /* Parcours utilisateur */
+        .journey {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .journey h2 { color: #1e3a8a; margin-bottom: 16px; }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            padding: 16px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        .step-num {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: #1e3a8a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        .step-content { flex: 1; }
+        .step-title { font-weight: 600; color: #1e3a8a; margin-bottom: 4px; }
+        .step-desc { font-size: 14px; color: #4b5563; margin-bottom: 8px; }
+        .step-endpoint {
+            display: inline-block;
+            background: #1f2937;
+            color: #10b981;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 12px;
+        }
+        .step-arrow {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 20px;
+            margin: -8px 0;
+        }
+
+        /* Architecture */
+        .architecture {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .architecture h2 { color: #1e3a8a; margin-bottom: 16px; }
+
+        .layers {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        .layer {
+            padding: 16px;
+            border-radius: 8px;
+            border: 2px solid;
+        }
+        .layer-frontend {
+            background: #eff6ff;
+            border-color: #3b82f6;
+        }
+        .layer-api {
+            background: #f0fdf4;
+            border-color: #10b981;
+        }
+        .layer-data {
+            background: #fef3c7;
+            border-color: #f59e0b;
+        }
+        .layer-external {
+            background: #fce7f3;
+            border-color: #ec4899;
+        }
+        .layer-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .layer-frontend .layer-title { color: #1e40af; }
+        .layer-api .layer-title { color: #065f46; }
+        .layer-data .layer-title { color: #92400e; }
+        .layer-external .layer-title { color: #9f1239; }
+
+        .layer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .component {
+            background: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .component strong { color: #1e3a8a; }
+
+        /* Data flow */
+        .data-flow {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .data-flow h2 { color: #1e3a8a; margin-bottom: 16px; }
+
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 16px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        .flow-node {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 2px solid #3b82f6;
+            text-align: center;
+            min-width: 120px;
+        }
+        .flow-node strong { color: #1e3a8a; display: block; margin-bottom: 4px; }
+        .flow-arrow {
+            color: #6b7280;
+            font-size: 24px;
+        }
+
+        /* Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .quick-stat {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .quick-stat .num {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        .quick-stat .label {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .nav a {
+            padding: 8px 16px;
+            background: white;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #1e3a8a;
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .nav a:hover { background: #eff6ff; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🏗️ TerritoireSport — Architecture & Parcours Utilisateur</h1>
+        <p>Vue d'ensemble du système : du club sportif au dossier de candidature AAP</p>
+    </header>
+
+    <div class="container">
+        <div class="nav">
+            <a href="/demo">📊 Voir la démo</a>
+            <a href="/docs">📖 Swagger API</a>
+            <a href="/architecture">🏗️ Architecture (cette page)</a>
+        </div>
+
+        <!-- Quick stats -->
+        <div class="quick-stats">
+            <div class="quick-stat"><div class="num">10</div><div class="label">Étapes parcours</div></div>
+            <div class="quick-stat"><div class="num">12</div><div class="label">Endpoints API</div></div>
+            <div class="quick-stat"><div class="num">7</div><div class="label">Tables BDD</div></div>
+            <div class="quick-stat"><div class="num">2644</div><div class="label">Communes référencées</div></div>
+        </div>
+
+        <!-- Parcours utilisateur -->
+        <div class="journey">
+            <h2>👤 Parcours utilisateur — Le club sportif de A à Z</h2>
+
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <div class="step-title">Le club se connecte</div>
+                    <div class="step-desc">Authentification basique (email + password hash). Le club accède à son tableau de bord.</div>
+                    <span class="step-endpoint">POST /api/auth/login</span>
+                </div>
+            </div>
+            <div class="step-arrow">↓</div>
+
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <div class="step-title">Diagnostic territorial (20 questions)</div>
+                    <div class="step-desc">Le club répond à un questionnaire : composition, territoire, partenariats existants, ambitions sociétales.</div>
+                    <span class="step-endpoint">POST /api/diagnostics</span>
+                </div>
+            </div>
+            <div class="step-arrow">↓</div>
+
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <div class="step-title">Calcul du profil (engaged / emerging / aware / novice)</div>
+                    <div class="step-desc">Le système score les réponses (0-20) et détermine le niveau de maturité sociétale du club.</div>
+                    <span class="step-endpoint">GET /api/diagnostics/{id}</span>
+                </div>
+            </div>
+            <div class="step-arrow">↓</div>
+
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <div class="step-title">Identification du territoire (EPCI)</div>
+                    <div class="step-desc">Le système croise la commune du club avec les EPCI normands pour proposer le territoire d'action.</div>
+                    <span class="step-endpoint">GET /api/communes/{code_insee}</span>
+                </div>
+            </div>
+            <div class="step-arrow">↓</div>
+
+            <div class="step">
+                <div class="step-num">5</div>
+                <div class="step-content">
+                    <div class="step-title">Shortlist de partenaires scorés</div>
+                    <div class="step-desc">Algorithme de scoring : type (institution/sponsor) + proximité géographique + thèmes matchants. Top 10-20 partenaires.</div>
+                    <span class="step-endpoint">GET /api/shortlist</span>
+                </div>
+            </div>
+            <div class="step-arrow">↓</div>
+
+            <div class="step">
+                <div class="step-num">6</div>
+                <div class="step-content">
+                    <div class="step-title">Sélection de 3-5 partenaires</div>
+                    <div class="step-desc">Le club parcourt la shortlist, consulte les détails (contact, description, thèmes) et sélectionne.</div>
+                    <span class="step-endpoint">GET /api/partners/{id}</span>
+                </div>
+            </div>
+            <div class="step-arrow">↓</div>
+
+            <div class="step">
+                <div class="step-num">7</div>
+                <div class="step-content">
+                    <div class="step-title">Projets de bibliothèque matchant les partenaires</div>
+                    <div class="step-desc">Le système croise les thèmes des partenaires sélectionnés avec les 33 projets de bibliothèque + 4 projets BATT.</div>
+                    <span class="step-endpoint">GET /api/projects?theme=X</span>
+                </div>
+            </div>
+            <div class="step-arrow">↓</div>
+
+            <div class="step">
+                <div class="step-num">8</div>
+                <div class="step-content">
+                    <div class="step-title">Sélection/customisation de 1-3 projets</div>
+                    <div class="step-desc">Le club choisit un projet type, l'adapte à son contexte (budget, partenaires, calendrier).</div>
+                    <span class="step-endpoint">GET /api/projects/{id}</span>
+                </div>
+            </div>
+            <div class="step-arrow">↓</div>
+
+            <div class="step">
+                <div class="step-num">9</div>
+                <div class="step-content">
+                    <div class="step-title">Identification des AAP matchant</div>
+                    <div class="step-desc">Le système croise les thèmes des projets avec les 4 sources de financement (CPAM, ANS, Région, Fondations).</div>
+                    <span class="step-endpoint">GET /api/funding-sources?theme=X</span>
+                </div>
+            </div>
+            <div class="step-arrow">↓</div>
+
+            <div class="step">
+                <div class="step-num">10</div>
+                <div class="step-content">
+                    <div class="step-title">Génération du dossier de candidature</div>
+                    <div class="step-desc">Le système assemble un dossier PDF : diagnostic + partenaires + projet + AAP ciblés.</div>
+                    <span class="step-endpoint">POST /api/dossiers/generate</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Architecture -->
+        <div class="architecture">
+            <h2>🏗️ Architecture technique</h2>
+
+            <div class="layers">
+                <!-- Frontend -->
+                <div class="layer layer-frontend">
+                    <div class="layer-title">📱 Frontend (à venir)</div>
+                    <div class="layer-content">
+                        <div class="component"><strong>Next.js 14</strong><br>App Router + SSR</div>
+                        <div class="component"><strong>Tailwind CSS</strong><br>UI components</div>
+                        <div class="component"><strong>Leaflet</strong><br>Cartographie</div>
+                        <div class="component"><strong>Recharts</strong><br>Visualisations</div>
+                    </div>
+                </div>
+
+                <!-- API -->
+                <div class="layer layer-api">
+                    <div class="layer-title">⚙️ Backend API (FastAPI)</div>
+                    <div class="layer-content">
+                        <div class="component"><strong>12 endpoints REST</strong><br>JSON + CSV</div>
+                        <div class="component"><strong>Swagger auto</strong><br>/docs</div>
+                        <div class="component"><strong>CORS ouvert</strong><br>Tous origins</div>
+                        <div class="component"><strong>Démo HTML</strong><br>/demo</div>
+                    </div>
+                </div>
+
+                <!-- Data -->
+                <div class="layer layer-data">
+                    <div class="layer-title">💾 Base de données (SQLite)</div>
+                    <div class="layer-content">
+                        <div class="component"><strong>clubs</strong> (6)</div>
+                        <div class="component"><strong>communes</strong> (2644)</div>
+                        <div class="component"><strong>partners</strong> (27)</div>
+                        <div class="component"><strong>projects</strong> (37)</div>
+                        <div class="component"><strong>diagnostics</strong> (1)</div>
+                        <div class="component"><strong>territories</strong> (1)</div>
+                        <div class="component"><strong>funding_sources</strong> (4)</div>
+                    </div>
+                </div>
+
+                <!-- External -->
+                <div class="layer layer-external">
+                    <div class="layer-title">🌐 Sources externes</div>
+                    <div class="layer-content">
+                        <div class="component"><strong>geo.api.gouv.fr</strong><br>Géocodage communes</div>
+                        <div class="component"><strong>OpenStreetMap</strong><br>Tiles cartographiques</div>
+                        <div class="component"><strong>INSEE</strong><br>Populations (à venir)</div>
+                        <div class="component"><strong>DataSport</strong><br>Équipements (à venir)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data flow -->
+        <div class="data-flow">
+            <h2>🔄 Flux de données — Étapes 2 → 10</h2>
+
+            <div class="flow-diagram">
+                <div class="flow-node">
+                    <strong>Diagnostic</strong>
+                    20 réponses
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node">
+                    <strong>Profil</strong>
+                    engaged/emerging/aware
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node">
+                    <strong>Shortlist</strong>
+                    Top 10 partenaires
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node">
+                    <strong>Projets</strong>
+                    3-5 matchants
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node">
+                    <strong>AAP</strong>
+                    1-3 financements
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node">
+                    <strong>Dossier</strong>
+                    PDF généré
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

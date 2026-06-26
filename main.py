@@ -480,3 +480,12 @@ async def get_demo():
     if demo_path.exists():
         return HTMLResponse(content=demo_path.read_text(encoding="utf-8"))
     raise HTTPException(status_code=404, detail="Demo not found")
+
+
+@app.get("/architecture", response_class=HTMLResponse)
+async def get_architecture():
+    """Page architecture & parcours utilisateur."""
+    arch_path = Path("production/architecture.html")
+    if arch_path.exists():
+        return HTMLResponse(content=arch_path.read_text(encoding="utf-8"))
+    raise HTTPException(status_code=404, detail="Architecture page not found")
