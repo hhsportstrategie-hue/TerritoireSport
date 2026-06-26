@@ -337,3 +337,134 @@ async def get_shortlist(
 async def metrics():
     """Métriques de l'API."""
     return get_metrics()
+
+@app.get("/api/projects")
+async def get_projects(
+    limit: int = Query(50, ge=1, le=500),
+    offset: int = Query(0, ge=0),
+    club_id: Optional[str] = None,
+    theme: Optional[str] = None,
+    status: Optional[str] = None,
+    search: Optional[str] = None
+):
+    """Liste des projets avec filtres."""
+    if not Path(DB_PATH).exists():
+        raise HTTPException(status_code=503, detail="Database not initialized")
+
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    query = "SELECT * FROM projects WHERE 1=1"
+    params = []
+
+    if club_id:
+        query += " AND club_id = ?"
+        params.append(club_id)
+
+    if status:
+        query += " AND status = ?"
+        params.append(status)
+
+    if search:
+        query += " AND (title LIKE ? OR description LIKE ?)"
+        params.extend([f"%{search}%", f"%{search}%"])
+
+    if theme:
+        query += " AND themes LIKE ?"
+        params.append(f"%{theme}%")
+
+    query += " ORDER BY created_at DESC LIMIT ? OFFSET ?"
+    params.extend([limit, offset])
+
+    cur.execute(query, params)
+    rows = [dict(row) for row in cur.fetchall()]
+
+    # Parse themes JSON
+    for row in rows:
+        if row.get("themes"):
+            try:
+                row["themes"] = json.loads(row["themes"])
+            except:
+                row["themes"] = []
+
+    conn.close()
+    return {"projects": rows, "count": len(rows), "limit": limit, "offset": offset}
+
+
+@app.get("/api/projects/{project_id}")
+async def get_project(project_id: str):
+    """Detail d'un projet par ID."""
+    if not Path(DB_PATH).exists():
+        raise HTTPException(status_code=503, detail="Database not initialized")
+
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    cur.execute("SELECT * FROM projects WHERE id = ?", (project_id,))
+    project = cur.fetchone()
+
+    if not project:
+        conn.close()
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    project_dict = dict(project)
+    if project_dict.get("themes"):
+        try:
+            project_dict["themes"] = json.loads(project_dict["themes"])
+        except:
+            project_dict["themes"] = []
+
+    # Club info
+    if project_dict.get("club_id"):
+        cur.execute("SELECT id, name, sport, city FROM clubs WHERE id = ?", (project_dict["club_id"],))
+        club = cur.fetchone()
+        if club:
+            project_dict["club"] = dict(club)
+
+    conn.close()
+    return project_dict
+
+
+@app.get("/api/funding-sources")
+async def get_funding_sources(
+    limit: int = Query(50, ge=1, le=500),
+    offset: int = Query(0, ge=0),
+    theme: Optional[str] = None,
+    type: Optional[str] = None
+):
+    """Liste des sources de financement (AAP, fondations, etc.)."""
+    if not Path(DB_PATH).exists():
+        raise HTTPException(status_code=503, detail="Database not initialized")
+
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    query = "SELECT * FROM funding_sources WHERE 1=1"
+    params = []
+
+    if type:
+        query += " AND type = ?"
+        params.append(type)
+
+    if theme:
+        query += " AND themes LIKE ?"
+        params.append(f"%{theme}%")
+
+    query += " ORDER BY deadline ASC LIMIT ? OFFSET ?"
+    params.extend([limit, offset])
+
+    cur.execute(query, params)
+    rows = [dict(row) for row in cur.fetchall()]
+
+    for row in rows:
+        if row.get("themes"):
+            try:
+                row["themes"] = json.loads(row["themes"])
+            except:
+                row["themes"] = []
+
+    conn.close()
+    return {"funding_sources": rows, "count": len(rows), "limit": limit, "offset": offset}
