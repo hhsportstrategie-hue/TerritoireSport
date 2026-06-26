@@ -15,18 +15,49 @@ def seed():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
 
+    # ── 0. Communes normandes ───────────────────────────────────
+    communes_path = Path("data/communes_normandie.json")
+    if communes_path.exists():
+        communes_data = json.loads(communes_path.read_text())
+        for c in communes_data:
+            cur.execute("SELECT id FROM communes WHERE code_insee = ?", (c.get("code"),))
+            if not cur.fetchone():
+                centre = c.get("centre") or {}
+                coords = centre.get("coordinates") if isinstance(centre, dict) else None
+                lat = coords[1] if isinstance(coords, list) and len(coords) >= 2 else None
+                lon = coords[0] if isinstance(coords, list) and len(coords) >= 2 else None
+                cur.execute("""
+                    INSERT INTO communes (id, name, code_insee, department, population, latitude, longitude, epci)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """, (
+                    str(uuid.uuid4()),
+                    c.get("nom"),
+                    c.get("code"),
+                    c.get("codeDepartement"),
+                    c.get("population"),
+                    lat,
+                    lon,
+                    c.get("codeEpci")
+                ))
+        conn.commit()
+        cur.execute("SELECT COUNT(*) FROM communes")
+        nb_communes = cur.fetchone()[0]
+        print(f"✅ {nb_communes} communes normandes en base")
+
     # ── 1. Club de démonstration ─────────────────────────────────
     club_id = "90f8a193-a4b8-4975-b315-8e1484cdf3a3"
     cur.execute("SELECT id FROM clubs WHERE id = ?", (club_id,))
     if not cur.fetchone():
         cur.execute("""
-            INSERT INTO clubs (id, name, sport, city, department, size, contact_email, contact_phone, password_hash, created_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
+            INSERT INTO clubs (id, name, sport, city, commune, epci, department, size, contact_email, contact_phone, password_hash, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
         """, (
             club_id,
             "BATT Argentan — Bayard Argentan Tennis de Table",
             "tennis_de_table",
             "Argentan",
+            "Argentan",
+            "Argentan Intercom",
             "61",
             "medium",
             "contact@batt-argentan.fr",
