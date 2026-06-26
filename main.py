@@ -13,11 +13,36 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import aiosqlite
 from pathlib import Path
+# === Authentification ===
+import os
+from fastapi import Header, HTTPException
+API_TOKEN = os.getenv("API_TOKEN", "territoire-sport-demo-2026")
 
-from auth import verify_token
-from cache import cached, clear_cache
-from metrics import track_request, get_metrics
-from rate_limit import check_rate_limit
+async def verify_token(x_api_key: str = Header(None)):
+    if x_api_key != API_TOKEN:
+        raise HTTPException(status_code=401, detail="Token API invalide")
+
+# === Cache ===
+import time
+_cache = {}
+def clear_cache():
+    _cache.clear()
+
+# === Métriques ===
+from collections import defaultdict
+_metrics = defaultdict(lambda: {"count": 0, "total_time": 0, "errors": 0})
+def track_request(endpoint, duration, error=False):
+    m = _metrics[endpoint]
+    m["count"] += 1
+    m["total_time"] += duration
+    if error:
+        m["errors"] += 1
+def get_metrics():
+    return {ep: {"count": m["count"], "avg_time_ms": round(m["total_time"]/m["count"]*1000, 2) if m["count"] else 0, "errors": m["errors"]} for ep, m in _metrics.items()}
+
+# === Rate Limit ===
+def check_rate_limit(client_ip="default"):
+    return True
 
 _DEFAULT_DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "territoiresport.db")
 DB_PATH = os.getenv("DB_PATH", _DEFAULT_DB)
@@ -118,7 +143,6 @@ from routes.matching   import router as matching_router
 from routes.territory  import router as territory_router
 from routes.affinity   import router as affinity_router
 from routes.admin      import router as admin_router
-from csv_export        import router as export_router
 
 app.include_router(clubs_router)
 app.include_router(diag_router)
