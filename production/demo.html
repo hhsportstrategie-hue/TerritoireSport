@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerritoireSport — Démo</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f7fa;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 24px 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 28px; margin-bottom: 4px; }
+        header p { opacity: 0.9; font-size: 14px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border-left: 4px solid #3b82f6;
+        }
+        .stat-card .label { font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-card .value { font-size: 32px; font-weight: 700; color: #1e3a8a; margin-top: 4px; }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 1024px) { .grid { grid-template-columns: 1fr; } }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .card-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-header h2 { font-size: 16px; color: #1e3a8a; }
+        .card-body { padding: 20px; max-height: 400px; overflow-y: auto; }
+        #map { height: 400px; border-radius: 0 0 12px 12px; }
+        .item {
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .item:last-child { border-bottom: none; }
+        .item-title { font-weight: 600; color: #1e3a8a; }
+        .item-meta { font-size: 13px; color: #6b7280; margin-top: 2px; }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-green { background: #d1fae5; color: #065f46; }
+        .badge-orange { background: #fed7aa; color: #9a3412; }
+        .badge-purple { background: #e9d5ff; color: #6b21a8; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .badge-gray { background: #f3f4f6; color: #374151; }
+        .search {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .loading { color: #6b7280; font-style: italic; }
+        .error { color: #dc2626; padding: 12px; background: #fee2e2; border-radius: 6px; }
+        .filters { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+        .filter-btn {
+            padding: 6px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 16px;
+            background: white;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .filter-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
+        .score {
+            display: inline-block;
+            background: #1e3a8a;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .score.high { background: #059669; }
+        .score.med { background: #d97706; }
+        .score.low { background: #6b7280; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌍 TerritoireSport — Démo</h1>
+        <p>API de matching clubs sportifs × partenaires × projets sociétaux (Normandie)</p>
+    </header>
+
+    <div class="container">
+        <!-- Stats globales -->
+        <div class="stats" id="stats">
+            <div class="stat-card"><div class="label">Clubs</div><div class="value loading">...</div></div>
+            <div class="stat-card"><div class="label">Communes</div><div class="value loading">...</div></div>
+            <div class="stat-card"><div class="label">Partenaires</div><div class="value loading">...</div></div>
+            <div class="stat-card"><div class="label">Projets</div><div class="value loading">...</div></div>
+            <div class="stat-card"><div class="label">AAP</div><div class="value loading">...</div></div>
+        </div>
+
+        <!-- Carte + Shortlist -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>🗺️ Carte des communes normandes</h2>
+                    <span id="map-count" class="loading"></span>
+                </div>
+                <div id="map"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>🏆 Top partenaires (shortlist scoring)</h2>
+                    <span id="shortlist-count" class="loading"></span>
+                </div>
+                <div class="card-body" id="shortlist">
+                    <div class="loading">Chargement...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clubs + Projets -->
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>🏅 Clubs sportifs</h2>
+                    <span id="clubs-count" class="loading"></span>
+                </div>
+                <div class="card-body" id="clubs">
+                    <div class="loading">Chargement...</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>📋 Projets sociétaux</h2>
+                    <span id="projects-count" class="loading"></span>
+                </div>
+                <div class="card-body" id="projects">
+                    <div class="loading">Chargement...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AAP -->
+        <div class="card" style="margin-bottom: 24px;">
+            <div class="card-header">
+                <h2>💰 Appels à projets & financements</h2>
+                <span id="funding-count" class="loading"></span>
+            </div>
+            <div class="card-body" id="funding">
+                <div class="loading">Chargement...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API = 'https://ts-backend-production.up.railway.app';
+
+        // ── Stats ──
+        fetch(API + '/api/stats')
+            .then(r => r.json())
+            .then(d => {
+                document.querySelectorAll('.stat-card .value').forEach((el, i) => {
+                    const keys = ['clubs_count', 'communes_count', 'partners_count', 'projects_count'];
+                    el.textContent = d[keys[i]] || 0;
+                    el.classList.remove('loading');
+                });
+                fetch(API + '/api/funding-sources').then(r => r.json()).then(f => {
+                    document.querySelectorAll('.stat-card .value')[4].textContent = f.count;
+                    document.querySelectorAll('.stat-card .value')[4].classList.remove('loading');
+                });
+            })
+            .catch(e => console.error('Stats error:', e));
+
+        // ── Carte ──
+        const map = L.map('map').setView([49.0, 0.5], 7);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        fetch(API + '/api/communes/all?limit=100')
+            .then(r => r.json())
+            .then(d => {
+                document.getElementById('map-count').textContent = d.communes.length + ' affichées';
+                document.getElementById('map-count').classList.remove('loading');
+                d.communes.forEach(c => {
+                    if (c.latitude && c.longitude) {
+                        L.circleMarker([c.latitude, c.longitude], {
+                            radius: 4,
+                            fillColor: '#3b82f6',
+                            color: '#1e3a8a',
+                            weight: 1,
+                            opacity: 0.8,
+                            fillOpacity: 0.6
+                        }).addTo(map).bindPopup(`<b>${c.name}</b><br>INSEE: ${c.code_insee}<br>Pop: ${c.population?.toLocaleString() || 'N/A'}`);
+                    }
+                });
+            })
+            .catch(e => console.error('Communes error:', e));
+
+        // ── Shortlist ──
+        fetch(API + '/api/shortlist?limit=10')
+            .then(r => r.json())
+            .then(d => {
+                document.getElementById('shortlist-count').textContent = (d.shortlist?.length || 0) + ' résultats';
+                document.getElementById('shortlist-count').classList.remove('loading');
+                const html = (d.shortlist || []).map(p => {
+                    const scoreClass = p.score >= 40 ? 'high' : p.score >= 25 ? 'med' : 'low';
+                    return `<div class="item">
+                        <div class="item-title">${p.name || p.partner_name}</div>
+                        <div class="item-meta">
+                            <span class="score ${scoreClass}">${Math.round(p.score)}</span>
+                            <span class="badge badge-blue">${p.type || 'N/A'}</span>
+                            <span>${p.city || ''}</span>
+                        </div>
+                    </div>`;
+                }).join('');
+                document.getElementById('shortlist').innerHTML = html || '<div class="loading">Aucun résultat</div>';
+            })
+            .catch(e => {
+                document.getElementById('shortlist').innerHTML = '<div class="error">Erreur chargement shortlist</div>';
+            });
+
+        // ── Clubs (via communes avec clubs) ──
+        fetch(API + '/api/stats')
+            .then(r => r.json())
+            .then(s => {
+                document.getElementById('clubs-count').textContent = (s.clubs_count || 0) + ' clubs';
+                document.getElementById('clubs-count').classList.remove('loading');
+                return fetch(API + '/api/communes/61006');
+            })
+            .then(r => r.json())
+            .then(argentan => {
+                const clubs = argentan.clubs || [];
+                const html = clubs.map(c => `<div class="item">
+                    <div class="item-title">${c.name}</div>
+                    <div class="item-meta">
+                        <span class="badge badge-blue">${c.sport}</span>
+                        <span>${c.commune || ''}</span>
+                    </div>
+                </div>`).join('');
+                document.getElementById('clubs').innerHTML = html || '<div class="loading">Aucun club</div>';
+            })
+            .catch(e => {
+                document.getElementById('clubs').innerHTML = '<div class="error">Erreur chargement clubs</div>';
+            });
+
+        // ── Projets ──
+        fetch(API + '/api/projects?limit=20')
+            .then(r => r.json())
+            .then(d => {
+                document.getElementById('projects-count').textContent = d.count + ' projets';
+                document.getElementById('projects-count').classList.remove('loading');
+                const html = d.projects.map(p => {
+                    const statusClass = p.status === 'active' ? 'badge-green' : p.status === 'library' ? 'badge-gray' : 'badge-blue';
+                    return `<div class="item">
+                        <div class="item-title">${p.title}</div>
+                        <div class="item-meta">
+                            <span class="badge ${statusClass}">${p.status}</span>
+                            <span>${(p.description || '').substring(0, 100)}...</span>
+                        </div>
+                    </div>`;
+                }).join('');
+                document.getElementById('projects').innerHTML = html;
+            })
+            .catch(e => {
+                document.getElementById('projects').innerHTML = '<div class="error">Erreur chargement projets</div>';
+            });
+
+        // ── Funding ──
+        fetch(API + '/api/funding-sources')
+            .then(r => r.json())
+            .then(d => {
+                document.getElementById('funding-count').textContent = d.count + ' AAP';
+                document.getElementById('funding-count').classList.remove('loading');
+                const html = d.funding_sources.map(f => {
+                    return `<div class="item">
+                        <div class="item-title">${f.name}</div>
+                        <div class="item-meta">
+                            <span class="badge badge-orange">${f.type || 'AAP'}</span>
+                            <span class="badge badge-gray">Deadline: ${f.deadline}</span>
+                            <span>${(f.description || '').substring(0, 120)}...</span>
+                        </div>
+                    </div>`;
+                }).join('');
+                document.getElementById('funding').innerHTML = html;
+            })
+            .catch(e => {
+                document.getElementById('funding').innerHTML = '<div class="error">Erreur chargement AAP</div>';
+            });
+    </script>
+</body>
+</html>

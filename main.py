@@ -9,6 +9,8 @@ from pathlib import Path
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Query, Depends, Header
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse
 from fastapi.responses import JSONResponse
 from typing import Optional, List
 
@@ -468,3 +470,13 @@ async def get_funding_sources(
 
     conn.close()
     return {"funding_sources": rows, "count": len(rows), "limit": limit, "offset": offset}
+
+
+@app.get("/demo", response_class=HTMLResponse)
+@app.get("/demo.html", response_class=HTMLResponse)
+async def get_demo():
+    """Page démo HTML."""
+    demo_path = Path("production/demo.html")
+    if demo_path.exists():
+        return HTMLResponse(content=demo_path.read_text(encoding="utf-8"))
+    raise HTTPException(status_code=404, detail="Demo not found")
