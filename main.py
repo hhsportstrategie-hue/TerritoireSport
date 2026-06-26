@@ -142,6 +142,8 @@ from routes.projects   import router as projects_router
 from routes.matching   import router as matching_router
 from routes.territory  import router as territory_router
 from routes.affinity   import router as affinity_router
+from csv_export         import router as export_router
+from csv_export         import router as export_router
 from routes.admin      import router as admin_router
 
 app.include_router(clubs_router)
