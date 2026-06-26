@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerritoireSport — Parcours Utilisateur Interactif</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f7fa;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 24px 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 28px; margin-bottom: 4px; }
+        header p { opacity: 0.9; font-size: 14px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 24px; }
+
+        .progress-bar {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .progress-bar .label { font-weight: 600; color: #1e3a8a; }
+        .progress-bar .bar {
+            flex: 1;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar .fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .progress-bar .step-count { font-size: 14px; color: #6b7280; }
+
+        .step-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            display: none;
+        }
+        .step-card.active { display: block; }
+        .step-card.done { border-left: 4px solid #10b981; }
+        .step-card.current { border-left: 4px solid #3b82f6; }
+
+        .step-card h2 {
+            color: #1e3a8a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .step-card h2 .num {
+            background: #1e3a8a;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        .step-card.done h2 .num { background: #10b981; }
+        .step-card .desc { color: #4b5563; margin-bottom: 16px; }
+
+        .form-group { margin-bottom: 12px; }
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: #374151;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        .btn-primary:hover { background: #2563eb; }
+        .btn-primary:disabled { background: #9ca3af; cursor: not-allowed; }
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+        .btn-secondary:hover { background: #d1d5db; }
+
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .question {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+        }
+        .question .q-text { font-size: 13px; margin-bottom: 8px; color: #374151; }
+        .question .options { display: flex; gap: 8px; }
+        .question .options label {
+            flex: 1;
+            text-align: center;
+            padding: 6px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .question .options input { display: none; }
+        .question .options input:checked + label {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .result-box {
+            background: #f0fdf4;
+            border: 1px solid #10b981;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .result-box.error {
+            background: #fee2e2;
+            border-color: #dc2626;
+        }
+        .result-box h3 { color: #065f46; margin-bottom: 8px; }
+        .result-box.error h3 { color: #991b1b; }
+
+        .partner-card, .project-card {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .partner-card:hover, .project-card:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        .partner-card.selected, .project-card.selected {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+        .partner-card .name, .project-card .name { font-weight: 600; color: #1e3a8a; }
+        .partner-card .meta, .project-card .meta { font-size: 12px; color: #6b7280; margin-top: 4px; }
+
+        .summary-box {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+        .summary-box h2 { margin-bottom: 16px; }
+        .summary-box .item {
+            background: rgba(255,255,255,0.1);
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+        .summary-box .item strong { display: block; margin-bottom: 4px; }
+
+        .nav {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .nav a {
+            padding: 8px 16px;
+            background: white;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #1e3a8a;
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🚀 TerritoireSport — Parcours Utilisateur</h1>
+        <p>De l'inscription à l'ingénierie de projet — version interactive</p>
+    </header>
+
+    <div class="container">
+        <div class="nav">
+            <a href="/demo">📊 Démo données</a>
+            <a href="/architecture">🏗️ Architecture</a>
+            <a href="/parcours">🚀 Parcours (cette page)</a>
+            <a href="/docs">📖 Swagger</a>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="progress-bar">
+            <span class="label">Progression</span>
+            <div class="bar"><div class="fill" id="progress-fill"></div></div>
+            <span class="step-count" id="step-count">Étape 1/8</span>
+        </div>
+
+        <!-- ÉTAPE 1: Inscription -->
+        <div class="step-card active current" id="step-1">
+            <h2><span class="num">1</span> Inscription du club</h2>
+            <p class="desc">Créez votre compte club sportif.</p>
+            <div class="form-group">
+                <label>Nom du club</label>
+                <input type="text" id="club-name" placeholder="Ex: BATT Argentan" value="BATT Argentan">
+            </div>
+            <div class="form-group">
+                <label>Sport principal</label>
+                <select id="club-sport">
+                    <option value="tennis_de_table">Tennis de table</option>
+                    <option value="football">Football</option>
+                    <option value="basketball">Basketball</option>
+                    <option value="rugby">Rugby</option>
+                    <option value="handball">Handball</option>
+                    <option value="hockey_sur_glace">Hockey sur glace</option>
+                    <option value="padel">Padel</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Commune</label>
+                <input type="text" id="club-commune" placeholder="Ex: Argentan" value="Argentan">
+            </div>
+            <div class="form-group">
+                <label>Email de contact</label>
+                <input type="email" id="club-email" placeholder="contact@club.fr" value="contact@batt.fr">
+            </div>
+            <button class="btn btn-primary" onclick="submitStep1()">Créer mon compte →</button>
+            <div id="result-1"></div>
+        </div>
+
+        <!-- ÉTAPE 2: Diagnostic -->
+        <div class="step-card" id="step-2">
+            <h2><span class="num">2</span> Diagnostic territorial</h2>
+            <p class="desc">Répondez à 15 questions pour évaluer votre maturité sociétale.</p>
+            <div class="questions-grid" id="questions-container"></div>
+            <button class="btn btn-primary" onclick="submitStep2()">Soumettre mon diagnostic →</button>
+            <div id="result-2"></div>
+        </div>
+
+        <!-- ÉTAPE 3: Profil -->
+        <div class="step-card" id="step-3">
+            <h2><span class="num">3</span> Votre profil</h2>
+            <p class="desc">Résultat de votre diagnostic territorial.</p>
+            <div id="result-3"></div>
+            <button class="btn btn-primary" onclick="goToStep(4)">Voir mon territoire →</button>
+        </div>
+
+        <!-- ÉTAPE 4: Territoire -->
+        <div class="step-card" id="step-4">
+            <h2><span class="num">4</span> Votre territoire</h2>
+            <p class="desc">Identification de votre EPCI et acteurs locaux.</p>
+            <div id="result-4"></div>
+            <button class="btn btn-primary" onclick="goToStep(5)">Voir les partenaires disponibles →</button>
+        </div>
+
+        <!-- ÉTAPE 5: Shortlist -->
+        <div class="step-card" id="step-5">
+            <h2><span class="num">5</span> Shortlist de partenaires</h2>
+            <p class="desc">Sélectionnez 3-5 partenaires parmi les mieux scorés.</p>
+            <div id="result-5"></div>
+            <button class="btn btn-primary" onclick="submitStep5()">Valider ma sélection →</button>
+        </div>
+
+        <!-- ÉTAPE 6: Projets matchants -->
+        <div class="step-card" id="step-6">
+            <h2><span class="num">6</span> Projets matchants</h2>
+            <p class="desc">Sélectionnez 1-3 projets de bibliothèque adaptés à votre contexte.</p>
+            <div id="result-6"></div>
+            <button class="btn btn-primary" onclick="submitStep6()">Valider mon projet →</button>
+        </div>
+
+        <!-- ÉTAPE 7: AAP -->
+        <div class="step-card" id="step-7">
+            <h2><span class="num">7</span> Appels à projets</h2>
+            <p class="desc">Sélectionnez les AAP matchant votre projet.</p>
+            <div id="result-7"></div>
+            <button class="btn btn-primary" onclick="submitStep7()">Générer mon dossier →</button>
+        </div>
+
+        <!-- ÉTAPE 8: Dossier final -->
+        <div class="step-card" id="step-8">
+            <h2><span class="num">8</span> Dossier de candidature</h2>
+            <p class="desc">Votre dossier est prêt.</p>
+            <div id="result-8"></div>
+        </div>
+    </div>
+
+    <script>
+        const API = 'https://ts-backend-production.up.railway.app';
+        const state = {
+            club_id: null,
+            diagnostic_id: null,
+            profile: null,
+            score: null,
+            commune_code: null,
+            selected_partners: [],
+            selected_project: null,
+            selected_aaps: []
+        };
+
+        const questions = [
+            "Avez-vous déjà mené des actions à impact social ou environnemental ?",
+            "Votre club a-t-il un projet associatif formalisé ?",
+            "Travaillez-vous avec des partenaires institutionnels ?",
+            "Avez-vous des contacts avec des entreprises locales ?",
+            "Votre club accueille-t-il des publics fragiles (handicap, précarité) ?",
+            "Organisez-vous des événements ouverts au public non-adhérent ?",
+            "Avez-vous une communication active (réseaux sociaux, newsletter) ?",
+            "Votre club a-t-il déjà répondu à des appels à projets ?",
+            "Avez-vous des relations avec les collectivités (mairie, EPCI) ?",
+            "Votre club forme-t-il ses bénévoles à l'engagement sociétal ?",
+            "Mesurez-vous l'impact de vos actions ?",
+            "Avez-vous un budget dédié aux actions sociétales ?",
+            "Votre club a-t-il une gouvernance inclusive (mixité, jeunes) ?",
+            "Travaillez-vous avec d'autres clubs ou associations ?",
+            "Avez-vous un ancrage territorial identifié (quartier, commune) ?"
+        ];
+
+        function goToStep(n) {
+            document.querySelectorAll('.step-card').forEach(c => {
+                c.classList.remove('active', 'current');
+                if (c.classList.contains('done')) return;
+            });
+            document.getElementById(`step-${n}`).classList.add('active', 'current');
+            updateProgress(n);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateProgress(n) {
+            const pct = ((n - 1) / 8) * 100;
+            document.getElementById('progress-fill').style.width = pct + '%';
+            document.getElementById('step-count').textContent = `Étape ${n}/8`;
+        }
+
+        function markDone(n) {
+            document.getElementById(`step-${n}`).classList.add('done');
+            document.getElementById(`step-${n}`).classList.remove('current');
+        }
+
+        // ── ÉTAPE 1: Inscription ──
+        async function submitStep1() {
+            const data = {
+                name: document.getElementById('club-name').value,
+                sport: document.getElementById('club-sport').value,
+                commune: document.getElementById('club-commune').value,
+                email: document.getElementById('club-email').value
+            };
+            const r = await fetch(API + '/api/clubs/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const j = await r.json();
+            if (r.ok) {
+                state.club_id = j.club_id;
+                document.getElementById('result-1').innerHTML = `
+                    <div class="result-box">
+                        <h3>✅ Club créé avec succès</h3>
+                        <p><strong>ID:</strong> ${j.club_id}</p>
+                        <p><strong>Nom:</strong> ${j.name}</p>
+                        <p><strong>Sport:</strong> ${j.sport}</p>
+                        <p><strong>Commune:</strong> ${j.commune}</p>
+                    </div>`;
+                markDone(1);
+                renderQuestions();
+                goToStep(2);
+            } else {
+                document.getElementById('result-1').innerHTML = `
+                    <div class="result-box error">
+                        <h3>❌ Erreur</h3>
+                        <p>${j.detail || 'Erreur inconnue'}</p>
+                    </div>`;
+            }
+        }
+
+        // ── ÉTAPE 2: Diagnostic ──
+        function renderQuestions() {
+            const html = questions.map((q, i) => `
+                <div class="question">
+                    <div class="q-text">${i + 1}. ${q}</div>
+                    <div class="options">
+                        <input type="radio" name="q${i}" id="q${i}-0" value="0">
+                        <label for="q${i}-0">Non</label>
+                        <input type="radio" name="q${i}" id="q${i}-1" value="1" checked>
+                        <label for="q${i}-1">Partiellement</label>
+                        <input type="radio" name="q${i}" id="q${i}-2" value="2">
+                        <label for="q${i}-2">Oui</label>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('questions-container').innerHTML = html;
+        }
+
+        async function submitStep2() {
+            const answers = {};
+            questions.forEach((_, i) => {
+                const checked = document.querySelector(`input[name="q${i}"]:checked`);
+                answers[`q${i + 1}`] = checked ? parseInt(checked.value) : 1;
+            });
+            const r = await fetch(API + '/api/diagnostics', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ club_id: state.club_id, answers })
+            });
+            const j = await r.json();
+            if (r.ok) {
+                state.diagnostic_id = j.diagnostic_id;
+                state.profile = j.profile;
+                state.score = j.score;
+                document.getElementById('result-2').innerHTML = `
+                    <div class="result-box">
+                        <h3>✅ Diagnostic enregistré</h3>
+                        <p><strong>Score:</strong> ${j.score}/20</p>
+                        <p><strong>Profil:</strong> ${j.profile}</p>
+                    </div>`;
+                markDone(2);
+                renderStep3(j);
+                goToStep(3);
+            } else {
+                document.getElementById('result-2').innerHTML = `<div class="result-box error"><h3>❌ Erreur</h3><p>${j.detail}</p></div>`;
+            }
+        }
+
+        function renderStep3(j) {
+            const profileLabels = {
+                engaged: { label: '🌟 Engaged', color: '#10b981', desc: 'Club mature — projets structurants avec institutionnels' },
+                emerging: { label: '🌿 Emerging', color: '#3b82f6', desc: 'Club en progression — projets pilotes avec 2-3 partenaires' },
+                aware: { label: '🌱 Aware', color: '#f59e0b', desc: 'Club qui démarre — actions simples avec 1-2 partenaires' },
+                novice: { label: '🌰 Novice', color: '#6b7280', desc: 'Club novice — diagnostic approfondi recommandé' }
+            };
+            const p = profileLabels[j.profile] || profileLabels.novice;
+            document.getElementById('result-3').innerHTML = `
+                <div class="result-box" style="border-color: ${p.color};">
+                    <h3 style="color: ${p.color};">${p.label}</h3>
+                    <p><strong>Score:</strong> ${j.score}/20</p>
+                    <p>${p.desc}</p>
+                    <p style="margin-top: 12px; font-style: italic;">${j.recommendation || ''}</p>
+                </div>`;
+        }
+
+        // ── ÉTAPE 4: Territoire ──
+        async function loadStep4() {
+            const commune = document.getElementById('club-commune').value;
+            // Chercher le code INSEE
+            const r = await fetch(API + '/api/communes/all?limit=3000');
+            const d = await r.json();
+            const found = d.communes.find(c => c.name.toLowerCase() === commune.toLowerCase());
+            if (!found) {
+                document.getElementById('result-4').innerHTML = `<div class="result-box error"><h3>❌ Commune non trouvée</h3></div>`;
+                return;
+            }
+            state.commune_code = found.code_insee;
+            const r2 = await fetch(API + '/api/communes/' + found.code_insee);
+            const commune_data = await r2.json();
+            const clubs = commune_data.clubs || [];
+            const partners = commune_data.partners || [];
+            document.getElementById('result-4').innerHTML = `
+                <div class="result-box">
+                    <h3>📍 ${found.name} (${found.code_insee})</h3>
+                    <p><strong>Population:</strong> ${found.population?.toLocaleString() || 'N/A'}</p>
+                    <p><strong>Département:</strong> ${found.department}</p>
+                    <p><strong>EPCI:</strong> ${found.epci || 'N/A'}</p>
+                    <p style="margin-top: 12px;"><strong>${clubs.length}</strong> club(s) sportif(s) | <strong>${partners.length}</strong> partenaire(s) identifié(s)</p>
+                </div>`;
+            markDone(3);
+            goToStep(4);
+            // Précharger étape 5
+            setTimeout(loadStep5, 500);
+        }
+
+        // ── ÉTAPE 5: Shortlist ──
+        async function loadStep5() {
+            const r = await fetch(API + '/api/shortlist?limit=10');
+            const d = await r.json();
+            const html = (d.shortlist || []).map(p => `
+                <div class="partner-card" data-id="${p.id}" onclick="togglePartner(this, '${p.id}')">
+                    <div class="name">${p.name || p.partner_name}</div>
+                    <div class="meta">
+                        <span class="badge badge-blue">${p.type || 'N/A'}</span>
+                        <span>Score: ${Math.round(p.score)}</span>
+                        <span>${p.city || ''}</span>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('result-5').innerHTML = html || '<p>Aucun partenaire</p>';
+        }
+
+        function togglePartner(el, id) {
+            el.classList.toggle('selected');
+            if (el.classList.contains('selected')) {
+                state.selected_partners.push(id);
+            } else {
+                state.selected_partners = state.selected_partners.filter(p => p !== id);
+            }
+        }
+
+        async function submitStep5() {
+            if (state.selected_partners.length === 0) {
+                alert('Sélectionnez au moins 1 partenaire');
+                return;
+            }
+            const r = await fetch(API + '/api/partners/select', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ club_id: state.club_id, partner_ids: state.selected_partners })
+            });
+            const j = await r.json();
+            if (r.ok) {
+                document.getElementById('result-5').insertAdjacentHTML('beforeend', `
+                    <div class="result-box">
+                        <h3>✅ ${j.selected_count} partenaires sélectionnés</h3>
+                    </div>`);
+                markDone(4);
+                loadStep6();
+                goToStep(6);
+            }
+        }
+
+        // ── ÉTAPE 6: Projets ──
+        async function loadStep6() {
+            const r = await fetch(API + '/api/projects?limit=10');
+            const d = await r.json();
+            const html = (d.projects || []).map(p => `
+                <div class="project-card" data-id="${p.id}" onclick="selectProject(this, '${p.id}')">
+                    <div class="name">${p.title}</div>
+                    <div class="meta">
+                        <span class="badge badge-green">${p.status}</span>
+                        <span>${(p.description || '').substring(0, 80)}...</span>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('result-6').innerHTML = html;
+        }
+
+        function selectProject(el, id) {
+            document.querySelectorAll('.project-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            state.selected_project = id;
+        }
+
+        async function submitStep6() {
+            if (!state.selected_project) {
+                alert('Sélectionnez un projet');
+                return;
+            }
+            const r = await fetch(API + '/api/projects/customize', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    club_id: state.club_id,
+                    project_id: state.selected_project,
+                    customizations: { budget: 5000, calendar: 'Q3 2026' }
+                })
+            });
+            const j = await r.json();
+            if (r.ok) {
+                document.getElementById('result-6').insertAdjacentHTML('beforeend', `
+                    <div class="result-box">
+                        <h3>✅ Projet "${j.title}" customisé</h3>
+                        <p>${j.next_step}</p>
+                    </div>`);
+                markDone(5);
+                loadStep7();
+                goToStep(7);
+            }
+        }
+
+        // ── ÉTAPE 7: AAP ──
+        async function loadStep7() {
+            const r = await fetch(API + '/api/funding-sources');
+            const d = await r.json();
+            const html = (d.funding_sources || []).map(f => `
+                <div class="partner-card" data-id="${f.id}" onclick="toggleAAP(this, ${f.id})">
+                    <div class="name">${f.name}</div>
+                    <div class="meta">
+                        <span class="badge badge-orange">${f.type || 'AAP'}</span>
+                        <span class="badge badge-gray">Deadline: ${f.deadline}</span>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('result-7').innerHTML = html;
+        }
+
+        function toggleAAP(el, id) {
+            el.classList.toggle('selected');
+            if (el.classList.contains('selected')) {
+                state.selected_aaps.push(id);
+            } else {
+                state.selected_aaps = state.selected_aaps.filter(a => a !== id);
+            }
+        }
+
+        async function submitStep7() {
+            if (state.selected_aaps.length === 0) {
+                alert('Sélectionnez au moins 1 AAP');
+                return;
+            }
+            const r = await fetch(API + '/api/dossiers/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    club_id: state.club_id,
+                    project_id: state.selected_project,
+                    funding_source_ids: state.selected_aaps
+                })
+            });
+            const j = await r.json();
+            if (r.ok) {
+                renderStep8(j);
+                markDone(6);
+                markDone(7);
+                goToStep(8);
+            }
+        }
+
+        function renderStep8(j) {
+            document.getElementById('result-8').innerHTML = `
+                <div class="summary-box">
+                    <h2>🎉 Dossier généré avec succès</h2>
+                    <div class="item">
+                        <strong>Dossier ID</strong>
+                        ${j.dossier_id}
+                    </div>
+                    <div class="item">
+                        <strong>Club</strong>
+                        ${state.club_id}
+                    </div>
+                    <div class="item">
+                        <strong>Projet sélectionné</strong>
+                        ${j.project_id}
+                    </div>
+                    <div class="item">
+                        <strong>AAP ciblés</strong>
+                        ${j.funding_sources.length} financement(s)
+                    </div>
+                    <div class="item">
+                        <strong>URL de téléchargement</strong>
+                        ${j.download_url}
+                    </div>
+                    <p style="margin-top: 16px; font-style: italic;">
+                        Votre dossier de candidature est prêt. Vous pouvez maintenant le télécharger, le compléter avec vos données spécifiques, et le soumettre aux AAP sélectionnés.
+                    </p>
+                </div>`;
+        }
+
+        // Lancer le chargement de l'étape 4 quand on clique "Voir mon territoire"
+        document.querySelector('#step-3 .btn-primary').onclick = loadStep4;
+    </script>
+</body>
+</html>

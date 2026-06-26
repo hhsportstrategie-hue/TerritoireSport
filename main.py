@@ -472,6 +472,195 @@ async def get_funding_sources(
     return {"funding_sources": rows, "count": len(rows), "limit": limit, "offset": offset}
 
 
+
+
+# ── Parcours utilisateur — endpoints interactifs ────────────────
+
+@app.post("/api/clubs/register")
+async def register_club(payload: dict):
+    """Inscription d'un club sportif."""
+    import uuid as _uuid
+    from datetime import datetime
+    
+    name = payload.get("name")
+    sport = payload.get("sport")
+    commune = payload.get("commune")
+    email = payload.get("email")
+    
+    if not all([name, sport, commune, email]):
+        raise HTTPException(status_code=400, detail="Champs manquants: name, sport, commune, email")
+    
+    club_id = str(_uuid.uuid4())
+    
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    cur.execute("""
+        INSERT INTO clubs (id, name, sport, city, commune, contact_email, password_hash, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    """, (club_id, name, sport, commune, commune, email, "demo_hash", datetime.now().isoformat()))
+    conn.commit()
+    conn.close()
+    
+    return {"club_id": club_id, "name": name, "sport": sport, "commune": commune, "status": "registered"}
+
+
+@app.post("/api/diagnostics")
+async def create_diagnostic(payload: dict):
+    """Soumettre un diagnostic territorial (20 questions)."""
+    import uuid as _uuid
+    from datetime import datetime
+    
+    club_id = payload.get("club_id")
+    answers = payload.get("answers", {})  # {question_id: score}
+    
+    if not club_id or not answers:
+        raise HTTPException(status_code=400, detail="club_id et answers requis")
+    
+    # Calcul du score total
+    total_score = sum(int(v) for v in answers.values() if str(v).isdigit())
+    
+    # Détermination du profil
+    if total_score >= 15:
+        profile = "engaged"
+    elif total_score >= 10:
+        profile = "emerging"
+    elif total_score >= 5:
+        profile = "aware"
+    else:
+        profile = "novice"
+    
+    diagnostic_id = str(_uuid.uuid4())
+    
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    cur.execute("""
+        INSERT INTO diagnostics (id, club_id, score, profile, answers, completed_at)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (diagnostic_id, club_id, total_score, profile, str(answers), datetime.now().isoformat()))
+    conn.commit()
+    conn.close()
+    
+    return {
+        "diagnostic_id": diagnostic_id,
+        "score": total_score,
+        "profile": profile,
+        "max_score": 20,
+        "recommendation": {
+            "engaged": "Votre club est mature. Concentrez-vous sur des projets structurants avec partenaires institutionnels.",
+            "emerging": "Votre club est en progression. Visez des projets pilotes avec 2-3 partenaires locaux.",
+            "aware": "Votre club démarre. Commencez par des actions simples avec 1-2 partenaires.",
+            "novice": "Votre club est novice. Démarrez par un diagnostic territorial approfondi."
+        }.get(profile)
+    }
+
+
+@app.get("/api/diagnostics/{diagnostic_id}")
+async def get_diagnostic(diagnostic_id: str):
+    """Récupérer un diagnostic par ID."""
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    cur.execute("SELECT id, club_id, score, profile, answers, completed_at FROM diagnostics WHERE id = ?", (diagnostic_id,))
+    row = cur.fetchone()
+    conn.close()
+    
+    if not row:
+        raise HTTPException(status_code=404, detail="Diagnostic non trouvé")
+    
+    return {
+        "diagnostic_id": row[0],
+        "club_id": row[1],
+        "score": row[2],
+        "profile": row[3],
+        "answers": row[4],
+        "created_at": row[5]
+    }
+
+
+@app.post("/api/partners/select")
+async def select_partners(payload: dict):
+    """Sélectionner des partenaires depuis la shortlist."""
+    club_id = payload.get("club_id")
+    partner_ids = payload.get("partner_ids", [])
+    
+    if not club_id or not partner_ids:
+        raise HTTPException(status_code=400, detail="club_id et partner_ids requis")
+    
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    
+    # Récupérer les détails des partenaires sélectionnés
+    placeholders = ",".join("?" * len(partner_ids))
+    cur.execute(f"SELECT id, name, type, city, themes FROM partners WHERE id IN ({placeholders})", partner_ids)
+    partners = cur.fetchall()
+    conn.close()
+    
+    return {
+        "club_id": club_id,
+        "selected_count": len(partners),
+        "partners": [
+            {"id": p[0], "name": p[1], "type": p[2], "city": p[3], "themes": p[4]}
+            for p in partners
+        ]
+    }
+
+
+@app.post("/api/projects/customize")
+async def customize_project(payload: dict):
+    """Customiser un projet de bibliothèque."""
+    club_id = payload.get("club_id")
+    project_id = payload.get("project_id")
+    customizations = payload.get("customizations", {})
+    
+    if not club_id or not project_id:
+        raise HTTPException(status_code=400, detail="club_id et project_id requis")
+    
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    cur.execute("SELECT id, title, description, themes, budget, status FROM projects WHERE id = ?", (project_id,))
+    row = cur.fetchone()
+    conn.close()
+    
+    if not row:
+        raise HTTPException(status_code=404, detail="Projet non trouvé")
+    
+    return {
+        "project_id": row[0],
+        "title": row[1],
+        "description": row[2],
+        "themes": row[3],
+        "budget": row[4],
+        "status": row[5],
+        "customizations_applied": customizations,
+        "next_step": "Sélectionnez les AAP matchants"
+    }
+
+
+@app.post("/api/dossiers/generate")
+async def generate_dossier(payload: dict):
+    """Générer un dossier de candidature."""
+    import uuid as _uuid
+    from datetime import datetime
+    
+    club_id = payload.get("club_id")
+    project_id = payload.get("project_id")
+    funding_source_ids = payload.get("funding_source_ids", [])
+    
+    if not club_id or not project_id:
+        raise HTTPException(status_code=400, detail="club_id et project_id requis")
+    
+    dossier_id = str(_uuid.uuid4())
+    
+    return {
+        "dossier_id": dossier_id,
+        "club_id": club_id,
+        "project_id": project_id,
+        "funding_sources": funding_source_ids,
+        "status": "generated",
+        "download_url": f"/api/dossiers/{dossier_id}/download",
+        "created_at": datetime.now().isoformat()
+    }
+
+
 @app.get("/demo", response_class=HTMLResponse)
 @app.get("/demo.html", response_class=HTMLResponse)
 async def get_demo():
@@ -489,3 +678,12 @@ async def get_architecture():
     if arch_path.exists():
         return HTMLResponse(content=arch_path.read_text(encoding="utf-8"))
     raise HTTPException(status_code=404, detail="Architecture page not found")
+
+
+@app.get("/parcours", response_class=HTMLResponse)
+async def get_parcours():
+    """Page parcours utilisateur interactif."""
+    p = Path("production/parcours.html")
+    if p.exists():
+        return HTMLResponse(content=p.read_text(encoding="utf-8"))
+    raise HTTPException(status_code=404, detail="Parcours page not found")
