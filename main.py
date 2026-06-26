@@ -43,6 +43,8 @@ async def lifespan(app: FastAPI):
     conn.close()
 
     if count == 0:
+        import init_db
+        init_db.init_db()
         import seed
         seed.seed()
 
