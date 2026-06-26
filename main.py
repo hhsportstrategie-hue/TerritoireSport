@@ -223,6 +223,21 @@ async def get_communes(
 
     rows = [dict(row) for row in cur.fetchall()]
     conn.close()
+    
+    return {
+        "club_id": club_id,
+        "name": name,
+        "sport": sport,
+        "commune": commune,
+        "departement": departement_code,
+        "niveau": niveau,
+        "licencies": licencies,
+        "latitude": latitude,
+        "longitude": longitude,
+        "epci": epci_name,
+        "code_insee": code_insee,
+        "status": "registered"
+    }
 
 
 @app.get("/api/communes/all")
@@ -675,6 +690,10 @@ async def register_club(payload: dict):
     conn.commit()
     conn.close()
     
+
+
+
+
     return {
         "club_id": club_id,
         "name": name,
@@ -686,8 +705,25 @@ async def register_club(payload: dict):
         "latitude": latitude,
         "longitude": longitude,
         "epci": epci_name,
+        "code_insee": code_insee,
         "status": "registered"
     }
+
+
+@app.get("/api/clubs/{club_id}")
+async def get_club(club_id: str):
+    """Récupère les informations d'un club."""
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM clubs WHERE id = ?", (club_id,))
+    row = cur.fetchone()
+    conn.close()
+    
+    if not row:
+        raise HTTPException(status_code=404, detail="Club non trouvé")
+    
+    return dict(row)
 
 
 @app.post("/api/diagnostics")

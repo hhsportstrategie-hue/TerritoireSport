@@ -179,6 +179,71 @@
             background: #f0fdf4;
         }
 
+        /* Étape 2 — Diagnostic territorial */
+        .diag-territorial {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid #bae6fd;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .diag-territorial h3 {
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .diag-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .diag-item {
+            background: white;
+            padding: 0.75rem;
+            border-radius: 6px;
+            border: 1px solid #e0f2fe;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .diag-item strong {
+            color: #0369a1;
+            font-size: 0.85rem;
+        }
+        .diag-item span {
+            color: #334155;
+            font-size: 0.9rem;
+        }
+        .diag-themes {
+            background: white;
+            padding: 0.75rem;
+            border-radius: 6px;
+            border: 1px solid #e0f2fe;
+        }
+        .diag-themes strong {
+            color: #0369a1;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .diag-themes div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+        .diag-info {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 6px;
+            color: #475569;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
         /* Étape 6 — Cas inspirants */
         .match-info { margin-bottom: 1rem; }
         .match-badge {
@@ -434,7 +499,11 @@
         <!-- ÉTAPE 2: Diagnostic -->
         <div class="step-card" id="step-2">
             <h2><span class="num">2</span> Diagnostic territorial</h2>
-            <p class="desc">Répondez à 15 questions pour évaluer votre maturité sociétale.</p>
+            <p class="desc">Découvrez les spécificités de votre commune, puis répondez à 12 questions sur votre maturité sociétale.</p>
+
+            <div id="diagnostic-territorial-2"></div>
+
+            <h3 style="margin-top: 1.5rem;">📋 Vos pratiques actuelles</h3>
             <div class="questions-grid" id="questions-container"></div>
             <button class="btn btn-primary" onclick="submitStep2()">Soumettre mon diagnostic →</button>
             <div id="result-2"></div>
@@ -608,6 +677,82 @@
         }
 
         // ── ÉTAPE 2: Diagnostic ──
+        async function loadDiagnosticTerritorial() {
+            // Récupérer le code INSEE du club
+            const clubId = state.club_id;
+            if (!clubId) return;
+
+            try {
+                const r = await fetch(API + '/api/clubs/' + clubId);
+                if (!r.ok) return;
+                const club = await r.json();
+
+                if (!club.code_insee) return;
+
+                const r2 = await fetch(API + '/api/communes/' + club.code_insee + '/diagnostic-territorial');
+                if (!r2.ok) return;
+                const data = await r2.json();
+
+                if (!data.diagnostic) {
+                    document.getElementById('diagnostic-territorial-2').innerHTML = `
+                        <div class="diag-info">
+                            <p>📍 Commune : <strong>${data.commune.nom}</strong> (${data.commune.code_insee})</p>
+                            <p><em>Aucun diagnostic territorial détaillé disponible pour cette commune.</em></p>
+                        </div>`;
+                    return;
+                }
+
+                const diag = data.diagnostic;
+                const themes = (diag.inclusions_thematiques || []).map(t =>
+                    `<span class="thema-badge">${t}</span>`).join(' ');
+
+                document.getElementById('diagnostic-territorial-2').innerHTML = `
+                    <div class="diag-territorial">
+                        <h3>📍 Diagnostic territorial — ${data.commune.nom}</h3>
+                        <div class="diag-grid">
+                            <div class="diag-item">
+                                <strong>👥 Population</strong>
+                                <span>${(data.commune.population || 0).toLocaleString()} habitants</span>
+                            </div>
+                            <div class="diag-item">
+                                <strong>💼 Chômage</strong>
+                                <span>${diag.chomage_taux || 'N/A'}%</span>
+                            </div>
+                            <div class="diag-item">
+                                <strong>🏘️ Quartiers difficiles</strong>
+                                <span>${diag.quartiers_difficultes || 'Aucun'}</span>
+                            </div>
+                            <div class="diag-item">
+                                <strong>🛡️ Sécurité</strong>
+                                <span>${diag.securite_niveau || 'N/A'}</span>
+                            </div>
+                            <div class="diag-item">
+                                <strong>🏥 EHPAD</strong>
+                                <span>${diag.ehpad_count || 0} établissement(s)</span>
+                            </div>
+                            <div class="diag-item">
+                                <strong>👴 Intergénérationnel</strong>
+                                <span>${diag.intergenerationnel ? '✅ Opportunité' : '❌'}</span>
+                            </div>
+                            <div class="diag-item">
+                                <strong>🤝 Réinsertion</strong>
+                                <span>${diag.reinsertion ? '✅ Opportunité' : '❌'}</span>
+                            </div>
+                            <div class="diag-item">
+                                <strong>🌱 Enjeux environnement</strong>
+                                <span>${diag.environnement_enjeux || 'N/A'}</span>
+                            </div>
+                        </div>
+                        <div class="diag-themes">
+                            <strong>🎯 Thématiques pertinentes pour votre territoire :</strong>
+                            <div>${themes}</div>
+                        </div>
+                    </div>`;
+            } catch (e) {
+                console.error('Diagnostic territorial error:', e);
+            }
+        }
+
         function renderQuestions() {
             const html = questions.map((q, i) => `
                 <div class="question">
