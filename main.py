@@ -429,6 +429,137 @@ async def get_project(project_id: str):
     return project_dict
 
 
+
+@app.get("/api/cas-inspirants")
+async def get_cas_inspirants(
+    limit: int = Query(50, ge=1, le=500),
+    offset: int = Query(0, ge=0),
+    section: Optional[str] = None,
+    thematique: Optional[str] = None,
+    niveau_club: Optional[str] = None,
+    budget_max: Optional[int] = None
+):
+    """Liste des cas inspirants avec filtres."""
+    if not Path(DB_PATH).exists():
+        raise HTTPException(status_code=503, detail="Database not initialized")
+
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    query = "SELECT * FROM cas_inspirants WHERE 1=1"
+    params = []
+
+    if section:
+        query += " AND section = ?"
+        params.append(section)
+    if niveau_club:
+        query += " AND niveau_club = ?"
+        params.append(niveau_club)
+    if budget_max is not None:
+        query += " AND (budget_reel IS NULL OR budget_reel <= ?)"
+        params.append(budget_max)
+
+    query += " ORDER BY id LIMIT ? OFFSET ?"
+    params.extend([limit, offset])
+
+    cur.execute(query, params)
+    rows = cur.fetchall()
+
+    # Parse JSON fields
+    cas_list = []
+    for row in rows:
+        cas = dict(row)
+        cas['thematiques'] = json.loads(cas.get('thematiques') or '[]')
+        cas['partenaires'] = json.loads(cas.get('partenaires') or '[]')
+        cas_list.append(cas)
+
+    conn.close()
+    return {"cas_inspirants": cas_list, "total": len(cas_list)}
+
+
+@app.get("/api/cas-inspirants/match")
+async def match_cas_inspirants(
+    commune_code: Optional[str] = None,
+    thematiques: Optional[str] = None,  # comma-separated
+    budget_max: Optional[int] = None,
+    niveau_club: Optional[str] = None,
+    limit: int = Query(5, ge=1, le=20)
+):
+    """
+    Scoring de cas inspirants selon 3 critères :
+    1. Territoire (urbain/rural/maritime/montagneux)
+    2. Partenaires non marchands potentiels
+    3. Ampleur vs ressources du club
+    """
+    if not Path(DB_PATH).exists():
+        raise HTTPException(status_code=503, detail="Database not initialized")
+
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    cur.execute("SELECT * FROM cas_inspirants")
+    rows = cur.fetchall()
+    conn.close()
+
+    thematiques_list = [t.strip() for t in (thematiques or "").split(",") if t.strip()]
+
+    scored = []
+    for row in rows:
+        cas = dict(row)
+        cas_thematiques = json.loads(cas.get('thematiques') or '[]')
+        cas_partenaires = json.loads(cas.get('partenaires') or '[]')
+
+        score = 0
+        score_details = {}
+
+        # Critère 1 : Thématiques (max 40 pts)
+        if thematiques_list:
+            matches = len(set(thematiques_list) & set(cas_thematiques))
+            theme_score = min(40, matches * 15)
+            score += theme_score
+            score_details['thematiques'] = theme_score
+
+        # Critère 2 : Partenaires non marchands (max 30 pts)
+        # Plus il y a de partenaires non marchands, plus c'est reproductible
+        nb_partenaires = len(cas_partenaires)
+        partenaire_score = min(30, nb_partenaires * 10)
+        score += partenaire_score
+        score_details['partenaires'] = partenaire_score
+
+        # Critère 3 : Ampleur vs ressources (max 30 pts)
+        # Budget faible + reproductibilité facile = plus accessible
+        budget = cas.get('budget_reel') or 0
+        repro = cas.get('reproductibilite') or ''
+        if budget <= 1000 and 'facile' in repro:
+            ampleur_score = 30
+        elif budget <= 5000 and 'moyen' in repro:
+            ampleur_score = 20
+        elif budget <= 10000:
+            ampleur_score = 10
+        else:
+            ampleur_score = 5
+        score += ampleur_score
+        score_details['ampleur'] = ampleur_score
+
+        # Bonus niveau club
+        if niveau_club and cas.get('niveau_club') == niveau_club:
+            score += 10
+            score_details['bonus_niveau'] = 10
+
+        cas['score'] = score
+        cas['score_details'] = score_details
+        cas['thematiques'] = cas_thematiques
+        cas['partenaires'] = cas_partenaires
+        scored.append(cas)
+
+    # Tri par score décroissant
+    scored.sort(key=lambda x: x['score'], reverse=True)
+
+    return {"cas_inspirants": scored[:limit], "total": len(scored)}
+
+
 @app.get("/api/funding-sources")
 async def get_funding_sources(
     limit: int = Query(50, ge=1, le=500),
