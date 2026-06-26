@@ -1,10 +1,7 @@
-"""
-Script de seed — Peuple la base avec des données de démonstration complètes.
-Idempotent : peut être exécuté plusieurs fois sans dupliquer.
-"""
+"""Seed de la base TerritoireSport."""
 import sqlite3
-import uuid
 import json
+import uuid
 import os
 from pathlib import Path
 
@@ -67,19 +64,212 @@ def seed():
         print(f"✅ Club créé : BATT Argentan ({club_id})")
 
     # ── 2. Diagnostic ───────────────────────────────────────────
-    cur.execute("SELECT id FROM diagnostics WHERE club_id = ?", (club_id,))
+    cur.execute("SELECT club_id FROM diagnostics WHERE club_id = ?", (club_id,))
     if not cur.fetchone():
-        diag_id = str(uuid.uuid4())
-        answers = {
-            "q1": 2, "q2": 2, "q3": 1, "q4": 2, "q5": 2,
-            "q6": 1, "q7": 2, "q8": 2, "q9": 1, "q10": 2,
-        }
         cur.execute("""
-            INSERT INTO diagnostics (id, club_id, answers, score, profile, completed_at)
+            INSERT INTO diagnostics (id, club_id, score, profile, answers, completed_at)
             VALUES (?, ?, ?, ?, ?, datetime('now'))
-        """, (diag_id, club_id, json.dumps(answers), 15, "engaged"))
+        """, (
+            str(uuid.uuid4()),
+            club_id,
+            15,
+            "engaged",
+            json.dumps({
+                "axes_prioritaires": [
+                    "Développer les partenariats privés",
+                    "Renforcer la communication digitale",
+                    "Diversifier les sources de financement"
+                ]
+            })
+        ))
         print(f"✅ Diagnostic créé : score 15/20, profil engaged")
 
+    # ── 3. Territoire ───────────────────────────────────────────
+    cur.execute("SELECT id FROM territories WHERE id = ?", ("argentan-intercom",))
+    if not cur.fetchone():
+        cur.execute("""
+            INSERT INTO territories (id, name, type, department, region, population, description)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (
+            "argentan-intercom",
+            "Argentan Intercom",
+            "epci",
+            "61",
+            "Normandie",
+            16850,
+            "Bassin de vie rural du nord-ouest de l'Orne, marqué par des indicateurs socio-économiques fragiles et la présence d'un QPV."
+        ))
+        print(f"✅ Territoire créé : Argentan Intercom")
+
+    # ── 4. Acteurs du territoire ────────────────────────────────
+    actors_path = Path("data/territory_actors.json")
+    if actors_path.exists():
+        actors = json.loads(actors_path.read_text())
+        for a in actors:
+            cur.execute("SELECT id FROM partners WHERE name = ? AND city = ?", (a["name"], a.get("city", "Argentan")))
+            if not cur.fetchone():
+                cur.execute("""
+                    INSERT INTO partners (id, name, type, category, city, department, themes, contact_email, contact_url, description)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """, (
+                    str(uuid.uuid4()),
+                    a["name"],
+                    a.get("type", "acteur_territorial"),
+                    a.get("category", "institution"),
+                    a.get("city", "Argentan"),
+                    a.get("department", "61"),
+                    json.dumps(a.get("themes", [])),
+                    a.get("email"),
+                    a.get("url"),
+                    a.get("description")
+                ))
+        cur.execute("SELECT COUNT(*) FROM partners WHERE city = 'Argentan'")
+        nb_actors = cur.fetchone()[0]
+        print(f"✅ {nb_actors} acteurs territoriaux (Argentan) — depuis JSON")
+
+    # ── 5. Partenaires ──────────────────────────────────────────
+    partners_path = Path("data/partners.json")
+    if partners_path.exists():
+        partners = json.loads(partners_path.read_text())
+    else:
+        # Partenaires par défaut
+        partners = [
+            {"name": "Crédit Mutuel de Bretagne", "type": "sponsor", "category": "banque", "city": "Caen", "department": "14", "themes": ["Sponsoring"], "email": "contact@cmb.fr", "url": "https://www.cmb.fr"},
+            {"name": "Decathlon Pro", "type": "fournisseur", "category": "equipementier", "city": "Caen", "department": "14", "themes": ["Equipement sportif"], "email": "pro@decathlon.fr", "url": "https://www.decathlonpro.fr"},
+            {"name": "Région Normandie", "type": "institution", "category": "collectivite", "city": "Caen", "department": "14", "themes": ["Sport & Santé", "Formation"], "email": "contact@normandie.fr", "url": "https://www.normandie.fr"},
+            {"name": "DDCS du Calvados", "type": "institution", "category": "etat", "city": "Caen", "department": "14", "themes": ["Politique sportive"], "email": "ddcs@calvados.gouv.fr", "url": None},
+            {"name": "CROS Normandie", "type": "federation", "category": "sport", "city": "Caen", "department": "14", "themes": ["Olympisme", "Formation"], "email": "cros@normandie.fr", "url": "https://cros-normandie.fr"},
+            {"name": "Agence Nationale du Sport", "type": "institution", "category": "etat", "city": "Paris", "department": "75", "themes": ["Financement sport"], "email": "contact@ans.fr", "url": "https://www.ans.fr"},
+            {"name": "Fondation de France", "type": "fondation", "category": "mecénat", "city": "Paris", "department": "75", "themes": ["Mécénat", "Inclusion"], "email": "contact@fdf.org", "url": "https://www.fondationdefrance.org"}
+        ]
+    for p in partners:
+        cur.execute("SELECT id FROM partners WHERE name = ?", (p["name"],))
+        if not cur.fetchone():
+            cur.execute("""
+                INSERT INTO partners (id, name, type, category, city, department, contact_email, contact_url, description, themes)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (str(uuid.uuid4()), p["name"], p["type"], p.get("category"), p["city"], p["department"], p.get("email"), p.get("url"), p.get("description"), json.dumps(p.get("themes", []))))
+    cur.execute("SELECT COUNT(*) FROM partners")
+    nb_partners = cur.fetchone()[0]
+    print(f"✅ {nb_partners} partenaires créés")
+
+    # ── 6. Projets de la bibliothèque ───────────────────────────
+    library_path = Path("data/projects_library.json")
+    if library_path.exists():
+        library = json.loads(library_path.read_text())
+        cur.execute("SELECT COUNT(*) FROM projects")
+        nb_projects_db = cur.fetchone()[0]
+        if nb_projects_db == 0:
+            for proj in library:
+                cur.execute("""
+                    INSERT INTO projects (id, club_id, title, description, themes, budget, status)
+                    VALUES (?, ?, ?, ?, ?, ?, 'library')
+                """, (str(uuid.uuid4()), club_id, proj.get("title"), proj.get("description"), json.dumps(proj.get("themes", [])), proj.get("budget")))
+        cur.execute("SELECT COUNT(*) FROM projects")
+        nb_library = cur.fetchone()[0]
+        print(f"✅ {nb_library} projets de bibliothèque (depuis JSON)")
+
+    # ── 7. Sources de financement ───────────────────────────────
+    fundings = [
+        {
+            "name": "ANS — Projets sportifs territoriaux",
+            "type": "subvention",
+            "organization": "Agence Nationale du Sport",
+            "themes": ["Sport & Santé", "Inclusion"],
+            "min": 5000, "max": 50000,
+            "deadline": "2026-09-30",
+            "url": "https://www.ans.fr/appels-a-projets",
+            "description": "Soutien aux projets sportifs à impact territorial",
+            "eligibility": "Clubs affiliés FFSport, EAPS, collectivités"
+        },
+        {
+            "name": "Région Normandie — Aide aux clubs",
+            "type": "subvention",
+            "organization": "Région Normandie",
+            "themes": ["Formation", "Equipement"],
+            "min": 2000, "max": 20000,
+            "deadline": "2026-12-31",
+            "url": "https://www.normandie.fr",
+            "description": "Aide régionale au fonctionnement des clubs sportifs normands",
+            "eligibility": "Clubs normands affiliés fédération"
+        },
+        {
+            "name": "Fondation de France — Sport & Inclusion",
+            "type": "fondation",
+            "organization": "Fondation de France",
+            "themes": ["Inclusion", "Handicap"],
+            "min": 10000, "max": 100000,
+            "deadline": "2027-02-15",
+            "url": "https://www.fondationdefrance.org",
+            "description": "Soutien aux projets favorisant l'accès au sport pour publics fragiles",
+            "eligibility": "Associations loi 1901, 2 ans d'ancienneté"
+        },
+        {
+            "name": "CPAM Calvados — Sport en Santé",
+            "type": "subvention",
+            "organization": "CPAM du Calvados",
+            "themes": ["Sport & Santé"],
+            "min": 1000, "max": 10000,
+            "deadline": "2026-06-30",
+            "url": "https://www.ameli.fr",
+            "description": "AAP Sport en Santé pour associations du Calvados",
+            "eligibility": "Associations loi 1901 du Calvados"
+        }
+    ]
+    for f in fundings:
+        cur.execute("SELECT id FROM funding_sources WHERE name = ?", (f["name"],))
+        if not cur.fetchone():
+            cur.execute("""
+                INSERT INTO funding_sources (id, name, type, organization, themes, amount_min, amount_max, deadline, url, description, eligibility_criteria)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (str(uuid.uuid4()), f["name"], f["type"], f["organization"], json.dumps(f["themes"]), f["min"], f["max"], f["deadline"], f["url"], f["description"], f["eligibility"]))
+    print(f"✅ {len(fundings)} sources de financement créées")
+
+    # ── 8. Projets inspirants ───────────────────────────────────
+    insp_path = Path("data/cas_inspirants.json")
+    if insp_path.exists():
+        insp = json.loads(insp_path.read_text())
+        print(f"✅ {len(insp)} cas inspirants (depuis JSON)")
+
+    # ── 9. Projets du club BATT (exemples) ───────────────────────
+    projets_batt = [
+        {
+            "title": "Ping pour Tous — Inclusion par le tennis de table",
+            "description": "Programme d'inclusion sociale par le tennis de table ciblant seniors, personnes en situation de handicap et jeunes en décrochage.",
+            "themes": ["Insertion / Cohésion Sociale", "Sport & Santé", "Handicap"],
+            "budget": 15000
+        },
+        {
+            "title": "Tournoi Intergénérationnel de l'Orne",
+            "description": "Tournoi annuel ouvert aux familles, écoles et EHPAD du territoire.",
+            "themes": ["Lien Intergénérationnel", "Animation Territoriale"],
+            "budget": 5000
+        },
+        {
+            "title": "Cogni-Ping — Performance & Rééducation",
+            "description": "Programme de recherche appliquée sur les liens entre cognition, anticipation et performance au tennis de table.",
+            "themes": ["Recherche", "Performance", "Innovation"],
+            "budget": 80000
+        },
+        {
+            "title": "Section Sport-Santé — Tennis de Table & Parkinson",
+            "description": "Section dédiée aux personnes atteintes de la maladie de Parkinson, en partenariat avec l'IME de Caen et Handisport 14.",
+            "themes": ["Sport & Santé", "Handicap", "Maladies Neurodégénératives"],
+            "budget": 12000
+        }
+    ]
+    for p in projets_batt:
+        cur.execute("SELECT id FROM projects WHERE title = ? AND club_id = ?", (p["title"], club_id))
+        if not cur.fetchone():
+            cur.execute("""
+                INSERT INTO projects (id, club_id, title, description, themes, budget, status)
+                VALUES (?, ?, ?, ?, ?, ?, 'active')
+            """, (str(uuid.uuid4()), club_id, p["title"], p["description"], json.dumps(p["themes"]), p["budget"]))
+    cur.execute("SELECT COUNT(*) FROM projects WHERE club_id = ?", (club_id,))
+    nb_projets_batt = cur.fetchone()[0]
+    print(f"✅ {nb_projets_batt} projets pour le club BATT")
+
+    # ── 10. Liaison club-territoire ─────────────────────────────
     cur.execute("SELECT territory_id FROM club_territories WHERE club_id = ?", (club_id,))
     if not cur.fetchone():
         cur.execute("""
@@ -87,95 +277,6 @@ def seed():
             VALUES (?, ?, 1)
         """, (club_id, "argentan-intercom"))
         print(f"✅ Territoire lié : Argentan Intercom")
-        print(f"✅ Territoire créé : Argentan Intercom")
-
-    # ── 4. Acteurs du territoire ────────────────────────────────
-    # Les acteurs sont stockés dans data/territory_actors.json (pas en DB)
-    actors_path = Path("data/territory_actors.json")
-    if actors_path.exists():
-        actors_data = json.loads(actors_path.read_text())
-        argentan_actors = [a for a in actors_data if a.get("territory_id") == "argentan-intercom"]
-        print(f"✅ {len(argentan_actors)} acteurs territoriaux (Argentan) — depuis JSON")
-
-    # ── 5. Partenaires ──────────────────────────────────────────
-    partners = [
-        ("Mairie de Ducey-Les Chéris", "public", "cohesion", "Ducey", "50", None, None,
-         "Commune rurale de la Manche", ["cohesion", "education", "sante"]),
-        ("DRAJES Normandie", "public", "insertion", "Caen", "14", None, "https://www.ac-normandie.fr",
-         "Direction régionale académique à la jeunesse, à l'engagement et aux sports",
-         ["insertion", "education", "haut_niveau"]),
-        ("Ligue de Football de Normandie", "association", "amateur", "Caen", "14", None, "https://www.fff.fr",
-         "Ligue régionale FFF — Normandie", ["amateur", "scolaire", "feminin"]),
-        ("CINS Caen", "company", "numerique", "Caen", "14", None, None,
-         "Agence digitale spécialisée sport", ["numerique", "gouvernance"]),
-        ("ANS — Agence Nationale du Sport", "public", "sante", "Paris", "75", None,
-         "https://www.agencedusport.fr",
-         "Agence nationale du sport — financement et développement",
-         ["sante", "insertion", "feminin", "handicap"]),
-        ("Conseil Départemental de l'Orne", "public", "cohesion", "Alençon", "61", None,
-         "https://www.orne.fr",
-         "Collectivité départementale — soutien aux clubs et associations",
-         ["cohesion", "scolaire", "amateur"]),
-        ("Crédit Agricole Normandie", "company", "amateur", "Caen", "14", "partenariats@ca-normandie.fr",
-         "https://www.ca-normandie.fr",
-         "Banque régionale — sponsoring et partenariats clubs",
-         ["amateur", "haut_niveau"]),
-    ]
-    for name, type_, category, city, dept, email, url, desc, themes in partners:
-        cur.execute("SELECT id FROM partners WHERE name = ?", (name,))
-        if not cur.fetchone():
-            cur.execute("""
-                INSERT INTO partners (id, name, type, category, city, department,
-                                      contact_email, contact_url, description, themes)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (str(uuid.uuid4()), name, type_, category, city, dept, email, url, desc,
-                  json.dumps(themes)))
-    print(f"✅ {len(partners)} partenaires créés")
-
-    # ── 6. Projets de la bibliothèque ───────────────────────────
-    # La bibliothèque est stockée dans data/projects_library.json (pas en DB)
-    lib_path = Path("data/projects_library.json")
-    if lib_path.exists():
-        lib = json.loads(lib_path.read_text())
-        print(f"✅ {len(lib)} projets de bibliothèque (depuis JSON)")
-
-    # ── 7. Sources de financement ───────────────────────────────
-    fundings = [
-        ("ANS — Projet Sportif Territorial", "public", "ANS",
-         ["sante", "insertion", "handicap"], 5000, 50000, None,
-         "https://www.agencedusport.fr/APA-projets",
-         "Financement ANS pour projets sportifs territoriaux", None),
-        ("Région Normandie — Sport & Cohésion", "public", "Région Normandie",
-         ["cohesion", "education"], 3000, 30000, None,
-         "https://www.normandie.fr",
-         "AAP régional sport et cohésion sociale", None),
-        ("Département de l'Orne — Vie associative", "public", "CD 61",
-         ["amateur", "scolaire"], 1000, 10000, None,
-         "https://www.orne.fr",
-         "Soutien aux associations sportives ornaises", None),
-        ("Fondation de France — Sport & Inclusion", "private", "Fondation de France",
-         ["insertion", "handicap"], 2000, 20000, None,
-         "https://www.fondationdefrance.org",
-         "Mécénat pour projets sport et inclusion", None),
-    ]
-    for name, type_, org, themes, min_, max_, deadline, url, desc, elig in fundings:
-        cur.execute("SELECT id FROM funding_sources WHERE name = ?", (name,))
-        if not cur.fetchone():
-            cur.execute("""
-                INSERT INTO funding_sources (id, name, type, organization, themes,
-                                            amount_min, amount_max, deadline, url,
-                                            description, eligibility_criteria)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (str(uuid.uuid4()), name, type_, org, json.dumps(themes),
-                  min_, max_, deadline, url, desc, elig))
-    print(f"✅ {len(fundings)} sources de financement créées")
-
-    # ── 8. Projets inspirants ───────────────────────────────────
-    # Les cas inspirants sont stockés dans data/cas_inspirants.json (pas en DB)
-    insp_path = Path("data/cas_inspirants.json")
-    if insp_path.exists():
-        insp = json.loads(insp_path.read_text())
-        print(f"✅ {len(insp)} cas inspirants (depuis JSON)")
 
     conn.commit()
     conn.close()

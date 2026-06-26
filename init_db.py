@@ -108,6 +108,20 @@ def init_db():
         )
     """)
     
+    # Table territories
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS territories (
+            id TEXT PRIMARY KEY,
+            name TEXT NOT NULL,
+            type TEXT,
+            department TEXT,
+            region TEXT,
+            population INTEGER,
+            description TEXT,
+            created_at TEXT DEFAULT (datetime('now'))
+        )
+    """)
+
     # Table club_territories
     cur.execute("""
         CREATE TABLE IF NOT EXISTS club_territories (
