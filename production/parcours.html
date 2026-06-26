@@ -1167,26 +1167,38 @@
                 const scoreColor = c.score >= 70 ? 'green' : c.score >= 50 ? 'orange' : 'gray';
                 const budget = c.budget_reel ? c.budget_reel.toLocaleString() + ' €' : 'Non communiqué';
                 const transpo = c.transposabilite || 'N/A';
+                const sources = (c.sources || []).slice(0, 2).map(s => `<a href="${s.url || '#'}" target="_blank" style="color: #3b82f6; text-decoration: none; font-size: 0.8em;">🔗 ${s.title || 'Source'}</a>`).join(' · ');
+                const sources = (c.sources || []).slice(0, 2).map(s => `<a href="${s.url || '#'}" target="_blank" style="color: #3b82f6; text-decoration: none; font-size: 0.8em;">🔗 ${s.title || 'Source'}</a>`).join(' · ');
                 const repro = c.reproductibilite || 'N/A';
-
-                return `
-                <div class="cas-card" data-id="${c.id}" onclick="selectCasInspirant(this, '${c.id}')">
-                    <div class="cas-header">
-                        <span class="cas-rank">#${idx + 1}</span>
-                        <span class="cas-score score-${scoreColor}">${c.score} pts</span>
+                <div class="cas-card" data-id="${c.id}" onclick="selectCasInspirant(this, '${c.id}')" style="cursor: pointer; padding: 20px; border: 2px solid #e5e7eb; border-radius: 12px; margin-bottom: 16px; transition: all 0.2s; position: relative;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                        <div>
+                            <div style="font-size: 0.85em; color: #6b7280;">#${idx + 1} • 📍 ${c.structure || 'N/A'}</div>
+                            <div style="font-weight: 700; font-size: 1.2em; margin-top: 4px; color: #111827;">${c.titre}</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 0.7em; color: #6b7280; text-transform: uppercase;">Score match</div>
+                            <div style="font-size: 1.5em; font-weight: bold; color: var(--${scoreColor});">${c.score}</div>
+                            <div style="font-size: 0.7em; color: #6b7280;">/100</div>
+                        </div>
                     </div>
-                    <div class="cas-title">${c.titre}</div>
-                    <div class="cas-structure">📍 ${c.structure}</div>
-                    <div class="cas-thematiques">${themaBadges}</div>
-                    <div class="cas-desc">${(c.description || '').substring(0, 200)}...</div>
-                    <div class="cas-meta">
-                        <span class="meta-item">💰 Budget : ${budget}</span>
-                        <span class="meta-item">🔧 Repro : ${repro}</span>
-                        <span class="meta-item">📋 Transpo : ${transpo}</span>
+                    <div style="margin-bottom: 12px;">${themaBadges}</div>
+                    <div style="color: #4b5563; line-height: 1.6; margin-bottom: 12px;">${(c.description || '').substring(0, 250)}${(c.description || '').length > 250 ? '...' : ''}</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 12px; border-top: 1px solid #f3f4f6; font-size: 0.85em; color: #6b7280;">
+                        <span>💰 Budget : <strong>${budget}</strong></span>
+                        <span>🔧 Repro : <strong>${repro}/5</strong></span>
+                        <span>📋 Transpo : <strong>${transpo}/5</strong></span>
                     </div>
-                    <div class="cas-score-details">
-                        <small>Score : thématiques ${c.score_details.thematiques || 0} + partenaires ${c.score_details.partenaires || 0} + ampleur ${c.score_details.ampleur || 0}</small>
+                    ${c.score_details ? `<div style="margin-top: 8px; font-size: 0.8em; color: #9ca3af;">Détail : thématiques ${c.score_details.thematiques || 0} + partenaires ${c.score_details.partenaires || 0} + ampleur ${c.score_details.ampleur || 0}</div>` : ''}
+                    ${sources ? `<div style="margin-top: 8px;">${sources}</div>` : ''}
+                    <div style="margin-top: 12px; text-align: right; font-size: 0.85em; color: #3b82f6; font-weight: 500;">Cliquer pour sélectionner ce cas →</div>
+                </div>`;
+                        <span>📋 Transpo : <strong>${transpo}/5</strong></span>
                     </div>
+                    ${c.score_details ? `<div style="margin-top: 8px; font-size: 0.8em; color: #9ca3af;">Détail : thématiques ${c.score_details.thematiques || 0} + partenaires ${c.score_details.partenaires || 0} + ampleur ${c.score_details.ampleur || 0}</div>` : ''}
+                    ${sources ? `<div style="margin-top: 8px;">${sources}</div>` : ''}
+                    <div style="margin-top: 12px; text-align: right; font-size: 0.85em; color: #3b82f6; font-weight: 500;">Cliquer pour sélectionner ce cas →</div>
+                </div>`;
                 </div>`;
             }).join('');
 
@@ -1237,16 +1249,80 @@
         // ── ÉTAPE 7: AAP ──
         async function loadStep7() {
             const r = await fetch(API + '/api/funding-sources');
-            const d = await r.json();
-            const html = (d.funding_sources || []).map(f => `
-                <div class="partner-card" data-id="${f.id}" onclick="toggleAAP(this, '${f.id}')">
-                    <div class="name">${f.name}</div>
-                    <div class="meta">
-                        <span class="badge badge-orange">${f.type || 'AAP'}</span>
-                        <span class="badge badge-gray">Deadline: ${f.deadline}</span>
+            const sources = d.funding_sources || [];
+
+            if (sources.length === 0) {
+                document.getElementById('result-7').innerHTML = `
+                    <div class="result-box">
+                        <h3>🔍 Aucun AAP disponible actuellement</h3>
+                        <p>Revenez bientôt ou contactez-nous pour être alerté des nouveaux AAP.</p>
+                    </div>`;
+                return;
+            }
+
+            const html = sources.map(f => {
+                const deadline = f.deadline || 'Non précisée';
+                const isUrgent = f.deadline && new Date(f.deadline) < new Date(Date.now() + 30*24*60*60*1000);
+                const montant = f.amount_max ? `Jusqu'à ${f.amount_max.toLocaleString()} €` : (f.amount_min ? `À partir de ${f.amount_min.toLocaleString()} €` : 'Montant variable');
+                const eligible = (f.eligibility_criteria || []).slice(0, 3).map(e => `<span class="badge badge-green" style="margin: 2px; font-size: 0.75em;">${e}</span>`).join(' ');
+                const eligible = (f.eligible || []).slice(0, 3).map(e => `<span class="badge badge-green" style="margin: 2px; font-size: 0.75em;">${e}</span>`).join(' ');
+
+                return `
+                <div class="partner-card" data-id="${f.id}" onclick="toggleAAP(this, '${f.id}')" style="cursor: pointer; padding: 16px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; gap: 16px;">
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; font-size: 1.1em; margin-bottom: 4px;">${f.name}</div>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px;">
+                                <span class="badge badge-orange">${f.type || 'AAP'}</span>
+                                <span style="color: ${deadlineColor}; font-size: 0.9em; font-weight: ${isUrgent ? 'bold' : 'normal'};">📅 Deadline : ${deadline}${isUrgent ? ' ⚠️' : ''}</span>
+                            </div>
+                            <div style="color: #6b7280; font-size: 0.9em; margin-bottom: 6px;">💰 ${montant}</div>
+                            ${eligible ? `<div>Éligibilité : ${eligible}</div>` : ''}
+                            ${f.description ? `<div style="margin-top: 8px; color: #4b5563; font-size: 0.9em;">${f.description.substring(0, 200)}${f.description.length > 200 ? '...' : ''}</div>` : ''}
+                            ${f.url ? `<div style="margin-top: 8px;"><a href="${f.url}" target="_blank" style="color: #3b82f6; text-decoration: none; font-size: 0.85em;">🔗 En savoir plus</a></div>` : ''}
+                        </div>
                     </div>
+                </div>`;
+            }).join('');
+
+            document.getElementById('result-7').innerHTML = `
+                <div class="match-info" style="margin-bottom: 16px; padding: 12px; background: #fff7ed; border-radius: 8px;">
+                    <strong>📢 ${sources.length} appels à projets</strong> identifiés pour votre profil.
+                    <br><span style="font-size: 0.9em; color: #6b7280;">Cliquez sur un AAP pour l'ajouter à votre dossier (${state.selected_aaps.length} sélectionné(s))</span>
                 </div>
-            `).join('');
+                ${html}`;
+
+            const html = sources.map(f => {
+                const deadline = f.deadline || 'Non précisée';
+                const isUrgent = f.deadline && new Date(f.deadline) < new Date(Date.now() + 30*24*60*60*1000);
+                const deadlineColor = isUrgent ? '#dc2626' : '#6b7280';
+                const montant = f.montant_max ? `Jusqu'à ${f.montant_max.toLocaleString()} €` : 'Montant variable';
+                const eligible = (f.eligible || []).slice(0, 3).map(e => `<span class="badge badge-green" style="margin: 2px; font-size: 0.75em;">${e}</span>`).join(' ');
+
+                return `
+                <div class="partner-card" data-id="${f.id}" onclick="toggleAAP(this, '${f.id}')" style="cursor: pointer; padding: 16px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; gap: 16px;">
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; font-size: 1.1em; margin-bottom: 4px;">${f.name}</div>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px;">
+                                <span class="badge badge-orange">${f.type || 'AAP'}</span>
+                                <span style="color: ${deadlineColor}; font-size: 0.9em; font-weight: ${isUrgent ? 'bold' : 'normal'};">📅 Deadline : ${deadline}${isUrgent ? ' ⚠️' : ''}</span>
+                            </div>
+                            <div style="color: #6b7280; font-size: 0.9em; margin-bottom: 6px;">💰 ${montant}</div>
+                            ${eligible ? `<div>Éligibilité : ${eligible}</div>` : ''}
+                            ${f.description ? `<div style="margin-top: 8px; color: #4b5563; font-size: 0.9em;">${f.description.substring(0, 200)}${f.description.length > 200 ? '...' : ''}</div>` : ''}
+                            ${f.url ? `<div style="margin-top: 8px;"><a href="${f.url}" target="_blank" style="color: #3b82f6; text-decoration: none; font-size: 0.85em;">🔗 En savoir plus</a></div>` : ''}
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+
+            document.getElementById('result-7').innerHTML = `
+                <div class="match-info" style="margin-bottom: 16px; padding: 12px; background: #fff7ed; border-radius: 8px;">
+                    <strong>📢 ${sources.length} appels à projets</strong> identifiés pour votre profil.
+                    <br><span style="font-size: 0.9em; color: #6b7280;">Cliquez sur un AAP pour l'ajouter à votre dossier (${state.selected_aaps.length} sélectionné(s))</span>
+                </div>
+                ${html}`;
             document.getElementById('result-7').innerHTML = html;
         }
 
