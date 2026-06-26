@@ -608,7 +608,7 @@
             const r = await fetch(API + '/api/funding-sources');
             const d = await r.json();
             const html = (d.funding_sources || []).map(f => `
-                <div class="partner-card" data-id="${f.id}" onclick="toggleAAP(this, ${f.id})">
+                <div class="partner-card" data-id="${f.id}" onclick="toggleAAP(this, '${f.id}')">
                     <div class="name">${f.name}</div>
                     <div class="meta">
                         <span class="badge badge-orange">${f.type || 'AAP'}</span>
