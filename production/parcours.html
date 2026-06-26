@@ -599,21 +599,21 @@
         };
 
         const questions = [
-            "Avez-vous déjà mené des actions à impact social ou environnemental ?",
-            "Votre club a-t-il un projet associatif formalisé ?",
-            "Travaillez-vous avec des partenaires institutionnels ?",
-            "Avez-vous des contacts avec des entreprises locales ?",
-            "Votre club accueille-t-il des publics fragiles (handicap, précarité) ?",
-            "Organisez-vous des événements ouverts au public non-adhérent ?",
-            "Avez-vous une communication active (réseaux sociaux, newsletter) ?",
-            "Votre club a-t-il déjà répondu à des appels à projets ?",
-            "Avez-vous des relations avec les collectivités (mairie, EPCI) ?",
-            "Votre club forme-t-il ses bénévoles à l'engagement sociétal ?",
-            "Mesurez-vous l'impact de vos actions ?",
-            "Avez-vous un budget dédié aux actions sociétales ?",
-            "Votre club a-t-il une gouvernance inclusive (mixité, jeunes) ?",
-            "Travaillez-vous avec d'autres clubs ou associations ?",
-            "Avez-vous un ancrage territorial identifié (quartier, commune) ?"
+            // Stratégie (3 questions)
+            "Avez-vous un projet associatif formalisé incluant des actions à impact social ou environnemental ?",
+            "Avez-vous déjà répondu à des appels à projets ou obtenu des financements publics ?",
+            "Mesurez-vous l'impact de vos actions et avez-vous un budget dédié ?",
+            // Partenaires (2 questions - fusion institutions + entreprises + collectivités)
+            "Travaillez-vous régulièrement avec des acteurs de votre territoire (collectivités, institutions, entreprises, autres associations) ?",
+            "Disposez-vous d'un réseau structuré de partenaires privés (sponsors, mécènes, clubs entreprises) ?",
+            // Publics & inclusion (2 questions - fusion handicap + précarité + gouvernance)
+            "Votre club accueille-t-il des publics fragiles ou éloignés du sport (handicap, précarité, santé, mixité) ?",
+            "Votre gouvernance est-elle inclusive (mixité, place des jeunes, ouverture aux bénévoles) ?",
+            // Communication & ouverture (2 questions - fusion com + événements + ancrage)
+            "Avez-vous une communication active et un ancrage territorial identifié dans votre commune ou quartier ?",
+            "Organisez-vous des événements ouverts au public non-adhérent pour faire vivre ce lien au territoire ?",
+            // Engagement interne (1 question - fusion formation + travail en réseau)
+            "Formez-vous et mobilisez-vous vos bénévoles et éducateurs autour de l'engagement sociétal du club ?"
         ];
 
         function goToStep(n) {
