@@ -8,6 +8,10 @@ DB_PATH = os.getenv("DB_PATH", os.path.join(os.path.dirname(os.path.abspath(__fi
 
 def init_db():
     os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+    # Supprimer la DB existante pour garantir un schéma propre
+    if os.path.exists(DB_PATH):
+        os.remove(DB_PATH)
+        print(f"🗑️  Ancienne DB supprimée: {DB_PATH}")
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     
