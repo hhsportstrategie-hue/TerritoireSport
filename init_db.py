@@ -22,6 +22,8 @@ def init_db():
             name TEXT NOT NULL,
             sport TEXT,
             city TEXT,
+            commune TEXT,
+            epci TEXT,
             department TEXT,
             size TEXT,
             contact_email TEXT,
