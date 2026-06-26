@@ -47,22 +47,7 @@ async def lifespan(app: FastAPI):
         seed.seed()
 
     yield
-        conn.commit()
-        conn.close()
 
-    # Seed si la DB est vide
-    conn = sqlite3.connect(DB_PATH)
-    cur = conn.cursor()
-    cur.execute("SELECT COUNT(*) FROM clubs")
-    count = cur.fetchone()[0]
-    conn.close()
-
-    if count == 0:
-        import seed
-        seed.seed()
-
-    yield
-    yield
 
 
 # ── App ──────────────────────────────────────────────────────────
