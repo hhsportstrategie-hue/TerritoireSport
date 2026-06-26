@@ -152,6 +152,68 @@ def seed():
     cur.execute("SELECT COUNT(*) FROM partners")
     nb_partners = cur.fetchone()[0]
     print(f"✅ {nb_partners} partenaires créés")
+    # ── 5b. Scoring des partenaires ─────────────────────────────
+    type_scores = {
+        "institution": 30,
+        "sponsor": 25,
+        "federation": 20,
+        "fondation": 25,
+        "fournisseur": 10,
+        "acteur_territorial": 15,
+        "association": 20,
+        "public": 25
+    }
+    club_commune = "Argentan"
+    cur.execute("SELECT id, type, city, themes, category FROM partners WHERE score = 0 OR score IS NULL")
+    partners_to_score = cur.fetchall()
+    for p in partners_to_score:
+        pid, ptype, city, themes_json, category = p
+        score = type_scores.get(ptype, 5)
+        if city == club_commune:
+            score += 20
+        if themes_json:
+            try:
+                partner_themes = json.loads(themes_json)
+                score += min(len(partner_themes) * 5, 20)
+            except:
+                pass
+        if category == "sport":
+            score += 10
+        cur.execute("UPDATE partners SET score = ? WHERE id = ?", (score, pid))
+    if partners_to_score:
+        print(f"✅ {len(partners_to_score)} partenaires scorés")
+
+    # ── 5b. Scoring des partenaires ─────────────────────────────
+    type_scores = {
+        "institution": 30,
+        "sponsor": 25,
+        "federation": 20,
+        "fondation": 25,
+        "fournisseur": 10,
+        "acteur_territorial": 15,
+        "association": 20,
+        "public": 25
+    }
+    club_commune = "Argentan"
+    cur.execute("SELECT id, type, city, themes, category FROM partners WHERE score = 0 OR score IS NULL")
+    partners_to_score = cur.fetchall()
+    for p in partners_to_score:
+        pid, ptype, city, themes_json, category = p
+        score = type_scores.get(ptype, 5)
+        if city == club_commune:
+            score += 20
+        if themes_json:
+            try:
+                partner_themes = json.loads(themes_json)
+                score += min(len(partner_themes) * 5, 20)
+            except:
+                pass
+        if category == "sport":
+            score += 10
+        cur.execute("UPDATE partners SET score = ? WHERE id = ?", (score, pid))
+    if partners_to_score:
+        print(f"✅ {len(partners_to_score)} partenaires scorés")
+
 
     # ── 6. Projets de la bibliothèque ───────────────────────────
     library_path = Path("data/projects_library.json")
@@ -285,3 +347,92 @@ def seed():
 
 if __name__ == "__main__":
     seed()
+
+
+# ── 11. Clubs supplémentaires (démonstration multi-clubs) ─────
+clubs_demo = [
+    {
+        "name": "Stade Malherbe Caen — Section Tennis de Table",
+        "sport": "tennis_de_table",
+        "city": "Caen",
+        "commune": "Caen",
+        "epci": "Caen la Mer",
+        "department": "14",
+        "size": "large",
+        "contact_email": "tt@smcaen.fr",
+        "contact_phone": "02 31 29 12 34"
+    },
+    {
+        "name": "Hockey Club de Caen",
+        "sport": "hockey_sur_glace",
+        "city": "Caen",
+        "commune": "Caen",
+        "epci": "Caen la Mer",
+        "department": "14",
+        "size": "medium",
+        "contact_email": "contact@hcc.fr",
+        "contact_phone": "02 31 45 67 89"
+    },
+    {
+        "name": "USO Mondeville Basket",
+        "sport": "basketball",
+        "city": "Mondeville",
+        "commune": "Mondeville",
+        "epci": "Caen la Mer",
+        "department": "14",
+        "size": "medium",
+        "contact_email": "basket@uso-mondeville.fr",
+        "contact_phone": "02 31 78 90 12"
+    },
+    {
+        "name": "Stade Caennais Rugby Club",
+        "sport": "rugby",
+        "city": "Caen",
+        "commune": "Caen",
+        "epci": "Caen la Mer",
+        "department": "14",
+        "size": "medium",
+        "contact_email": "contact@stade-caennais.fr",
+        "contact_phone": "02 31 34 56 78"
+    },
+    {
+        "name": "Caen Padel Club",
+        "sport": "padel",
+        "city": "Caen",
+        "commune": "Caen",
+        "epci": "Caen la Mer",
+        "department": "14",
+        "size": "small",
+        "contact_email": "contact@caenpadel.fr",
+        "contact_phone": "02 31 56 78 90"
+    }
+]
+
+import sqlite3
+import uuid as _uuid
+conn = sqlite3.connect(DB_PATH)
+cur = conn.cursor()
+for c in clubs_demo:
+    cur.execute("SELECT id FROM clubs WHERE name = ?", (c["name"],))
+    if not cur.fetchone():
+        cur.execute("""
+            INSERT INTO clubs (id, name, sport, city, commune, epci, department, size, contact_email, contact_phone, password_hash, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
+        """, (
+            str(_uuid.uuid4()),
+            c["name"],
+            c["sport"],
+            c["city"],
+            c["commune"],
+            c["epci"],
+            c["department"],
+            c["size"],
+            c["contact_email"],
+            c["contact_phone"],
+            "demo_hash_" + c["sport"]
+        ))
+conn.commit()
+cur.execute("SELECT COUNT(*) FROM clubs")
+nb_clubs = cur.fetchone()[0]
+print(f"✅ {nb_clubs} clubs en base (incluant {len(clubs_demo)} nouveaux)")
+conn.close()
