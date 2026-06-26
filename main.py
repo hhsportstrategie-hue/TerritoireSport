@@ -222,6 +222,74 @@ async def get_communes(
     rows = [dict(row) for row in cur.fetchall()]
     conn.close()
 
+
+@app.get("/api/communes/all")
+async def get_all_communes(
+    limit: int = Query(100, ge=1, le=5000),
+    offset: int = Query(0, ge=0),
+    department: Optional[str] = None,
+    search: Optional[str] = None
+):
+    """Liste de toutes les communes normandes (referentiel geographique)."""
+    if not Path(DB_PATH).exists():
+        raise HTTPException(status_code=503, detail="Database not initialized")
+
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    query = "SELECT * FROM communes WHERE 1=1"
+    params = []
+
+    if department:
+        query += " AND department = ?"
+        params.append(department)
+
+    if search:
+        query += " AND name LIKE ?"
+        params.append(f"%{search}%")
+
+    query += " ORDER BY population DESC LIMIT ? OFFSET ?"
+    params.extend([limit, offset])
+
+    cur.execute(query, params)
+    rows = [dict(row) for row in cur.fetchall()]
+    conn.close()
+    return {"communes": rows, "count": len(rows), "limit": limit, "offset": offset}
+
+
+@app.get("/api/communes/{code_insee}")
+async def get_commune_by_code(code_insee: str):
+    """Detail d'une commune par code INSEE."""
+    if not Path(DB_PATH).exists():
+        raise HTTPException(status_code=503, detail="Database not initialized")
+
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    cur.execute("SELECT * FROM communes WHERE code_insee = ?", (code_insee,))
+    commune = cur.fetchone()
+
+    if not commune:
+        conn.close()
+        raise HTTPException(status_code=404, detail="Commune not found")
+
+    # Clubs dans cette commune
+    cur.execute("SELECT id, name, sport FROM clubs WHERE commune = ?", (commune["name"],))
+    clubs = [dict(row) for row in cur.fetchall()]
+
+    # Partenaires dans cette commune
+    cur.execute("SELECT id, name, type, category FROM partners WHERE city = ?", (commune["name"],))
+    partners = [dict(row) for row in cur.fetchall()]
+
+    conn.close()
+    return {
+        "commune": dict(commune),
+        "clubs": clubs,
+        "partners": partners
+    }
+
     return {"communes": rows, "count": len(rows), "limit": limit, "offset": offset}
 
 
