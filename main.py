@@ -764,9 +764,11 @@ async def create_diagnostic(payload: dict):
     
     return {
         "diagnostic_id": diagnostic_id,
+        "club_id": club_id,
         "score": total_score,
         "profile": profile,
         "max_score": 20,
+        "answers": answers,
         "recommendation": {
             "engaged": "Votre club est mature. Concentrez-vous sur des projets structurants avec partenaires institutionnels.",
             "emerging": "Votre club est en progression. Visez des projets pilotes avec 2-3 partenaires locaux.",

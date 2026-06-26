@@ -808,12 +808,123 @@
                 novice: { label: '🌰 Novice', color: '#6b7280', desc: 'Club novice — diagnostic approfondi recommandé' }
             };
             const p = profileLabels[j.profile] || profileLabels.novice;
+
+            // Calcul du score par axe (5 axes)
+            const scoresByAxis = {
+                strategie: Math.round((j.answers.q0 + j.answers.q1 + j.answers.q2) * 100 / 6),
+                partenaires: Math.round((j.answers.q3 + j.answers.q4) * 100 / 4),
+                inclusion: Math.round((j.answers.q5 + j.answers.q6) * 100 / 4),
+                communication: Math.round((j.answers.q7 + j.answers.q8) * 100 / 4),
+                engagement: Math.round((j.answers.q9) * 100 / 2)
+            };
+
+            // Radar chart en SVG
+            const axes = [
+                { name: 'Stratégie', score: scoresByAxis.strategie },
+                { name: 'Partenaires', score: scoresByAxis.partenaires },
+                { name: 'Inclusion', score: scoresByAxis.inclusion },
+                { name: 'Communication', score: scoresByAxis.communication },
+                { name: 'Engagement', score: scoresByAxis.engagement }
+            ];
+
+            const cx = 150, cy = 150, r = 100;
+            const angleStep = (2 * Math.PI) / axes.length;
+
+            function polarToCartesian(angle, radius) {
+                return [cx + radius * Math.cos(angle - Math.PI/2), cy + radius * Math.sin(angle - Math.PI/2)];
+            }
+
+            // Points du polygone
+            const points = axes.map((a, i) => {
+                const angle = i * angleStep;
+                const [x, y] = polarToCartesian(angle, r * a.score / 100);
+                return `${x},${y}`;
+            }).join(' ');
+
+            // Lignes des axes
+            const axisLines = axes.map((a, i) => {
+                const angle = i * angleStep;
+                const [x, y] = polarToCartesian(angle, r);
+                const labelPos = polarToCartesian(angle, r + 20);
+                return `
+                    <line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#e5e7eb" stroke-width="1"/>
+                    <text x="${labelPos[0]}" y="${labelPos[1]}" text-anchor="middle" font-size="11" fill="#374151" font-weight="500">${a.name}</text>
+                    <text x="${labelPos[0]}" y="${labelPos[1] + 14}" text-anchor="middle" font-size="10" fill="${p.color}" font-weight="bold">${a.score}%</text>
+                `;
+            }).join('');
+
+            // Cercles concentriques
+            const circles = [20, 40, 60, 80, 100].map(pct => {
+                const radius = r * pct / 100;
+                return `<circle cx="${cx}" cy="${cy}" r="${radius}" fill="none" stroke="#f3f4f6" stroke-width="1"/>`;
+            }).join('');
+
+            // Forces & faiblesses
+            const sortedAxes = [...axes].sort((a, b) => b.score - a.score);
+            const forces = sortedAxes.slice(0, 2).map(a => `<li><strong>${a.name}</strong> (${a.score}%) — votre point fort</li>`).join('');
+            const faiblesses = sortedAxes.slice(-2).reverse().map(a => `<li><strong>${a.name}</strong> (${a.score}%) — axe de progression prioritaire</li>`).join('');
+
+            // Recommandations personnalisées selon le profil
+            const recoByProfile = {
+                engaged: [
+                    "Visez des AAP structurants (Région, FEDER, ANS) avec des partenaires institutionnels",
+                    "Positionnez votre club comme tête de réseau sur votre territoire",
+                    "Développez une offre de service aux clubs moins matures (mentorat)"
+                ],
+                emerging: [
+                    "Lancez 2-3 projets pilotes avec des partenaires locaux identifiés",
+                    "Structurez votre projet associatif et formalisez vos engagements",
+                    "Répondez à 1-2 AAP départementaux ou régionaux cette année"
+                ],
+                aware: [
+                    "Commencez par 1 action simple avec 1-2 partenaires de proximité",
+                    "Identifiez 1 AAP accessible (subvention municipale, ANS PSF)",
+                    "Nommez un référent engagement sociétal dans votre gouvernance"
+                ],
+                novice: [
+                    "Faites un diagnostic territorial approfondi (nous pouvons vous accompagner)",
+                    "Identifiez 2-3 acteurs clés de votre commune à rencontrer",
+                    "Commencez par documenter vos pratiques existantes (même informelles)"
+                ]
+            };
+            const recos = recoByProfile[j.profile] || recoByProfile.novice;
+
             document.getElementById('result-3').innerHTML = `
                 <div class="result-box" style="border-color: ${p.color};">
-                    <h3 style="color: ${p.color};">${p.label}</h3>
-                    <p><strong>Score:</strong> ${j.score}/20</p>
-                    <p>${p.desc}</p>
-                    <p style="margin-top: 12px; font-style: italic;">${j.recommendation || ''}</p>
+                    <h3 style="color: ${p.color}; margin-bottom: 8px;">${p.label}</h3>
+                    <p style="font-size: 1.1em;"><strong>Score global :</strong> ${j.score}/20 (${Math.round(j.score * 100 / 20)}%)</p>
+                    <p style="margin-top: 8px;">${p.desc}</p>
+
+                    <div style="display: flex; gap: 24px; align-items: center; margin: 20px 0; flex-wrap: wrap;">
+                        <svg width="300" height="300" viewBox="0 0 300 300" style="flex-shrink: 0;">
+                            ${circles}
+                            ${axisLines}
+                            <polygon points="${points}" fill="${p.color}" fill-opacity="0.3" stroke="${p.color}" stroke-width="2"/>
+                            ${axes.map((a, i) => {
+                                const angle = i * angleStep;
+                                const [x, y] = polarToCartesian(angle, r * a.score / 100);
+                                return `<circle cx="${x}" cy="${y}" r="4" fill="${p.color}"/>`;
+                            }).join('')}
+                        </svg>
+
+                        <div style="flex: 1; min-width: 200px;">
+                            <h4 style="margin: 0 0 8px 0; color: #10b981;">💪 Vos forces</h4>
+                            <ul style="margin: 0 0 16px 0; padding-left: 20px;">${forces}</ul>
+                            <h4 style="margin: 0 0 8px 0; color: #f59e0b;">🎯 Axes de progression</h4>
+                            <ul style="margin: 0; padding-left: 20px;">${faiblesses}</ul>
+                        </div>
+                    </div>
+
+                    <div style="background: #f9fafb; padding: 16px; border-radius: 8px; margin-top: 16px;">
+                        <h4 style="margin: 0 0 12px 0;">📋 Recommandations personnalisées</h4>
+                        <ol style="margin: 0; padding-left: 24px;">
+                            ${recos.map(r => `<li style="margin-bottom: 8px;">${r}</li>`).join('')}
+                        </ol>
+                    </div>
+
+                    <p style="margin-top: 16px; padding: 12px; background: #eff6ff; border-left: 4px solid #3b82f6; font-style: italic;">
+                        ${j.recommendation || ''}
+                    </p>
                 </div>`;
         }
 
@@ -851,16 +962,38 @@
             const themes = diag.inclusions_thematiques || [];
             const themesHtml = themes.map(t => `<span class="badge badge-green" style="margin: 2px;">${t}</span>`).join(' ');
 
+            // Indicateurs visuels (cartes)
+            const chomageColor = diag.chomage_taux > 12 ? '#dc2626' : diag.chomage_taux > 9 ? '#f59e0b' : '#10b981';
+            const securiteColor = diag.securite_niveau === 'élevé' ? '#dc2626' : diag.securite_niveau === 'moyen' ? '#f59e0b' : '#10b981';
+
             document.getElementById('result-4').innerHTML = `
                 <div class="result-box">
                     <h3>📍 ${found.name} — Diagnostic territorial</h3>
                     <p style="color: #6b7280; margin-bottom: 16px;">Population ${found.population?.toLocaleString() || 'N/A'} • EPCI ${found.epci || 'N/A'}</p>
 
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 16px 0;">
+                        <div style="background: #f9fafb; padding: 12px; border-radius: 8px; border-left: 4px solid ${chomageColor};">
+                            <div style="font-size: 0.85em; color: #6b7280;">Chômage</div>
+                            <div style="font-size: 1.5em; font-weight: bold; color: ${chomageColor};">${diag.chomage_taux}%</div>
+                            <div style="font-size: 0.75em; color: #6b7280;">moy. nat. ~7.5%</div>
+                        </div>
+                        <div style="background: #f9fafb; padding: 12px; border-radius: 8px; border-left: 4px solid ${securiteColor};">
+                            <div style="font-size: 0.85em; color: #6b7280;">Sécurité</div>
+                            <div style="font-size: 1.5em; font-weight: bold; color: ${securiteColor};">${diag.securite_niveau || 'N/A'}</div>
+                        </div>
+                        <div style="background: #f9fafb; padding: 12px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                            <div style="font-size: 0.85em; color: #6b7280;">EHPAD</div>
+                            <div style="font-size: 1.5em; font-weight: bold; color: #3b82f6;">${diag.ehpad_count || 0}</div>
+                            <div style="font-size: 0.75em; color: #6b7280;">structure(s)</div>
+                        </div>
+                        <div style="background: #f9fafb; padding: 12px; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                            <div style="font-size: 0.85em; color: #6b7280;">Quartiers QPV</div>
+                            <div style="font-size: 1.5em; font-weight: bold; color: #8b5cf6;">${diag.quartiers_difficultes || '0'}</div>
+                        </div>
+                    </div>
+
                     <h4 style="margin-top: 16px; color: #dc2626;">⚠️ Difficultés identifiées</h4>
                     <ul style="margin: 8px 0; padding-left: 20px;">
-                        <li><strong>Chômage :</strong> ${diag.chomage_taux}% (moyenne nationale ~7.5%)</li>
-                        <li><strong>Sécurité :</strong> niveau ${diag.securite_niveau}</li>
-                        <li><strong>Quartiers difficiles :</strong> ${diag.quartiers_difficultes || 'N/A'}</li>
                         <li><strong>Encadrement périscolaire :</strong> ${diag.encadrement_periscolaire || 'N/A'}</li>
                         ${diag.jeunes_en_difficulte ? '<li><strong>Jeunes en difficulté :</strong> oui (insertion, décrochage)</li>' : ''}
                         ${diag.reinsertion ? '<li><strong>Réinsertion professionnelle :</strong> enjeu identifié</li>' : ''}
@@ -869,11 +1002,11 @@
                     <h4 style="margin-top: 16px; color: #2563eb;">🌊 Spécificités & environnement</h4>
                     <ul style="margin: 8px 0; padding-left: 20px;">
                         <li><strong>Cours d'eau :</strong> ${diag.pollution_cours_eau || 'N/A'}</li>
-                        <li><strong>EHPAD :</strong> ${diag.ehpad_count} structure(s) — ${diag.intergenerationnel ? 'lien intergénérationnel à construire' : 'peu de liens identifiés'}</li>
+                        <li><strong>EHPAD :</strong> ${diag.ehpad_count || 0} structure(s) — ${diag.intergenerationnel ? 'lien intergénérationnel à construire' : 'peu de liens identifiés'}</li>
                         <li><strong>Enjeux environnement :</strong> ${diag.environnement_enjeux || 'N/A'}</li>
                     </ul>
 
-                    <h4 style="margin-top: 16px; color: #059669;">💡 Thématiques sociétales suggérées</h4>
+                    <h4 style="margin-top: 16px; color: #059669;">💡 Thématiques sociétales suggérées (${themes.length})</h4>
                     <div style="margin: 8px 0;">${themesHtml}</div>
                     <p style="margin-top: 12px; font-style: italic; color: #4b5563;">
                         Ces thématiques correspondent aux enjeux identifiés sur votre territoire.
@@ -891,17 +1024,79 @@
         // ── ÉTAPE 5: Shortlist ──
         async function loadStep5() {
             const r = await fetch(API + '/api/shortlist?limit=10');
-            const d = await r.json();
-            const html = (d.shortlist || []).map(p => `
-                <div class="partner-card" data-id="${p.id}" onclick="togglePartner(this, '${p.id}')">
-                    <div class="name">${p.name || p.partner_name}</div>
-                    <div class="meta">
-                        <span class="badge badge-blue">${p.type || 'N/A'}</span>
-                        <span>Score: ${Math.round(p.score)}</span>
-                        <span>${p.city || ''}</span>
+            const partners = d.shortlist || [];
+
+            if (partners.length === 0) {
+                document.getElementById('result-5').innerHTML = `
+                    <div class="result-box">
+                        <h3>🔍 Aucun partenaire trouvé</h3>
+                        <p>Le scoring de votre territoire n'a pas remonté de partenaire pertinent.</p>
+                    </div>`;
+                return;
+            }
+
+            const html = partners.map((p, idx) => {
+                const score = Math.round(p.score || 0);
+                const scoreColor = score >= 70 ? '#10b981' : score >= 50 ? '#3b82f6' : score >= 30 ? '#f59e0b' : '#6b7280';
+                const themes = (p.themes || []).slice(0, 3).map(t => `<span class="badge badge-green" style="margin: 2px; font-size: 0.75em;">${t}</span>`).join(' ');
+                const isTop = idx < 3 ? '⭐ ' : '';
+                return `
+                <div class="partner-card" data-id="${p.id}" onclick="togglePartner(this, '${p.id}')" style="cursor: pointer; padding: 16px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; transition: all 0.2s;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; gap: 16px;">
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; font-size: 1.1em; margin-bottom: 4px;">${isTop}${p.name || p.partner_name}</div>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px;">
+                                <span class="badge badge-blue">${p.type || 'N/A'}</span>
+                                <span style="color: #6b7280; font-size: 0.9em;">📍 ${p.city || ''}</span>
+                            </div>
+                            ${themes ? `<div style="margin-top: 6px;">${themes}</div>` : ''}
+                        </div>
+                        <div style="text-align: center; min-width: 80px;">
+                            <div style="font-size: 0.75em; color: #6b7280;">Score</div>
+                            <div style="font-size: 1.8em; font-weight: bold; color: ${scoreColor};">${score}</div>
+                            <div style="font-size: 0.7em; color: #6b7280;">/100</div>
+                        </div>
                     </div>
+                </div>`;
+            }).join('');
+
+            document.getElementById('result-5').innerHTML = `
+                <div class="match-info" style="margin-bottom: 16px; padding: 12px; background: #eff6ff; border-radius: 8px;">
+                    <strong>🎯 ${partners.length} partenaires</strong> scorés selon votre territoire et vos thématiques.
+                    <br><span style="font-size: 0.9em; color: #6b7280;">Cliquez sur une carte pour la sélectionner (${state.selected_partners.length} sélectionnée(s))</span>
                 </div>
-            `).join('');
+                ${html}`;
+            const html = partners.map((p, idx) => {
+                const score = Math.round(p.score || 0);
+                const scoreColor = score >= 70 ? '#10b981' : score >= 50 ? '#3b82f6' : score >= 30 ? '#f59e0b' : '#6b7280';
+                const themes = (p.themes || []).slice(0, 3).map(t => `<span class="badge badge-green" style="margin: 2px; font-size: 0.75em;">${t}</span>`).join(' ');
+                const isTop = idx < 3 ? '⭐ ' : '';
+                return `
+                <div class="partner-card" data-id="${p.id}" onclick="togglePartner(this, '${p.id}')" style="cursor: pointer; padding: 16px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; transition: all 0.2s;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; gap: 16px;">
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; font-size: 1.1em; margin-bottom: 4px;">${isTop}${p.name || p.partner_name}</div>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px;">
+                                <span class="badge badge-blue">${p.type || 'N/A'}</span>
+                                <span style="color: #6b7280; font-size: 0.9em;">📍 ${p.city || ''}</span>
+                            </div>
+                            ${themes ? `<div style="margin-top: 6px;">${themes}</div>` : ''}
+                        </div>
+                        <div style="text-align: center; min-width: 80px;">
+                            <div style="font-size: 0.75em; color: #6b7280;">Score</div>
+                            <div style="font-size: 1.8em; font-weight: bold; color: ${scoreColor};">${score}</div>
+                            <div style="font-size: 0.7em; color: #6b7280;">/100</div>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+
+            document.getElementById('result-5').innerHTML = `
+                <div class="match-info" style="margin-bottom: 16px; padding: 12px; background: #eff6ff; border-radius: 8px;">
+                    <strong>🎯 ${partners.length} partenaires</strong> scorés selon votre territoire et vos thématiques.
+                    <br><span style="font-size: 0.9em; color: #6b7280;">Cliquez sur une carte pour la sélectionner (${state.selected_partners.length} sélectionnée(s))</span>
+                </div>
+                ${html}`;
             document.getElementById('result-5').innerHTML = html || '<p>Aucun partenaire</p>';
         }
 
