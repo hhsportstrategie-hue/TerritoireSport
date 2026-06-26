@@ -609,30 +609,85 @@ async def get_funding_sources(
 
 @app.post("/api/clubs/register")
 async def register_club(payload: dict):
-    """Inscription d'un club sportif."""
+    """Inscription d'un club sportif avec géocodage auto de la commune."""
     import uuid as _uuid
     from datetime import datetime
+    import requests as _requests
     
     name = payload.get("name")
     sport = payload.get("sport")
     commune = payload.get("commune")
     email = payload.get("email")
+    departement = payload.get("departement", "")
+    niveau = payload.get("niveau", "amateur")
+    licencies = payload.get("licencies", 0)
     
     if not all([name, sport, commune, email]):
         raise HTTPException(status_code=400, detail="Champs manquants: name, sport, commune, email")
     
     club_id = str(_uuid.uuid4())
     
+    # Géocodage automatique via geo.api.gouv.fr
+    latitude = None
+    longitude = None
+    code_insee = None
+    epci_code = None
+    epci_name = None
+    departement_code = departement
+    
+    try:
+        # Recherche de la commune
+        geo_resp = _requests.get(
+            f"https://geo.api.gouv.fr/communes",
+            params={"nom": commune, "fields": "code,centre,codeDepartement,codeEpci,nomEpci", "limit": 1},
+            timeout=5
+        )
+        if geo_resp.status_code == 200:
+            communes = geo_resp.json()
+            if communes and len(communes) > 0:
+                c = communes[0]
+                code_insee = c.get("code")
+                centre = c.get("centre", {})
+                coords = centre.get("coordinates", [None, None])
+                longitude = coords[0]
+                latitude = coords[1]
+                epci_code = c.get("codeEpci")
+                epci_name = c.get("nom")  # L'API renvoie 'nom' pour la commune, pas 'nomEpci'
+                if not departement_code:
+                    departement_code = c.get("codeDepartement")
+    except Exception as e:
+        print(f"⚠️  Géocodage échoué pour {commune}: {e}")
+    
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     cur.execute("""
-        INSERT INTO clubs (id, name, sport, city, commune, contact_email, password_hash, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    """, (club_id, name, sport, commune, commune, email, "demo_hash", datetime.now().isoformat()))
+        INSERT INTO clubs (
+            id, name, sport, city, commune, contact_email, password_hash, created_at,
+            department, niveau, licencies, latitude, longitude,
+            code_insee, epci_code, epci_name
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (
+        club_id, name, sport, commune, commune, email, "demo_hash", datetime.now().isoformat(),
+        departement_code, niveau, licencies, latitude, longitude,
+        code_insee, epci_code, epci_name
+    ))
     conn.commit()
     conn.close()
     
-    return {"club_id": club_id, "name": name, "sport": sport, "commune": commune, "status": "registered"}
+    return {
+        "club_id": club_id,
+        "name": name,
+        "sport": sport,
+        "commune": commune,
+        "departement": departement_code,
+        "niveau": niveau,
+        "licencies": licencies,
+        "latitude": latitude,
+        "longitude": longitude,
+        "epci": epci_name,
+        "status": "registered"
+    }
 
 
 @app.post("/api/diagnostics")
