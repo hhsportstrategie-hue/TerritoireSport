@@ -283,13 +283,14 @@
             <button class="btn btn-primary" onclick="goToStep(4)">Voir mon territoire →</button>
         </div>
 
-        <!-- ÉTAPE 4: Territoire -->
+        <!-- ÉTAPE 4: Diagnostic Territorial -->
         <div class="step-card" id="step-4">
-            <h2><span class="num">4</span> Votre territoire</h2>
-            <p class="desc">Identification de votre EPCI et acteurs locaux.</p>
+            <h2><span class="num">4</span> Diagnostic territorial</h2>
+            <p class="desc">Réalités, spécificités et difficultés de votre territoire — avec suggestions de thématiques.</p>
             <div id="result-4"></div>
-            <button class="btn btn-primary" onclick="goToStep(5)">Voir les partenaires disponibles →</button>
+            <button class="btn btn-primary" onclick="goToStep(5)">Voir les partenaires matchant ces enjeux →</button>
         </div>
+
 
         <!-- ÉTAPE 5: Shortlist -->
         <div class="step-card" id="step-5">
@@ -476,7 +477,7 @@
                 </div>`;
         }
 
-        // ── ÉTAPE 4: Territoire ──
+        // ── ÉTAPE 4: Diagnostic Territorial ──
         async function loadStep4() {
             const commune = document.getElementById('club-commune').value;
             // Chercher le code INSEE
@@ -488,21 +489,62 @@
                 return;
             }
             state.commune_code = found.code_insee;
-            const r2 = await fetch(API + '/api/communes/' + found.code_insee);
-            const commune_data = await r2.json();
-            const clubs = commune_data.clubs || [];
-            const partners = commune_data.partners || [];
+
+            // Récupérer le diagnostic territorial
+            const r2 = await fetch(API + '/api/communes/' + found.code_insee + '/diagnostic-territorial');
+            const data = await r2.json();
+            const diag = data.diagnostic;
+
+            if (!diag) {
+                document.getElementById('result-4').innerHTML = `
+                    <div class="result-box">
+                        <h3>📍 ${found.name}</h3>
+                        <p>Aucun diagnostic territorial disponible pour cette commune.</p>
+                    </div>`;
+                markDone(3);
+                goToStep(4);
+                setTimeout(loadStep5, 500);
+                return;
+            }
+
+            // Construire le rendu du diagnostic
+            const themes = diag.inclusions_thematiques || [];
+            const themesHtml = themes.map(t => `<span class="badge badge-green" style="margin: 2px;">${t}</span>`).join(' ');
+
             document.getElementById('result-4').innerHTML = `
                 <div class="result-box">
-                    <h3>📍 ${found.name} (${found.code_insee})</h3>
-                    <p><strong>Population:</strong> ${found.population?.toLocaleString() || 'N/A'}</p>
-                    <p><strong>Département:</strong> ${found.department}</p>
-                    <p><strong>EPCI:</strong> ${found.epci || 'N/A'}</p>
-                    <p style="margin-top: 12px;"><strong>${clubs.length}</strong> club(s) sportif(s) | <strong>${partners.length}</strong> partenaire(s) identifié(s)</p>
+                    <h3>📍 ${found.name} — Diagnostic territorial</h3>
+                    <p style="color: #6b7280; margin-bottom: 16px;">Population ${found.population?.toLocaleString() || 'N/A'} • EPCI ${found.epci || 'N/A'}</p>
+
+                    <h4 style="margin-top: 16px; color: #dc2626;">⚠️ Difficultés identifiées</h4>
+                    <ul style="margin: 8px 0; padding-left: 20px;">
+                        <li><strong>Chômage :</strong> ${diag.chomage_taux}% (moyenne nationale ~7.5%)</li>
+                        <li><strong>Sécurité :</strong> niveau ${diag.securite_niveau}</li>
+                        <li><strong>Quartiers difficiles :</strong> ${diag.quartiers_difficultes || 'N/A'}</li>
+                        <li><strong>Encadrement périscolaire :</strong> ${diag.encadrement_periscolaire || 'N/A'}</li>
+                        ${diag.jeunes_en_difficulte ? '<li><strong>Jeunes en difficulté :</strong> oui (insertion, décrochage)</li>' : ''}
+                        ${diag.reinsertion ? '<li><strong>Réinsertion professionnelle :</strong> enjeu identifié</li>' : ''}
+                    </ul>
+
+                    <h4 style="margin-top: 16px; color: #2563eb;">🌊 Spécificités & environnement</h4>
+                    <ul style="margin: 8px 0; padding-left: 20px;">
+                        <li><strong>Cours d'eau :</strong> ${diag.pollution_cours_eau || 'N/A'}</li>
+                        <li><strong>EHPAD :</strong> ${diag.ehpad_count} structure(s) — ${diag.intergenerationnel ? 'lien intergénérationnel à construire' : 'peu de liens identifiés'}</li>
+                        <li><strong>Enjeux environnement :</strong> ${diag.environnement_enjeux || 'N/A'}</li>
+                    </ul>
+
+                    <h4 style="margin-top: 16px; color: #059669;">💡 Thématiques sociétales suggérées</h4>
+                    <div style="margin: 8px 0;">${themesHtml}</div>
+                    <p style="margin-top: 12px; font-style: italic; color: #4b5563;">
+                        Ces thématiques correspondent aux enjeux identifiés sur votre territoire.
+                        Les partenaires de l'étape suivante sont sélectionnés pour y répondre.
+                    </p>
                 </div>`;
+
+            // Stocker les thématiques pour filtrer la shortlist
+            state.territoire_themes = themes;
             markDone(3);
             goToStep(4);
-            // Précharger étape 5
             setTimeout(loadStep5, 500);
         }
 

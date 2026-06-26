@@ -81,6 +81,23 @@ def init_db():
             epci TEXT
         )
     """)
+
+        CREATE TABLE IF NOT EXISTS commune_diagnostics (
+            commune_code TEXT PRIMARY KEY,
+            chomage_taux REAL,
+            quartiers_difficultes TEXT,
+            securite_niveau TEXT,
+            pollution_cours_eau TEXT,
+            ehpad_count INTEGER,
+            encadrement_periscolaire TEXT,
+            jeunes_en_difficulte INTEGER,
+            intergenerationnel INTEGER,
+            reinsertion INTEGER,
+            environnement_enjeux TEXT,
+            inclusions_thematiques TEXT,
+            updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+        )
+
     
     # Table shortlists
     cur.execute("""

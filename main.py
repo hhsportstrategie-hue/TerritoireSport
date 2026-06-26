@@ -687,3 +687,43 @@ async def get_parcours():
     if p.exists():
         return HTMLResponse(content=p.read_text(encoding="utf-8"))
     raise HTTPException(status_code=404, detail="Parcours page not found")
+
+
+@app.get("/api/communes/{code}/diagnostic-territorial")
+async def get_diagnostic_territorial(code: str):
+    """Diagnostic territorial d'une commune : réalités, spécificités, difficultés."""
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+    
+    # Récupérer la commune
+    cur.execute("SELECT * FROM communes WHERE code_insee = ?", (code,))
+    commune_row = cur.fetchone()
+    if not commune_row:
+        raise HTTPException(status_code=404, detail="Commune non trouvée")
+    commune = dict(commune_row)
+    
+    # Récupérer le diagnostic territorial
+    cur.execute("SELECT * FROM commune_diagnostics WHERE commune_code = ?", (code,))
+    diag_row = cur.fetchone()
+    
+    if not diag_row:
+        # Pas de diagnostic pour cette commune — retourner un diagnostic générique
+        return {
+            "commune": commune,
+            "diagnostic": None,
+            "message": "Aucun diagnostic territorial disponible pour cette commune"
+        }
+    
+    diag = dict(diag_row)
+    # Décoder le JSON des thématiques
+    if diag.get('inclusions_thematiques'):
+        try:
+            diag['inclusions_thematiques'] = json.loads(diag['inclusions_thematiques'])
+        except:
+            diag['inclusions_thematiques'] = []
+    
+    return {
+        "commune": commune,
+        "diagnostic": diag
+    }
