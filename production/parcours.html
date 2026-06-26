@@ -178,6 +178,128 @@
             border-color: #10b981;
             background: #f0fdf4;
         }
+
+        /* Étape 6 — Cas inspirants */
+        .match-info { margin-bottom: 1rem; }
+        .match-badge {
+            background: #ecfdf5;
+            border-left: 4px solid var(--primary);
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        .filters-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .filters-bar label {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        .filters-bar select {
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            margin-top: 0.25rem;
+            min-width: 180px;
+        }
+        .cas-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .cas-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .cas-card.selected {
+            border-color: var(--primary);
+            background: #f0f9ff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        .cas-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .cas-rank {
+            background: #1e293b;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .cas-score {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .score-green { background: #dcfce7; color: #166534; }
+        .score-orange { background: #fed7aa; color: #9a3412; }
+        .score-gray { background: #f1f5f9; color: #475569; }
+        .cas-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+        .cas-structure {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+        .cas-thematiques {
+            margin-bottom: 0.75rem;
+        }
+        .thema-badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: #1e40af;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-right: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+        .cas-desc {
+            color: #475569;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+        }
+        .cas-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding-top: 0.75rem;
+            border-top: 1px solid #f1f5f9;
+        }
+        .meta-item {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        .cas-score-details {
+            margin-top: 0.5rem;
+            color: #94a3b8;
+            font-size: 0.75rem;
+        }
+        .empty {
+            text-align: center;
+            padding: 2rem;
+            color: #94a3b8;
+            font-style: italic;
+        }
         .partner-card .name, .project-card .name { font-weight: 600; color: #1e3a8a; }
         .partner-card .meta, .project-card .meta { font-size: 12px; color: #6b7280; margin-top: 4px; }
 
@@ -300,12 +422,39 @@
             <button class="btn btn-primary" onclick="submitStep5()">Valider ma sélection →</button>
         </div>
 
-        <!-- ÉTAPE 6: Projets matchants -->
+        <!-- ÉTAPE 6: Cas inspirants matchants -->
         <div class="step-card" id="step-6">
-            <h2><span class="num">6</span> Projets matchants</h2>
-            <p class="desc">Sélectionnez 1-3 projets de bibliothèque adaptés à votre contexte.</p>
+            <h2><span class="num">6</span> Cas inspirants matchants</h2>
+            <p class="desc">Découvrez 5 projets inspirants similaires au vôtre, déjà réalisés par d'autres clubs. Sélectionnez celui que vous voulez adapter.</p>
+
+            <div class="match-info" id="match-info-6"></div>
+
+            <div class="filters-bar">
+                <label>Filtrer par thématique :
+                    <select id="filter-thematique" onchange="reloadStep6()">
+                        <option value="">Toutes</option>
+                        <option value="education_jeunesse">Éducation / Jeunesse</option>
+                        <option value="cohesion_sociale">Cohésion sociale</option>
+                        <option value="inclusion_handicap">Inclusion / Handicap</option>
+                        <option value="environnement_ecologie">Environnement</option>
+                        <option value="insertion_emploi">Insertion / Emploi</option>
+                        <option value="sante_bien_etre">Santé / Bien-être</option>
+                        <option value="egalite_chances">Égalité des chances</option>
+                    </select>
+                </label>
+                <label>Budget max :
+                    <select id="filter-budget" onchange="reloadStep6()">
+                        <option value="">Tous</option>
+                        <option value="1000">≤ 1 000 €</option>
+                        <option value="3000">≤ 3 000 €</option>
+                        <option value="5000">≤ 5 000 €</option>
+                        <option value="10000">≤ 10 000 €</option>
+                    </select>
+                </label>
+            </div>
+
             <div id="result-6"></div>
-            <button class="btn btn-primary" onclick="submitStep6()">Valider mon projet →</button>
+            <button class="btn btn-primary" onclick="submitStep6()">Valider mon cas inspirant →</button>
         </div>
 
         <!-- ÉTAPE 7: AAP -->
@@ -596,53 +745,107 @@
             }
         }
 
-        // ── ÉTAPE 6: Projets ──
+        // ── ÉTAPE 6: Cas inspirants matchants ──
         async function loadStep6() {
-            const r = await fetch(API + '/api/projects?limit=10');
+            // Récupérer le profil club pour le matching
+            const clubProfile = state.club_profile || {};
+            const thematiques = (clubProfile.thematiques || []).join(',');
+            const budgetMax = clubProfile.budget_max || '';
+            const niveauClub = clubProfile.niveau || '';
+
+            // Construire l'URL avec les filtres
+            let url = API + '/api/cas-inspirants/match?limit=5';
+            if (thematiques) url += '&thematiques=' + encodeURIComponent(thematiques);
+            if (budgetMax) url += '&budget_max=' + budgetMax;
+            if (niveauClub) url += '&niveau_club=' + niveauClub;
+
+            const r = await fetch(url);
             const d = await r.json();
-            const html = (d.projects || []).map(p => `
-                <div class="project-card" data-id="${p.id}" onclick="selectProject(this, '${p.id}')">
-                    <div class="name">${p.title}</div>
-                    <div class="meta">
-                        <span class="badge badge-green">${p.status}</span>
-                        <span>${(p.description || '').substring(0, 80)}...</span>
+            const casList = d.cas_inspirants || [];
+
+            // Info sur le matching
+            const matchInfo = document.getElementById('match-info-6');
+            if (thematiques) {
+                matchInfo.innerHTML = `<div class="match-badge">🎯 Matching basé sur vos thématiques : <strong>${thematiques}</strong></div>`;
+            } else {
+                matchInfo.innerHTML = `<div class="match-badge">💡 Sélectionnez vos thématiques à l'étape 2 pour un matching personnalisé</div>`;
+            }
+
+            if (casList.length === 0) {
+                document.getElementById('result-6').innerHTML = '<p class="empty">Aucun cas inspirant trouvé. Essayez d'ajuster vos critères.</p>';
+                return;
+            }
+
+            const html = casList.map((c, idx) => {
+                const themaBadges = (c.thematiques || []).map(t => `<span class="thema-badge">${t.replace(/_/g, ' ')}</span>`).join(' ');
+                const scoreColor = c.score >= 70 ? 'green' : c.score >= 50 ? 'orange' : 'gray';
+                const budget = c.budget_reel ? c.budget_reel.toLocaleString() + ' €' : 'Non communiqué';
+                const transpo = c.transposabilite || 'N/A';
+                const repro = c.reproductibilite || 'N/A';
+
+                return `
+                <div class="cas-card" data-id="${c.id}" onclick="selectCasInspirant(this, '${c.id}')">
+                    <div class="cas-header">
+                        <span class="cas-rank">#${idx + 1}</span>
+                        <span class="cas-score score-${scoreColor}">${c.score} pts</span>
                     </div>
-                </div>
-            `).join('');
+                    <div class="cas-title">${c.titre}</div>
+                    <div class="cas-structure">📍 ${c.structure}</div>
+                    <div class="cas-thematiques">${themaBadges}</div>
+                    <div class="cas-desc">${(c.description || '').substring(0, 200)}...</div>
+                    <div class="cas-meta">
+                        <span class="meta-item">💰 Budget : ${budget}</span>
+                        <span class="meta-item">🔧 Repro : ${repro}</span>
+                        <span class="meta-item">📋 Transpo : ${transpo}</span>
+                    </div>
+                    <div class="cas-score-details">
+                        <small>Score : thématiques ${c.score_details.thematiques || 0} + partenaires ${c.score_details.partenaires || 0} + ampleur ${c.score_details.ampleur || 0}</small>
+                    </div>
+                </div>`;
+            }).join('');
+
             document.getElementById('result-6').innerHTML = html;
         }
 
-        function selectProject(el, id) {
-            document.querySelectorAll('.project-card').forEach(c => c.classList.remove('selected'));
+        function reloadStep6() {
+            const thematique = document.getElementById('filter-thematique').value;
+            const budgetMax = document.getElementById('filter-budget').value;
+
+            // Mettre à jour le profil club avec les filtres
+            if (!state.club_profile) state.club_profile = {};
+            if (thematique) {
+                state.club_profile.thematiques = [thematique];
+            }
+            if (budgetMax) {
+                state.club_profile.budget_max = parseInt(budgetMax);
+            }
+
+            loadStep6();
+        }
+
+        function selectCasInspirant(el, id) {
+            document.querySelectorAll('.cas-card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
-            state.selected_project = id;
+            state.selected_cas = id;
         }
 
         async function submitStep6() {
-            if (!state.selected_project) {
-                alert('Sélectionnez un projet');
+            if (!state.selected_cas) {
+                alert('Sélectionnez un cas inspirant');
                 return;
             }
-            const r = await fetch(API + '/api/projects/customize', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    club_id: state.club_id,
-                    project_id: state.selected_project,
-                    customizations: { budget: 5000, calendar: 'Q3 2026' }
-                })
-            });
-            const j = await r.json();
-            if (r.ok) {
-                document.getElementById('result-6').insertAdjacentHTML('beforeend', `
-                    <div class="result-box">
-                        <h3>✅ Projet "${j.title}" customisé</h3>
-                        <p>${j.next_step}</p>
-                    </div>`);
-                markDone(5);
-                loadStep7();
-                goToStep(7);
-            }
+
+            // Sauvegarder la sélection
+            state.selected_cas_data = state.selected_cas;
+
+            document.getElementById('result-6').insertAdjacentHTML('beforeend', `
+                <div class="result-box">
+                    <h3>✅ Cas inspirant "${state.selected_cas}" sélectionné</h3>
+                    <p>Votre projet sera adapté à partir de ce cas. Passons aux appels à projets matchants.</p>
+                </div>`);
+            markDone(5);
+            loadStep7();
+            goToStep(7);
         }
 
         // ── ÉTAPE 7: AAP ──
