@@ -84,9 +84,25 @@ async def seed_demo_partners():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await init_db()
-    await seed_demo_partners()
+    print("🚀 Lifespan start")
     try:
+        print("📦 init_db...")
+        await init_db()
+        print("✅ init_db OK")
+    except Exception as e:
+        print(f"❌ init_db FAILED: {type(e).__name__}: {e}")
+        import traceback
+        traceback.print_exc()
+    
+    try:
+        print("🌱 seed_demo_partners...")
+        await seed_demo_partners()
+        print("✅ seed_demo_partners OK")
+    except Exception as e:
+        print(f"⚠️ seed_demo_partners skip: {e}")
+    
+    try:
+        print("🌱 subprocess seed.py...")
         import subprocess
         import os as _os
         result = subprocess.run(
@@ -95,12 +111,17 @@ async def lifespan(app: FastAPI):
             capture_output=True, text=True, timeout=30
         )
         if result.returncode == 0:
-            print("✅ Seed complet OK au démarrage")
+            print("✅ Seed subprocess OK")
         else:
-            print(f"⚠️ Seed warning: {result.stderr[:200]}")
+            print(f"⚠️ Seed subprocess warning: rc={result.returncode}")
+            print(f"   stderr: {result.stderr[:500]}")
+            print(f"   stdout: {result.stdout[:500]}")
     except Exception as e:
-        print(f"⚠️ Seed skip: {e}")
+        print(f"⚠️ Seed subprocess skip: {type(e).__name__}: {e}")
+    
+    print("✅ Lifespan ready")
     yield
+    print("👋 Lifespan shutdown")
 
 app = FastAPI(
     title="TerritoireSport",
