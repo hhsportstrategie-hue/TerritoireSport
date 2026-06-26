@@ -52,6 +52,7 @@ def init_db():
             id TEXT PRIMARY KEY,
             name TEXT NOT NULL,
             type TEXT,
+            category TEXT,
             city TEXT,
             department TEXT,
             themes TEXT,
@@ -86,6 +87,48 @@ def init_db():
             created_at TEXT DEFAULT (datetime('now')),
             FOREIGN KEY (club_id) REFERENCES clubs(id),
             FOREIGN KEY (partner_id) REFERENCES partners(id)
+        )
+    """)
+    
+    # Table diagnostics
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS diagnostics (
+            id TEXT PRIMARY KEY,
+            club_id TEXT,
+            answers TEXT,
+            score REAL,
+            profile TEXT,
+            completed_at TEXT DEFAULT (datetime('now')),
+            FOREIGN KEY (club_id) REFERENCES clubs(id)
+        )
+    """)
+    
+    # Table club_territories
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS club_territories (
+            id TEXT PRIMARY KEY,
+            club_id TEXT,
+            territory_id TEXT,
+            is_primary INTEGER DEFAULT 0,
+            FOREIGN KEY (club_id) REFERENCES clubs(id)
+        )
+    """)
+    
+    # Table funding_sources
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS funding_sources (
+            id TEXT PRIMARY KEY,
+            name TEXT NOT NULL,
+            type TEXT,
+            organization TEXT,
+            themes TEXT,
+            description TEXT,
+            url TEXT,
+            amount_min REAL,
+            amount_max REAL,
+            deadline TEXT,
+            eligibility_criteria TEXT,
+            created_at TEXT DEFAULT (datetime('now'))
         )
     """)
     
