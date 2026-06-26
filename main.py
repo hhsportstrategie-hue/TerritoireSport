@@ -273,3 +273,6 @@ async def health():
     }
 
 app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
+
+
+ 
