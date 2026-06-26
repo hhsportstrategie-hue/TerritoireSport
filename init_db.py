@@ -82,6 +82,8 @@ def init_db():
         )
     """)
 
+    # Table commune_diagnostics
+    cur.execute("""
         CREATE TABLE IF NOT EXISTS commune_diagnostics (
             commune_code TEXT PRIMARY KEY,
             chomage_taux REAL,
@@ -97,8 +99,8 @@ def init_db():
             inclusions_thematiques TEXT,
             updated_at TEXT DEFAULT CURRENT_TIMESTAMP
         )
+    """)
 
-    
     # Table shortlists
     cur.execute("""
         CREATE TABLE IF NOT EXISTS shortlists (
