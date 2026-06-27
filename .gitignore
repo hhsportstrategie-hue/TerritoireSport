@@ -1,2 +1,32 @@
 .coverage
 data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+data/*.db.pre-*.bak
+data/_server_test.log
+data/*.log
+.pytest_cache/
+__pycache__/
+*.pyc
+.env
+.env.local
+.env.production
+.DS_Store
+*.swp
+.idea/
+.vscode/
+.web_browse/
+.web_interact/
+# Sources de données brutes (volumineuses, >17GB — à externaliser vers LFS/archive)
+data/external/
+# Fichiers de données trop volumineux pour GitHub (>50MB / >100MB)
+# Stockés localement / via Git LFS / archive externe — pas dans le repo
+data/rna_par_epci.json
+data/sirene_par_epci.json
+data/external/**
+data/_server_test.log
+*.parquet
+*.zip
+!data/ingenierie_projet/**/*.md
+_inlux_eval_*.py

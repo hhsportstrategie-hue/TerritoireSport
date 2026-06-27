@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TerritoireSport — Tunnel d'Ingénierie</title>
+  <style>
+    :root{--primary:#1B2A4A;--accent:#2D6A4F;--accent2:#52B788;--gold:#F4A261;--bg:#F8F9FA;--card:#fff;--text:#212529;--muted:#6C757D;--border:#DEE2E6;--danger:#C0392B;--success:#28A745;--warning:#FFC107;--radius:12px;--shadow:0 4px 16px rgba(0,0,0,.10);--tunnel-action:#52B788;--tunnel-partenarial:#F4A261;--tunnel-transformation:#1B2A4A;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);}
+    header{background:var(--primary);color:white;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;}
+    header h1{font-size:1.3rem;font-weight:700;}
+    nav{margin-left:auto;display:flex;gap:.6rem;flex-wrap:wrap;}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.1rem;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;}
+    .btn-primary{background:var(--primary);color:white;}
+    .btn-accent{background:var(--accent);color:white;}
+    .btn-gold{background:var(--gold);color:var(--primary);}
+    .btn-outline{background:transparent;border:2px solid white;color:white;}
+    .btn-outline-primary{background:transparent;border:2px solid var(--primary);color:var(--primary);}
+    .btn-sm{padding:.35rem .8rem;font-size:.82rem;}
+    .btn:hover{opacity:.88;transform:translateY(-1px);}
+    main{max-width:1100px;margin:0 auto;padding:2rem 1rem;}
+    .card{background:var(--card);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1.5rem;}
+    .card-title{font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:1rem;border-bottom:2px solid var(--accent2);padding-bottom:.5rem;}
+    .hero{background:linear-gradient(135deg,var(--primary) 0%,#2c3e6b 50%,var(--accent) 100%);color:white;padding:3rem 2rem;text-align:center;border-radius:var(--radius);margin-bottom:2rem;}
+    .hero h2{font-size:2.2rem;font-weight:800;margin-bottom:.8rem;}
+    .hero p{font-size:1.1rem;opacity:.9;max-width:600px;margin:0 auto 1.5rem;}
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-bottom:2rem;}
+    .step{background:var(--card);border-radius:var(--radius);padding:1.2rem;text-align:center;box-shadow:var(--shadow);transition:all .2s;}
+    .step:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.15);}
+    .step-num{width:36px;height:36px;background:var(--accent2);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;margin:0 auto .6rem;}
+    .step-num.done{background:var(--success);}
+    .step-num.current{background:var(--gold);color:var(--primary);}
+    .step-title{font-size:.85rem;font-weight:700;color:var(--primary);margin-bottom:.3rem;}
+    .step-desc{font-size:.75rem;color:var(--muted);}
+    .form-group{margin-bottom:1.2rem;}
+    label{display:block;font-weight:600;margin-bottom:.4rem;color:var(--primary);font-size:.9rem;}
+    input,select,textarea{width:100%;padding:.6rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-size:1rem;font-family:inherit;}
+    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent2);}
+    textarea{min-height:100px;resize:vertical;}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+    .progress-bar{background:var(--border);border-radius:10px;height:12px;overflow:hidden;margin:1rem 0;}
+    .progress-fill{background:linear-gradient(90deg,var(--accent),var(--accent2));height:100%;transition:width .5s;}
+    .score-display{text-align:center;padding:2rem;background:var(--card);border-radius:var(--radius);margin-bottom:1.5rem;}
+    .score-num{font-size:3.5rem;font-weight:900;color:var(--accent);}
+    .score-label{font-size:1rem;color:var(--muted);margin-top:.5rem;}
+    .score-niveau{display:inline-block;padding:.4rem 1rem;border-radius:20px;font-weight:700;margin-top:1rem;}
+    .niveau-vert{background:#d4edda;color:#155724;}
+    .niveau-jaune{background:#fff3cd;color:#856404;}
+    .niveau-orange{background:#ffe5d0;color:#d35400;}
+    .niveau-rouge{background:#f8d7da;color:#721c24;}
+    .question-card{background:var(--card);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1rem;}
+    .question-title{font-weight:700;color:var(--primary);margin-bottom:.8rem;}
+    .radio-group{display:flex;flex-direction:column;gap:.5rem;}
+    .radio-option{display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;}
+    .radio-option:hover{border-color:var(--accent2);background:#f8f9fa;}
+    .radio-option.selected{border-color:var(--accent);background:#e8f5ee;}
+    .radio-option input{margin:0;}
+    .recommandations{background:#e8f5ee;border-left:4px solid var(--accent);padding:1rem;border-radius:8px;margin-top:1rem;}
+    .recommandations-title{font-weight:700;color:var(--accent);margin-bottom:.5rem;}
+    .reco-item{padding:.3rem 0;font-size:.9rem;}
+    .criteres-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;}
+    .critere-card{background:var(--card);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow);}
+    .critere-name{font-weight:700;color:var(--primary);margin-bottom:.5rem;font-size:.9rem;}
+    .critere-desc{font-size:.8rem;color:var(--muted);margin-bottom:.8rem;}
+    .critere-input{display:flex;align-items:center;gap:.5rem;}
+    .critere-input input{flex:1;}
+    .critere-value{font-weight:700;color:var(--accent);min-width:30px;text-align:center;}
+    .tabs{display:flex;gap:.5rem;margin-bottom:2rem;border-bottom:2px solid var(--border);flex-wrap:wrap;}
+    .tab{padding:.7rem 1.2rem;border:none;background:none;cursor:pointer;font-size:.95rem;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;}
+    .tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+    .projet-card{background:var(--card);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1rem;border-left:4px solid var(--accent);}
+    .projet-titre{font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:.5rem;}
+    .projet-meta{font-size:.85rem;color:var(--muted);margin-bottom:1rem;}
+    .etape-list{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem;}
+    .etape-item{display:flex;align-items:center;gap:.8rem;padding:.6rem .8rem;background:#f8f9fa;border-radius:8px;}
+    .etape-check{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:white;background:var(--muted);}
+    .etape-check.done{background:var(--success);}
+    .etape-check.current{background:var(--gold);color:var(--primary);}
+    .etape-num{font-weight:700;color:var(--primary);min-width:30px;}
+    .etape-name{flex:1;font-size:.9rem;}
+    .badge{display:inline-block;padding:.2rem .6rem;border-radius:20px;font-size:.75rem;font-weight:700;}
+    .badge-info{background:#cce5ff;color:#004085;}
+    .badge-success{background:#d4edda;color:#155724;}
+    .badge-warning{background:#fff3cd;color:#856404;}
+    .empty-state{text-align:center;padding:3rem;color:var(--muted);}
+    .empty-icon{font-size:3rem;margin-bottom:1rem;opacity:.5;}
+    /* Tunnel cards */
+    .tunnel-card{background:var(--card);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1rem;cursor:pointer;transition:all .2s;border-left:6px solid var(--tunnel-action);}
+    .tunnel-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.15);}
+    .tunnel-card.action{border-left-color:var(--tunnel-action);}
+    .tunnel-card.partenarial{border-left-color:var(--tunnel-partenarial);}
+    .tunnel-card.transformation{border-left-color:var(--tunnel-transformation);}
+    .tunnel-card-header{display:flex;align-items:center;gap:1rem;margin-bottom:.8rem;}
+    .tunnel-card-icon{font-size:2.5rem;}
+    .tunnel-card-title{font-size:1.2rem;font-weight:700;color:var(--primary);}
+    .tunnel-card-meta{font-size:.85rem;color:var(--muted);}
+    .tunnel-card-desc{font-size:.9rem;color:var(--text);margin-bottom:.8rem;}
+    .tunnel-card-stats{display:flex;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:var(--muted);}
+    .tunnel-card-stats span{background:#f8f9fa;padding:.3rem .8rem;border-radius:8px;}
+    /* Checkpoint scoring */
+    .checkpoint-card{background:#fff8e1;border-left:4px solid var(--gold);padding:1rem;border-radius:8px;margin:1rem 0;}
+    .checkpoint-title{font-weight:700;color:var(--primary);margin-bottom:.5rem;}
+    .checkpoint-criteres{display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem;}
+    .checkpoint-item{display:flex;align-items:center;gap:.5rem;font-size:.9rem;}
+    .checkpoint-item label{flex:1;margin:0;font-weight:500;}
+    .checkpoint-item select{padding:.3rem;width:80px;}
+    /* Tunnel en cours */
+    .tunnel-progress{background:var(--card);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1.5rem;border-left:6px solid var(--tunnel-action);}
+    .tunnel-progress.action{border-left-color:var(--tunnel-action);}
+    .tunnel-progress.partenarial{border-left-color:var(--tunnel-partenarial);}
+    .tunnel-progress.transformation{border-left-color:var(--tunnel-transformation);}
+    .tunnel-progress-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+    .tunnel-progress-icon{font-size:2rem;}
+    .tunnel-progress-title{flex:1;}
+    .tunnel-progress-name{font-size:1.1rem;font-weight:700;color:var(--primary);}
+    .tunnel-progress-meta{font-size:.85rem;color:var(--muted);}
+    @media(max-width:600px){.hero h2{font-size:1.6rem;}.grid-2,.grid-3{grid-template-columns:1fr;}.steps{grid-template-columns:repeat(2,1fr);}}
+  </style>
+</head>
+<body>
+  <header>
+    <span style="font-size:1.5rem">🛠️</span>
+    <h1>Tunnel d'Ingénierie</h1>
+    <nav>
+      <a href="dashboard.html" class="btn btn-outline btn-sm">← Tableau de bord</a>
+      <a href="index.html" class="btn btn-outline btn-sm">Accueil</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Onglets -->
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('accueil')">🏠 Accueil</button>
+      <button class="tab" onclick="showTab('routage')">🎯 Choisir mon tunnel</button>
+      <button class="tab" onclick="showTab('tunnel')">🚀 Mes projets</button>
+      <button class="tab" onclick="showTab('scoring')">📊 Scoring</button>
+    </div>
+
+    <!-- ACCUEIL -->
+    <div id="tab-accueil">
+      <div class="hero">
+        <h2>Le Tunnel d'Ingénierie Territoriale</h2>
+        <p>3 tunnels thématiques pour transformer votre idée en projet à impact territorial concret.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <button class="btn btn-gold" style="font-size:1.05rem;padding:.8rem 1.8rem;" onclick="showTab('routage')">
+            🎯 Trouver mon tunnel
+          </button>
+          <button class="btn btn-outline" style="font-size:1.05rem;padding:.8rem 1.8rem;" onclick="showTab('tunnel')">
+            🚀 Voir mes projets
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🛠️ Les 3 tunnels thématiques</div>
+        <div id="tunnels-overview" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;">
+          <p style="color:var(--muted)">Chargement…</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">💡 Comment ça marche ?</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;">
+          <div>
+            <h4 style="color:var(--accent);margin-bottom:.5rem;">1. Trouver mon tunnel</h4>
+            <p style="font-size:.9rem;color:var(--muted);">5 questions pour identifier le tunnel adapté à votre projet (action directe, partenarial, transformation).</p>
+          </div>
+          <div>
+            <h4 style="color:var(--accent);margin-bottom:.5rem;">2. Créer un projet</h4>
+            <p style="font-size:.9rem;color:var(--muted);">Donnez un titre et une thématique, puis laissez-vous guider étape par étape.</p>
+          </div>
+          <div>
+            <h4 style="color:var(--accent);margin-bottom:.5rem;">3. Avancer guidé</h4>
+            <p style="font-size:.9rem;color:var(--muted);">4 à 7 étapes selon le tunnel, avec checkpoints de scoring à chaque étape clé.</p>
+          </div>
+          <div>
+            <h4 style="color:var(--accent);margin-bottom:.5rem;">4. Valider</h4>
+            <p style="font-size:.9rem;color:var(--muted);">Score final de faisabilité pour valider avant de passer en action.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROUTAGE -->
+    <div id="tab-routage" style="display:none;">
+      <div class="card">
+        <div class="card-title">🎯 Trouver le tunnel adapté à votre projet</div>
+        <p style="color:var(--muted);margin-bottom:1.5rem;">5 questions rapides pour vous orienter vers le bon tunnel.</p>
+        <div id="routage-form">
+          <p style="color:var(--muted)">Chargement des questions…</p>
+        </div>
+      </div>
+
+      <div id="routage-result" style="display:none;">
+        <div class="score-display">
+          <div class="score-num" id="routage-score">0</div>
+          <div class="score-label">Score de profil / 15</div>
+          <div id="routage-tunnel-card"></div>
+          <p style="margin-top:1rem;color:var(--muted);" id="routage-raison"></p>
+        </div>
+        <div class="card">
+          <div class="card-title">🔄 Vous pouvez aussi choisir</div>
+          <div id="routage-alternatives" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;"></div>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <button class="btn btn-accent" onclick="showTab('tunnel')">🚀 Créer un projet avec ce tunnel</button>
+          <button class="btn btn-outline-primary" onclick="restartRoutage()">🔄 Refaire le questionnaire</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TUNNEL (projets) -->
+    <div id="tab-tunnel" style="display:none;">
+      <div class="card">
+        <div class="card-title">🚀 Mes projets en construction</div>
+        <div id="projets-list">
+          <p style="color:var(--muted)">Chargement…</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">➕ Créer un nouveau projet</div>
+        <div class="form-group">
+          <label>Titre du projet</label>
+          <input id="new-projet-titre" placeholder="Ex: Sport-Santé pour seniors isolés">
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Thématique principale</label>
+            <select id="new-projet-theme">
+              <option value="">Chargement…</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tunnel recommandé</label>
+            <select id="new-projet-tunnel">
+              <option value="">Chargement…</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description courte</label>
+          <input id="new-projet-desc" placeholder="En une phrase">
+        </div>
+        <button class="btn btn-accent" onclick="creerProjet()">🚀 Créer le projet</button>
+      </div>
+
+      <div id="projet-detail" style="display:none;">
+        <div id="tunnel-progress-container"></div>
+
+        <div class="card">
+          <div class="card-title">📝 Étape <span id="etape-num">1</span> : <span id="etape-name">Concept</span></div>
+          <div id="etape-form"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCORING -->
+    <div id="tab-scoring" style="display:none;">
+      <div class="card">
+        <div class="card-title">📊 Scoring de faisabilité</div>
+        <p style="color:var(--muted);margin-bottom:1.5rem;">Évaluez votre projet sur 10 critères (0-10 chacun). Score final sur 100.</p>
+        <div id="scoring-form">
+          <p style="color:var(--muted)">Chargement des critères…</p>
+        </div>
+      </div>
+
+      <div id="scoring-result" style="display:none;">
+        <div class="score-display">
+          <div class="score-num" id="score-total">0</div>
+          <div class="score-label">Score de faisabilité / 100</div>
+          <div class="score-niveau" id="score-niveau"></div>
+          <p style="margin-top:1rem;color:var(--muted);" id="score-recommandation"></p>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <button class="btn btn-accent" onclick="showTab('tunnel')">🚀 Voir mes projets</button>
+          <button class="btn btn-outline-primary" onclick="restartScoring()">🔄 Refaire le scoring</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const API = '';
+    const CLUB_ID = localStorage.getItem('ts_club_id') || 'demo-club';
+    let currentRoutageResult = null;
+
+    async function api(path, opts={}) {
+      const r = await fetch(API + path, { headers:{'Content-Type':'application/json'}, ...opts });
+      if (!r.ok) { const e = await r.json().catch(()=>({error:r.statusText})); throw new Error(e.detail||e.error||r.statusText); }
+      return r.json();
+    }
+
+    // ── Navigation ────────────────────────────────────────────
+    function showTab(name) {
+      document.querySelectorAll('[id^="tab-"]').forEach(el => el.style.display = 'none');
+      document.getElementById('tab-' + name).style.display = 'block';
+      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+      event.target.classList.add('active');
+
+      if (name === 'accueil') loadAccueil();
+      if (name === 'routage') loadRoutage();
+      if (name === 'tunnel') loadProjets();
+      if (name === 'scoring') loadScoring();
+    }
+
+    // ── ACCUEIL ───────────────────────────────────────────────
+    async function loadAccueil() {
+      try {
+        const data = await api('/api/tunnels/list');
+        const container = document.getElementById('tunnels-overview');
+        container.innerHTML = data.tunnels.map(t => `
+          <div class="tunnel-card ${t.slug}" onclick="showTab('routage')">
+            <div class="tunnel-card-header">
+              <div class="tunnel-card-icon">${t.icon}</div>
+              <div>
+                <div class="tunnel-card-title">${t.name}</div>
+                <div class="tunnel-card-meta">${t.nb_etapes} étapes • ${t.duree_estimation_totale}</div>
+              </div>
+            </div>
+            <div class="tunnel-card-desc">${t.description}</div>
+            <div class="tunnel-card-stats">
+              <span>👥 ${t.public_cible}</span>
+            </div>
+          </div>
+        `).join('');
+      } catch(e) {
+        document.getElementById('tunnels-overview').innerHTML = `<p style="color:var(--danger)">Erreur: ${e.message}</p>`;
+      }
+    }
+
+    // ── ROUTAGE ───────────────────────────────────────────────
+    async function loadRoutage() {
+      document.getElementById('routage-form').style.display = 'block';
+      document.getElementById('routage-result').style.display = 'none';
+
+      try {
+        const data = await api('/api/tunnels/routage/questions');
+        const form = document.getElementById('routage-form');
+        form.innerHTML = data.questions.map(q => `
+          <div class="question-card">
+            <div class="question-title">${q.question}</div>
+            ${q.aide ? `<p style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem;">${q.aide}</p>` : ''}
+            <div class="radio-group">
+              ${q.options.map(opt => `
+                <label class="radio-option" data-question="${q.slug}" data-value="${opt.valeur}">
+                  <input type="radio" name="${q.slug}" value="${opt.valeur}">
+                  <span><strong>${opt.label}</strong> — ${opt.description}</span>
+                </label>
+              `).join('')}
+            </div>
+          </div>
+        `).join('');
+
+        document.querySelectorAll('.radio-option').forEach(opt => {
+          opt.addEventListener('click', () => {
+            const q = opt.dataset.question;
+            document.querySelectorAll(`.radio-option[data-question="${q}"]`).forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
+            opt.querySelector('input').checked = true;
+          });
+        });
+
+        form.innerHTML += `<button class="btn btn-accent" style="margin-top:1rem;" onclick="submitRoutage()">🎯 Voir mon tunnel recommandé</button>`;
+      } catch(e) {
+        document.getElementById('routage-form').innerHTML = `<p style="color:var(--danger)">Erreur: ${e.message}</p>`;
+      }
+    }
+
+    async function submitRoutage() {
+      const reponses = {};
+      document.querySelectorAll('.radio-option.selected').forEach(opt => {
+        reponses[opt.dataset.question] = parseInt(opt.dataset.value);
+      });
+
+      try {
+        const data = await api('/api/tunnels/routage/questions');
+        const missing = data.questions.filter(q => !(q.slug in reponses));
+        if (missing.length > 0) {
+          alert(`Veuillez répondre à toutes les questions (${missing.length} manquante(s))`);
+          return;
+        }
+
+        const result = await api('/api/tunnels/routage/calculer', {
+          method: 'POST',
+          body: JSON.stringify({ club_id: CLUB_ID, reponses })
+        });
+
+        currentRoutageResult = result;
+
+        document.getElementById('routage-form').style.display = 'none';
+        document.getElementById('routage-result').style.display = 'block';
+
+        document.getElementById('routage-score').textContent = result.score_total;
+        document.getElementById('routage-tunnel-card').innerHTML = `
+          <div class="tunnel-card ${result.tunnel_recommande}" style="cursor:default;margin:1rem 0;">
+            <div class="tunnel-card-header">
+              <div class="tunnel-card-icon">${result.tunnel_info.icon}</div>
+              <div>
+                <div class="tunnel-card-title">${result.tunnel_info.name}</div>
+                <div class="tunnel-card-meta">${result.tunnel_info.nb_etapes} étapes • ${result.tunnel_info.duree_estimation_totale}</div>
+              </div>
+            </div>
+            <div class="tunnel-card-desc">${result.tunnel_info.description}</div>
+          </div>
+        `;
+        document.getElementById('routage-raison').textContent = result.raison;
+
+        // Alternatives
+        const altsData = await api('/api/tunnels/list');
+        const alts = altsData.tunnels.filter(t => t.slug !== result.tunnel_recommande);
+        document.getElementById('routage-alternatives').innerHTML = alts.map(t => `
+          <div class="tunnel-card ${t.slug}" onclick="selectTunnelDirect('${t.slug}')">
+            <div class="tunnel-card-header">
+              <div class="tunnel-card-icon">${t.icon}</div>
+              <div>
+                <div class="tunnel-card-title">${t.name}</div>
+                <div class="tunnel-card-meta">${t.nb_etapes} étapes</div>
+              </div>
+            </div>
+            <div class="tunnel-card-desc">${t.description}</div>
+          </div>
+        `).join('');
+      } catch(e) {
+        alert('Erreur: ' + e.message);
+      }
+    }
+
+    function restartRoutage() {
+      currentRoutageResult = null;
+      loadRoutage();
+    }
+
+    function selectTunnelDirect(slug) {
+      currentRoutageResult = { tunnel_recommande: slug };
+      showTab('tunnel');
+    }
+
+    // ── TUNNEL (projets) ──────────────────────────────────────
+    async function loadProjets() {
+      document.getElementById('projet-detail').style.display = 'none';
+
+      try {
+        const themes = await api('/api/projects/themes');
+        const selectTheme = document.getElementById('new-projet-theme');
+        selectTheme.innerHTML = themes.map(t => `<option value="${t.id}">${t.icon} ${t.label}</option>`).join('');
+
+        const tunnels = await api('/api/tunnels/list');
+        const selectTunnel = document.getElementById('new-projet-tunnel');
+        selectTunnel.innerHTML = tunnels.tunnels.map(t =>
+          `<option value="${t.slug}" ${currentRoutageResult && currentRoutageResult.tunnel_recommande === t.slug ? 'selected' : ''}>${t.icon} ${t.name}</option>`
+        ).join('');
+
+        const projets = await api(`/api/tunnel/projets/${CLUB_ID}`);
+        const list = document.getElementById('projets-list');
+
+        if (projets.length === 0) {
+          list.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">🚀</div>
+              <p>Aucun projet en construction.</p>
+              <p style="font-size:.9rem;">Créez votre premier projet ci-dessous.</p>
+            </div>
+          `;
+        } else {
+          list.innerHTML = projets.map(p => `
+            <div class="projet-card" onclick="loadProjetDetail('${p.id}')">
+              <div class="projet-titre">${p.titre}</div>
+              <div class="projet-meta">
+                <span class="badge badge-info">${p.thematique}</span>
+                • Étape ${p.etape_actuelle}/${p.nb_etapes_total || 7} • ${p.progression}% complété
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width:${p.progression}%"></div>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch(e) {
+        document.getElementById('projets-list').innerHTML = `<p style="color:var(--danger)">Erreur: ${e.message}</p>`;
+      }
+    }
+
+    async function creerProjet() {
+      const titre = document.getElementById('new-projet-titre').value.trim();
+      const thematique = document.getElementById('new-projet-theme').value;
+      const tunnel_slug = document.getElementById('new-projet-tunnel').value;
+      const description = document.getElementById('new-projet-desc').value.trim();
+
+      if (!titre) { alert('Veuillez donner un titre au projet'); return; }
+      if (!tunnel_slug) { alert('Veuillez choisir un tunnel'); return; }
+
+      try {
+        const projet = await api('/api/tunnel/projets', {
+          method: 'POST',
+          body: JSON.stringify({ club_id: CLUB_ID, titre, thematique, description })
+        });
+
+        // Associer le tunnel choisi
+        await api(`/api/tunnels/projets/${projet.id}/choisir`, {
+          method: 'POST',
+          body: JSON.stringify({ club_id: CLUB_ID, tunnel_slug })
+        });
+
+        document.getElementById('new-projet-titre').value = '';
+        document.getElementById('new-projet-desc').value = '';
+
+        await loadProjetDetail(projet.id);
+      } catch(e) {
+        alert('Erreur: ' + e.message);
+      }
+    }
+
+    async function loadProjetDetail(projetId) {
+      document.getElementById('projet-detail').style.display = 'block';
+
+      try {
+        // Récupérer le tunnel du projet
+        const tunnel = await api(`/api/tunnels/projets/${projetId}/tunnel`);
+
+        // Récupérer le projet
+        const projet = await api(`/api/tunnel/projets/detail/${projetId}`);
+
+        // Afficher la bannière tunnel
+        document.getElementById('tunnel-progress-container').innerHTML = `
+          <div class="tunnel-progress ${projet.tunnel_slug || 'action'}">
+            <div class="tunnel-progress-header">
+              <div class="tunnel-progress-icon">${tunnel.icon || '⚡'}</div>
+              <div class="tunnel-progress-title">
+                <div class="tunnel-progress-name">${tunnel.name}</div>
+                <div class="tunnel-progress-meta">${projet.titre}</div>
+              </div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:${projet.progression}%"></div>
+            </div>
+            <p style="text-align:center;color:var(--muted);font-size:.9rem;margin-top:.5rem;">
+              ${projet.progression}% complété • Étape ${projet.etape_actuelle}/${tunnel.etapes.length}
+            </p>
+          </div>
+        `;
+
+        // Étapes
+        const etapesHtml = tunnel.etapes.map(e => {
+          const etapeData = projet.etapes.find(pe => pe.etape_numero === e.numero);
+          const isComplete = etapeData && etapeData.complete;
+          const isCurrent = e.numero === projet.etape_actuelle;
+          return `
+            <div class="etape-item">
+              <div class="etape-check ${isComplete ? 'done' : (isCurrent ? 'current' : '')}">
+                ${isComplete ? '✓' : e.numero}
+              </div>
+              <div class="etape-num">${e.numero}</div>
+              <div class="etape-name">${e.titre}</div>
+              ${isComplete ? '<span class="badge badge-success">Complète</span>' : ''}
+            </div>
+          `;
+        }).join('');
+
+        // Ajouter la liste des étapes dans la bannière
+        document.getElementById('tunnel-progress-container').innerHTML += `
+          <div class="etape-list" style="margin-top:1rem;">${etapesHtml}</div>
+        `;
+
+        // Charger l'étape actuelle
+        const etape = await api(`/api/tunnel/projets/${projetId}/etapes/${projet.etape_actuelle}`);
+
+        // Adapter le numéro d'étape au tunnel
+        const etapeTunnel = tunnel.etapes.find(e => e.numero === projet.etape_actuelle);
+        if (!etapeTunnel) {
+          document.getElementById('etape-form').innerHTML = '<p style="color:var(--muted)">Étape non trouvée dans ce tunnel.</p>';
+          return;
+        }
+
+        document.getElementById('etape-num').textContent = etapeTunnel.numero;
+        document.getElementById('etape-name').textContent = etapeTunnel.titre;
+
+        const form = document.getElementById('etape-form');
+
+        if (etape.complete) {
+          form.innerHTML = `
+            <div class="recommandations">
+              <div class="recommandations-title">✓ Étape complétée</div>
+              <pre style="white-space:pre-wrap;font-family:inherit;font-size:.9rem;">${JSON.stringify(etape.contenu, null, 2)}</pre>
+            </div>
+            <button class="btn btn-outline-primary" style="margin-top:1rem;" onclick="loadProjets()">← Retour aux projets</button>
+          `;
+        } else {
+          // Afficher le formulaire avec les questions guide
+          const questions = etapeTunnel.questions_guide || [];
+          form.innerHTML = `
+            <p style="color:var(--muted);margin-bottom:1rem;"><strong>Objectif :</strong> ${etapeTunnel.objectif}</p>
+            <p style="color:var(--muted);margin-bottom:1rem;"><strong>Durée estimée :</strong> ${etapeTunnel.duree_estimee} • <strong>Livrable :</strong> ${etapeTunnel.livrable}</p>
+            ${questions.map(q => `
+              <div class="form-group">
+                <label>${q}</label>
+                <textarea data-field="${q.replace(/[^a-z0-9]/gi, '_').toLowerCase().substring(0, 30)}" placeholder="Votre réponse..."></textarea>
+              </div>
+            `).join('')}
+            <button class="btn btn-accent" onclick="sauvegarderEtape('${projetId}', ${etapeTunnel.numero})">💾 Sauvegarder l'étape</button>
+          `;
+        }
+      } catch(e) {
+        alert('Erreur: ' + e.message);
+      }
+    }
+
+    async function sauvegarderEtape(projetId, etapeNum) {
+      const contenu = {};
+      document.querySelectorAll('#etape-form [data-field]').forEach(el => {
+        contenu[el.dataset.field] = el.value;
+      });
+
+      try {
+        await api(`/api/tunnel/projets/${projetId}/etapes`, {
+          method: 'POST',
+          body: JSON.stringify({
+            club_id: CLUB_ID,
+            projet_id: projetId,
+            etape_numero: etapeNum,
+            contenu,
+            complete: true
+          })
+        });
+
+        // Proposer le checkpoint de scoring
+        await proposerCheckpoint(projetId, etapeNum);
+      } catch(e) {
+        alert('Erreur: ' + e.message);
+      }
+    }
+
+    async function proposerCheckpoint(projetId, etapeNum) {
+      try {
+        // Récupérer le tunnel du projet pour connaître les critères du checkpoint
+        const tunnel = await api(`/api/tunnels/projets/${projetId}/tunnel`);
+        const etape = tunnel.etapes.find(e => e.numero === etapeNum);
+        const criteresIds = etape ? etape.scoring_checkpoint : [];
+
+        if (!criteresIds || criteresIds.length === 0) {
+          // Pas de checkpoint pour cette étape, passer directement
+          await loadProjetDetail(projetId);
+          return;
+        }
+
+        // Récupérer les détails des critères
+        const scoringInfo = await api('/api/tunnel/info');
+        const criteresDetails = scoringInfo.scoring_criteres.filter(c => criteresIds.includes(c.slug || c.id));
+
+        // Afficher le formulaire de checkpoint
+        const form = document.getElementById('etape-form');
+        document.getElementById('etape-num').textContent = etapeNum + ' (checkpoint)';
+        document.getElementById('etape-name').textContent = 'Validation de l\u2019étape';
+
+        form.innerHTML = `
+          <div class="checkpoint-card">
+            <div class="checkpoint-title">🎯 Checkpoint de validation</div>
+            <p style="color:var(--muted);margin-bottom:1rem;font-size:.9rem;">
+              Évaluez votre travail sur ${criteresDetails.length} critères avant de passer à l\u2019étape suivante.
+            </p>
+            <div class="checkpoint-criteres">
+              ${criteresDetails.map(c => `
+                <div class="checkpoint-item">
+                  <label>${c.nom}</label>
+                  <select data-checkpoint="${c.slug || c.id}">
+                    <option value="0">0 - Non traité</option>
+                    <option value="3">3 - Ébauché</option>
+                    <option value="5">5 - Partiel</option>
+                    <option value="7">7 - Avancé</option>
+                    <option value="10" selected>10 - Complet</option>
+                  </select>
+                </div>
+              `).join('')}
+            </div>
+            <div style="display:flex;gap:1rem;margin-top:1rem;flex-wrap:wrap;">
+              <button class="btn btn-accent" onclick="submitCheckpoint('${projetId}', ${etapeNum})">📊 Valider le checkpoint</button>
+              <button class="btn btn-outline-primary" onclick="loadProjetDetail('${projetId}')">⏭️ Passer l\u2019étape suivante</button>
+            </div>
+          </div>
+        `;
+      } catch(e) {
+        // En cas d'erreur, passer directement
+        await loadProjetDetail(projetId);
+      }
+    }
+
+    async function submitCheckpoint(projetId, etapeNum) {
+      const scores = {};
+      document.querySelectorAll('[data-checkpoint]').forEach(el => {
+        scores[el.dataset.checkpoint] = parseInt(el.value);
+      });
+
+      try {
+        const result = await api(`/api/scoring/checkpoints/${projetId}/${etapeNum}`, {
+          method: 'POST',
+          body: JSON.stringify({ club_id: CLUB_ID, scores })
+        });
+
+        // Afficher le résultat du checkpoint
+        const form = document.getElementById('etape-form');
+        const niveauClass = result.pourcentage >= 75 ? 'niveau-vert' :
+                           result.pourcentage >= 50 ? 'niveau-jaune' :
+                           result.pourcentage >= 25 ? 'niveau-orange' : 'niveau-rouge';
+
+        form.innerHTML = `
+          <div class="score-display">
+            <div class="score-num">${result.score_total}/${result.score_max}</div>
+            <div class="score-label">${result.pourcentage}% — ${result.niveau}</div>
+            <div class="score-niveau ${niveauClass}">${result.niveau.replace('_', ' ')}</div>
+            <p style="margin-top:1rem;color:var(--muted);">${result.recommandation}</p>
+          </div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <button class="btn btn-accent" onclick="loadProjetDetail('${projetId}')">✅ Continuer le projet</button>
+            <button class="btn btn-outline-primary" onclick="proposerCheckpoint('${projetId}', ${etapeNum})">🔄 Refaire le checkpoint</button>
+          </div>
+        `;
+      } catch(e) {
+        alert('Erreur: ' + e.message);
+      }
+    }
+
+    // ── SCORING ───────────────────────────────────────────────
+    async function loadScoring() {
+      document.getElementById('scoring-form').style.display = 'block';
+      document.getElementById('scoring-result').style.display = 'none';
+
+      try {
+        const info = await api('/api/tunnel/info');
+        const form = document.getElementById('scoring-form');
+        form.innerHTML = `
+          <div class="criteres-grid">
+            ${info.scoring_criteres.map(c => `
+              <div class="critere-card">
+                <div class="critere-name">${c.nom}</div>
+                <div class="critere-desc">${c.description}</div>
+                <div class="critere-input">
+                  <input type="range" min="0" max="10" value="5" data-critere="${c.id}" oninput="this.nextElementSibling.textContent=this.value">
+                  <div class="critere-value">5</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          <button class="btn btn-accent" style="margin-top:1.5rem;" onclick="submitScoring()">📊 Calculer mon score</button>
+        `;
+      } catch(e) {
+        document.getElementById('scoring-form').innerHTML = `<p style="color:var(--danger)">Erreur: ${e.message}</p>`;
+      }
+    }
+
+    async function submitScoring() {
+      const scores = {};
+      document.querySelectorAll('[data-critere]').forEach(el => {
+        scores[el.dataset.critere] = parseInt(el.value);
+      });
+
+      try {
+        const result = await api('/api/tunnel/scoring', {
+          method: 'POST',
+          body: JSON.stringify({ club_id: CLUB_ID, scores })
+        });
+
+        document.getElementById('scoring-form').style.display = 'none';
+        document.getElementById('scoring-result').style.display = 'block';
+
+        document.getElementById('score-total').textContent = result.score_total;
+        document.getElementById('score-niveau').textContent = result.niveau;
+        document.getElementById('score-niveau').className = 'score-niveau ' + getNiveauClass(result.niveau);
+        document.getElementById('score-recommandation').textContent = result.recommandation;
+      } catch(e) {
+        alert('Erreur: ' + e.message);
+      }
+    }
+
+    function restartScoring() {
+      loadScoring();
+    }
+
+    // ── Helpers ───────────────────────────────────────────────
+    function getNiveauClass(niveau) {
+      if (niveau.includes('très') || niveau.includes('solide')) return 'niveau-vert';
+      if (niveau.includes('faisable') || niveau.includes('réaliste')) return 'niveau-jaune';
+      if (niveau.includes('simple') || niveau.includes('modeste')) return 'niveau-orange';
+      return 'niveau-rouge';
+    }
+
+    // Init
+    loadAccueil();
+  </script>
+</body>
+</html>

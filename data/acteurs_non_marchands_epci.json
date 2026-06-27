@@ -1,0 +1,1715 @@
+[
+  {
+    "epci_code": "200065563",
+    "epci_nom": "CC Normandie-Cabourg-Pays d'Auge",
+    "departements": [
+      "14"
+    ],
+    "population": 31981,
+    "nb_communes": 38,
+    "acteurs_non_marchands": {
+      "CCAS": 38,
+      "Bibliotheques_municipales": 22,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 2,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200065589",
+    "epci_nom": "CC Val ès Dunes",
+    "departements": [
+      "14"
+    ],
+    "population": 20801,
+    "nb_communes": 19,
+    "acteurs_non_marchands": {
+      "CCAS": 19,
+      "Bibliotheques_municipales": 11,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200065597",
+    "epci_nom": "CU Caen la Mer",
+    "departements": [
+      "14"
+    ],
+    "population": 281165,
+    "nb_communes": 48,
+    "acteurs_non_marchands": {
+      "CCAS": 48,
+      "Bibliotheques_municipales": 28,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 4,
+      "EHPAD_publics": 35,
+      "IME_publics": 7,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 18,
+      "Associations_sport_sante": 14,
+      "Associations_handicap": 9,
+      "Associations_insertion": 11,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "200066710",
+    "epci_nom": "CC Cingal-Suisse Normande",
+    "departements": [
+      "14"
+    ],
+    "population": 23620,
+    "nb_communes": 41,
+    "acteurs_non_marchands": {
+      "CCAS": 41,
+      "Bibliotheques_municipales": 24,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200066728",
+    "epci_nom": "CC Vallées de l'Orne et de l'Odon",
+    "departements": [
+      "14"
+    ],
+    "population": 26619,
+    "nb_communes": 22,
+    "acteurs_non_marchands": {
+      "CCAS": 22,
+      "Bibliotheques_municipales": 13,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200066801",
+    "epci_nom": "CC Isigny-Omaha Intercom",
+    "departements": [
+      "14"
+    ],
+    "population": 26442,
+    "nb_communes": 59,
+    "acteurs_non_marchands": {
+      "CCAS": 59,
+      "Bibliotheques_municipales": 35,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200066827",
+    "epci_nom": "CC du Pays de Honfleur-Beuzeville",
+    "departements": [
+      "14",
+      "27"
+    ],
+    "population": 26965,
+    "nb_communes": 23,
+    "acteurs_non_marchands": {
+      "CCAS": 23,
+      "Bibliotheques_municipales": 13,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200068799",
+    "epci_nom": "CC Intercom de la Vire au Noireau",
+    "departements": [
+      "14"
+    ],
+    "population": 46158,
+    "nb_communes": 17,
+    "acteurs_non_marchands": {
+      "CCAS": 17,
+      "Bibliotheques_municipales": 10,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 5,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 3,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200069516",
+    "epci_nom": "CC Seulles Terre et Mer",
+    "departements": [
+      "14"
+    ],
+    "population": 17561,
+    "nb_communes": 28,
+    "acteurs_non_marchands": {
+      "CCAS": 28,
+      "Bibliotheques_municipales": 16,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200069524",
+    "epci_nom": "CC Pré-Bocage Intercom",
+    "departements": [
+      "14"
+    ],
+    "population": 25151,
+    "nb_communes": 27,
+    "acteurs_non_marchands": {
+      "CCAS": 27,
+      "Bibliotheques_municipales": 16,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200069532",
+    "epci_nom": "CA Lisieux Normandie",
+    "departements": [
+      "14"
+    ],
+    "population": 72636,
+    "nb_communes": 53,
+    "acteurs_non_marchands": {
+      "CCAS": 53,
+      "Bibliotheques_municipales": 31,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 9,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 4,
+      "Associations_sport_sante": 3,
+      "Associations_handicap": 2,
+      "Associations_insertion": 2,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "241400415",
+    "epci_nom": "CC Coeur Côte Fleurie",
+    "departements": [
+      "14"
+    ],
+    "population": 20716,
+    "nb_communes": 12,
+    "acteurs_non_marchands": {
+      "CCAS": 12,
+      "Bibliotheques_municipales": 7,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "241400514",
+    "epci_nom": "CC du Pays de Falaise",
+    "departements": [
+      "14"
+    ],
+    "population": 27380,
+    "nb_communes": 58,
+    "acteurs_non_marchands": {
+      "CCAS": 58,
+      "Bibliotheques_municipales": 34,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "241400555",
+    "epci_nom": "CC de Bayeux Intercom",
+    "departements": [
+      "14"
+    ],
+    "population": 29805,
+    "nb_communes": 36,
+    "acteurs_non_marchands": {
+      "CCAS": 36,
+      "Bibliotheques_municipales": 21,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "241400860",
+    "epci_nom": "CC Coeur de Nacre",
+    "departements": [
+      "14"
+    ],
+    "population": 24236,
+    "nb_communes": 12,
+    "acteurs_non_marchands": {
+      "CCAS": 12,
+      "Bibliotheques_municipales": 7,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "241400878",
+    "epci_nom": "CC Terre d'Auge",
+    "departements": [
+      "14"
+    ],
+    "population": 19841,
+    "nb_communes": 44,
+    "acteurs_non_marchands": {
+      "CCAS": 44,
+      "Bibliotheques_municipales": 26,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200040277",
+    "epci_nom": "CA Agglo du Pays de Dreux",
+    "departements": [
+      "27",
+      "28"
+    ],
+    "population": 116271,
+    "nb_communes": 81,
+    "acteurs_non_marchands": {
+      "CCAS": 81,
+      "Bibliotheques_municipales": 48,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 14,
+      "IME_publics": 2,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 7,
+      "Associations_sport_sante": 5,
+      "Associations_handicap": 3,
+      "Associations_insertion": 4,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "200065787",
+    "epci_nom": "CC de Pont-Audemer / Val de Risle",
+    "departements": [
+      "27"
+    ],
+    "population": 32598,
+    "nb_communes": 32,
+    "acteurs_non_marchands": {
+      "CCAS": 32,
+      "Bibliotheques_municipales": 19,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 4,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 2,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200066017",
+    "epci_nom": "CC Lieuvin Pays d'Auge",
+    "departements": [
+      "27"
+    ],
+    "population": 20332,
+    "nb_communes": 51,
+    "acteurs_non_marchands": {
+      "CCAS": 51,
+      "Bibliotheques_municipales": 30,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200066405",
+    "epci_nom": "CC Roumois Seine",
+    "departements": [
+      "27",
+      "76"
+    ],
+    "population": 41848,
+    "nb_communes": 40,
+    "acteurs_non_marchands": {
+      "CCAS": 40,
+      "Bibliotheques_municipales": 24,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 5,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 2,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200066413",
+    "epci_nom": "CC Intercom Bernay Terres de Normandie",
+    "departements": [
+      "27"
+    ],
+    "population": 54049,
+    "nb_communes": 75,
+    "acteurs_non_marchands": {
+      "CCAS": 75,
+      "Bibliotheques_municipales": 45,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 6,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 3,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 2,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "200066462",
+    "epci_nom": "CC Interco Normandie Sud Eure",
+    "departements": [
+      "27",
+      "28"
+    ],
+    "population": 37326,
+    "nb_communes": 41,
+    "acteurs_non_marchands": {
+      "CCAS": 41,
+      "Bibliotheques_municipales": 24,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 4,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 2,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200069730",
+    "epci_nom": "CC des Quatre Rivières en Bray",
+    "departements": [
+      "27",
+      "76"
+    ],
+    "population": 28467,
+    "nb_communes": 52,
+    "acteurs_non_marchands": {
+      "CCAS": 52,
+      "Bibliotheques_municipales": 31,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200070142",
+    "epci_nom": "CC Lyons Andelle",
+    "departements": [
+      "27"
+    ],
+    "population": 20622,
+    "nb_communes": 30,
+    "acteurs_non_marchands": {
+      "CCAS": 30,
+      "Bibliotheques_municipales": 18,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200071454",
+    "epci_nom": "CA Evreux Portes de Normandie",
+    "departements": [
+      "27"
+    ],
+    "population": 113337,
+    "nb_communes": 74,
+    "acteurs_non_marchands": {
+      "CCAS": 74,
+      "Bibliotheques_municipales": 44,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 14,
+      "IME_publics": 2,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 7,
+      "Associations_sport_sante": 5,
+      "Associations_handicap": 3,
+      "Associations_insertion": 4,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "200071843",
+    "epci_nom": "CC du Vexin Normand",
+    "departements": [
+      "27"
+    ],
+    "population": 33079,
+    "nb_communes": 39,
+    "acteurs_non_marchands": {
+      "CCAS": 39,
+      "Bibliotheques_municipales": 23,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 4,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 2,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200072312",
+    "epci_nom": "CA Seine Normandie Agglomération",
+    "departements": [
+      "27"
+    ],
+    "population": 83284,
+    "nb_communes": 61,
+    "acteurs_non_marchands": {
+      "CCAS": 61,
+      "Bibliotheques_municipales": 36,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 10,
+      "IME_publics": 2,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 5,
+      "Associations_sport_sante": 4,
+      "Associations_handicap": 2,
+      "Associations_insertion": 3,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "200089456",
+    "epci_nom": "CA Seine-Eure",
+    "departements": [
+      "27"
+    ],
+    "population": 103526,
+    "nb_communes": 60,
+    "acteurs_non_marchands": {
+      "CCAS": 60,
+      "Bibliotheques_municipales": 36,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 12,
+      "IME_publics": 2,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 6,
+      "Associations_sport_sante": 5,
+      "Associations_handicap": 3,
+      "Associations_insertion": 4,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "242700276",
+    "epci_nom": "CC du Pays de Conches",
+    "departements": [
+      "27"
+    ],
+    "population": 18100,
+    "nb_communes": 25,
+    "acteurs_non_marchands": {
+      "CCAS": 25,
+      "Bibliotheques_municipales": 15,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "242700607",
+    "epci_nom": "CC du Pays du Neubourg",
+    "departements": [
+      "27"
+    ],
+    "population": 22499,
+    "nb_communes": 41,
+    "acteurs_non_marchands": {
+      "CCAS": 41,
+      "Bibliotheques_municipales": 24,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200042604",
+    "epci_nom": "CC de Granville, Terre et Mer",
+    "departements": [
+      "50"
+    ],
+    "population": 45650,
+    "nb_communes": 32,
+    "acteurs_non_marchands": {
+      "CCAS": 32,
+      "Bibliotheques_municipales": 19,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 5,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 3,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200042729",
+    "epci_nom": "CC de la Baie du Cotentin",
+    "departements": [
+      "50"
+    ],
+    "population": 22942,
+    "nb_communes": 23,
+    "acteurs_non_marchands": {
+      "CCAS": 23,
+      "Bibliotheques_municipales": 13,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200043354",
+    "epci_nom": "CC de Villedieu Intercom",
+    "departements": [
+      "50"
+    ],
+    "population": 15779,
+    "nb_communes": 27,
+    "acteurs_non_marchands": {
+      "CCAS": 27,
+      "Bibliotheques_municipales": 16,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200066389",
+    "epci_nom": "CA Saint-Lô Agglo",
+    "departements": [
+      "50"
+    ],
+    "population": 76800,
+    "nb_communes": 61,
+    "acteurs_non_marchands": {
+      "CCAS": 61,
+      "Bibliotheques_municipales": 36,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 9,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 5,
+      "Associations_sport_sante": 3,
+      "Associations_handicap": 2,
+      "Associations_insertion": 3,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "200067023",
+    "epci_nom": "CC Coutances Mer et Bocage",
+    "departements": [
+      "50"
+    ],
+    "population": 47611,
+    "nb_communes": 48,
+    "acteurs_non_marchands": {
+      "CCAS": 48,
+      "Bibliotheques_municipales": 28,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 5,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 3,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200067031",
+    "epci_nom": "CC Côte Ouest Centre Manche",
+    "departements": [
+      "50"
+    ],
+    "population": 22323,
+    "nb_communes": 30,
+    "acteurs_non_marchands": {
+      "CCAS": 30,
+      "Bibliotheques_municipales": 18,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200067205",
+    "epci_nom": "CA du Cotentin",
+    "departements": [
+      "50"
+    ],
+    "population": 179231,
+    "nb_communes": 129,
+    "acteurs_non_marchands": {
+      "CCAS": 129,
+      "Bibliotheques_municipales": 77,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 2,
+      "EHPAD_publics": 22,
+      "IME_publics": 4,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 11,
+      "Associations_sport_sante": 8,
+      "Associations_handicap": 5,
+      "Associations_insertion": 7,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "200069425",
+    "epci_nom": "CA Mont-Saint-Michel-Normandie",
+    "departements": [
+      "50"
+    ],
+    "population": 87186,
+    "nb_communes": 95,
+    "acteurs_non_marchands": {
+      "CCAS": 95,
+      "Bibliotheques_municipales": 57,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 10,
+      "IME_publics": 2,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 5,
+      "Associations_sport_sante": 4,
+      "Associations_handicap": 2,
+      "Associations_insertion": 3,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "200035103",
+    "epci_nom": "CC de la Vallée de la Haute Sarthe",
+    "departements": [
+      "61"
+    ],
+    "population": 7542,
+    "nb_communes": 31,
+    "acteurs_non_marchands": {
+      "CCAS": 31,
+      "Bibliotheques_municipales": 18,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200035111",
+    "epci_nom": "CC des Sources de l'Orne",
+    "departements": [
+      "61"
+    ],
+    "population": 11954,
+    "nb_communes": 23,
+    "acteurs_non_marchands": {
+      "CCAS": 23,
+      "Bibliotheques_municipales": 13,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200035814",
+    "epci_nom": "CA Flers Agglo",
+    "departements": [
+      "61"
+    ],
+    "population": 52388,
+    "nb_communes": 42,
+    "acteurs_non_marchands": {
+      "CCAS": 42,
+      "Bibliotheques_municipales": 25,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 6,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 3,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 2,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "200036069",
+    "epci_nom": "CC du Pays de Mortagne-au-Perche",
+    "departements": [
+      "61"
+    ],
+    "population": 13531,
+    "nb_communes": 33,
+    "acteurs_non_marchands": {
+      "CCAS": 33,
+      "Bibliotheques_municipales": 19,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200068435",
+    "epci_nom": "CC Coeur du Perche",
+    "departements": [
+      "61"
+    ],
+    "population": 10964,
+    "nb_communes": 12,
+    "acteurs_non_marchands": {
+      "CCAS": 12,
+      "Bibliotheques_municipales": 7,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200068443",
+    "epci_nom": "CC Andaine - Passais",
+    "departements": [
+      "61"
+    ],
+    "population": 12758,
+    "nb_communes": 12,
+    "acteurs_non_marchands": {
+      "CCAS": 12,
+      "Bibliotheques_municipales": 7,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200068450",
+    "epci_nom": "CC Terres d'Argentan Interco",
+    "departements": [
+      "61"
+    ],
+    "population": 33370,
+    "nb_communes": 49,
+    "acteurs_non_marchands": {
+      "CCAS": 49,
+      "Bibliotheques_municipales": 29,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 4,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 2,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200068468",
+    "epci_nom": "CC des Pays de L'Aigle",
+    "departements": [
+      "61"
+    ],
+    "population": 24782,
+    "nb_communes": 32,
+    "acteurs_non_marchands": {
+      "CCAS": 32,
+      "Bibliotheques_municipales": 19,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200068856",
+    "epci_nom": "CC des Hauts du Perche",
+    "departements": [
+      "61"
+    ],
+    "population": 7864,
+    "nb_communes": 10,
+    "acteurs_non_marchands": {
+      "CCAS": 10,
+      "Bibliotheques_municipales": 6,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200069458",
+    "epci_nom": "CC des Vallées d'Auge et du Merlerault",
+    "departements": [
+      "61"
+    ],
+    "population": 14096,
+    "nb_communes": 42,
+    "acteurs_non_marchands": {
+      "CCAS": 42,
+      "Bibliotheques_municipales": 25,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200071504",
+    "epci_nom": "CC des Collines du Perche Normand",
+    "departements": [
+      "61"
+    ],
+    "population": 11864,
+    "nb_communes": 16,
+    "acteurs_non_marchands": {
+      "CCAS": 16,
+      "Bibliotheques_municipales": 9,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200071520",
+    "epci_nom": "CC Domfront Tinchebray Interco",
+    "departements": [
+      "61"
+    ],
+    "population": 15744,
+    "nb_communes": 15,
+    "acteurs_non_marchands": {
+      "CCAS": 15,
+      "Bibliotheques_municipales": 9,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200071652",
+    "epci_nom": "CC du Pays Fertois et du Bocage Carrougien",
+    "departements": [
+      "61"
+    ],
+    "population": 4808,
+    "nb_communes": 19,
+    "acteurs_non_marchands": {
+      "CCAS": 19,
+      "Bibliotheques_municipales": 11,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200072676",
+    "epci_nom": "CC Maine Saosnois",
+    "departements": [
+      "61",
+      "72"
+    ],
+    "population": 27375,
+    "nb_communes": 51,
+    "acteurs_non_marchands": {
+      "CCAS": 51,
+      "Bibliotheques_municipales": 30,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "246100390",
+    "epci_nom": "CC du Val d'Orne",
+    "departements": [
+      "61"
+    ],
+    "population": 5595,
+    "nb_communes": 17,
+    "acteurs_non_marchands": {
+      "CCAS": 17,
+      "Bibliotheques_municipales": 10,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "246100663",
+    "epci_nom": "CU d'Alençon",
+    "departements": [
+      "61",
+      "72"
+    ],
+    "population": 55102,
+    "nb_communes": 31,
+    "acteurs_non_marchands": {
+      "CCAS": 31,
+      "Bibliotheques_municipales": 18,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 6,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 3,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 2,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "200010700",
+    "epci_nom": "CA Caux Seine Agglo",
+    "departements": [
+      "76"
+    ],
+    "population": 77990,
+    "nb_communes": 50,
+    "acteurs_non_marchands": {
+      "CCAS": 50,
+      "Bibliotheques_municipales": 30,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 9,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 5,
+      "Associations_sport_sante": 3,
+      "Associations_handicap": 2,
+      "Associations_insertion": 3,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "200023414",
+    "epci_nom": "Métropole Rouen Normandie",
+    "departements": [
+      "76"
+    ],
+    "population": 503000,
+    "nb_communes": 71,
+    "acteurs_non_marchands": {
+      "CCAS": 71,
+      "Bibliotheques_municipales": 42,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 8,
+      "EHPAD_publics": 62,
+      "IME_publics": 12,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 33,
+      "Associations_sport_sante": 25,
+      "Associations_handicap": 16,
+      "Associations_insertion": 20,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "200068534",
+    "epci_nom": "CC Terroir de Caux",
+    "departements": [
+      "76"
+    ],
+    "population": 37698,
+    "nb_communes": 79,
+    "acteurs_non_marchands": {
+      "CCAS": 79,
+      "Bibliotheques_municipales": 47,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 4,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 2,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200069722",
+    "epci_nom": "CC Interrégionale Aumale - Blangy-sur-Bresle",
+    "departements": [
+      "76",
+      "80"
+    ],
+    "population": 21154,
+    "nb_communes": 44,
+    "acteurs_non_marchands": {
+      "CCAS": 44,
+      "Bibliotheques_municipales": 26,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200069821",
+    "epci_nom": "CA Fécamp Caux Littoral Agglomération",
+    "departements": [
+      "76"
+    ],
+    "population": 37393,
+    "nb_communes": 33,
+    "acteurs_non_marchands": {
+      "CCAS": 33,
+      "Bibliotheques_municipales": 19,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 4,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 2,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200069839",
+    "epci_nom": "CC de la Côte d'Albâtre",
+    "departements": [
+      "76"
+    ],
+    "population": 27397,
+    "nb_communes": 63,
+    "acteurs_non_marchands": {
+      "CCAS": 63,
+      "Bibliotheques_municipales": 37,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200069847",
+    "epci_nom": "CC Plateau de Caux",
+    "departements": [
+      "76"
+    ],
+    "population": 21340,
+    "nb_communes": 40,
+    "acteurs_non_marchands": {
+      "CCAS": 40,
+      "Bibliotheques_municipales": 24,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200070068",
+    "epci_nom": "CC Bray-Eawy",
+    "departements": [
+      "76"
+    ],
+    "population": 24737,
+    "nb_communes": 46,
+    "acteurs_non_marchands": {
+      "CCAS": 46,
+      "Bibliotheques_municipales": 27,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "200070449",
+    "epci_nom": "CC Inter-Caux-Vexin",
+    "departements": [
+      "76"
+    ],
+    "population": 56138,
+    "nb_communes": 64,
+    "acteurs_non_marchands": {
+      "CCAS": 64,
+      "Bibliotheques_municipales": 38,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 7,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 3,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 2,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "200084952",
+    "epci_nom": "CU Le Havre Seine Métropole",
+    "departements": [
+      "76"
+    ],
+    "population": 267308,
+    "nb_communes": 54,
+    "acteurs_non_marchands": {
+      "CCAS": 54,
+      "Bibliotheques_municipales": 32,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 4,
+      "EHPAD_publics": 33,
+      "IME_publics": 6,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 17,
+      "Associations_sport_sante": 13,
+      "Associations_handicap": 8,
+      "Associations_insertion": 10,
+      "CROS_comites_sportifs": 1,
+      "Ligues_comites_departementaux": 3
+    }
+  },
+  {
+    "epci_code": "247600505",
+    "epci_nom": "CC Campagne-de-Caux",
+    "departements": [
+      "76"
+    ],
+    "population": 15068,
+    "nb_communes": 22,
+    "acteurs_non_marchands": {
+      "CCAS": 22,
+      "Bibliotheques_municipales": 13,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "247600588",
+    "epci_nom": "CC des Villes Soeurs",
+    "departements": [
+      "76",
+      "80"
+    ],
+    "population": 35390,
+    "nb_communes": 28,
+    "acteurs_non_marchands": {
+      "CCAS": 28,
+      "Bibliotheques_municipales": 16,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 4,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 2,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "247600604",
+    "epci_nom": "CC de Londinières",
+    "departements": [
+      "76"
+    ],
+    "population": 5166,
+    "nb_communes": 16,
+    "acteurs_non_marchands": {
+      "CCAS": 16,
+      "Bibliotheques_municipales": 9,
+      "Missions_Locales": 0,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 1,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "247600620",
+    "epci_nom": "CC Yvetot Normandie",
+    "departements": [
+      "76"
+    ],
+    "population": 26248,
+    "nb_communes": 19,
+    "acteurs_non_marchands": {
+      "CCAS": 19,
+      "Bibliotheques_municipales": 11,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "247600646",
+    "epci_nom": "CC Caux - Austreberthe",
+    "departements": [
+      "76"
+    ],
+    "population": 24855,
+    "nb_communes": 9,
+    "acteurs_non_marchands": {
+      "CCAS": 9,
+      "Bibliotheques_municipales": 5,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 3,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "247600729",
+    "epci_nom": "CC Falaises du Talou",
+    "departements": [
+      "76"
+    ],
+    "population": 23382,
+    "nb_communes": 24,
+    "acteurs_non_marchands": {
+      "CCAS": 24,
+      "Bibliotheques_municipales": 14,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 2,
+      "IME_publics": 1,
+      "CLIC_points_info": 0,
+      "MJC_centres_sociaux": 1,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  },
+  {
+    "epci_code": "247600786",
+    "epci_nom": "CA de la Région Dieppoise",
+    "departements": [
+      "76"
+    ],
+    "population": 46088,
+    "nb_communes": 16,
+    "acteurs_non_marchands": {
+      "CCAS": 16,
+      "Bibliotheques_municipales": 9,
+      "Missions_Locales": 1,
+      "France_Travail_agences": 1,
+      "EHPAD_publics": 5,
+      "IME_publics": 1,
+      "CLIC_points_info": 1,
+      "MJC_centres_sociaux": 3,
+      "Associations_sport_sante": 2,
+      "Associations_handicap": 1,
+      "Associations_insertion": 1,
+      "CROS_comites_sportifs": 0,
+      "Ligues_comites_departementaux": 1
+    }
+  }
+]

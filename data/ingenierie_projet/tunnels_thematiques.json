@@ -1,0 +1,294 @@
+{
+  "version": "2.0",
+  "description": "3 tunnels thématiques selon la nature du projet. Chaque tunnel adapte le nombre d'étapes et le contenu.",
+  "tunnels": {
+    "action_directe": {
+      "name": "Tunnel Action Directe",
+      "icon": "⚡",
+      "couleur": "#52B788",
+      "description": "Pour les projets opérationnels : sport-santé, inclusion, animation locale. Le club agit seul ou avec 1-2 partenaires.",
+      "public_cible": "Club qui veut lancer une action concrète (atelier, programme, événement récurrent)",
+      "duree_estimation_totale": "4-6 heures sur 1-2 semaines",
+      "nb_etapes": 4,
+      "etapes": [
+        {
+          "numero": 1,
+          "slug": "concept",
+          "titre": "Cadrer l'action",
+          "duree_estimee": "1h",
+          "objectif": "Définir le problème, les bénéficiaires et la solution en 1 page",
+          "questions_guide": [
+            "Quel problème concret voulez-vous résoudre ?",
+            "Qui sont les bénéficiaires (nombre, profil, localisation) ?",
+            "Quelle action proposez-vous (atelier, programme, animation) ?",
+            "Pourquoi maintenant ? Quel déclencheur ?"
+          ],
+          "livrable": "Fiche action (1 page)",
+          "scoring_checkpoint": ["beneficiaires_identifies", "impact_mesurable"]
+        },
+        {
+          "numero": 2,
+          "slug": "ressources",
+          "titre": "Mobiliser les ressources",
+          "duree_estimee": "1h",
+          "objectif": "Identifier les moyens nécessaires (humains, financiers, matériels)",
+          "questions_guide": [
+            "De quels moyens humains avez-vous besoin (bénévoles, salariés, prestataires) ?",
+            "Quel budget estimatif (première année) ?",
+            "Quelles ressources matérielles (salle, matériel, transport) ?",
+            "Quelles compétences clés vous manquent ?"
+          ],
+          "livrable": "Budget prévisionnel + plan ressources humaines",
+          "scoring_checkpoint": ["budget_realiste", "capacite_humaine"]
+        },
+        {
+          "numero": 3,
+          "slug": "partenaires_minimum",
+          "titre": "Identifier 1-2 partenaires clés",
+          "duree_estimee": "1h",
+          "objectif": "Trouver le minimum de partenaires pour lancer l'action",
+          "questions_guide": [
+            "Quel est le partenaire indispensable (mairie, association, entreprise) ?",
+            "Quel est le partenaire complémentaire (financeur, relais) ?",
+            "Comment les contacter ? Quel premier pas ?"
+          ],
+          "livrable": "Liste 2 partenaires + plan de contact",
+          "scoring_checkpoint": ["partenaires_engages"]
+        },
+        {
+          "numero": 4,
+          "slug": "lancement",
+          "titre": "Lancer la première session",
+          "duree_estimee": "2h",
+          "objectif": "Planifier et lancer la première session de l'action",
+          "questions_guide": [
+            "Quelle est la date de la première session ?",
+            "Quel est le plan de communication ?",
+            "Comment allez-vous mesurer les premiers résultats ?",
+            "Quel est le critère de succès à 3 mois ?"
+          ],
+          "livrable": "Plan de lancement + KPIs de suivi",
+          "scoring_checkpoint": ["calendrier_realiste", "communication_prevue"]
+        }
+      ]
+    },
+    "partenarial": {
+      "name": "Tunnel Partenarial",
+      "icon": "🤝",
+      "couleur": "#F4A261",
+      "description": "Pour les projets de sponsoring, mécénat, événementiel. Le club cherche des partenaires financiers ou opérationnels.",
+      "public_cible": "Club qui veut monter un projet avec 3+ partenaires (sponsoring, événement, programme co-construit)",
+      "duree_estimation_totale": "6-8 heures sur 2-3 semaines",
+      "nb_etapes": 5,
+      "etapes": [
+        {
+          "numero": 1,
+          "slug": "concept",
+          "titre": "Cadrer le projet partenarial",
+          "duree_estimee": "1h",
+          "objectif": "Définir le projet et ce qu'il apporte aux partenaires",
+          "questions_guide": [
+            "Quel projet voulez-vous co-construire ?",
+            "Quelle valeur pour les partenaires (visibilité, RSE, ancrage territorial) ?",
+            "Quel budget total ? Quelle part financeur ?",
+            "Quel est le territoire d'action ?"
+          ],
+          "livrable": "Fiche projet partenarial (1 page)",
+          "scoring_checkpoint": ["alignement_territoire", "impact_mesurable"]
+        },
+        {
+          "numero": 2,
+          "slug": "cartographie_partenaires",
+          "titre": "Cartographier les partenaires potentiels",
+          "duree_estimee": "2h",
+          "objectif": "Identifier 10-15 partenaires potentiels (entreprises, institutions)",
+          "questions_guide": [
+            "Quelles entreprises locales ont un intérêt (taille, secteur, valeurs) ?",
+            "Quelles institutions peuvent soutenir (mairie, EPCI, département) ?",
+            "Quels sont les 3-5 partenaires prioritaires ?",
+            "Quel est le réseau d'introduction (bénévoles, élus, clients) ?"
+          ],
+          "livrable": "Cartographie 10-15 partenaires + shortlist 3-5",
+          "scoring_checkpoint": ["partenaires_engages"],
+          "utilise_api": "matching"
+        },
+        {
+          "numero": 3,
+          "slug": "offre_partenaire",
+          "titre": "Construire l'offre partenaire",
+          "duree_estimee": "1h",
+          "objectif": "Définir 3 niveaux d'offre (Bronze, Argent, Or)",
+          "questions_guide": [
+            "Quels contreparties pour chaque niveau (visibilité, hospitalité, activation) ?",
+            "Quel montant pour chaque niveau ?",
+            "Quel engagement de durée (1 an, 3 ans) ?",
+            "Quelle mesure d'impact pour le partenaire ?"
+          ],
+          "livrable": "Packs sponsoring (Bronze / Argent / Or)",
+          "scoring_checkpoint": ["budget_realiste"]
+        },
+        {
+          "numero": 4,
+          "slug": "premier_contact",
+          "titre": "Préparer le premier contact",
+          "duree_estimee": "1h",
+          "objectif": "Construire le pitch et la liste des premiers contacts",
+          "questions_guide": [
+            "Quel pitch (30 secondes, 3 minutes) ?",
+            "Quelle liste de 5 premiers contacts ?",
+            "Quel canal (LinkedIn, email, téléphone, recommandation) ?",
+            "Quel objectif de la première rencontre ?"
+          ],
+          "livrable": "Pitch + liste 5 contacts",
+          "scoring_checkpoint": ["communication_prevue"]
+        },
+        {
+          "numero": 5,
+          "slug": "negociation",
+          "titre": "Négocier et signer",
+          "duree_estimee": "1h",
+          "objectif": "Conduire la négociation jusqu'à la signature",
+          "questions_guide": [
+            "Quelle est votre marge de négociation ?",
+            "Quels sont les points non négociables ?",
+            "Quel est le calendrier de signature ?",
+            "Quel suivi post-signature ?"
+          ],
+          "livrable": "Convention signée + plan de suivi",
+          "scoring_checkpoint": ["gouvernance", "experience_club"]
+        }
+      ]
+    },
+    "transformation": {
+      "name": "Tunnel Transformation",
+      "icon": "🚀",
+      "couleur": "#1B2A4A",
+      "description": "Pour les projets de transformation : changement de modèle économique, nouvelle activité, projet structurant multi-acteurs.",
+      "public_cible": "Club qui veut transformer son modèle (nouvelle activité, diversification, projet structurant 3+ ans)",
+      "duree_estimation_totale": "10-15 heures sur 4-8 semaines",
+      "nb_etapes": 7,
+      "etapes": [
+        {
+          "numero": 1,
+          "slug": "diagnostic",
+          "titre": "Diagnostic territorial et stratégique",
+          "duree_estimee": "2h",
+          "objectif": "Comprendre le contexte territorial et les besoins non couverts",
+          "questions_guide": [
+            "Quelles sont les forces/faiblesses du club ?",
+            "Quelles sont les opportunités/menaces du territoire ?",
+            "Quels besoins non couverts par les acteurs existants ?",
+            "Quel est le positionnement stratégique du club ?"
+          ],
+          "livrable": "Diagnostic territorial + SWOT",
+          "scoring_checkpoint": ["alignement_territoire", "experience_club"]
+        },
+        {
+          "numero": 2,
+          "slug": "vision",
+          "titre": "Définir la vision",
+          "duree_estimee": "1h",
+          "objectif": "Formuler une vision à 3 ans et un cap stratégique",
+          "questions_guide": [
+            "Quelle est votre vision à 3 ans ?",
+            "Quels sont les 3 objectifs stratégiques ?",
+            "Quel est le différenciateur vs acteurs existants ?",
+            "Quel est l'engagement des parties prenantes ?"
+          ],
+          "livrable": "Note de vision (2 pages)",
+          "scoring_checkpoint": ["alignement_territoire"]
+        },
+        {
+          "numero": 3,
+          "slug": "modele_eco",
+          "titre": "Construire le modèle économique",
+          "duree_estimee": "2h",
+          "objectif": "Définir les sources de revenus et la structure de coûts",
+          "questions_guide": [
+            "Quelles sont les sources de revenus (adhésions, prestations, subventions, sponsoring) ?",
+            "Quelle est la structure de coûts (RH, locaux, matériel, communication) ?",
+            "Quel est le seuil de rentabilité ?",
+            "Quel plan de financement sur 3 ans ?"
+          ],
+          "livrable": "Modèle économique (tableur 3 ans)",
+          "scoring_checkpoint": ["budget_realiste"]
+        },
+        {
+          "numero": 4,
+          "slug": "gouvernance",
+          "titre": "Mettre en place la gouvernance",
+          "duree_estimee": "1h",
+          "objectif": "Définir les instances, les rôles et les processus de décision",
+          "questions_guide": [
+            "Quelle gouvernance (CA, bureau, comité de pilotage) ?",
+            "Quels sont les rôles (président, directeur, chargé de projet) ?",
+            "Quels sont les processus de décision ?",
+            "Quel suivi (KPIs, reporting) ?"
+          ],
+          "livrable": "Note de gouvernance",
+          "scoring_checkpoint": ["gouvernance"]
+        },
+        {
+          "numero": 5,
+          "slug": "partenaires_strategiques",
+          "titre": "Identifier les partenaires stratégiques",
+          "duree_estimee": "2h",
+          "objectif": "Cartographier 20+ partenaires et prioriser 5-7",
+          "questions_guide": [
+            "Quels sont les partenaires stratégiques (financeurs, opérateurs, relais) ?",
+            "Quel est le rôle de chacun dans la gouvernance ?",
+            "Quelles sont les conditions de partenariat ?",
+            "Quel plan de contact ?"
+          ],
+          "livrable": "Cartographie 20+ partenaires + shortlist 5-7",
+          "scoring_checkpoint": ["partenaires_engages"],
+          "utilise_api": "matching"
+        },
+        {
+          "numero": 6,
+          "slug": "plan_action",
+          "titre": "Construire le plan d'action 3 ans",
+          "duree_estimee": "1h",
+          "objectif": "Détailler les actions par année avec KPIs",
+          "questions_guide": [
+            "Quelles sont les grandes actions par année (2026, 2027, 2028) ?",
+            "Quels sont les KPIs par action ?",
+            "Quel budget par année ?",
+            "Quels sont les jalons clés ?"
+          ],
+          "livrable": "Plan d'action 3 ans (tableur)",
+          "scoring_checkpoint": ["calendrier_realiste", "impact_mesurable"]
+        },
+        {
+          "numero": 7,
+          "slug": "lancement",
+          "titre": "Lancer le projet",
+          "duree_estimee": "1h",
+          "objectif": "Planifier le lancement opérationnel",
+          "questions_guide": [
+            "Quelle est la date de lancement ?",
+            "Quel est le plan de communication ?",
+            "Quels sont les premiers indicateurs de succès ?",
+            "Quel suivi mensuel ?"
+          ],
+          "livrable": "Plan de lancement + tableau de bord",
+          "scoring_checkpoint": ["communication_prevue", "capacite_humaine"]
+        }
+      ]
+    }
+  },
+  "regles_routage": {
+    "description": "Règles pour orienter un club vers le bon tunnel selon son profil",
+    "criteres": [
+      {
+        "nom": "Type de projet",
+        "question": "Quel type de projet voulez-vous lancer ?",
+        "options": [
+          { "valeur": "action", "label": "Action directe (sport-santé, inclusion, animation)", "tunnel": "action_directe" },
+          { "valeur": "partenarial", "label": "Projet partenarial (sponsoring, événement, co-construction)", "tunnel": "partenarial" },
+          { "valeur": "transformation", "label": "Transformation (nouveau modèle, projet structurant)", "tunnel": "transformation" }
+        ]
+      }
+    ]
+  }
+}

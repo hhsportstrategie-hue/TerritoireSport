@@ -1,0 +1,205 @@
+{
+  "name": "Scoring de Faisabilité Projet",
+  "version": "1.0",
+  "description": "Évaluation automatique de la faisabilité d'un projet à impact pour un club sportif amateur, basée sur 8 critères pondérés",
+  "echelle": "0-100 points",
+  "interpretation": [
+    {"score_min": 0, "score_max": 30, "niveau": "Non faisable", "couleur": "rouge", "recommandation": "Projet trop ambitieux pour le club. Revoir le scope ou renforcer les ressources."},
+    {"score_min": 31, "score_max": 50, "niveau": "Difficile", "couleur": "orange", "recommandation": "Projet faisable avec accompagnement. Identifier les manques et chercher des partenaires."},
+    {"score_min": 51, "score_max": 70, "niveau": "Faisable", "couleur": "jaune", "recommandation": "Projet réaliste. Bien préparer le plan d'action et sécuriser les partenaires clés."},
+    {"score_min": 71, "score_max": 85, "niveau": "Très faisable", "couleur": "vert clair", "recommandation": "Projet solide. Lancer en confiance avec suivi régulier."},
+    {"score_min": 86, "score_max": 100, "niveau": "Excellent", "couleur": "vert foncé", "recommandation": "Projet optimal. Toutes les conditions sont réunies."}
+  ],
+  "criteres": [
+    {
+      "numero": 1,
+      "slug": "alignement_territoire",
+      "titre": "Alignement avec les besoins du territoire",
+      "poids": 15,
+      "description": "Le projet répond à un problème clairement identifié sur le territoire",
+      "evaluation": {
+        "0-3": "Aucun problème identifié ou problème non sourcé",
+        "4-7": "Problème identifié mais peu sourcé",
+        "8-12": "Problème identifié et sourcé (chiffres, études)",
+        "13-15": "Problème clairement identifié, chiffré et validé par les acteurs locaux"
+      },
+      "donnees_requises": [
+        "Diagnostic territorial réalisé",
+        "Statistiques INSEE / FILOSOFI / DREES",
+        "Validation par acteurs locaux (mairie, associations)"
+      ]
+    },
+    {
+      "numero": 2,
+      "slug": "capacite_humaine",
+      "titre": "Capacité humaine (bénévoles + salariés)",
+      "poids": 15,
+      "description": "Le club a les ressources humaines pour porter le projet",
+      "evaluation": {
+        "0-3": "Aucun bénévole ni salarié mobilisable",
+        "4-7": "1-2 bénévoles disponibles ponctuellement",
+        "8-12": "3-5 bénévoles actifs + 1 salarié mobilisable",
+        "13-15": "6+ bénévoles actifs + équipe salariée dédiée"
+      },
+      "donnees_requises": [
+        "Nombre de bénévoles actifs",
+        "Nombre de salariés et disponibilité",
+        "Compétences clés disponibles"
+      ]
+    },
+    {
+      "numero": 3,
+      "slug": "budget_realiste",
+      "titre": "Budget réaliste et finançable",
+      "poids": 12,
+      "description": "Le budget est cohérent avec les ressources et les AAP disponibles",
+      "evaluation": {
+        "0-3": "Budget sous-estimé ou non chiffré",
+        "4-7": "Budget chiffré mais sources de financement non identifiées",
+        "8-10": "Budget chiffré + 1 source de financement identifiée",
+        "11-12": "Budget chiffré + 2-3 sources de financement confirmées"
+      },
+      "donnees_requises": [
+        "Budget prévisionnel détaillé",
+        "AAP identifiés et éligibles",
+        "Co-financements confirmés"
+      ]
+    },
+    {
+      "numero": 4,
+      "slug": "partenaires_engages",
+      "titre": "Partenaires engagés",
+      "poids": 12,
+      "description": "Le projet a 3+ partenaires confirmés (publics, privés, associatifs)",
+      "evaluation": {
+        "0-3": "Aucun partenaire identifié",
+        "4-7": "1-2 partenaires identifiés mais non confirmés",
+        "8-10": "3+ partenaires identifiés, 1 confirmé",
+        "11-12": "3+ partenaires confirmés avec engagements formalisés"
+      },
+      "donnees_requises": [
+        "Cartographie des acteurs",
+        "Premiers contacts pris",
+        "Engagements formalisés (mail, convention)"
+      ]
+    },
+    {
+      "numero": 5,
+      "slug": "experience_club",
+      "titre": "Expérience du club sur ce type de projet",
+      "poids": 10,
+      "description": "Le club a déjà porté des projets similaires",
+      "evaluation": {
+        "0-2": "Aucune expérience",
+        "3-5": "1 projet similaire réalisé",
+        "6-8": "2-3 projets similaires réalisés",
+        "9-10": "4+ projets similaires ou projet identique déjà porté"
+      },
+      "donnees_requises": [
+        "Historique des projets du club",
+        "Références et bilans",
+        "Témoignages de partenaires précédents"
+      ]
+    },
+    {
+      "numero": 6,
+      "slug": "beneficiaires_identifies",
+      "titre": "Bénéficiaires clairement identifiés",
+      "poids": 10,
+      "description": "Le projet cible un public précis, chiffré et accessible",
+      "evaluation": {
+        "0-2": "Bénéficiaires non identifiés",
+        "3-5": "Bénéficiaires identifiés mais non chiffrés",
+        "6-8": "Bénéficiaires identifiés et chiffrés (nombre, profil)",
+        "9-10": "Bénéficiaires identifiés, chiffrés et déjà contactés / inscrits"
+      },
+      "donnees_requises": [
+        "Profil des bénéficiaires",
+        "Nombre estimé",
+        "Liste d'attente ou inscriptions"
+      ]
+    },
+    {
+      "numero": 7,
+      "slug": "calendrier_realiste",
+      "titre": "Calendrier réaliste",
+      "poids": 8,
+      "description": "Le calendrier tient compte des délais administratifs et des saisons",
+      "evaluation": {
+        "0-2": "Pas de calendrier",
+        "3-5": "Calendrier indicatif sans jalons",
+        "6-7": "Calendrier détaillé avec jalons",
+        "8": "Calendrier détaillé, jalons validés, marges de sécurité"
+      },
+      "donnees_requises": [
+        "Plan d'action détaillé",
+        "Jalons de validation",
+        "Prise en compte des vacances / saisons sportives"
+      ]
+    },
+    {
+      "numero": 8,
+      "slug": "impact_mesurable",
+      "titre": "Impact mesurable",
+      "poids": 8,
+      "description": "Le projet prévoit des indicateurs d'impact chiffrés et un dispositif d'évaluation",
+      "evaluation": {
+        "0-2": "Aucun indicateur défini",
+        "3-5": "Indicateurs qualitatifs uniquement",
+        "6-7": "Indicateurs quantitatifs définis",
+        "8": "Indicateurs quantitatifs + dispositif d'évaluation (enquête, bilan)"
+      },
+      "donnees_requises": [
+        "Tableau de bord des indicateurs",
+        "Méthode de collecte",
+        "Calendrier d'évaluation"
+      ]
+    },
+    {
+      "numero": 9,
+      "slug": "communication_prevue",
+      "titre": "Communication prévue",
+      "poids": 5,
+      "description": "Le projet prévoit un plan de communication (interne + externe)",
+      "evaluation": {
+        "0-1": "Pas de plan de communication",
+        "2-3": "Communication basique (réseaux sociaux)",
+        "4": "Plan de communication structuré (cibles, supports, calendrier)"
+      },
+      "donnees_requises": [
+        "Cibles de communication",
+        "Supports (print, web, réseaux)",
+        "Calendrier de communication"
+      ]
+    },
+    {
+      "numero": 10,
+      "slug": "gouvernance",
+      "titre": "Gouvernance du projet",
+      "poids": 5,
+      "description": "Le projet a une gouvernance claire (chef de projet, comité de pilotage)",
+      "evaluation": {
+        "0-1": "Pas de gouvernance définie",
+        "2-3": "1 référent projet identifié",
+        "4-5": "Chef de projet + comité de pilotage"
+      },
+      "donnees_requises": [
+        "Chef de projet identifié",
+        "Comité de pilotage constitué",
+        "Réunions de suivi planifiées"
+      ]
+    }
+  ],
+  "calcul_score": {
+    "formule": "Somme des scores × poids / 100",
+    "score_max": 100,
+    "affichage": "Score sur 100 avec code couleur"
+  },
+  "recommandations_automatiques": {
+    "score_inf_30": "Revoir le scope du projet. Choisir un projet moins ambitieux ou renforcer les ressources.",
+    "score_31_50": "Identifier les manques prioritaires. Chercher des partenaires pour compenser.",
+    "score_51_70": "Bien préparer le plan d'action. Sécuriser les partenaires clés.",
+    "score_71_85": "Lancer en confiance. Mettre en place un suivi régulier.",
+    "score_86_100": "Toutes les conditions sont réunies. Lancer le projet."
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "version": "1.0",
+  "description": "Questionnaire de routage : oriente le club vers le bon tunnel selon son profil et son projet",
+  "questions": [
+    {
+      "slug": "nature_projet",
+      "question": "Quelle est la nature principale de votre projet ?",
+      "aide": "Le type de projet détermine le tunnel le plus adapté.",
+      "options": [
+        {
+          "valeur": "operationnel",
+          "label": "Action opérationnelle",
+          "description": "Ateliers, programmes, animations récurrentes auprès de bénéficiaires",
+          "exemples": "Sport-santé seniors, inclusion handicap, école des sports",
+          "score": 1
+        },
+        {
+          "valeur": "partenarial",
+          "label": "Projet partenarial",
+          "description": "Sponsoring, mécénat, événement co-construit avec partenaires",
+          "exemples": "Tournoi entreprises, programme co-construit avec mairie, mécénat",
+          "score": 2
+        },
+        {
+          "valeur": "structurant",
+          "label": "Projet structurant",
+          "description": "Changement de modèle, nouvelle activité, projet multi-années",
+          "exemples": "Nouvelle section, transformation modèle éco, projet 3+ ans",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "slug": "nb_partenaires",
+      "question": "Combien de partenaires visez-vous ?",
+      "aide": "Le nombre de partenaires influence la complexité du tunnel.",
+      "options": [
+        {
+          "valeur": "0_1",
+          "label": "0-1 partenaire",
+          "description": "Action portée seul ou avec 1 partenaire unique",
+          "score": 1
+        },
+        {
+          "valeur": "2_3",
+          "label": "2-3 partenaires",
+          "description": "Co-construction avec quelques partenaires ciblés",
+          "score": 2
+        },
+        {
+          "valeur": "4_plus",
+          "label": "4+ partenaires",
+          "description": "Projet multi-acteurs avec gouvernance partagée",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "slug": "horizon",
+      "question": "Quel est votre horizon de temps ?",
+      "aide": "L'horizon détermine le niveau de structuration nécessaire.",
+      "options": [
+        {
+          "valeur": "court",
+          "label": "Court terme (≤ 6 mois)",
+          "description": "Action ponctuelle ou saisonnière",
+          "score": 1
+        },
+        {
+          "valeur": "moyen",
+          "label": "Moyen terme (6-18 mois)",
+          "description": "Projet avec cycle de vie défini",
+          "score": 2
+        },
+        {
+          "valeur": "long",
+          "label": "Long terme (18+ mois)",
+          "description": "Transformation ou projet structurant multi-années",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "slug": "budget",
+      "question": "Quel budget visez-vous ?",
+      "aide": "Le budget influence le niveau de gouvernance nécessaire.",
+      "options": [
+        {
+          "valeur": "faible",
+          "label": "≤ 5 000 €",
+          "description": "Action légère, autofinancement ou petite subvention",
+          "score": 1
+        },
+        {
+          "valeur": "moyen",
+          "label": "5 000 - 30 000 €",
+          "description": "Projet partenarial avec 1-2 financeurs",
+          "score": 2
+        },
+        {
+          "valeur": "eleve",
+          "label": "30 000 €+",
+          "description": "Projet structurant multi-financeurs",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "slug": "experience",
+      "question": "Avez-vous déjà mené ce type de projet ?",
+      "aide": "L'expérience passée permet de calibrer le niveau d'accompagnement.",
+      "options": [
+        {
+          "valeur": "novice",
+          "label": "Non, c'est une première",
+          "description": "Première fois sur ce type de projet",
+          "score": 1
+        },
+        {
+          "valeur": "intermediaire",
+          "label": "Quelques expériences",
+          "description": "Déjà mené 1-2 projets similaires",
+          "score": 2
+        },
+        {
+          "valeur": "experimente",
+          "label": "Oui, plusieurs fois",
+          "description": "Expérience confirmée sur ce type de projet",
+          "score": 3
+        }
+      ]
+    }
+  ],
+  "regle_routage": {
+    "description": "Score total → tunnel recommandé",
+    "mapping": [
+      {
+        "score_min": 5,
+        "score_max": 8,
+        "tunnel": "action_directe",
+        "label": "Tunnel Action Directe",
+        "raison": "Projet opérationnel avec peu de partenaires → tunnel court et focalisé"
+      },
+      {
+        "score_min": 9,
+        "score_max": 12,
+        "tunnel": "partenarial",
+        "label": "Tunnel Partenarial",
+        "raison": "Projet avec partenaires ciblés → tunnel de co-construction"
+      },
+      {
+        "score_min": 13,
+        "score_max": 15,
+        "tunnel": "transformation",
+        "label": "Tunnel Transformation",
+        "raison": "Projet structurant multi-acteurs → tunnel complet avec gouvernance"
+      }
+    ]
+  }
+}

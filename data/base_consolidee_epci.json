@@ -1,0 +1,1289 @@
+[
+  {
+    "epci_code": "200023414",
+    "epci_nom": "Métropole Rouen Normandie",
+    "population": 503000,
+    "communes": 71,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 680,
+    "rna_count": 13695,
+    "associations_sport": 1942,
+    "sirene_count": 205617,
+    "res_count": 1806,
+    "densite_finess": 13.5,
+    "densite_rna": 272.3,
+    "densite_sirene": 4087.8,
+    "densite_res": 35.9
+  },
+  {
+    "epci_code": "200065597",
+    "epci_nom": "CU Caen la Mer",
+    "population": 281165,
+    "communes": 48,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 551,
+    "rna_count": 10801,
+    "associations_sport": 1606,
+    "sirene_count": 150291,
+    "res_count": 1237,
+    "densite_finess": 19.6,
+    "densite_rna": 384.2,
+    "densite_sirene": 5345.3,
+    "densite_res": 44.0
+  },
+  {
+    "epci_code": "200084952",
+    "epci_nom": "CU Le Havre Seine Métropole",
+    "population": 267308,
+    "communes": 54,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 396,
+    "rna_count": 6777,
+    "associations_sport": 1131,
+    "sirene_count": 107785,
+    "res_count": 859,
+    "densite_finess": 14.8,
+    "densite_rna": 253.5,
+    "densite_sirene": 4032.2,
+    "densite_res": 32.1
+  },
+  {
+    "epci_code": "200067205",
+    "epci_nom": "CA du Cotentin",
+    "population": 179231,
+    "communes": 129,
+    "departements": [
+      "50"
+    ],
+    "finess_count": 268,
+    "rna_count": 5808,
+    "associations_sport": 941,
+    "sirene_count": 70266,
+    "res_count": 723,
+    "densite_finess": 15.0,
+    "densite_rna": 324.1,
+    "densite_sirene": 3920.4,
+    "densite_res": 40.3
+  },
+  {
+    "epci_code": "200040277",
+    "epci_nom": "CA Agglo du Pays de Dreux",
+    "population": 116271,
+    "communes": 81,
+    "departements": [
+      "27",
+      "28"
+    ],
+    "finess_count": 9,
+    "rna_count": 214,
+    "associations_sport": 36,
+    "sirene_count": 3474,
+    "res_count": 62,
+    "densite_finess": 0.8,
+    "densite_rna": 18.4,
+    "densite_sirene": 298.8,
+    "densite_res": 5.3
+  },
+  {
+    "epci_code": "200071454",
+    "epci_nom": "CA Evreux Portes de Normandie",
+    "population": 113337,
+    "communes": 74,
+    "departements": [
+      "27"
+    ],
+    "finess_count": 211,
+    "rna_count": 2996,
+    "associations_sport": 506,
+    "sirene_count": 49437,
+    "res_count": 685,
+    "densite_finess": 18.6,
+    "densite_rna": 264.3,
+    "densite_sirene": 4361.9,
+    "densite_res": 60.4
+  },
+  {
+    "epci_code": "200089456",
+    "epci_nom": "CA Seine-Eure",
+    "population": 103526,
+    "communes": 60,
+    "departements": [
+      "27"
+    ],
+    "finess_count": 117,
+    "rna_count": 2511,
+    "associations_sport": 508,
+    "sirene_count": 40200,
+    "res_count": 508,
+    "densite_finess": 11.3,
+    "densite_rna": 242.5,
+    "densite_sirene": 3883.1,
+    "densite_res": 49.1
+  },
+  {
+    "epci_code": "200069425",
+    "epci_nom": "CA Mont-Saint-Michel-Normandie",
+    "population": 87186,
+    "communes": 95,
+    "departements": [
+      "50"
+    ],
+    "finess_count": 168,
+    "rna_count": 3084,
+    "associations_sport": 443,
+    "sirene_count": 44513,
+    "res_count": 486,
+    "densite_finess": 19.3,
+    "densite_rna": 353.7,
+    "densite_sirene": 5105.5,
+    "densite_res": 55.7
+  },
+  {
+    "epci_code": "200072312",
+    "epci_nom": "CA Seine Normandie Agglomération",
+    "population": 83284,
+    "communes": 61,
+    "departements": [
+      "27"
+    ],
+    "finess_count": 110,
+    "rna_count": 2024,
+    "associations_sport": 368,
+    "sirene_count": 35150,
+    "res_count": 383,
+    "densite_finess": 13.2,
+    "densite_rna": 243.0,
+    "densite_sirene": 4220.5,
+    "densite_res": 46.0
+  },
+  {
+    "epci_code": "200010700",
+    "epci_nom": "CA Caux Seine Agglo",
+    "population": 77990,
+    "communes": 50,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 86,
+    "rna_count": 1707,
+    "associations_sport": 343,
+    "sirene_count": 23013,
+    "res_count": 399,
+    "densite_finess": 11.0,
+    "densite_rna": 218.9,
+    "densite_sirene": 2950.8,
+    "densite_res": 51.2
+  },
+  {
+    "epci_code": "200066389",
+    "epci_nom": "CA Saint-Lô Agglo",
+    "population": 76800,
+    "communes": 61,
+    "departements": [
+      "50"
+    ],
+    "finess_count": 129,
+    "rna_count": 2952,
+    "associations_sport": 490,
+    "sirene_count": 31806,
+    "res_count": 437,
+    "densite_finess": 16.8,
+    "densite_rna": 384.4,
+    "densite_sirene": 4141.4,
+    "densite_res": 56.9
+  },
+  {
+    "epci_code": "200069532",
+    "epci_nom": "CA Lisieux Normandie",
+    "population": 72636,
+    "communes": 53,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 110,
+    "rna_count": 2051,
+    "associations_sport": 361,
+    "sirene_count": 32866,
+    "res_count": 300,
+    "densite_finess": 15.1,
+    "densite_rna": 282.4,
+    "densite_sirene": 4524.8,
+    "densite_res": 41.3
+  },
+  {
+    "epci_code": "200070449",
+    "epci_nom": "CC Inter-Caux-Vexin",
+    "population": 56138,
+    "communes": 64,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 170,
+    "rna_count": 2469,
+    "associations_sport": 395,
+    "sirene_count": 38262,
+    "res_count": 258,
+    "densite_finess": 30.3,
+    "densite_rna": 439.8,
+    "densite_sirene": 6815.7,
+    "densite_res": 46.0
+  },
+  {
+    "epci_code": "246100663",
+    "epci_nom": "CU d'Alençon",
+    "population": 55102,
+    "communes": 31,
+    "departements": [
+      "61",
+      "72"
+    ],
+    "finess_count": 105,
+    "rna_count": 1716,
+    "associations_sport": 302,
+    "sirene_count": 21898,
+    "res_count": 254,
+    "densite_finess": 19.1,
+    "densite_rna": 311.4,
+    "densite_sirene": 3974.1,
+    "densite_res": 46.1
+  },
+  {
+    "epci_code": "200066413",
+    "epci_nom": "CC Intercom Bernay Terres de Normandie",
+    "population": 54049,
+    "communes": 75,
+    "departements": [
+      "27"
+    ],
+    "finess_count": 71,
+    "rna_count": 1238,
+    "associations_sport": 201,
+    "sirene_count": 19688,
+    "res_count": 356,
+    "densite_finess": 13.1,
+    "densite_rna": 229.1,
+    "densite_sirene": 3642.6,
+    "densite_res": 65.9
+  },
+  {
+    "epci_code": "200035814",
+    "epci_nom": "CA Flers Agglo",
+    "population": 52388,
+    "communes": 42,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 62,
+    "rna_count": 1281,
+    "associations_sport": 192,
+    "sirene_count": 17753,
+    "res_count": 281,
+    "densite_finess": 11.8,
+    "densite_rna": 244.5,
+    "densite_sirene": 3388.8,
+    "densite_res": 53.6
+  },
+  {
+    "epci_code": "200067023",
+    "epci_nom": "CC Coutances Mer et Bocage",
+    "population": 47611,
+    "communes": 48,
+    "departements": [
+      "50"
+    ],
+    "finess_count": 77,
+    "rna_count": 1958,
+    "associations_sport": 315,
+    "sirene_count": 24154,
+    "res_count": 339,
+    "densite_finess": 16.2,
+    "densite_rna": 411.2,
+    "densite_sirene": 5073.2,
+    "densite_res": 71.2
+  },
+  {
+    "epci_code": "200068799",
+    "epci_nom": "CC Intercom de la Vire au Noireau",
+    "population": 46158,
+    "communes": 17,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 96,
+    "rna_count": 1560,
+    "associations_sport": 253,
+    "sirene_count": 19635,
+    "res_count": 216,
+    "densite_finess": 20.8,
+    "densite_rna": 338.0,
+    "densite_sirene": 4253.9,
+    "densite_res": 46.8
+  },
+  {
+    "epci_code": "247600786",
+    "epci_nom": "CA de la Région Dieppoise",
+    "population": 46088,
+    "communes": 16,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 101,
+    "rna_count": 1107,
+    "associations_sport": 176,
+    "sirene_count": 18506,
+    "res_count": 198,
+    "densite_finess": 21.9,
+    "densite_rna": 240.2,
+    "densite_sirene": 4015.4,
+    "densite_res": 43.0
+  },
+  {
+    "epci_code": "200042604",
+    "epci_nom": "CC de Granville, Terre et Mer",
+    "population": 45650,
+    "communes": 32,
+    "departements": [
+      "50"
+    ],
+    "finess_count": 58,
+    "rna_count": 1651,
+    "associations_sport": 236,
+    "sirene_count": 22343,
+    "res_count": 228,
+    "densite_finess": 12.7,
+    "densite_rna": 361.7,
+    "densite_sirene": 4894.4,
+    "densite_res": 49.9
+  },
+  {
+    "epci_code": "200066405",
+    "epci_nom": "CC Roumois Seine",
+    "population": 41848,
+    "communes": 40,
+    "departements": [
+      "27",
+      "76"
+    ],
+    "finess_count": 27,
+    "rna_count": 871,
+    "associations_sport": 192,
+    "sirene_count": 11834,
+    "res_count": 240,
+    "densite_finess": 6.5,
+    "densite_rna": 208.1,
+    "densite_sirene": 2827.9,
+    "densite_res": 57.4
+  },
+  {
+    "epci_code": "200068534",
+    "epci_nom": "CC Terroir de Caux",
+    "population": 37698,
+    "communes": 79,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 44,
+    "rna_count": 1080,
+    "associations_sport": 190,
+    "sirene_count": 14826,
+    "res_count": 187,
+    "densite_finess": 11.7,
+    "densite_rna": 286.5,
+    "densite_sirene": 3932.8,
+    "densite_res": 49.6
+  },
+  {
+    "epci_code": "200069821",
+    "epci_nom": "CA Fécamp Caux Littoral Agglomération",
+    "population": 37393,
+    "communes": 33,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 69,
+    "rna_count": 1046,
+    "associations_sport": 188,
+    "sirene_count": 14372,
+    "res_count": 207,
+    "densite_finess": 18.5,
+    "densite_rna": 279.7,
+    "densite_sirene": 3843.5,
+    "densite_res": 55.4
+  },
+  {
+    "epci_code": "200066462",
+    "epci_nom": "CC Interco Normandie Sud Eure",
+    "population": 37326,
+    "communes": 41,
+    "departements": [
+      "27",
+      "28"
+    ],
+    "finess_count": 65,
+    "rna_count": 955,
+    "associations_sport": 165,
+    "sirene_count": 17853,
+    "res_count": 349,
+    "densite_finess": 17.4,
+    "densite_rna": 255.9,
+    "densite_sirene": 4783.0,
+    "densite_res": 93.5
+  },
+  {
+    "epci_code": "247600588",
+    "epci_nom": "CC des Villes Soeurs",
+    "population": 35390,
+    "communes": 28,
+    "departements": [
+      "76",
+      "80"
+    ],
+    "finess_count": 9,
+    "rna_count": 145,
+    "associations_sport": 25,
+    "sirene_count": 2916,
+    "res_count": 117,
+    "densite_finess": 2.5,
+    "densite_rna": 41.0,
+    "densite_sirene": 824.0,
+    "densite_res": 33.1
+  },
+  {
+    "epci_code": "200068450",
+    "epci_nom": "CC Terres d'Argentan Interco",
+    "population": 33370,
+    "communes": 49,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 65,
+    "rna_count": 1260,
+    "associations_sport": 181,
+    "sirene_count": 16276,
+    "res_count": 210,
+    "densite_finess": 19.5,
+    "densite_rna": 377.6,
+    "densite_sirene": 4877.4,
+    "densite_res": 62.9
+  },
+  {
+    "epci_code": "200071843",
+    "epci_nom": "CC du Vexin Normand",
+    "population": 33079,
+    "communes": 39,
+    "departements": [
+      "27"
+    ],
+    "finess_count": 44,
+    "rna_count": 671,
+    "associations_sport": 127,
+    "sirene_count": 14166,
+    "res_count": 163,
+    "densite_finess": 13.3,
+    "densite_rna": 202.8,
+    "densite_sirene": 4282.5,
+    "densite_res": 49.3
+  },
+  {
+    "epci_code": "200065787",
+    "epci_nom": "CC de Pont-Audemer / Val de Risle",
+    "population": 32598,
+    "communes": 32,
+    "departements": [
+      "27"
+    ],
+    "finess_count": 47,
+    "rna_count": 731,
+    "associations_sport": 132,
+    "sirene_count": 12422,
+    "res_count": 237,
+    "densite_finess": 14.4,
+    "densite_rna": 224.2,
+    "densite_sirene": 3810.7,
+    "densite_res": 72.7
+  },
+  {
+    "epci_code": "200065563",
+    "epci_nom": "CC Normandie-Cabourg-Pays d'Auge",
+    "population": 31981,
+    "communes": 38,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 50,
+    "rna_count": 1123,
+    "associations_sport": 224,
+    "sirene_count": 19474,
+    "res_count": 251,
+    "densite_finess": 15.6,
+    "densite_rna": 351.1,
+    "densite_sirene": 6089.2,
+    "densite_res": 78.5
+  },
+  {
+    "epci_code": "241400555",
+    "epci_nom": "CC de Bayeux Intercom",
+    "population": 29805,
+    "communes": 36,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 78,
+    "rna_count": 929,
+    "associations_sport": 150,
+    "sirene_count": 14926,
+    "res_count": 165,
+    "densite_finess": 26.2,
+    "densite_rna": 311.7,
+    "densite_sirene": 5007.9,
+    "densite_res": 55.4
+  },
+  {
+    "epci_code": "200069730",
+    "epci_nom": "CC des Quatre Rivières en Bray",
+    "population": 28467,
+    "communes": 52,
+    "departements": [
+      "27",
+      "76"
+    ],
+    "finess_count": 48,
+    "rna_count": 870,
+    "associations_sport": 144,
+    "sirene_count": 13373,
+    "res_count": 130,
+    "densite_finess": 16.9,
+    "densite_rna": 305.6,
+    "densite_sirene": 4697.7,
+    "densite_res": 45.7
+  },
+  {
+    "epci_code": "200069839",
+    "epci_nom": "CC de la Côte d'Albâtre",
+    "population": 27397,
+    "communes": 63,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 35,
+    "rna_count": 834,
+    "associations_sport": 109,
+    "sirene_count": 10587,
+    "res_count": 252,
+    "densite_finess": 12.8,
+    "densite_rna": 304.4,
+    "densite_sirene": 3864.3,
+    "densite_res": 92.0
+  },
+  {
+    "epci_code": "241400514",
+    "epci_nom": "CC du Pays de Falaise",
+    "population": 27380,
+    "communes": 58,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 70,
+    "rna_count": 1085,
+    "associations_sport": 196,
+    "sirene_count": 12252,
+    "res_count": 137,
+    "densite_finess": 25.6,
+    "densite_rna": 396.3,
+    "densite_sirene": 4474.8,
+    "densite_res": 50.0
+  },
+  {
+    "epci_code": "200072676",
+    "epci_nom": "CC Maine Saosnois",
+    "population": 27375,
+    "communes": 51,
+    "departements": [
+      "61",
+      "72"
+    ],
+    "finess_count": 0,
+    "rna_count": 0,
+    "associations_sport": 0,
+    "sirene_count": 0,
+    "res_count": 1,
+    "densite_finess": 0.0,
+    "densite_rna": 0.0,
+    "densite_sirene": 0.0,
+    "densite_res": 0.4
+  },
+  {
+    "epci_code": "200066827",
+    "epci_nom": "CC du Pays de Honfleur-Beuzeville",
+    "population": 26965,
+    "communes": 23,
+    "departements": [
+      "14",
+      "27"
+    ],
+    "finess_count": 19,
+    "rna_count": 478,
+    "associations_sport": 91,
+    "sirene_count": 10349,
+    "res_count": 147,
+    "densite_finess": 7.0,
+    "densite_rna": 177.3,
+    "densite_sirene": 3837.9,
+    "densite_res": 54.5
+  },
+  {
+    "epci_code": "200066728",
+    "epci_nom": "CC Vallées de l'Orne et de l'Odon",
+    "population": 26619,
+    "communes": 22,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 20,
+    "rna_count": 520,
+    "associations_sport": 93,
+    "sirene_count": 7842,
+    "res_count": 118,
+    "densite_finess": 7.5,
+    "densite_rna": 195.3,
+    "densite_sirene": 2946.0,
+    "densite_res": 44.3
+  },
+  {
+    "epci_code": "200066801",
+    "epci_nom": "CC Isigny-Omaha Intercom",
+    "population": 26442,
+    "communes": 59,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 34,
+    "rna_count": 820,
+    "associations_sport": 122,
+    "sirene_count": 12669,
+    "res_count": 125,
+    "densite_finess": 12.9,
+    "densite_rna": 310.1,
+    "densite_sirene": 4791.2,
+    "densite_res": 47.3
+  },
+  {
+    "epci_code": "247600620",
+    "epci_nom": "CC Yvetot Normandie",
+    "population": 26248,
+    "communes": 19,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 47,
+    "rna_count": 718,
+    "associations_sport": 140,
+    "sirene_count": 10487,
+    "res_count": 133,
+    "densite_finess": 17.9,
+    "densite_rna": 273.5,
+    "densite_sirene": 3995.4,
+    "densite_res": 50.7
+  },
+  {
+    "epci_code": "200069524",
+    "epci_nom": "CC Pré-Bocage Intercom",
+    "population": 25151,
+    "communes": 27,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 26,
+    "rna_count": 647,
+    "associations_sport": 109,
+    "sirene_count": 11100,
+    "res_count": 101,
+    "densite_finess": 10.3,
+    "densite_rna": 257.2,
+    "densite_sirene": 4413.3,
+    "densite_res": 40.2
+  },
+  {
+    "epci_code": "247600646",
+    "epci_nom": "CC Caux - Austreberthe",
+    "population": 24855,
+    "communes": 9,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 33,
+    "rna_count": 605,
+    "associations_sport": 109,
+    "sirene_count": 9527,
+    "res_count": 118,
+    "densite_finess": 13.3,
+    "densite_rna": 243.4,
+    "densite_sirene": 3833.0,
+    "densite_res": 47.5
+  },
+  {
+    "epci_code": "200068468",
+    "epci_nom": "CC des Pays de L'Aigle",
+    "population": 24782,
+    "communes": 32,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 48,
+    "rna_count": 647,
+    "associations_sport": 85,
+    "sirene_count": 9845,
+    "res_count": 158,
+    "densite_finess": 19.4,
+    "densite_rna": 261.1,
+    "densite_sirene": 3972.6,
+    "densite_res": 63.8
+  },
+  {
+    "epci_code": "200070068",
+    "epci_nom": "CC Bray-Eawy",
+    "population": 24737,
+    "communes": 46,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 38,
+    "rna_count": 663,
+    "associations_sport": 121,
+    "sirene_count": 9311,
+    "res_count": 145,
+    "densite_finess": 15.4,
+    "densite_rna": 268.0,
+    "densite_sirene": 3764.0,
+    "densite_res": 58.6
+  },
+  {
+    "epci_code": "241400860",
+    "epci_nom": "CC Coeur de Nacre",
+    "population": 24236,
+    "communes": 12,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 31,
+    "rna_count": 824,
+    "associations_sport": 154,
+    "sirene_count": 11292,
+    "res_count": 217,
+    "densite_finess": 12.8,
+    "densite_rna": 340.0,
+    "densite_sirene": 4659.2,
+    "densite_res": 89.5
+  },
+  {
+    "epci_code": "200066710",
+    "epci_nom": "CC Cingal-Suisse Normande",
+    "population": 23620,
+    "communes": 41,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 23,
+    "rna_count": 742,
+    "associations_sport": 140,
+    "sirene_count": 8677,
+    "res_count": 148,
+    "densite_finess": 9.7,
+    "densite_rna": 314.1,
+    "densite_sirene": 3673.6,
+    "densite_res": 62.7
+  },
+  {
+    "epci_code": "247600729",
+    "epci_nom": "CC Falaises du Talou",
+    "population": 23382,
+    "communes": 24,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 51,
+    "rna_count": 1110,
+    "associations_sport": 248,
+    "sirene_count": 18392,
+    "res_count": 140,
+    "densite_finess": 21.8,
+    "densite_rna": 474.7,
+    "densite_sirene": 7865.9,
+    "densite_res": 59.9
+  },
+  {
+    "epci_code": "200042729",
+    "epci_nom": "CC de la Baie du Cotentin",
+    "population": 22942,
+    "communes": 23,
+    "departements": [
+      "50"
+    ],
+    "finess_count": 48,
+    "rna_count": 930,
+    "associations_sport": 175,
+    "sirene_count": 11823,
+    "res_count": 99,
+    "densite_finess": 20.9,
+    "densite_rna": 405.4,
+    "densite_sirene": 5153.4,
+    "densite_res": 43.2
+  },
+  {
+    "epci_code": "242700607",
+    "epci_nom": "CC du Pays du Neubourg",
+    "population": 22499,
+    "communes": 41,
+    "departements": [
+      "27"
+    ],
+    "finess_count": 20,
+    "rna_count": 350,
+    "associations_sport": 78,
+    "sirene_count": 6127,
+    "res_count": 142,
+    "densite_finess": 8.9,
+    "densite_rna": 155.6,
+    "densite_sirene": 2723.2,
+    "densite_res": 63.1
+  },
+  {
+    "epci_code": "200067031",
+    "epci_nom": "CC Côte Ouest Centre Manche",
+    "population": 22323,
+    "communes": 30,
+    "departements": [
+      "50"
+    ],
+    "finess_count": 23,
+    "rna_count": 737,
+    "associations_sport": 125,
+    "sirene_count": 11342,
+    "res_count": 115,
+    "densite_finess": 10.3,
+    "densite_rna": 330.2,
+    "densite_sirene": 5080.9,
+    "densite_res": 51.5
+  },
+  {
+    "epci_code": "200069847",
+    "epci_nom": "CC Plateau de Caux",
+    "population": 21340,
+    "communes": 40,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 26,
+    "rna_count": 519,
+    "associations_sport": 93,
+    "sirene_count": 6938,
+    "res_count": 109,
+    "densite_finess": 12.2,
+    "densite_rna": 243.2,
+    "densite_sirene": 3251.2,
+    "densite_res": 51.1
+  },
+  {
+    "epci_code": "200069722",
+    "epci_nom": "CC Interrégionale Aumale - Blangy-sur-Bresle",
+    "population": 21154,
+    "communes": 44,
+    "departements": [
+      "76",
+      "80"
+    ],
+    "finess_count": 26,
+    "rna_count": 487,
+    "associations_sport": 96,
+    "sirene_count": 6857,
+    "res_count": 93,
+    "densite_finess": 12.3,
+    "densite_rna": 230.2,
+    "densite_sirene": 3241.5,
+    "densite_res": 44.0
+  },
+  {
+    "epci_code": "200065589",
+    "epci_nom": "CC Val ès Dunes",
+    "population": 20801,
+    "communes": 19,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 12,
+    "rna_count": 443,
+    "associations_sport": 90,
+    "sirene_count": 5493,
+    "res_count": 102,
+    "densite_finess": 5.8,
+    "densite_rna": 213.0,
+    "densite_sirene": 2640.7,
+    "densite_res": 49.0
+  },
+  {
+    "epci_code": "241400415",
+    "epci_nom": "CC Coeur Côte Fleurie",
+    "population": 20716,
+    "communes": 12,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 48,
+    "rna_count": 915,
+    "associations_sport": 166,
+    "sirene_count": 23115,
+    "res_count": 260,
+    "densite_finess": 23.2,
+    "densite_rna": 441.7,
+    "densite_sirene": 11158.0,
+    "densite_res": 125.5
+  },
+  {
+    "epci_code": "200070142",
+    "epci_nom": "CC Lyons Andelle",
+    "population": 20622,
+    "communes": 30,
+    "departements": [
+      "27"
+    ],
+    "finess_count": 26,
+    "rna_count": 517,
+    "associations_sport": 98,
+    "sirene_count": 8066,
+    "res_count": 138,
+    "densite_finess": 12.6,
+    "densite_rna": 250.7,
+    "densite_sirene": 3911.4,
+    "densite_res": 66.9
+  },
+  {
+    "epci_code": "200066017",
+    "epci_nom": "CC Lieuvin Pays d'Auge",
+    "population": 20332,
+    "communes": 51,
+    "departements": [
+      "27"
+    ],
+    "finess_count": 28,
+    "rna_count": 846,
+    "associations_sport": 176,
+    "sirene_count": 13914,
+    "res_count": 132,
+    "densite_finess": 13.8,
+    "densite_rna": 416.1,
+    "densite_sirene": 6843.4,
+    "densite_res": 64.9
+  },
+  {
+    "epci_code": "241400878",
+    "epci_nom": "CC Terre d'Auge",
+    "population": 19841,
+    "communes": 44,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 33,
+    "rna_count": 772,
+    "associations_sport": 166,
+    "sirene_count": 13522,
+    "res_count": 99,
+    "densite_finess": 16.6,
+    "densite_rna": 389.1,
+    "densite_sirene": 6815.2,
+    "densite_res": 49.9
+  },
+  {
+    "epci_code": "242700276",
+    "epci_nom": "CC du Pays de Conches",
+    "population": 18100,
+    "communes": 25,
+    "departements": [
+      "27"
+    ],
+    "finess_count": 20,
+    "rna_count": 595,
+    "associations_sport": 116,
+    "sirene_count": 10614,
+    "res_count": 137,
+    "densite_finess": 11.0,
+    "densite_rna": 328.7,
+    "densite_sirene": 5864.1,
+    "densite_res": 75.7
+  },
+  {
+    "epci_code": "200069516",
+    "epci_nom": "CC Seulles Terre et Mer",
+    "population": 17561,
+    "communes": 28,
+    "departements": [
+      "14"
+    ],
+    "finess_count": 12,
+    "rna_count": 540,
+    "associations_sport": 99,
+    "sirene_count": 6278,
+    "res_count": 88,
+    "densite_finess": 6.8,
+    "densite_rna": 307.5,
+    "densite_sirene": 3575.0,
+    "densite_res": 50.1
+  },
+  {
+    "epci_code": "200043354",
+    "epci_nom": "CC de Villedieu Intercom",
+    "population": 15779,
+    "communes": 27,
+    "departements": [
+      "50"
+    ],
+    "finess_count": 33,
+    "rna_count": 816,
+    "associations_sport": 134,
+    "sirene_count": 11708,
+    "res_count": 63,
+    "densite_finess": 20.9,
+    "densite_rna": 517.1,
+    "densite_sirene": 7420.0,
+    "densite_res": 39.9
+  },
+  {
+    "epci_code": "200071520",
+    "epci_nom": "CC Domfront Tinchebray Interco",
+    "population": 15744,
+    "communes": 15,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 32,
+    "rna_count": 544,
+    "associations_sport": 83,
+    "sirene_count": 7507,
+    "res_count": 113,
+    "densite_finess": 20.3,
+    "densite_rna": 345.5,
+    "densite_sirene": 4768.2,
+    "densite_res": 71.8
+  },
+  {
+    "epci_code": "247600505",
+    "epci_nom": "CC Campagne-de-Caux",
+    "population": 15068,
+    "communes": 22,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 9,
+    "rna_count": 339,
+    "associations_sport": 71,
+    "sirene_count": 4660,
+    "res_count": 81,
+    "densite_finess": 6.0,
+    "densite_rna": 225.0,
+    "densite_sirene": 3092.6,
+    "densite_res": 53.8
+  },
+  {
+    "epci_code": "200069458",
+    "epci_nom": "CC des Vallées d'Auge et du Merlerault",
+    "population": 14096,
+    "communes": 42,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 33,
+    "rna_count": 585,
+    "associations_sport": 76,
+    "sirene_count": 10783,
+    "res_count": 99,
+    "densite_finess": 23.4,
+    "densite_rna": 415.0,
+    "densite_sirene": 7649.7,
+    "densite_res": 70.2
+  },
+  {
+    "epci_code": "200036069",
+    "epci_nom": "CC du Pays de Mortagne-au-Perche",
+    "population": 13531,
+    "communes": 33,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 45,
+    "rna_count": 578,
+    "associations_sport": 69,
+    "sirene_count": 8069,
+    "res_count": 138,
+    "densite_finess": 33.3,
+    "densite_rna": 427.2,
+    "densite_sirene": 5963.3,
+    "densite_res": 102.0
+  },
+  {
+    "epci_code": "200068443",
+    "epci_nom": "CC Andaine - Passais",
+    "population": 12758,
+    "communes": 12,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 42,
+    "rna_count": 719,
+    "associations_sport": 131,
+    "sirene_count": 12367,
+    "res_count": 74,
+    "densite_finess": 32.9,
+    "densite_rna": 563.6,
+    "densite_sirene": 9693.5,
+    "densite_res": 58.0
+  },
+  {
+    "epci_code": "200035111",
+    "epci_nom": "CC des Sources de l'Orne",
+    "population": 11954,
+    "communes": 23,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 25,
+    "rna_count": 370,
+    "associations_sport": 55,
+    "sirene_count": 4726,
+    "res_count": 82,
+    "densite_finess": 20.9,
+    "densite_rna": 309.5,
+    "densite_sirene": 3953.5,
+    "densite_res": 68.6
+  },
+  {
+    "epci_code": "200071504",
+    "epci_nom": "CC des Collines du Perche Normand",
+    "population": 11864,
+    "communes": 16,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 24,
+    "rna_count": 502,
+    "associations_sport": 72,
+    "sirene_count": 8071,
+    "res_count": 105,
+    "densite_finess": 20.2,
+    "densite_rna": 423.1,
+    "densite_sirene": 6802.9,
+    "densite_res": 88.5
+  },
+  {
+    "epci_code": "200068435",
+    "epci_nom": "CC Coeur du Perche",
+    "population": 10964,
+    "communes": 12,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 6,
+    "rna_count": 238,
+    "associations_sport": 25,
+    "sirene_count": 4050,
+    "res_count": 136,
+    "densite_finess": 5.5,
+    "densite_rna": 217.1,
+    "densite_sirene": 3693.9,
+    "densite_res": 124.0
+  },
+  {
+    "epci_code": "200068856",
+    "epci_nom": "CC des Hauts du Perche",
+    "population": 7864,
+    "communes": 10,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 8,
+    "rna_count": 308,
+    "associations_sport": 36,
+    "sirene_count": 4935,
+    "res_count": 44,
+    "densite_finess": 10.2,
+    "densite_rna": 391.7,
+    "densite_sirene": 6275.4,
+    "densite_res": 56.0
+  },
+  {
+    "epci_code": "200035103",
+    "epci_nom": "CC de la Vallée de la Haute Sarthe",
+    "population": 7542,
+    "communes": 31,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 9,
+    "rna_count": 339,
+    "associations_sport": 33,
+    "sirene_count": 4938,
+    "res_count": 69,
+    "densite_finess": 11.9,
+    "densite_rna": 449.5,
+    "densite_sirene": 6547.3,
+    "densite_res": 91.5
+  },
+  {
+    "epci_code": "246100390",
+    "epci_nom": "CC du Val d'Orne",
+    "population": 5595,
+    "communes": 17,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 6,
+    "rna_count": 244,
+    "associations_sport": 30,
+    "sirene_count": 2555,
+    "res_count": 38,
+    "densite_finess": 10.7,
+    "densite_rna": 436.1,
+    "densite_sirene": 4566.6,
+    "densite_res": 67.9
+  },
+  {
+    "epci_code": "247600604",
+    "epci_nom": "CC de Londinières",
+    "population": 5166,
+    "communes": 16,
+    "departements": [
+      "76"
+    ],
+    "finess_count": 5,
+    "rna_count": 174,
+    "associations_sport": 24,
+    "sirene_count": 2202,
+    "res_count": 23,
+    "densite_finess": 9.7,
+    "densite_rna": 336.8,
+    "densite_sirene": 4262.5,
+    "densite_res": 44.5
+  },
+  {
+    "epci_code": "200071652",
+    "epci_nom": "CC du Pays Fertois et du Bocage Carrougien",
+    "population": 4808,
+    "communes": 19,
+    "departements": [
+      "61"
+    ],
+    "finess_count": 4,
+    "rna_count": 170,
+    "associations_sport": 18,
+    "sirene_count": 2275,
+    "res_count": 15,
+    "densite_finess": 8.3,
+    "densite_rna": 353.6,
+    "densite_sirene": 4731.7,
+    "densite_res": 31.2
+  }
+]

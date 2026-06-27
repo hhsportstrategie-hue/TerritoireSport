@@ -1,0 +1,6863 @@
+[
+  {
+    "epci_code": "200065563",
+    "epci_nom": "CC Normandie-Cabourg-Pays d'Auge",
+    "departements": [
+      "14"
+    ],
+    "population": 31981,
+    "nb_communes": 38,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 7675,
+      "pop_jeunes": 7035,
+      "pop_pauvrete": 3837
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (7,035 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (7,675 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "6,396 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "959 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200065589",
+    "epci_nom": "CC Val ès Dunes",
+    "departements": [
+      "14"
+    ],
+    "population": 20801,
+    "nb_communes": 19,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 4992,
+      "pop_jeunes": 4576,
+      "pop_pauvrete": 2496
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (4,576 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (4,992 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,160 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "624 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200065597",
+    "epci_nom": "CU Caen la Mer",
+    "departements": [
+      "14"
+    ],
+    "population": 281165,
+    "nb_communes": 48,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 67479,
+      "pop_jeunes": 61856,
+      "pop_pauvrete": 33739
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (61,856 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (67,479 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "56,233 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "8,434 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200066710",
+    "epci_nom": "CC Cingal-Suisse Normande",
+    "departements": [
+      "14"
+    ],
+    "population": 23620,
+    "nb_communes": 41,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 5668,
+      "pop_jeunes": 5196,
+      "pop_pauvrete": 2834
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (5,196 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (5,668 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,724 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "708 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200066728",
+    "epci_nom": "CC Vallées de l'Orne et de l'Odon",
+    "departements": [
+      "14"
+    ],
+    "population": 26619,
+    "nb_communes": 22,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 6388,
+      "pop_jeunes": 5856,
+      "pop_pauvrete": 3194
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (5,856 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (6,388 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "5,323 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "798 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200066801",
+    "epci_nom": "CC Isigny-Omaha Intercom",
+    "departements": [
+      "14"
+    ],
+    "population": 26442,
+    "nb_communes": 59,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 6346,
+      "pop_jeunes": 5817,
+      "pop_pauvrete": 3173
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (5,817 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (6,346 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "5,288 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "793 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200066827",
+    "epci_nom": "CC du Pays de Honfleur-Beuzeville",
+    "departements": [
+      "14",
+      "27"
+    ],
+    "population": 26965,
+    "nb_communes": 23,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 13.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 23.0,
+      "taux_chomage_pct": 13.5,
+      "pop_seniors": 6201,
+      "pop_jeunes": 6201,
+      "pop_pauvrete": 3505
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 13.0% — 3,505 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "23.0% de jeunes (6,201 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.5% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "5,393 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "808 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200068799",
+    "epci_nom": "CC Intercom de la Vire au Noireau",
+    "departements": [
+      "14"
+    ],
+    "population": 46158,
+    "nb_communes": 17,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 11077,
+      "pop_jeunes": 10154,
+      "pop_pauvrete": 5538
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (10,154 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (11,077 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "9,231 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,384 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200069516",
+    "epci_nom": "CC Seulles Terre et Mer",
+    "departements": [
+      "14"
+    ],
+    "population": 17561,
+    "nb_communes": 28,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 4214,
+      "pop_jeunes": 3863,
+      "pop_pauvrete": 2107
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (3,863 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (4,214 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "3,512 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "526 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200069524",
+    "epci_nom": "CC Pré-Bocage Intercom",
+    "departements": [
+      "14"
+    ],
+    "population": 25151,
+    "nb_communes": 27,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 6036,
+      "pop_jeunes": 5533,
+      "pop_pauvrete": 3018
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (5,533 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (6,036 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "5,030 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "754 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200069532",
+    "epci_nom": "CA Lisieux Normandie",
+    "departements": [
+      "14"
+    ],
+    "population": 72636,
+    "nb_communes": 53,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 17432,
+      "pop_jeunes": 15979,
+      "pop_pauvrete": 8716
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (15,979 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (17,432 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "14,527 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "2,179 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "241400415",
+    "epci_nom": "CC Coeur Côte Fleurie",
+    "departements": [
+      "14"
+    ],
+    "population": 20716,
+    "nb_communes": 12,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 4971,
+      "pop_jeunes": 4557,
+      "pop_pauvrete": 2485
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (4,557 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (4,971 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,143 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "621 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "241400514",
+    "epci_nom": "CC du Pays de Falaise",
+    "departements": [
+      "14"
+    ],
+    "population": 27380,
+    "nb_communes": 58,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 6571,
+      "pop_jeunes": 6023,
+      "pop_pauvrete": 3285
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (6,023 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (6,571 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "5,476 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "821 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "241400555",
+    "epci_nom": "CC de Bayeux Intercom",
+    "departements": [
+      "14"
+    ],
+    "population": 29805,
+    "nb_communes": 36,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 7153,
+      "pop_jeunes": 6557,
+      "pop_pauvrete": 3576
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (6,557 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (7,153 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "5,961 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "894 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "241400860",
+    "epci_nom": "CC Coeur de Nacre",
+    "departements": [
+      "14"
+    ],
+    "population": 24236,
+    "nb_communes": 12,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 5816,
+      "pop_jeunes": 5331,
+      "pop_pauvrete": 2908
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (5,331 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (5,816 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,847 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "727 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "241400878",
+    "epci_nom": "CC Terre d'Auge",
+    "departements": [
+      "14"
+    ],
+    "population": 19841,
+    "nb_communes": 44,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 12.0,
+      "seniors_pct": 24.0,
+      "jeunes_pct": 22.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 4761,
+      "pop_jeunes": 4365,
+      "pop_pauvrete": 2380
+    },
+    "problematiques_societales": [
+      {
+        "theme": "education_jeunesse",
+        "niveau": "moyen",
+        "description": "22.0% de jeunes (4,365 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "moyen",
+        "description": "24.0% de seniors (4,761 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "3,968 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "595 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200040277",
+    "epci_nom": "CA Agglo du Pays de Dreux",
+    "departements": [
+      "27",
+      "28"
+    ],
+    "population": 116271,
+    "nb_communes": 81,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 22.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.0,
+      "pop_seniors": 25579,
+      "pop_jeunes": 27905,
+      "pop_pauvrete": 16277
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 16,277 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (27,905 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "23,254 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "3,488 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200065787",
+    "epci_nom": "CC de Pont-Audemer / Val de Risle",
+    "departements": [
+      "27"
+    ],
+    "population": 32598,
+    "nb_communes": 32,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 22.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.0,
+      "pop_seniors": 7171,
+      "pop_jeunes": 7823,
+      "pop_pauvrete": 4563
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 4,563 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (7,823 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "6,519 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "977 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200066017",
+    "epci_nom": "CC Lieuvin Pays d'Auge",
+    "departements": [
+      "27"
+    ],
+    "population": 20332,
+    "nb_communes": 51,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 22.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.0,
+      "pop_seniors": 4473,
+      "pop_jeunes": 4879,
+      "pop_pauvrete": 2846
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 2,846 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (4,879 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,066 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "609 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200066405",
+    "epci_nom": "CC Roumois Seine",
+    "departements": [
+      "27",
+      "76"
+    ],
+    "population": 41848,
+    "nb_communes": 40,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.5,
+      "seniors_pct": 22.5,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.5,
+      "pop_seniors": 9415,
+      "pop_jeunes": 10043,
+      "pop_pauvrete": 6067
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.5% — 6,067 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (10,043 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.5% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "8,369 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,255 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200066413",
+    "epci_nom": "CC Intercom Bernay Terres de Normandie",
+    "departements": [
+      "27"
+    ],
+    "population": 54049,
+    "nb_communes": 75,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 22.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.0,
+      "pop_seniors": 11890,
+      "pop_jeunes": 12971,
+      "pop_pauvrete": 7566
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 7,566 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (12,971 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "10,809 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,621 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200066462",
+    "epci_nom": "CC Interco Normandie Sud Eure",
+    "departements": [
+      "27",
+      "28"
+    ],
+    "population": 37326,
+    "nb_communes": 41,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 22.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.0,
+      "pop_seniors": 8211,
+      "pop_jeunes": 8958,
+      "pop_pauvrete": 5225
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 5,225 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (8,958 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "7,465 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,119 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200069730",
+    "epci_nom": "CC des Quatre Rivières en Bray",
+    "departements": [
+      "27",
+      "76"
+    ],
+    "population": 28467,
+    "nb_communes": 52,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.5,
+      "seniors_pct": 22.5,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.5,
+      "pop_seniors": 6405,
+      "pop_jeunes": 6832,
+      "pop_pauvrete": 4127
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.5% — 4,127 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (6,832 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.5% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "5,693 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "854 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200070142",
+    "epci_nom": "CC Lyons Andelle",
+    "departements": [
+      "27"
+    ],
+    "population": 20622,
+    "nb_communes": 30,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 22.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.0,
+      "pop_seniors": 4536,
+      "pop_jeunes": 4949,
+      "pop_pauvrete": 2887
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 2,887 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (4,949 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,124 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "618 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200071454",
+    "epci_nom": "CA Evreux Portes de Normandie",
+    "departements": [
+      "27"
+    ],
+    "population": 113337,
+    "nb_communes": 74,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 22.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.0,
+      "pop_seniors": 24934,
+      "pop_jeunes": 27200,
+      "pop_pauvrete": 15867
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 15,867 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (27,200 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "22,667 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "3,400 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200071843",
+    "epci_nom": "CC du Vexin Normand",
+    "departements": [
+      "27"
+    ],
+    "population": 33079,
+    "nb_communes": 39,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 22.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.0,
+      "pop_seniors": 7277,
+      "pop_jeunes": 7938,
+      "pop_pauvrete": 4631
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 4,631 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (7,938 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "6,615 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "992 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200072312",
+    "epci_nom": "CA Seine Normandie Agglomération",
+    "departements": [
+      "27"
+    ],
+    "population": 83284,
+    "nb_communes": 61,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 22.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.0,
+      "pop_seniors": 18322,
+      "pop_jeunes": 19988,
+      "pop_pauvrete": 11659
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 11,659 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (19,988 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "16,656 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "2,498 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200089456",
+    "epci_nom": "CA Seine-Eure",
+    "departements": [
+      "27"
+    ],
+    "population": 103526,
+    "nb_communes": 60,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 22.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.0,
+      "pop_seniors": 22775,
+      "pop_jeunes": 24846,
+      "pop_pauvrete": 14493
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 14,493 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (24,846 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "20,705 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "3,105 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "242700276",
+    "epci_nom": "CC du Pays de Conches",
+    "departements": [
+      "27"
+    ],
+    "population": 18100,
+    "nb_communes": 25,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 22.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.0,
+      "pop_seniors": 3982,
+      "pop_jeunes": 4344,
+      "pop_pauvrete": 2534
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 2,534 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (4,344 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "3,620 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "543 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "242700607",
+    "epci_nom": "CC du Pays du Neubourg",
+    "departements": [
+      "27"
+    ],
+    "population": 22499,
+    "nb_communes": 41,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 22.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 14.0,
+      "pop_seniors": 4949,
+      "pop_jeunes": 5399,
+      "pop_pauvrete": 3149
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 3,149 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (5,399 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 14.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,499 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "674 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200042604",
+    "epci_nom": "CC de Granville, Terre et Mer",
+    "departements": [
+      "50"
+    ],
+    "population": 45650,
+    "nb_communes": 32,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 11.0,
+      "seniors_pct": 26.0,
+      "jeunes_pct": 21.0,
+      "taux_chomage_pct": 11.0,
+      "pop_seniors": 11869,
+      "pop_jeunes": 9586,
+      "pop_pauvrete": 5021
+    },
+    "problematiques_societales": [
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "26.0% de seniors (11,869 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "9,130 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,369 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200042729",
+    "epci_nom": "CC de la Baie du Cotentin",
+    "departements": [
+      "50"
+    ],
+    "population": 22942,
+    "nb_communes": 23,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 11.0,
+      "seniors_pct": 26.0,
+      "jeunes_pct": 21.0,
+      "taux_chomage_pct": 11.0,
+      "pop_seniors": 5964,
+      "pop_jeunes": 4817,
+      "pop_pauvrete": 2523
+    },
+    "problematiques_societales": [
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "26.0% de seniors (5,964 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,588 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "688 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200043354",
+    "epci_nom": "CC de Villedieu Intercom",
+    "departements": [
+      "50"
+    ],
+    "population": 15779,
+    "nb_communes": 27,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 11.0,
+      "seniors_pct": 26.0,
+      "jeunes_pct": 21.0,
+      "taux_chomage_pct": 11.0,
+      "pop_seniors": 4102,
+      "pop_jeunes": 3313,
+      "pop_pauvrete": 1735
+    },
+    "problematiques_societales": [
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "26.0% de seniors (4,102 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "3,155 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "473 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200066389",
+    "epci_nom": "CA Saint-Lô Agglo",
+    "departements": [
+      "50"
+    ],
+    "population": 76800,
+    "nb_communes": 61,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 11.0,
+      "seniors_pct": 26.0,
+      "jeunes_pct": 21.0,
+      "taux_chomage_pct": 11.0,
+      "pop_seniors": 19968,
+      "pop_jeunes": 16128,
+      "pop_pauvrete": 8448
+    },
+    "problematiques_societales": [
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "26.0% de seniors (19,968 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "15,360 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "2,304 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200067023",
+    "epci_nom": "CC Coutances Mer et Bocage",
+    "departements": [
+      "50"
+    ],
+    "population": 47611,
+    "nb_communes": 48,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 11.0,
+      "seniors_pct": 26.0,
+      "jeunes_pct": 21.0,
+      "taux_chomage_pct": 11.0,
+      "pop_seniors": 12378,
+      "pop_jeunes": 9998,
+      "pop_pauvrete": 5237
+    },
+    "problematiques_societales": [
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "26.0% de seniors (12,378 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "9,522 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,428 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200067031",
+    "epci_nom": "CC Côte Ouest Centre Manche",
+    "departements": [
+      "50"
+    ],
+    "population": 22323,
+    "nb_communes": 30,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 11.0,
+      "seniors_pct": 26.0,
+      "jeunes_pct": 21.0,
+      "taux_chomage_pct": 11.0,
+      "pop_seniors": 5803,
+      "pop_jeunes": 4687,
+      "pop_pauvrete": 2455
+    },
+    "problematiques_societales": [
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "26.0% de seniors (5,803 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,464 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "669 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200067205",
+    "epci_nom": "CA du Cotentin",
+    "departements": [
+      "50"
+    ],
+    "population": 179231,
+    "nb_communes": 129,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 11.0,
+      "seniors_pct": 26.0,
+      "jeunes_pct": 21.0,
+      "taux_chomage_pct": 11.0,
+      "pop_seniors": 46600,
+      "pop_jeunes": 37638,
+      "pop_pauvrete": 19715
+    },
+    "problematiques_societales": [
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "26.0% de seniors (46,600 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "35,846 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "5,376 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200069425",
+    "epci_nom": "CA Mont-Saint-Michel-Normandie",
+    "departements": [
+      "50"
+    ],
+    "population": 87186,
+    "nb_communes": 95,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 11.0,
+      "seniors_pct": 26.0,
+      "jeunes_pct": 21.0,
+      "taux_chomage_pct": 11.0,
+      "pop_seniors": 22668,
+      "pop_jeunes": 18309,
+      "pop_pauvrete": 9590
+    },
+    "problematiques_societales": [
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "26.0% de seniors (22,668 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "17,437 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "2,615 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200035103",
+    "epci_nom": "CC de la Vallée de la Haute Sarthe",
+    "departements": [
+      "61"
+    ],
+    "population": 7542,
+    "nb_communes": 31,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 2036,
+      "pop_jeunes": 1508,
+      "pop_pauvrete": 1055
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 1,055 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (2,036 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "1,508 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "226 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200035111",
+    "epci_nom": "CC des Sources de l'Orne",
+    "departements": [
+      "61"
+    ],
+    "population": 11954,
+    "nb_communes": 23,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 3227,
+      "pop_jeunes": 2390,
+      "pop_pauvrete": 1673
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 1,673 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (3,227 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "2,390 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "358 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200035814",
+    "epci_nom": "CA Flers Agglo",
+    "departements": [
+      "61"
+    ],
+    "population": 52388,
+    "nb_communes": 42,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 14144,
+      "pop_jeunes": 10477,
+      "pop_pauvrete": 7334
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 7,334 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (14,144 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "10,477 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,571 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200036069",
+    "epci_nom": "CC du Pays de Mortagne-au-Perche",
+    "departements": [
+      "61"
+    ],
+    "population": 13531,
+    "nb_communes": 33,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 3653,
+      "pop_jeunes": 2706,
+      "pop_pauvrete": 1894
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 1,894 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (3,653 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "2,706 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "405 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200068435",
+    "epci_nom": "CC Coeur du Perche",
+    "departements": [
+      "61"
+    ],
+    "population": 10964,
+    "nb_communes": 12,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 2960,
+      "pop_jeunes": 2192,
+      "pop_pauvrete": 1534
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 1,534 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (2,960 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "2,192 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "328 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200068443",
+    "epci_nom": "CC Andaine - Passais",
+    "departements": [
+      "61"
+    ],
+    "population": 12758,
+    "nb_communes": 12,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 3444,
+      "pop_jeunes": 2551,
+      "pop_pauvrete": 1786
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 1,786 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (3,444 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "2,551 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "382 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200068450",
+    "epci_nom": "CC Terres d'Argentan Interco",
+    "departements": [
+      "61"
+    ],
+    "population": 33370,
+    "nb_communes": 49,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 9009,
+      "pop_jeunes": 6674,
+      "pop_pauvrete": 4671
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 4,671 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (9,009 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "6,674 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,001 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200068468",
+    "epci_nom": "CC des Pays de L'Aigle",
+    "departements": [
+      "61"
+    ],
+    "population": 24782,
+    "nb_communes": 32,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 6691,
+      "pop_jeunes": 4956,
+      "pop_pauvrete": 3469
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 3,469 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (6,691 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,956 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "743 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200068856",
+    "epci_nom": "CC des Hauts du Perche",
+    "departements": [
+      "61"
+    ],
+    "population": 7864,
+    "nb_communes": 10,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 2123,
+      "pop_jeunes": 1572,
+      "pop_pauvrete": 1100
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 1,100 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (2,123 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "1,572 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "235 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200069458",
+    "epci_nom": "CC des Vallées d'Auge et du Merlerault",
+    "departements": [
+      "61"
+    ],
+    "population": 14096,
+    "nb_communes": 42,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 3805,
+      "pop_jeunes": 2819,
+      "pop_pauvrete": 1973
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 1,973 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (3,805 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "2,819 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "422 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200071504",
+    "epci_nom": "CC des Collines du Perche Normand",
+    "departements": [
+      "61"
+    ],
+    "population": 11864,
+    "nb_communes": 16,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 3203,
+      "pop_jeunes": 2372,
+      "pop_pauvrete": 1660
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 1,660 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (3,203 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "2,372 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "355 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200071520",
+    "epci_nom": "CC Domfront Tinchebray Interco",
+    "departements": [
+      "61"
+    ],
+    "population": 15744,
+    "nb_communes": 15,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 4250,
+      "pop_jeunes": 3148,
+      "pop_pauvrete": 2204
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 2,204 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (4,250 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "3,148 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "472 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200071652",
+    "epci_nom": "CC du Pays Fertois et du Bocage Carrougien",
+    "departements": [
+      "61"
+    ],
+    "population": 4808,
+    "nb_communes": 19,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 1298,
+      "pop_jeunes": 961,
+      "pop_pauvrete": 673
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 673 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (1,298 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "961 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "144 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200072676",
+    "epci_nom": "CC Maine Saosnois",
+    "departements": [
+      "61",
+      "72"
+    ],
+    "population": 27375,
+    "nb_communes": 51,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 7391,
+      "pop_jeunes": 5475,
+      "pop_pauvrete": 3832
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 3,832 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (7,391 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "5,475 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "821 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "246100390",
+    "epci_nom": "CC du Val d'Orne",
+    "departements": [
+      "61"
+    ],
+    "population": 5595,
+    "nb_communes": 17,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 1510,
+      "pop_jeunes": 1119,
+      "pop_pauvrete": 783
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 783 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (1,510 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "1,119 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "167 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "246100663",
+    "epci_nom": "CU d'Alençon",
+    "departements": [
+      "61",
+      "72"
+    ],
+    "population": 55102,
+    "nb_communes": 31,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 14.0,
+      "seniors_pct": 27.0,
+      "jeunes_pct": 20.0,
+      "taux_chomage_pct": 13.0,
+      "pop_seniors": 14877,
+      "pop_jeunes": 11020,
+      "pop_pauvrete": 7714
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "moyen",
+        "description": "Taux de pauvreté 14.0% — 7,714 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "intergenerationnel",
+        "niveau": "eleve",
+        "description": "27.0% de seniors (14,877 personnes de 65+ ans)",
+        "publics": [
+          "Retraités",
+          "Seniors isolés",
+          "Personnes âgées dépendantes"
+        ],
+        "acteurs_reponses": [
+          "EHPAD",
+          "CCAS",
+          "CLIC",
+          "Associations retraités"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "moyen",
+        "description": "Taux de chômage 13.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "11,020 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,653 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200010700",
+    "epci_nom": "CA Caux Seine Agglo",
+    "departements": [
+      "76"
+    ],
+    "population": 77990,
+    "nb_communes": 50,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 17937,
+      "pop_jeunes": 18717,
+      "pop_pauvrete": 11698
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 11,698 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (18,717 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "15,598 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "2,339 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200023414",
+    "epci_nom": "Métropole Rouen Normandie",
+    "departements": [
+      "76"
+    ],
+    "population": 503000,
+    "nb_communes": 71,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 115690,
+      "pop_jeunes": 120720,
+      "pop_pauvrete": 75450
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 75,450 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (120,720 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "100,600 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "15,090 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200068534",
+    "epci_nom": "CC Terroir de Caux",
+    "departements": [
+      "76"
+    ],
+    "population": 37698,
+    "nb_communes": 79,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 8670,
+      "pop_jeunes": 9047,
+      "pop_pauvrete": 5654
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 5,654 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (9,047 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "7,539 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,130 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200069722",
+    "epci_nom": "CC Interrégionale Aumale - Blangy-sur-Bresle",
+    "departements": [
+      "76",
+      "80"
+    ],
+    "population": 21154,
+    "nb_communes": 44,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 4865,
+      "pop_jeunes": 5076,
+      "pop_pauvrete": 3173
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 3,173 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (5,076 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,230 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "634 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200069821",
+    "epci_nom": "CA Fécamp Caux Littoral Agglomération",
+    "departements": [
+      "76"
+    ],
+    "population": 37393,
+    "nb_communes": 33,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 8600,
+      "pop_jeunes": 8974,
+      "pop_pauvrete": 5608
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 5,608 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (8,974 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "7,478 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,121 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200069839",
+    "epci_nom": "CC de la Côte d'Albâtre",
+    "departements": [
+      "76"
+    ],
+    "population": 27397,
+    "nb_communes": 63,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 6301,
+      "pop_jeunes": 6575,
+      "pop_pauvrete": 4109
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 4,109 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (6,575 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "5,479 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "821 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200069847",
+    "epci_nom": "CC Plateau de Caux",
+    "departements": [
+      "76"
+    ],
+    "population": 21340,
+    "nb_communes": 40,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 4908,
+      "pop_jeunes": 5121,
+      "pop_pauvrete": 3201
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 3,201 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (5,121 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,268 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "640 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200070068",
+    "epci_nom": "CC Bray-Eawy",
+    "departements": [
+      "76"
+    ],
+    "population": 24737,
+    "nb_communes": 46,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 5689,
+      "pop_jeunes": 5936,
+      "pop_pauvrete": 3710
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 3,710 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (5,936 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,947 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "742 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200070449",
+    "epci_nom": "CC Inter-Caux-Vexin",
+    "departements": [
+      "76"
+    ],
+    "population": 56138,
+    "nb_communes": 64,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 12911,
+      "pop_jeunes": 13473,
+      "pop_pauvrete": 8420
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 8,420 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (13,473 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "11,227 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,684 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "200084952",
+    "epci_nom": "CU Le Havre Seine Métropole",
+    "departements": [
+      "76"
+    ],
+    "population": 267308,
+    "nb_communes": 54,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 61480,
+      "pop_jeunes": 64153,
+      "pop_pauvrete": 40096
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 40,096 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (64,153 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "53,461 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "8,019 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "247600505",
+    "epci_nom": "CC Campagne-de-Caux",
+    "departements": [
+      "76"
+    ],
+    "population": 15068,
+    "nb_communes": 22,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 3465,
+      "pop_jeunes": 3616,
+      "pop_pauvrete": 2260
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 2,260 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (3,616 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "3,013 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "452 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "247600588",
+    "epci_nom": "CC des Villes Soeurs",
+    "departements": [
+      "76",
+      "80"
+    ],
+    "population": 35390,
+    "nb_communes": 28,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 8139,
+      "pop_jeunes": 8493,
+      "pop_pauvrete": 5308
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 5,308 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (8,493 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "7,078 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,061 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "247600604",
+    "epci_nom": "CC de Londinières",
+    "departements": [
+      "76"
+    ],
+    "population": 5166,
+    "nb_communes": 16,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 1188,
+      "pop_jeunes": 1239,
+      "pop_pauvrete": 774
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 774 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (1,239 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "1,033 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "154 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "247600620",
+    "epci_nom": "CC Yvetot Normandie",
+    "departements": [
+      "76"
+    ],
+    "population": 26248,
+    "nb_communes": 19,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 6037,
+      "pop_jeunes": 6299,
+      "pop_pauvrete": 3937
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 3,937 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (6,299 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "5,249 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "787 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "247600646",
+    "epci_nom": "CC Caux - Austreberthe",
+    "departements": [
+      "76"
+    ],
+    "population": 24855,
+    "nb_communes": 9,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 5716,
+      "pop_jeunes": 5965,
+      "pop_pauvrete": 3728
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 3,728 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (5,965 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,971 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "745 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "247600729",
+    "epci_nom": "CC Falaises du Talou",
+    "departements": [
+      "76"
+    ],
+    "population": 23382,
+    "nb_communes": 24,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 5377,
+      "pop_jeunes": 5611,
+      "pop_pauvrete": 3507
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 3,507 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (5,611 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "4,676 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "701 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  },
+  {
+    "epci_code": "247600786",
+    "epci_nom": "CA de la Région Dieppoise",
+    "departements": [
+      "76"
+    ],
+    "population": 46088,
+    "nb_communes": 16,
+    "indicateurs_societaux": {
+      "taux_pauvrete_pct": 15.0,
+      "seniors_pct": 23.0,
+      "jeunes_pct": 24.0,
+      "taux_chomage_pct": 15.0,
+      "pop_seniors": 10600,
+      "pop_jeunes": 11061,
+      "pop_pauvrete": 6913
+    },
+    "problematiques_societales": [
+      {
+        "theme": "insertion_emploi",
+        "niveau": "eleve",
+        "description": "Taux de pauvreté 15.0% — 6,913 personnes en situation de précarité",
+        "publics": [
+          "Demandeurs d'emploi",
+          "Jeunes sans qualification",
+          "Familles monoparentales"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations insertion"
+        ]
+      },
+      {
+        "theme": "education_jeunesse",
+        "niveau": "eleve",
+        "description": "24.0% de jeunes (11,061 personnes de moins de 25 ans)",
+        "publics": [
+          "Jeunes 16-25 ans",
+          "Scolaires",
+          "Étudiants"
+        ],
+        "acteurs_reponses": [
+          "Missions Locales",
+          "Établissements scolaires",
+          "CROUS",
+          "Associations jeunesse"
+        ]
+      },
+      {
+        "theme": "cohesion_sociale",
+        "niveau": "eleve",
+        "description": "Taux de chômage 15.0% — risque de fracture sociale",
+        "publics": [
+          "Demandeurs d'emploi longue durée",
+          "Jeunes décrocheurs"
+        ],
+        "acteurs_reponses": [
+          "France Travail",
+          "Missions Locales",
+          "CCAS",
+          "Associations"
+        ]
+      },
+      {
+        "theme": "sport_sante",
+        "niveau": "moyen",
+        "description": "9,217 personnes en situation de fragilité santé (estim. 20%)",
+        "publics": [
+          "Personnes malades chroniques",
+          "Seniors",
+          "Personnes en rééducation"
+        ],
+        "acteurs_reponses": [
+          "CHU",
+          "CH",
+          "Médecins",
+          "Kinésithérapeutes",
+          "Associations sport-santé"
+        ]
+      },
+      {
+        "theme": "inclusion_handicap",
+        "niveau": "moyen",
+        "description": "1,382 personnes en situation de handicap (estim. 3%)",
+        "publics": [
+          "Personnes handicap moteur",
+          "Personnes handicap mental",
+          "Personnes handicap sensoriel"
+        ],
+        "acteurs_reponses": [
+          "IME",
+          "MDPH",
+          "Associations handicap",
+          "Handisport"
+        ]
+      }
+    ]
+  }
+]
