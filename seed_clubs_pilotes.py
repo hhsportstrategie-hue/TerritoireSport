@@ -77,10 +77,17 @@ def _seed_club(name, email, password, sport, city, department, members_count):
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
-    cur.execute("SELECT id FROM clubs WHERE email = ?", (email,))
+    cur.execute("SELECT id, password_hash FROM clubs WHERE email = ?", (email,))
     existing = cur.fetchone()
     if existing:
-        print(f"  ↻ {name} existe déjà (id={existing['id']})")
+        # Mettre à jour le mot de passe si différent (corrige anciens seeds avec hash incorrect)
+        new_hash = _hash_password(password)
+        if existing["password_hash"] != new_hash:
+            cur.execute("UPDATE clubs SET password_hash = ? WHERE id = ?", (new_hash, existing["id"]))
+            conn.commit()
+            print(f"  ↻ {name} existe — mot de passe mis à jour (id={existing['id']})")
+        else:
+            print(f"  ↻ {name} existe déjà (id={existing['id']})")
         conn.close()
         return existing["id"]
 
