@@ -720,7 +720,7 @@ async function loadStep3() {
     const select = document.getElementById('commune-select');
     if (select) {
         select.innerHTML = '<option value="">-- Choisir --</option>' +
-            communes.map(c => `<option value="${c.code_insee}">${c.nom} (${c.code_insee})</option>`).join('');
+            communes.map(c => `<option value="${c.code_insee}">${c.name} (${c.code_insee})</option>`).join('');
     }
 }
 
@@ -730,15 +730,18 @@ async function submitStep3() {
     const r = await fetch(API + `/api/communes/${code}`);
     const j = await r.json();
     if (r.ok) {
+        const communeData = j.commune || j;
         document.getElementById('result-3').innerHTML = `
             <div class="result-box">
-                <h3>📍 ${j.nom}</h3>
-                <p><strong>Population:</strong> ${j.population?.toLocaleString() || 'N/A'}</p>
-                <p><strong>Département:</strong> ${j.departement || 'N/A'}</p>
+                <h3>📍 ${communeData.name || communeData.nom}</h3>
+                <p><strong>Population:</strong> ${(communeData.population || 0).toLocaleString() || 'N/A'}</p>
+                <p><strong>Code INSEE:</strong> ${communeData.code_insee || code}</p>
             </div>`;
         markDone(3);
         loadStep4();
         goToStep(4);
+    } else {
+        alert('Erreur: ' + (j.detail || 'inconnue'));
     }
 }
 
@@ -763,27 +766,30 @@ async function loadStep4() {
 async function loadStep5() {
     const code = document.getElementById('commune-select').value;
     if (!code) return;
+    // Récupérer le nom de la commune sélectionnée (le shortlist filtre sur le nom, pas le code INSEE)
+    const sel = document.getElementById('commune-select');
+    const communeName = sel.options[sel.selectedIndex]?.text.split(' (')[0] || '';
     const thematiques = Array.from(document.querySelectorAll('#result-4 .badge'))
         .map(b => b.textContent.trim());
-    const params = new URLSearchParams({ commune: code, limit: '10' });
+    const params = new URLSearchParams({ commune: communeName, limit: '10' });
     if (thematiques.length) params.append('thematiques', thematiques.join(','));
     const r = await fetch(API + '/api/shortlist?' + params);
     const d = await r.json();
-    const partners = d.partners || [];
+    const partners = d.shortlist || d.partners || [];
     if (!partners.length) {
         document.getElementById('result-5').innerHTML = `
-            <div class="result-box"><p>Aucun partenaire identifié pour cette commune.</p></div>`;
+            <div class="result-box"><p>Aucun partenaire identifié pour ${communeName}. Essayez une autre commune.</p></div>`;
         return;
     }
     const html = partners.map(p => `
-        <div class="partner-card" data-id="${p.id}" onclick="togglePartner(this, '${p.id}')" style="cursor: pointer; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px;">
-            <div style="font-weight: 600;">${p.nom}</div>
-            <div style="font-size: 0.9em; color: #6b7280;">${p.activite_principale || p.type || ''}</div>
-            <div style="margin-top: 6px;"><span class="badge badge-blue">Score: ${p.score}</span></div>
+        <div class="partner-card" data-id="${p.id}" onclick="togglePartner(this, '${p.id}')" style="cursor: pointer; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; background: white;">
+            <div style="font-weight: 600;">${p.name || p.nom}</div>
+            <div style="font-size: 0.9em; color: #6b7280;">${p.category || p.type || ''}</div>
+            <div style="margin-top: 6px;"><span class="badge badge-blue">Score: ${p.score || 'N/A'}</span> ${(p.themes || []).slice(0,3).map(t => `<span class="badge badge-orange" style="margin-left:4px;">${t}</span>`).join('')}</div>
         </div>
     `).join('');
     document.getElementById('result-5').innerHTML = `
-        <div style="margin-bottom: 12px;"><strong>${partners.length} partenaires potentiels</strong> — cliquez pour sélectionner</div>
+        <div style="margin-bottom: 12px;"><strong>${partners.length} partenaires potentiels</strong> à ${communeName} — cliquez pour sélectionner</div>
         ${html}`;
 }
 

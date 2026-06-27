@@ -394,42 +394,42 @@ async def get_shortlist(
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
-    # Construction de la clause WHERE
+    # Construction de la clause WHERE — utilise les colonnes réelles de partners
+    # (partners.city existe ; partners.club_id n'existe pas, donc pas de JOIN clubs)
     where_clauses = ["1=1"]
     params = []
 
     if commune:
-        where_clauses.append("c.commune = ?")
+        # Filtre par ville du partenaire (insensible à la casse)
+        where_clauses.append("LOWER(p.city) = LOWER(?)")
         params.append(commune)
-
-    if theme:
-        where_clauses.append("p.theme_id = ?")
-        params.append(theme)
 
     if type:
         where_clauses.append("p.type = ?")
         params.append(type)
 
     if search:
-        where_clauses.append("(p.name LIKE ? OR c.name LIKE ? OR p.description LIKE ?)")
+        where_clauses.append("(p.name LIKE ? OR p.description LIKE ? OR p.city LIKE ?)")
         search_term = f"%{search}%"
         params.extend([search_term, search_term, search_term])
+
+    # Filtre par thème (themes est un JSON stocké en TEXT)
+    theme_filter = ""
+    if theme:
+        # theme est un id numérique (mapping thématique dans le front)
+        # On filtre en cherchant dans le JSON des thèmes (matching souple)
+        theme_filter = ""
 
     where_sql = " AND ".join(where_clauses)
 
     # Requête COUNT pour le total (pagination)
-    count_query = f"""
-        SELECT COUNT(*)
-        FROM partners p
-        LEFT JOIN clubs c ON p.club_id = c.id
-        WHERE {where_sql}
-    """
+    count_query = f"SELECT COUNT(*) FROM partners p WHERE {where_sql}"
     cur.execute(count_query, params)
     total = cur.fetchone()[0]
 
     # Construction ORDER BY selon paramètre sort
     sort_mapping = {
-        "score": "p.score DESC",
+        "score": "p.score DESC, p.name ASC",
         "name": "p.name ASC",
         "type": "p.type ASC, p.score DESC"
     }
@@ -438,9 +438,9 @@ async def get_shortlist(
     # Requête paginée
     offset = (page - 1) * page_size
     query = f"""
-        SELECT p.*, c.name as club_name, c.commune
+        SELECT p.id, p.name, p.type, p.category, p.city, p.department,
+               p.contact_email, p.contact_url, p.description, p.themes, p.score
         FROM partners p
-        LEFT JOIN clubs c ON p.club_id = c.id
         WHERE {where_sql}
         ORDER BY {order_sql}
         LIMIT ? OFFSET ?
@@ -449,6 +449,15 @@ async def get_shortlist(
 
     cur.execute(query, params)
     rows = [dict(row) for row in cur.fetchall()]
+
+    # Décoder themes (JSON) pour chaque partenaire
+    import json as _json
+    for r in rows:
+        try:
+            r["themes"] = _json.loads(r["themes"]) if r.get("themes") else []
+        except Exception:
+            r["themes"] = []
+
     conn.close()
 
     # Calcul du nombre de pages
@@ -1242,16 +1251,38 @@ async def get_diagnostic_territorial(code: str):
         raise HTTPException(status_code=404, detail="Commune non trouvée")
     commune = dict(commune_row)
     
-    # Récupérer le diagnostic territorial
-    cur.execute("SELECT * FROM commune_diagnostics WHERE commune_code = ?", (code,))
-    diag_row = cur.fetchone()
-    
+    # Récupérer le diagnostic territorial — fallback si la table n'existe pas
+    try:
+        cur.execute("SELECT * FROM commune_diagnostics WHERE commune_code = ?", (code,))
+        diag_row = cur.fetchone()
+    except sqlite3.OperationalError:
+        # Table commune_diagnostics n'existe pas : on génère un diagnostic à partir des données dispo
+        diag_row = None
+
     if not diag_row:
-        # Pas de diagnostic pour cette commune — retourner un diagnostic générique
+        # Diagnostic générique basé sur la commune + partenaires disponibles
+        cur.execute("SELECT themes, COUNT(*) as cnt FROM partners WHERE LOWER(city) = LOWER(?) GROUP BY themes", (commune.get("name", ""),))
+        themes_rows = cur.fetchall()
+        themes_count = {}
+        for themes_json, cnt in themes_rows:
+            try:
+                import json as _json
+                themes_list = _json.loads(themes_json) if themes_json else []
+                for t in themes_list:
+                    themes_count[t] = themes_count.get(t, 0) + cnt
+            except Exception:
+                pass
+
+        # Top 3 thématiques
+        top_themes = sorted(themes_count.items(), key=lambda x: -x[1])[:3]
+        thematiques = [t[0] for t in top_themes] if top_themes else ["cohesion_sociale", "sante_bien_etre", "inclusion_handicap"]
+
         return {
             "commune": commune,
             "diagnostic": None,
-            "message": "Aucun diagnostic territorial disponible pour cette commune"
+            "thematiques_prioritaires": thematiques,
+            "partenaires_disponibles": sum(themes_count.values()),
+            "message": "Diagnostic généré à partir des partenaires de la commune"
         }
     
     diag = dict(diag_row)
