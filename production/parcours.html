@@ -725,6 +725,9 @@ async function submitStep2() {
     if (r.ok) {
         state.score = j.score;
         state.profile = j.profile;
+        state.thematiques_suggerees = j.thematiques_suggerees || [];
+        state.public_cible = j.public_cible || '';
+        state.motivation = j.motivation || '';
         document.getElementById('result-2').innerHTML = `
             <div class="result-box">
                 <h3>📊 Profil évalué</h3>
@@ -916,9 +919,18 @@ async function submitStep5() {
 
 // ========== STEP 6: Cas inspirants ==========
 async function loadStep6() {
-    const thematiques = Array.from(document.querySelectorAll('#result-4 .badge'))
+    // Récupérer les thématiques depuis le diagnostic (étape 4 ou state)
+    let thematiques = Array.from(document.querySelectorAll('#result-4 .badge'))
         .map(b => b.textContent.trim());
+    // Si on a les thematiques suggérées par le diagnostic (q7 motivation), les prioriser
+    if (state.thematiques_suggerees && state.thematiques_suggerees.length) {
+        const suggerees = state.thematiques_suggerees;
+        // Préfixer les suggérées pour qu'elles soient en premier
+        thematiques = [...new Set([...suggerees, ...thematiques])];
+    }
     const params = new URLSearchParams({ limit: '5' });
+    if (state.commune_code) params.append('commune_code', state.commune_code);
+    if (thematiques.length) params.append('thematiques', thematiques.join(','));
     let cas = [];
     try {
         const r = await fetch(API + '/api/cas-inspirants/match?' + params);
