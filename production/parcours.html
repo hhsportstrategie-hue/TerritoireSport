@@ -930,6 +930,7 @@ async function loadStep6() {
     }
     const params = new URLSearchParams({ limit: '5' });
     if (state.commune_code) params.append('commune_code', state.commune_code);
+    if (state.club_id) params.append('club_id', state.club_id);
     if (thematiques.length) params.append('thematiques', thematiques.join(','));
     let cas = [];
     try {

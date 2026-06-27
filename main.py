@@ -907,6 +907,7 @@ async def get_cas_inspirants(
 @app.get("/api/cas-inspirants/match")
 async def match_cas_inspirants(
     commune_code: Optional[str] = None,
+    club_id: Optional[str] = None,  # Pour exclure les cas qui appartiennent au club courant
     thematiques: Optional[str] = None,  # comma-separated
     budget_max: Optional[int] = None,
     niveau_club: Optional[str] = None,
@@ -939,6 +940,15 @@ async def match_cas_inspirants(
         if row:
             commune_lat, commune_lon = row[0], row[1]
         conn2.close()
+
+    # Récupérer le nom du club courant pour exclure ses propres cas inspirants
+    current_club_name = None
+    if club_id:
+        conn3 = sqlite3.connect(DB_PATH)
+        row = conn3.execute("SELECT name FROM clubs WHERE id = ?", (club_id,)).fetchone()
+        if row:
+            current_club_name = (row[0] or "").lower()
+        conn3.close()
 
     import math
     def haversine_km(lat1, lon1, lat2, lon2):
@@ -1015,6 +1025,17 @@ async def match_cas_inspirants(
         cas['thematiques'] = cas_thematiques
         cas['partenaires'] = cas_partenaires
         cas['distance_km'] = round(distance_km, 1) if distance_km is not None else None
+
+        # Exclure les cas qui appartiennent au club courant
+        cas_title = (cas.get('titre') or '').lower()
+        cas_structure = (cas.get('structure') or '').lower()
+        # Mots-clés significatifs du nom du club (mots > 3 char)
+        club_keywords = [w for w in current_club_name.split() if len(w) > 3] if current_club_name else []
+        # Si 2+ mots-clés du club apparaissent dans la structure, c'est son propre cas
+        matches = sum(1 for kw in club_keywords if kw in cas_structure or kw in cas_title)
+        if current_club_name and matches >= 2:
+            continue
+
         scored.append(cas)
 
     # Tri par score décroissant, puis distance (les plus proches à score égal)
