@@ -220,10 +220,25 @@ async def root():
 async def health():
     """Health check."""
     db_exists = Path(DB_PATH).exists()
+    schema = {}
+    if db_exists:
+        try:
+            conn = sqlite3.connect(DB_PATH)
+            cur = conn.cursor()
+            for table in ("clubs", "communes", "partners", "engineering_projects", "diagnostics"):
+                try:
+                    cols = [r[1] for r in cur.execute(f"PRAGMA table_info({table})").fetchall()]
+                    schema[table] = cols
+                except Exception as e:
+                    schema[table] = f"ERROR: {e}"
+            conn.close()
+        except Exception as e:
+            schema["__error__"] = str(e)
     return {
         "status": "healthy" if db_exists else "degraded",
         "db_path": DB_PATH,
-        "db_exists": db_exists
+        "db_exists": db_exists,
+        "schema": schema
     }
 
 
