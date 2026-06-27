@@ -55,6 +55,11 @@ async def lifespan(app: FastAPI):
             ("clubs", "code_insee", "TEXT"),
             ("clubs", "epci_code", "TEXT"),
             ("clubs", "contact_phone", "TEXT"),
+            ("partners", "latitude", "REAL"),
+            ("partners", "longitude", "REAL"),
+            ("cas_inspirants", "latitude", "REAL"),
+            ("cas_inspirants", "longitude", "REAL"),
+            ("cas_inspirants", "city", "TEXT"),
         ]
         for table, col, col_type in migrations:
             try:
@@ -110,6 +115,32 @@ async def lifespan(app: FastAPI):
         conn.close()
         if added:
             print(f"  ✓ {added} cas inspirants chargés depuis cas_inspirants.json")
+
+    # ═══ Migration géocodage (idempotente) ═══
+    geo_json_path = Path("data/geocoded_migration.json")
+    if geo_json_path.exists():
+        import json as _json
+        with open(geo_json_path) as f:
+            geo_migration = _json.load(f)
+        conn = sqlite3.connect(DB_PATH)
+        cur = conn.cursor()
+        # Corriger les départements des partenaires
+        for city, dept in geo_migration.get("dept_corrections", {}).items():
+            cur.execute("UPDATE partners SET department=? WHERE LOWER(city) = LOWER(?)",
+                        (dept, city))
+        # Géocoder les partenaires
+        for p in geo_migration.get("partners", []):
+            cur.execute("UPDATE partners SET latitude=?, longitude=? WHERE id=?",
+                        (p["lat"], p["lon"], p["id"]))
+        # Géocoder les cas inspirants
+        for c in geo_migration.get("cas_inspirants", []):
+            cur.execute("UPDATE cas_inspirants SET latitude=?, longitude=?, city=? WHERE id=?",
+                        (c["lat"], c["lon"], c.get("city"), c["id"]))
+        conn.commit()
+        conn.close()
+        n_p = len(geo_migration.get("partners", []))
+        n_c = len(geo_migration.get("cas_inspirants", []))
+        print(f"  ✓ Migration géocodage appliquée : {n_p} partenaires + {n_c} cas inspirants")
 
     # Seed si la DB est vide
     conn = sqlite3.connect(DB_PATH)
@@ -1342,6 +1373,100 @@ async def get_diagnostic_territorial(code: str):
     if not commune_row:
         raise HTTPException(status_code=404, detail="Commune non trouvée")
     commune = dict(commune_row)
+
+    # ═══ Enrichissement systématique : clubs locaux + partenaires + cas inspirants proches ═══
+    import math
+    def haversine_km(lat1, lon1, lat2, lon2):
+        if not all([lat1, lon1, lat2, lon2]):
+            return None
+        R = 6371
+        dlat = math.radians(lat2 - lat1)
+        dlon = math.radians(lon2 - lon1)
+        a = math.sin(dlat/2)**2 + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon/2)**2
+        return 2 * R * math.asin(math.sqrt(a))
+
+    commune_lat = commune.get('latitude')
+    commune_lon = commune.get('longitude')
+    commune_name = commune.get('name')
+
+    # Clubs sportifs dans la commune
+    clubs_local = []
+    try:
+        for r in cur.execute(
+            "SELECT name, sport, city, contact_email FROM clubs WHERE LOWER(city) = LOWER(?)",
+            (commune_name,)
+        ):
+            clubs_local.append({"name": r[0], "sport": r[1], "city": r[2], "contact": r[3]})
+    except Exception:
+        pass
+
+    # Partenaires à proximité (rayon 20 km)
+    partenaires_locaux = []
+    partenaires_proches = []
+    try:
+        for r in cur.execute(
+            "SELECT name, themes, city, latitude, longitude, contact_email FROM partners WHERE latitude IS NOT NULL AND longitude IS NOT NULL"
+        ):
+            pname, pthemes_json, pcity, plat, plon, pmail = r
+            d = haversine_km(commune_lat, commune_lon, plat, plon)
+            if d is None:
+                continue
+            try:
+                pthemes = json.loads(pthemes_json) if pthemes_json else []
+            except Exception:
+                pthemes = []
+            entry = {
+                "name": pname, "themes": pthemes, "city": pcity,
+                "distance_km": round(d, 1), "contact": pmail
+            }
+            if (pcity or "").lower() == (commune_name or "").lower() or d <= 5:
+                partenaires_locaux.append(entry)
+            elif d <= 20:
+                partenaires_proches.append(entry)
+    except Exception:
+        pass
+    partenaires_proches.sort(key=lambda p: p["distance_km"])
+
+    # Cas inspirants dans un rayon de 100 km
+    cas_inspirants_proches = []
+    try:
+        for r in cur.execute(
+            "SELECT titre, structure, city, latitude, longitude, source, budget_reel FROM cas_inspirants WHERE latitude IS NOT NULL AND longitude IS NOT NULL"
+        ):
+            ctitle, cstructure, ccity, clat, clon, csource, cbudget = r
+            d = haversine_km(commune_lat, commune_lon, clat, clon)
+            if d is not None and d <= 100:
+                cas_inspirants_proches.append({
+                    "title": ctitle, "structure": cstructure, "city": ccity or "",
+                    "distance_km": round(d, 1), "source": csource,
+                    "budget": cbudget
+                })
+    except Exception:
+        pass
+    cas_inspirants_proches.sort(key=lambda c: c["distance_km"])
+
+    # Lecture humaine
+    population = commune.get('population') or 0
+    lecture = []
+    if population:
+        if population < 1500:
+            lecture.append(f"Commune rurale de {population} habitants")
+        elif population < 10000:
+            lecture.append(f"Commune de taille moyenne avec {population} habitants")
+        else:
+            lecture.append(f"Commune urbaine de {population} habitants")
+    if clubs_local:
+        lecture.append(f"{len(clubs_local)} club(s) sportif(s) recensé(s) sur la commune")
+    if partenaires_locaux:
+        lecture.append(f"{len(partenaires_locaux)} partenaire(s) associatif(s) à moins de 5 km")
+    elif partenaires_proches:
+        lecture.append(f"{len(partenaires_proches)} partenaire(s) associatif(s) dans un rayon de 20 km")
+    if cas_inspirants_proches:
+        plus_proche = cas_inspirants_proches[0]
+        lecture.append(
+            f"Cas inspirant le plus proche : '{plus_proche['title']}' à {plus_proche['city']} ({plus_proche['distance_km']} km)"
+        )
+    lecture_humaine = " — ".join(lecture) if lecture else None
     
     # Récupérer le diagnostic territorial — fallback si la table n'existe pas
     try:
@@ -1374,7 +1499,12 @@ async def get_diagnostic_territorial(code: str):
             "diagnostic": None,
             "thematiques_prioritaires": thematiques,
             "partenaires_disponibles": sum(themes_count.values()),
-            "message": "Diagnostic généré à partir des partenaires de la commune"
+            "message": "Diagnostic généré à partir des partenaires de la commune",
+            "clubs_locaux": clubs_local,
+            "partenaires_locaux": partenaires_locaux,
+            "partenaires_proches": partenaires_proches[:8],
+            "cas_inspirants_proches": cas_inspirants_proches[:5],
+            "lecture_humaine": lecture_humaine
         }
     
     diag = dict(diag_row)
@@ -1384,8 +1514,107 @@ async def get_diagnostic_territorial(code: str):
             diag['inclusions_thematiques'] = json.loads(diag['inclusions_thematiques'])
         except:
             diag['inclusions_thematiques'] = []
-    
+
+    # ═══ Enrichissement : clubs sportifs de la commune + partenaires dans un rayon de 20 km ═══
+    import math
+    def haversine_km(lat1, lon1, lat2, lon2):
+        """Distance orthodromique entre 2 points (km)."""
+        if not all([lat1, lon1, lat2, lon2]):
+            return None
+        R = 6371
+        dlat = math.radians(lat2 - lat1)
+        dlon = math.radians(lon2 - lon1)
+        a = math.sin(dlat/2)**2 + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon/2)**2
+        return 2 * R * math.asin(math.sqrt(a))
+
+    commune_lat = commune.get('latitude')
+    commune_lon = commune.get('longitude')
+    commune_name = commune.get('name')
+
+    # Clubs sportifs dans la commune
+    clubs_local = []
+    try:
+        for r in cur.execute(
+            "SELECT name, sport, city, contact_email FROM clubs WHERE LOWER(city) = LOWER(?)",
+            (commune_name,)
+        ):
+            clubs_local.append({"name": r[0], "sport": r[1], "city": r[2], "contact": r[3]})
+    except Exception:
+        pass
+
+    # Partenaires dans la commune + à proximité (rayon 20 km)
+    partenaires_locaux = []
+    partenaires_proches = []
+    try:
+        for r in cur.execute(
+            "SELECT name, themes, city, latitude, longitude, contact_email FROM partners WHERE latitude IS NOT NULL AND longitude IS NOT NULL"
+        ):
+            pname, pthemes_json, pcity, plat, plon, pmail = r
+            d = haversine_km(commune_lat, commune_lon, plat, plon)
+            if d is None:
+                continue
+            try:
+                pthemes = json.loads(pthemes_json) if pthemes_json else []
+            except Exception:
+                pthemes = []
+            entry = {
+                "name": pname, "themes": pthemes, "city": pcity,
+                "distance_km": round(d, 1), "contact": pmail
+            }
+            if (pcity or "").lower() == (commune_name or "").lower() or d <= 5:
+                partenaires_locaux.append(entry)
+            elif d <= 20:
+                partenaires_proches.append(entry)
+    except Exception:
+        pass
+    partenaires_proches.sort(key=lambda p: p["distance_km"])
+
+    # Cas inspirants dans un rayon de 100 km (pour l'étape 6)
+    cas_inspirants_proches = []
+    try:
+        for r in cur.execute(
+            "SELECT titre, structure, city, latitude, longitude, source, budget_reel FROM cas_inspirants WHERE latitude IS NOT NULL AND longitude IS NOT NULL"
+        ):
+            ctitle, cstructure, ccity, clat, clon, csource, cbudget = r
+            d = haversine_km(commune_lat, commune_lon, clat, clon)
+            if d is not None and d <= 100:
+                cas_inspirants_proches.append({
+                    "title": ctitle, "structure": cstructure, "city": ccity or "",
+                    "distance_km": round(d, 1), "source": csource,
+                    "budget": cbudget
+                })
+    except Exception:
+        pass
+    cas_inspirants_proches.sort(key=lambda c: c["distance_km"])
+
+    # Lecture humaine
+    population = commune.get('population') or 0
+    lecture = []
+    if population:
+        if population < 1500:
+            lecture.append(f"Commune rurale de {population} habitants")
+        elif population < 10000:
+            lecture.append(f"Commune de taille moyenne avec {population} habitants")
+        else:
+            lecture.append(f"Commune urbaine de {population} habitants")
+    if clubs_local:
+        lecture.append(f"{len(clubs_local)} club(s) sportif(s) recensé(s) sur la commune")
+    if partenaires_locaux:
+        lecture.append(f"{len(partenaires_locaux)} partenaire(s) associatif(s) à moins de 5 km")
+    elif partenaires_proches:
+        lecture.append(f"{len(partenaires_proches)} partenaire(s) associatif(s) dans un rayon de 20 km")
+    if cas_inspirants_proches:
+        plus_proche = cas_inspirants_proches[0]
+        lecture.append(
+            f"Cas inspirant le plus proche : '{plus_proche['title']}' à {plus_proche['city']} ({plus_proche['distance_km']} km)"
+        )
+
     return {
         "commune": commune,
-        "diagnostic": diag
+        "diagnostic": diag,
+        "clubs_locaux": clubs_local,
+        "partenaires_locaux": partenaires_locaux,
+        "partenaires_proches": partenaires_proches[:8],
+        "cas_inspirants_proches": cas_inspirants_proches[:5],
+        "lecture_humaine": lecture_humaine
     }

@@ -758,43 +758,96 @@ async function submitStep3() {
 }
 
 // ========== STEP 4: Diagnostic territorial ==========
+async function loadStep4() {
     const code = state.commune_code || document.getElementById('commune-select')?.value;
-    const code = document.getElementById('commune-select').value;
     if (!code) return;
     const r = await fetch(API + `/api/communes/${code}/diagnostic-territorial`);
     const d = await r.json();
+    
+    // Thématiques prioritaires
     const thematiques = d.thematiques_prioritaires || [];
-    const html = thematiques.map(t => `
-        <div class="badge badge-orange" style="margin: 4px; padding: 8px 12px; display: inline-block;">${t}</div>
-    const partenairesTxt = d.partenaires_disponibles != null
-        ? `<p style="margin-top: 8px; color: #6b7280;">📊 ${d.partenaires_disponibles} partenaires identifiés sur cette commune</p>`
+    const thematiquesHtml = thematiques.length
+        ? thematiques.map(t => `
+            <span class="badge badge-orange" style="margin: 4px; padding: 8px 14px; display: inline-block; font-size: 0.95em;">${t}</span>
+        `).join('')
+        : '<p style="color: #6b7280;">Aucune thématique identifiée pour cette commune</p>';
+    
+    // Lecture humaine (résumé en une phrase)
+    const lectureHtml = d.lecture_humaine
+        ? `<div style="background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%); padding: 16px 20px; border-radius: 10px; border-left: 4px solid #3b82f6; margin-bottom: 20px;">
+            <p style="margin: 0; color: #1e40af; font-size: 1.05em; line-height: 1.6;">📍 ${d.lecture_humaine}</p>
+        </div>`
         : '';
-    const partenairesTxt = d.partenaires_disponibles != null
-        ? `<p style="margin-top: 8px; color: #6b7280;">📊 ${d.partenaires_disponibles} partenaires identifiés sur cette commune</p>`
+    
+    // Clubs locaux
+    const clubsLocaux = d.clubs_locaux || [];
+    const clubsHtml = clubsLocaux.length
+        ? `<div style="margin-top: 20px;">
+            <h4 style="color: #1f2937; margin-bottom: 10px;">🏟️ Clubs sportifs sur votre commune (${clubsLocaux.length})</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px;">
+                ${clubsLocaux.map(c => `
+                    <div style="background: white; border: 1px solid #e5e7eb; padding: 10px 14px; border-radius: 8px;">
+                        <div style="font-weight: 600; color: #111827;">${c.name}</div>
+                        <div style="font-size: 0.85em; color: #6b7280;">${c.sport}</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>`
         : '';
-    `).join('');
-            ${partenairesTxt}
+    
+    // Partenaires proches
+    const partenaires = [...(d.partenaires_locaux || []), ...(d.partenaires_proches || [])];
+    const partenairesHtml = partenaires.length
+        ? `<div style="margin-top: 20px;">
+            <h4 style="color: #1f2937; margin-bottom: 10px;">🤝 Partenaires potentiels à proximité (${partenaires.length})</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px;">
+                ${partenaires.slice(0, 8).map(p => `
+                    <div style="background: white; border: 1px solid #e5e7eb; padding: 10px 14px; border-radius: 8px;">
+                        <div style="font-weight: 600; color: #111827;">${p.name}</div>
+                        <div style="font-size: 0.85em; color: #6b7280;">${p.city} • ${p.distance_km} km</div>
+                        ${p.themes && p.themes.length ? `<div style="font-size: 0.8em; color: #9ca3af; margin-top: 4px;">${p.themes.slice(0, 2).join(' • ')}</div>` : ''}
+                    </div>
+                `).join('')}
+            </div>
+        </div>`
+        : '';
+    
+    // Cas inspirants à proximité
+    const cas = d.cas_inspirants_proches || [];
+    const casHtml = cas.length
+        ? `<div style="margin-top: 20px;">
+            <h4 style="color: #1f2937; margin-bottom: 10px;">💡 Cas inspirants dans votre zone (${cas.length})</h4>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
+                ${cas.map(c => `
+                    <div style="background: linear-gradient(90deg, #fef3c7 0%, #fefce8 100%); border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 8px;">
+                        <div style="font-weight: 600; color: #78350f;">${c.title}</div>
+                        <div style="font-size: 0.85em; color: #92400e; margin-top: 4px;">📍 ${c.city} • ${c.distance_km} km${c.budget ? ` • Budget ${c.budget.toLocaleString('fr-FR')} €` : ''}</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>`
+        : '';
+    
     document.getElementById('result-4').innerHTML = `
         <div class="result-box">
-            <h3>🎯 Thématiques prioritaires</h3>
-            ${partenairesTxt}
-            <div>${html || 'Aucune thématique identifiée'}</div>
+            ${lectureHtml}
+            <h3 style="color: #1f2937; margin-bottom: 12px;">🎯 Thématiques prioritaires</h3>
+            <div style="margin-bottom: 8px;">${thematiquesHtml}</div>
+            ${clubsHtml}
+            ${partenairesHtml}
+            ${casHtml}
         </div>`;
 }
 
 // ========== STEP 5: Shortlist partenaires ==========
+async function loadStep5() {
     const code = state.commune_code || document.getElementById('commune-select')?.value;
-    const code = document.getElementById('commune-select').value;
     if (!code) return;
     let communeName = state.commune_name || '';
     if (!communeName) {
         const sel = document.getElementById('commune-select');
         communeName = sel?.options[sel.selectedIndex]?.text.split(' (')[0] || '';
     }
-        const sel = document.getElementById('commune-select');
-        communeName = sel?.options[sel.selectedIndex]?.text.split(' (')[0] || '';
-    }
-    const communeName = sel.options[sel.selectedIndex]?.text.split(' (')[0] || '';
     const thematiques = Array.from(document.querySelectorAll('#result-4 .badge'))
         .map(b => b.textContent.trim());
     const params = new URLSearchParams({ commune: communeName, limit: '10' });
