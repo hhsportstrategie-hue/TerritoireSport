@@ -143,6 +143,8 @@ class ClubLogin(BaseModel):
 class ProjectCreate(BaseModel):
     title: str
     description: Optional[str] = None
+    themes: Optional[list] = None  # liste de slugs thématiques
+    budget: Optional[int] = None
     theme_id: Optional[str] = None
     public_cible: Optional[str] = None
     objectifs: Optional[str] = None
@@ -316,13 +318,15 @@ async def create_project(
                 ressources, calendrier, indicateurs, status, current_step,
                 created_at, updated_at
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'active', 1, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'active', 1, ?)
             """,
             (
-                project_id, club_id, project.title, project.description, themes_json, project.budget,
+                project_id, club_id,
+                project.title, project.description, themes_json, project.budget,
                 project.theme_id, project.public_cible,
                 project.objectifs, project.activites, project.ressources,
-                project.calendrier, project.indicateurs, now, now,
+                project.calendrier, project.indicateurs,
+                now, now,
             ),
         )
 
