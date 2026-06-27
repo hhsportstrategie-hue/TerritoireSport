@@ -242,8 +242,18 @@ async def metrics_middleware(request, call_next):
 
 
 # ── Endpoints de base ────────────────────────────────────────────
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 async def root():
+    """Landing page publique."""
+    landing_path = Path("production/landing.html")
+    if landing_path.exists():
+        return HTMLResponse(content=landing_path.read_text(encoding="utf-8"))
+    # Fallback JSON si pas de landing
+    return {"status": "ok", "version": "3.0.0", "service": "TerritoireSport API"}
+
+
+@app.get("/api/info")
+async def api_info():
     return {
         "status": "ok",
         "version": "3.0.0",
