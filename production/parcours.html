@@ -618,7 +618,7 @@ async function submitStep1(e) {
         commune: document.getElementById('club-commune').value,
         email: document.getElementById('club-email').value
     };
-    const r = await fetch(API + '/api/clubs', {
+    const r = await fetch(API + '/api/clubs/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -671,7 +671,7 @@ async function submitStep2() {
     document.querySelectorAll('.question-card select').forEach(sel => {
         answers[sel.id] = sel.value;
     });
-    const r = await fetch(API + '/api/diagnostic', {
+    const r = await fetch(API + '/api/diagnostics', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ club_id: state.club_id, answers })
@@ -728,7 +728,7 @@ async function submitStep3() {
 async function loadStep4() {
     const code = document.getElementById('commune-select').value;
     if (!code) return;
-    const r = await fetch(API + `/api/diagnostic/${code}`);
+    const r = await fetch(API + `/api/communes/${code}/diagnostic-territorial`);
     const d = await r.json();
     const thematiques = d.thematiques_prioritaires || [];
     const html = thematiques.map(t => `
