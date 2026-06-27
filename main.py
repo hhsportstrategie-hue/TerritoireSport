@@ -61,6 +61,50 @@ async def lifespan(app: FastAPI):
         conn.commit()
         conn.close()
 
+    # Charger les cas inspirants depuis le JSON (idempotent)
+    cas_json_path = Path("data/cas_inspirants.json")
+    if cas_json_path.exists():
+        import json as _json
+        with open(cas_json_path) as f:
+            cas_data = _json.load(f)
+        conn = sqlite3.connect(DB_PATH)
+        existing = {row[0] for row in conn.execute("SELECT id FROM cas_inspirants").fetchall()}
+        added = 0
+        for cas in cas_data:
+            if cas.get("id") in existing:
+                continue
+            conn.execute("""
+                INSERT INTO cas_inspirants (
+                    id, section, type_source, titre, structure, niveau_club,
+                    thematiques, description, ressources, partenaires, resultats,
+                    budget_reel, adaptation_club_amateur, transposabilite,
+                    reproductibilite, source, date_detection
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                cas.get("id"),
+                cas.get("section"),
+                cas.get("type_source"),
+                cas.get("titre"),
+                cas.get("structure"),
+                cas.get("niveau_club"),
+                _json.dumps(cas.get("thematiques", [])),
+                cas.get("description"),
+                cas.get("ressources"),
+                _json.dumps(cas.get("partenaires", [])),
+                cas.get("resultats"),
+                cas.get("budget_reel", 0),
+                cas.get("adaptation_club_amateur"),
+                cas.get("transposabilite"),
+                cas.get("reproductibilite"),
+                cas.get("source"),
+                cas.get("date_detection"),
+            ))
+            added += 1
+        conn.commit()
+        conn.close()
+        if added:
+            print(f"  ✓ {added} cas inspirants chargés depuis cas_inspirants.json")
+
     # Seed si la DB est vide
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()

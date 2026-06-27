@@ -157,6 +157,29 @@ CREATE TABLE IF NOT EXISTS partners (
     score           INTEGER DEFAULT 0
 );
 
+-- ── Cas inspirants (chargés depuis data/cas_inspirants.json) ─────
+CREATE TABLE IF NOT EXISTS cas_inspirants (
+    id              TEXT PRIMARY KEY,
+    section         TEXT,
+    type_source     TEXT,
+    titre           TEXT NOT NULL,
+    structure       TEXT,
+    niveau_club     TEXT,
+    thematiques     TEXT,  -- JSON
+    description     TEXT,
+    ressources      TEXT,
+    partenaires     TEXT,  -- JSON
+    resultats       TEXT,
+    budget_reel     INTEGER DEFAULT 0,
+    adaptation_club_amateur TEXT,
+    transposabilite TEXT,
+    reproductibilite TEXT,
+    source          TEXT,
+    date_detection  TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_cas_inspirants_section ON cas_inspirants(section);
+
 -- ── Sources de financement (AAP) ─────────────────────────────
 CREATE TABLE IF NOT EXISTS funding_sources (
     id              TEXT PRIMARY KEY,
