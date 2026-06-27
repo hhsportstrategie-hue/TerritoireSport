@@ -1219,6 +1219,15 @@ async def get_parcours():
     raise HTTPException(status_code=404, detail="Parcours page not found")
 
 
+@app.get("/parcours/partenaire", response_class=HTMLResponse)
+async def get_parcours_partenaire():
+    """Page de réponse partenaire (reçoit la demande via token dans l'URL)."""
+    p = Path("production/parcours_partenaire.html")
+    if p.exists():
+        return HTMLResponse(content=p.read_text(encoding="utf-8"))
+    raise HTTPException(status_code=404, detail="Page partenaire non trouvée")
+
+
 @app.get("/api/communes/{code}/diagnostic-territorial")
 async def get_diagnostic_territorial(code: str):
     """Diagnostic territorial d'une commune : réalités, spécificités, difficultés."""

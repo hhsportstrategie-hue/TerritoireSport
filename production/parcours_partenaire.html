@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerritoireSport — Demande de contact partenaire</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e2e8f0 100%);
+            color: #1a202c;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .card {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 28px 32px;
+        }
+        .header h1 { font-size: 24px; margin-bottom: 4px; }
+        .header p { opacity: 0.9; font-size: 14px; }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 8px;
+            background: rgba(255,255,255,0.2);
+        }
+        .content { padding: 28px 32px; }
+        .meta-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .meta-item {
+            background: #f7fafc;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+        }
+        .meta-item .label { font-size: 11px; text-transform: uppercase; color: #718096; font-weight: 600; }
+        .meta-item .value { font-size: 14px; color: #1a202c; margin-top: 4px; }
+        .message-block {
+            background: #ebf4ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        .message-block .label { font-size: 12px; color: #2c5282; font-weight: 600; margin-bottom: 6px; }
+        .actions { display: flex; gap: 12px; }
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn-accept {
+            background: #38a169;
+            color: white;
+        }
+        .btn-accept:hover { background: #2f855a; transform: translateY(-1px); }
+        .btn-decline {
+            background: white;
+            color: #c53030;
+            border: 2px solid #fc8181;
+        }
+        .btn-decline:hover { background: #fff5f5; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .response-block {
+            margin-top: 20px;
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .response-block textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 70px;
+            margin-top: 8px;
+        }
+        .status-banner {
+            margin-top: 24px;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+        .status-accepted { background: #c6f6d5; color: #22543d; }
+        .status-declined { background: #fed7d7; color: #742a2a; }
+        .error-banner {
+            background: #fed7d7;
+            color: #742a2a;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .loader {
+            text-align: center;
+            padding: 40px;
+            color: #718096;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div id="loading" class="loader">Chargement de la demande...</div>
+
+        <div id="content" style="display:none;">
+            <div class="header">
+                <h1 id="partner-name">—</h1>
+                <p>Demande de contact reçue via TerritoireSport</p>
+                <span class="badge" id="status-badge">En attente</span>
+            </div>
+
+            <div class="content">
+                <div id="error" class="error-banner"></div>
+
+                <div class="meta-row">
+                    <div class="meta-item">
+                        <div class="label">Club demandeur</div>
+                        <div class="value" id="club-name">—</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="label">Reçue le</div>
+                        <div class="value" id="created-at">—</div>
+                    </div>
+                </div>
+
+                <div class="message-block">
+                    <div class="label">📩 Message du club</div>
+                    <div id="message-content">—</div>
+                </div>
+
+                <div class="response-block">
+                    <label for="response-msg" style="font-size:13px;color:#4a5568;font-weight:600;">
+                        Votre réponse (optionnel)
+                    </label>
+                    <textarea id="response-msg" placeholder="Ex : Oui, contactez-nous au 02 33 XX XX XX, ou précisez vos disponibilités..."></textarea>
+                </div>
+
+                <div class="actions" id="actions-block">
+                    <button class="btn btn-accept" onclick="respond('accepted')">✓ Accepter la mise en relation</button>
+                    <button class="btn btn-decline" onclick="respond('declined')">✕ Décliner</button>
+                </div>
+
+                <div id="status-banner" class="status-banner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API = window.location.origin;
+        const params = new URLSearchParams(window.location.search);
+        const TOKEN = params.get('token');
+
+        if (!TOKEN) {
+            document.getElementById('loading').innerHTML = '❌ Token manquant dans l\'URL';
+        } else {
+            loadInbox();
+        }
+
+        async function loadInbox() {
+            try {
+                const r = await fetch(API + '/api/parcours/partenaire/inbox?token=' + TOKEN);
+                if (!r.ok) {
+                    const err = await r.json().catch(() => ({}));
+                    document.getElementById('loading').innerHTML = '❌ ' + (err.detail || 'Demande introuvable ou expirée');
+                    return;
+                }
+                const data = await r.json();
+                renderInbox(data.request);
+            } catch (e) {
+                document.getElementById('loading').innerHTML = '❌ Erreur réseau : ' + e.message;
+            }
+        }
+
+        function renderInbox(req) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+
+            document.getElementById('partner-name').textContent = req.partner_name || 'Partenaire';
+            document.getElementById('club-name').textContent = req.club_name || 'Club';
+            document.getElementById('message-content').textContent = req.message || '(pas de message)';
+            document.getElementById('created-at').textContent = new Date(req.created_at).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'});
+
+            const badge = document.getElementById('status-badge');
+            if (req.status === 'accepted') {
+                badge.textContent = '✓ Acceptée';
+                badge.style.background = 'rgba(56,161,105,0.4)';
+                document.getElementById('actions-block').style.display = 'none';
+                showStatus('accepted', '✅ Vous avez déjà accepté cette demande.');
+            } else if (req.status === 'declined') {
+                badge.textContent = '✕ Déclinée';
+                badge.style.background = 'rgba(197,48,48,0.4)';
+                document.getElementById('actions-block').style.display = 'none';
+                showStatus('declined', '❌ Vous avez décliné cette demande.');
+            }
+        }
+
+        async function respond(action) {
+            const msg = document.getElementById('response-msg').value.trim();
+            document.querySelectorAll('.btn').forEach(b => b.disabled = true);
+            try {
+                const r = await fetch(API + '/api/parcours/partenaire/respond?token=' + TOKEN, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ response: action, message: msg })
+                });
+                const data = await r.json();
+                if (!r.ok) {
+                    document.getElementById('error').textContent = data.detail || 'Erreur lors de la réponse';
+                    document.getElementById('error').style.display = 'block';
+                    document.querySelectorAll('.btn').forEach(b => b.disabled = false);
+                    return;
+                }
+                if (action === 'accepted') {
+                    showStatus('accepted', '✅ Merci ! Le club a été informé. Ils vous recontacteront sous 48h.');
+                } else {
+                    showStatus('declined', 'Réponse envoyée. Le club en a été informé.');
+                }
+                document.getElementById('actions-block').style.display = 'none';
+                const badge = document.getElementById('status-badge');
+                badge.textContent = action === 'accepted' ? '✓ Acceptée' : '✕ Déclinée';
+            } catch (e) {
+                document.getElementById('error').textContent = 'Erreur réseau : ' + e.message;
+                document.getElementById('error').style.display = 'block';
+                document.querySelectorAll('.btn').forEach(b => b.disabled = false);
+            }
+        }
+
+        function showStatus(type, text) {
+            const banner = document.getElementById('status-banner');
+            banner.className = 'status-banner status-' + type;
+            banner.textContent = text;
+            banner.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
