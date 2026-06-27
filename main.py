@@ -44,6 +44,11 @@ async def lifespan(app: FastAPI):
     cur = conn.cursor()
     cur.execute("SELECT COUNT(*) FROM clubs")
     count = cur.fetchone()[0]
+
+    # Vérifier si les clubs pilotes existent déjà (idempotence du seed pilotes)
+    cur.execute("SELECT COUNT(*) FROM clubs WHERE email IN (?, ?, ?)",
+                ("contact@batt-argentan.fr", "contact@es-coutances-football.fr", "contact@as-cherbourg-football.fr"))
+    pilotes_count = cur.fetchone()[0]
     conn.close()
 
     if count == 0:
@@ -51,7 +56,9 @@ async def lifespan(app: FastAPI):
         init_db.init_db()
         import seed
         seed.seed()
-        # Seed clubs pilotes (BATT, ES Coutances, AS Cherbourg)
+
+    # Idempotent : seed_clubs_pilotes.main() vérifie lui-même si les clubs existent
+    if pilotes_count < 3:
         try:
             import seed_clubs_pilotes
             seed_clubs_pilotes.main()
