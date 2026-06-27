@@ -76,22 +76,23 @@
   }
   .stat:last-child { border-bottom: none; }
   .stat-label { color: var(--muted); font-size: 0.9rem; }
-  .stat-value { font-weight: 600; color: var(--text); }
-  .commit-msg {
-    font-family: 'Menlo', 'Monaco', monospace;
-    font-size: 0.85rem;
+  .stat-value { font-weight: 600; color: var(--text); text-align: right; }
+  .commit {
     background: #F3F4F6;
-    padding: 0.4rem 0.6rem;
+    padding: 0.5rem 0.7rem;
     border-radius: 4px;
-    margin: 0.2rem 0;
-    cursor: pointer;
+    margin: 0.3rem 0;
+    font-size: 0.85rem;
+    border-left: 3px solid var(--primary);
   }
-  .commit-msg:hover { background: #E5E7EB; }
-  .commit-msg .hash {
+  .commit .hash {
     color: var(--primary);
     font-weight: 700;
+    font-family: 'Menlo', monospace;
     margin-right: 0.5rem;
   }
+  .commit .msg { display: block; margin-top: 0.2rem; }
+  .commit .meta { color: var(--muted); font-size: 0.75rem; margin-top: 0.2rem; }
   .service {
     display: flex;
     align-items: center;
@@ -110,6 +111,7 @@
   .dot.offline { background: var(--danger); box-shadow: 0 0 0 3px rgba(231,111,81,0.2); }
   .service-name { font-size: 0.9rem; font-weight: 600; flex: 1; }
   .service-url { font-family: 'Menlo', monospace; font-size: 0.75rem; color: var(--muted); }
+  .service-status { font-size: 0.8rem; white-space: nowrap; }
   .todo-item {
     display: flex;
     align-items: center;
@@ -149,6 +151,15 @@
     background: #F3F4F6;
     padding: 0.1em 0.4em;
     border-radius: 3px;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    margin-left: 0.5rem;
   }
 </style>
 </head>
@@ -201,59 +212,91 @@
     }
   }
 
+  function esc(s) {
+    if (s === null || s === undefined) return '';
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    try {
+      return new Date(iso).toLocaleString('fr-FR', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+    } catch (e) { return iso; }
+  }
+
   function render(data) {
-    // Stats globales
+    // ── Stats globales ──
     const stats = document.getElementById('global-stats');
-    if (!data.repo_path) {
-      stats.innerHTML = '<p class="empty">Repo TerritoireSport non trouvé à côté du dashboard.<br>Place le dashboard dans <code>Tennis-de-table/</code> ou modifie <code>dashboard_server.py</code>.</p>';
-    } else if (data.git.error) {
-      stats.innerHTML = `<p class="empty">${data.git.error}</p>`;
-    } else {
+    if (data.git && data.git.available === false) {
+      stats.innerHTML = `<p class="empty">⚠️ Repo Git inaccessible : <code>${esc(data.github_repo)}</code><br><small>${esc(data.git.error || 'erreur inconnue')}</small></p>`;
+    } else if (data.git && data.git.last_commit) {
       const g = data.git;
+      const lc = g.last_commit;
       stats.innerHTML = `
-        <div class="stat"><span class="stat-label">Branche</span><span class="stat-value">${g.branch}</span></div>
-        <div class="stat"><span class="stat-label">Dernier commit</span><span class="stat-value"><code>${g.last_commit.hash}</code></span></div>
-        <div class="stat"><span class="stat-label">Date</span><span class="stat-value" style="font-size:0.85rem">${g.last_commit.date}</span></div>
-        <div class="stat"><span class="stat-label">Message</span><span class="stat-value" style="font-size:0.85rem">${g.last_commit.message}</span></div>
-        <div class="stat"><span class="stat-label">Auteur</span><span class="stat-value">${g.last_commit.author}</span></div>
-        <div class="stat"><span class="stat-label">Fichiers modifiés</span><span class="stat-value">${g.modified_files.length}</span></div>
+        <div class="stat"><span class="stat-label">Repo</span><span class="stat-value"><code>${esc(data.github_repo)}</code></span></div>
+        <div class="stat"><span class="stat-label">Branche</span><span class="stat-value">${esc(g.branch)}</span></div>
+        <div class="stat"><span class="stat-label">Dernier commit</span><span class="stat-value"><code>${esc(lc.hash)}</code></span></div>
+        <div class="stat"><span class="stat-label">Date</span><span class="stat-value">${esc(formatDate(lc.date))}</span></div>
+        <div class="stat"><span class="stat-label">Auteur</span><span class="stat-value">${esc(lc.author || '—')}</span></div>
+        <div class="stat"><span class="stat-label">Message</span><span class="stat-value">${esc(lc.message || '—')}</span></div>
       `;
+    } else {
+      stats.innerHTML = '<p class="empty">Aucune donnée Git disponible</p>';
     }
 
-    // Services
+    // ── Services ──
     const services = document.getElementById('services');
-    services.innerHTML = Object.entries(data.services).map(([name, info]) => `
-      <div class="service">
-        <span class="dot ${info.online ? 'online' : 'offline'}"></span>
-        <div style="flex:1">
-          <div class="service-name">${name.replace(/_/g, ' ')}</div>
-          <div class="service-url">${info.url}</div>
+    const svcs = data.services || {};
+    if (Object.keys(svcs).length === 0) {
+      services.innerHTML = '<p class="empty">Aucun service configuré</p>';
+    } else {
+      services.innerHTML = Object.entries(svcs).map(([name, info]) => `
+        <div class="service">
+          <span class="dot ${info.online ? 'online' : 'offline'}"></span>
+          <div style="flex:1; min-width:0;">
+            <div class="service-name">${esc(info.label || name.replace(/_/g, ' '))}</div>
+            <div class="service-url" style="overflow:hidden; text-overflow:ellipsis;">${esc(info.url || '')}</div>
+          </div>
+          <span class="service-status" style="color:${info.online ? 'var(--accent)' : 'var(--danger)'}">
+            ${info.online ? '✅ ' + (info.status || 'ok') : '❌ ' + esc(info.error || 'ko')}
+          </span>
         </div>
-        <span style="font-size:0.8rem; color:${info.online ? 'var(--accent)' : 'var(--danger)'}">
-          ${info.online ? '✅ ' + info.status : '❌ ' + (info.error || 'ko')}
-        </span>
-      </div>
-    `).join('');
+      `).join('');
+    }
 
-    // Commits
+    // ── Commits ──
     const commits = document.getElementById('commits');
-    if (data.git.recent_commits && data.git.recent_commits.length > 0) {
-      commits.innerHTML = data.git.recent_commits.map(c => {
-        const [hash, ...msgParts] = c.split(' ');
-        return `<div class="commit-msg"><span class="hash">${hash}</span>${msgParts.join(' ')}</div>`;
-      }).join('');
+    const list = (data.git && data.git.recent_commits) || [];
+    if (list.length > 0) {
+      commits.innerHTML = list.map(c => `
+        <div class="commit">
+          <span class="hash">${esc(c.hash)}</span>
+          <span class="msg">${esc(c.message || '')}</span>
+          <span class="meta">${esc(c.author || '')} · ${esc(formatDate(c.date))}</span>
+        </div>
+      `).join('');
     } else {
       commits.innerHTML = '<p class="empty">Aucun commit récent</p>';
     }
 
-    // TODOs
+    // ── TODOs ──
     const todos = document.getElementById('todos');
-    todos.innerHTML = data.todo.map(t => `
-      <div class="todo-item ${t.status}">
-        <div class="check ${t.status}"></div>
-        <span class="todo-label">${t.label}</span>
-      </div>
-    `).join('');
+    const todosList = data.todo || [];
+    if (todosList.length > 0) {
+      todos.innerHTML = todosList.map(t => `
+        <div class="todo-item ${esc(t.status)}">
+          <div class="check ${esc(t.status)}"></div>
+          <span class="todo-label">${esc(t.label)}</span>
+        </div>
+      `).join('');
+    } else {
+      todos.innerHTML = '<p class="empty">Aucune tâche</p>';
+    }
   }
 
   // Premier chargement + auto-refresh toutes les 30 secondes
