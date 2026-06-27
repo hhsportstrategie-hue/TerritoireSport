@@ -931,6 +931,25 @@ async def match_cas_inspirants(
 
     thematiques_list = [t.strip() for t in (thematiques or "").split(",") if t.strip()]
 
+    # Récupérer les coords de la commune si fournie
+    commune_lat = commune_lon = None
+    if commune_code:
+        conn2 = sqlite3.connect(DB_PATH)
+        row = conn2.execute("SELECT latitude, longitude FROM communes WHERE code_insee = ?", (commune_code,)).fetchone()
+        if row:
+            commune_lat, commune_lon = row[0], row[1]
+        conn2.close()
+
+    import math
+    def haversine_km(lat1, lon1, lat2, lon2):
+        if not all([lat1, lon1, lat2, lon2]):
+            return None
+        R = 6371
+        dlat = math.radians(lat2 - lat1)
+        dlon = math.radians(lon2 - lon1)
+        a = math.sin(dlat/2)**2 + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon/2)**2
+        return 2 * R * math.asin(math.sqrt(a))
+
     scored = []
     for row in rows:
         cas = dict(row)
@@ -947,27 +966,44 @@ async def match_cas_inspirants(
             score += theme_score
             score_details['thematiques'] = theme_score
 
-        # Critère 2 : Partenaires non marchands (max 30 pts)
-        # Plus il y a de partenaires non marchands, plus c'est reproductible
+        # Critère 2 : Partenaires non marchands (max 25 pts)
         nb_partenaires = len(cas_partenaires)
-        partenaire_score = min(30, nb_partenaires * 10)
+        partenaire_score = min(25, nb_partenaires * 8)
         score += partenaire_score
         score_details['partenaires'] = partenaire_score
 
-        # Critère 3 : Ampleur vs ressources (max 30 pts)
-        # Budget faible + reproductibilité facile = plus accessible
+        # Critère 3 : Ampleur vs ressources (max 20 pts)
         budget = cas.get('budget_reel') or 0
         repro = cas.get('reproductibilite') or ''
         if budget <= 1000 and 'facile' in repro:
-            ampleur_score = 30
-        elif budget <= 5000 and 'moyen' in repro:
             ampleur_score = 20
+        elif budget <= 5000 and 'moyen' in repro:
+            ampleur_score = 15
         elif budget <= 10000:
-            ampleur_score = 10
+            ampleur_score = 8
         else:
-            ampleur_score = 5
+            ampleur_score = 3
         score += ampleur_score
         score_details['ampleur'] = ampleur_score
+
+        # Critère 4 : Proximité géographique (max 15 pts)
+        distance_km = None
+        if commune_lat and commune_lon and cas.get('latitude') and cas.get('longitude'):
+            distance_km = haversine_km(commune_lat, commune_lon, cas['latitude'], cas['longitude'])
+            if distance_km is not None:
+                if distance_km <= 30:
+                    prox_score = 15
+                elif distance_km <= 100:
+                    prox_score = 12
+                elif distance_km <= 300:
+                    prox_score = 8
+                elif distance_km <= 600:
+                    prox_score = 4
+                else:
+                    prox_score = 1
+                score += prox_score
+                score_details['proximite'] = prox_score
+                score_details['distance_km'] = round(distance_km, 1)
 
         # Bonus niveau club
         if niveau_club and cas.get('niveau_club') == niveau_club:
@@ -978,10 +1014,11 @@ async def match_cas_inspirants(
         cas['score_details'] = score_details
         cas['thematiques'] = cas_thematiques
         cas['partenaires'] = cas_partenaires
+        cas['distance_km'] = round(distance_km, 1) if distance_km is not None else None
         scored.append(cas)
 
-    # Tri par score décroissant
-    scored.sort(key=lambda x: x['score'], reverse=True)
+    # Tri par score décroissant, puis distance (les plus proches à score égal)
+    scored.sort(key=lambda x: (-x['score'], x['distance_km'] if x['distance_km'] is not None else 9999))
 
     return {"cas_inspirants": scored[:limit], "total": len(scored)}
 

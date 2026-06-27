@@ -935,6 +935,7 @@ async function loadStep6() {
                 ${(c.thematiques || []).slice(0, 3).map(t => `<span class="badge badge-green" style="margin-right: 4px; font-size: 0.8em;">${t}</span>`).join('')}
                 ${c.score ? `<span class="badge badge-blue" style="margin-right: 4px; font-size: 0.8em;">Score: ${c.score}</span>` : ''}
                 ${c.budget_reel ? `<span class="badge badge-orange" style="font-size: 0.8em;">Budget: ${c.budget_reel.toLocaleString()} €</span>` : ''}
+                ${c.distance_km != null ? `<span class="badge ${c.distance_km <= 30 ? 'badge-green' : c.distance_km <= 100 ? 'badge-blue' : ''}" style="font-size: 0.8em;">📍 ${c.distance_km} km</span>` : ''}
             </div>
         </div>
     `).join('');
@@ -1096,6 +1097,32 @@ function renderStep8(j) {
                     <li><strong>En continu</strong> : documentez votre démarche pour la mesure d'impact</li>
                 </ol>
             </div>
+            <div style="background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%); padding: 20px; border-radius: 12px; margin-top: 24px; border-left: 4px solid #4f46e5;">
+                <h4 style="margin: 0 0 12px 0; color: #3730a3;">⚡ Vos 3 actions pour cette semaine</h4>
+                <div style="display: grid; gap: 10px;">
+                    <label style="display: flex; gap: 10px; align-items: start; background: white; padding: 10px 14px; border-radius: 8px; cursor: pointer;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <span><strong>Contacter 2 partenaires</strong> de votre shortlist (préparer un message court et personnalisé)</span>
+                    </label>
+                    <label style="display: flex; gap: 10px; align-items: start; background: white; padding: 10px 14px; border-radius: 8px; cursor: pointer;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <span><strong>Lire le cas inspirant</strong> sélectionné en détail (rubrique 'description' et 'partenaires')</span>
+                    </label>
+                    <label style="display: flex; gap: 10px; align-items: start; background: white; padding: 10px 14px; border-radius: 8px; cursor: pointer;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <span><strong>Identifier 2-3 financeurs potentiels</strong> parmi les AAP et ouvrir les liens</span>
+                    </label>
+                </div>
+                <p style="margin: 14px 0 0 0; font-size: 0.9em; color: #4338ca;">💡 <em>Cochez au fur et à mesure. Cette liste est imprimable avec votre dossier.</em></p>
+            </div>
+
+            <div style="background: #fce7f3; border-radius: 12px; padding: 20px; margin-top: 16px; text-align: center;">
+                <h4 style="margin: 0 0 8px 0; color: #831843;">🤝 Rejoignez la communauté des clubs engagés</h4>
+                <p style="margin: 0 0 14px 0; color: #9d174d; font-size: 0.95em;">Échangez avec d'autres clubs qui montent des projets similaires. Partagez vos avancées, posez vos questions, trouvez des partenaires.</p>
+                <a href="https://t.me/+VHvotreLien" target="_blank" style="background: #0088cc; color: white; padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; margin-right: 8px;">📱 Groupe Telegram</a>
+                <a href="mailto:contact@territoiresport.fr?subject=Témoignage%20-%20Dossier%20${j.dossier_id}" style="background: white; color: #831843; padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; border: 2px solid #f9a8d4;">✍️ Témoigner après mon projet</a>
+            </div>
+
             <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e5e7eb; font-size: 0.85em; color: #6b7280;">
                 <strong>Référence dossier</strong> : ${j.dossier_id}<br>
                 <strong>Date de génération</strong> : ${new Date().toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
