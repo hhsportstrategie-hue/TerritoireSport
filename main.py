@@ -48,6 +48,18 @@ async def lifespan(app: FastAPI):
             ("partners", "score", "INTEGER DEFAULT 0"),
             ("clubs", "epci", "TEXT"),
             ("clubs", "contact_email", "TEXT"),
+            ("clubs", "niveau", "TEXT DEFAULT 'amateur'"),
+            ("clubs", "licencies", "INTEGER DEFAULT 0"),
+            ("clubs", "latitude", "REAL"),
+            ("clubs", "longitude", "REAL"),
+            ("clubs", "code_insee", "TEXT"),
+            ("clubs", "epci_code", "TEXT"),
+            ("clubs", "niveau", "TEXT DEFAULT 'amateur'"),
+            ("clubs", "licencies", "INTEGER DEFAULT 0"),
+            ("clubs", "latitude", "REAL"),
+            ("clubs", "longitude", "REAL"),
+            ("clubs", "code_insee", "TEXT"),
+            ("clubs", "epci_code", "TEXT"),
             ("clubs", "contact_phone", "TEXT"),
         ]
         for table, col, col_type in migrations:
@@ -1025,7 +1037,7 @@ async def register_club(payload: dict):
                 coords = centre.get("coordinates", [None, None])
                 longitude = coords[0]
                 latitude = coords[1]
-                epci_code = c.get("codeEpci")
+                epci_name = c.get("nomEpci") or c.get("nom")  # fallback safe
                 epci_name = c.get("nom")  # L'API renvoie 'nom' pour la commune, pas 'nomEpci'
                 if not departement_code:
                     departement_code = c.get("codeDepartement")
@@ -1034,17 +1046,35 @@ async def register_club(payload: dict):
     
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
+    # Mapping aligné sur le schéma clubs + colonnes des migrations
     cur.execute("""
         INSERT INTO clubs (
-            id, name, sport, city, commune, contact_email, password_hash, created_at,
-            department, niveau, licencies, latitude, longitude,
-            code_insee, epci_code, epci_name
+            id, name, email, password_hash, sport, city, epci, department, region,
+            size, members_count, contact_email, created_at, updated_at,
+            niveau, licencies, latitude, longitude, code_insee, epci_code
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
-        club_id, name, sport, commune, commune, email, "demo_hash", datetime.now().isoformat(),
-        departement_code, niveau, licencies, latitude, longitude,
-        code_insee, epci_code, epci_name
+        club_id,                                 # id
+        name,                                    # name
+        email,                                   # email (UNIQUE NOT NULL)
+        "demo_hash",                             # password_hash
+        sport,                                   # sport
+        commune,                                 # city (= commune dans ce projet)
+        epci_name or "",                         # epci (texte libre)
+        departement_code or "",                  # department
+        "Normandie",                             # region (défaut)
+        niveau,                                  # size (mapping: niveau -> size)
+        licencies,                               # members_count
+        email,                                   # contact_email (par défaut = email principal)
+        datetime.now().isoformat(),              # created_at
+        datetime.now().isoformat(),              # updated_at
+        niveau,                                  # niveau (colonne ajoutée par migration)
+        licencies,                               # licencies (idem)
+        latitude,                                # latitude (géocodage geo.api.gouv.fr)
+        longitude,                               # longitude (idem)
+        code_insee,                              # code_insee (idem)
+        epci_code,                               # epci_code (idem)
     ))
     conn.commit()
     conn.close()
