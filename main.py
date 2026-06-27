@@ -5,6 +5,7 @@ Version complète avec tous les endpoints essentiels.
 import os
 import sqlite3
 import json
+from datetime import datetime
 from pathlib import Path
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Query, Depends, Header
@@ -15,12 +16,13 @@ from fastapi.responses import JSONResponse
 from typing import Optional, List
 
 from db_config import DB_PATH
-from auth import verify_token, API_TOKEN
+from auth import verify_token, API_TOKEN, generate_partner_token
 from cache import cached
 from metrics import track_request, get_metrics
 from pagination import pagination_params
 from rate_limit import check_rate_limit
 from csv_export import router as csv_router
+from pdf_export import generate_shortlist_pdf, get_theme_label
 
 
 # ── Lifespan ─────────────────────────────────────────────────────
@@ -50,6 +52,15 @@ async def lifespan(app: FastAPI):
         import seed
         seed.seed()
 
+    # Initialiser les tables d'auth API
+    from auth import _init_tokens_table, init_usage_table
+    _init_tokens_table()
+    init_usage_table()
+
+    # Initialiser les tables du parcours utilisateur
+    from parcours import init_parcours_tables
+    init_parcours_tables()
+
     yield
 
 
@@ -73,6 +84,10 @@ app.add_middleware(
 
 # Router CSV
 app.include_router(csv_router)
+
+# Router parcours utilisateur
+from parcours import router as parcours_router
+app.include_router(parcours_router)
 
 
 # ── Middleware métriques ─────────────────────────────────────────
@@ -314,40 +329,296 @@ async def get_commune_by_code(code_insee: str):
 async def get_shortlist(
     commune: Optional[str] = None,
     theme: Optional[int] = None,
-    limit: int = Query(20, ge=1, le=100)
+    type: Optional[str] = None,
+    search: Optional[str] = None,
+    page: int = Query(1, ge=1, description="Numéro de page"),
+    page_size: int = Query(20, ge=1, le=100, description="Taille de page"),
+    sort: str = Query("score", description="Tri: score|name|type")
 ):
-    """Shortlist des partenaires potentiels."""
+    """Shortlist paginée des partenaires potentiels, avec filtres."""
     if not Path(DB_PATH).exists():
         raise HTTPException(status_code=503, detail="Database not initialized")
+
+    # Whitelist du champ de tri (sécurité anti-injection SQL)
+    sort_whitelist = {"score", "name", "type"}
+    if sort not in sort_whitelist:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Tri invalide. Valeurs autorisées: {', '.join(sorted(sort_whitelist))}"
+        )
+
+    # Whitelist du type de partenaire
+    type_whitelist = {"association", "company", "public"}
+    if type and type not in type_whitelist:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Type invalide. Valeurs autorisées: {', '.join(sorted(type_whitelist))}"
+        )
 
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
-    query = """
-        SELECT p.*, c.name as club_name, c.commune
-        FROM partners p
-        LEFT JOIN clubs c ON p.club_id = c.id
-        WHERE 1=1
-    """
+    # Construction de la clause WHERE
+    where_clauses = ["1=1"]
     params = []
 
     if commune:
-        query += " AND c.commune = ?"
+        where_clauses.append("c.commune = ?")
         params.append(commune)
 
     if theme:
-        query += " AND p.theme_id = ?"
+        where_clauses.append("p.theme_id = ?")
         params.append(theme)
 
-    query += " ORDER BY p.score DESC LIMIT ?"
-    params.append(limit)
+    if type:
+        where_clauses.append("p.type = ?")
+        params.append(type)
+
+    if search:
+        where_clauses.append("(p.name LIKE ? OR c.name LIKE ? OR p.description LIKE ?)")
+        search_term = f"%{search}%"
+        params.extend([search_term, search_term, search_term])
+
+    where_sql = " AND ".join(where_clauses)
+
+    # Requête COUNT pour le total (pagination)
+    count_query = f"""
+        SELECT COUNT(*)
+        FROM partners p
+        LEFT JOIN clubs c ON p.club_id = c.id
+        WHERE {where_sql}
+    """
+    cur.execute(count_query, params)
+    total = cur.fetchone()[0]
+
+    # Construction ORDER BY selon paramètre sort
+    sort_mapping = {
+        "score": "p.score DESC",
+        "name": "p.name ASC",
+        "type": "p.type ASC, p.score DESC"
+    }
+    order_sql = sort_mapping[sort]
+
+    # Requête paginée
+    offset = (page - 1) * page_size
+    query = f"""
+        SELECT p.*, c.name as club_name, c.commune
+        FROM partners p
+        LEFT JOIN clubs c ON p.club_id = c.id
+        WHERE {where_sql}
+        ORDER BY {order_sql}
+        LIMIT ? OFFSET ?
+    """
+    params.extend([page_size, offset])
 
     cur.execute(query, params)
     rows = [dict(row) for row in cur.fetchall()]
     conn.close()
 
-    return {"shortlist": rows, "count": len(rows)}
+    # Calcul du nombre de pages
+    total_pages = (total + page_size - 1) // page_size if total > 0 else 0
+
+    return {
+        "shortlist": rows,
+        "pagination": {
+            "page": page,
+            "page_size": page_size,
+            "total": total,
+            "total_pages": total_pages,
+            "has_next": page < total_pages,
+            "has_prev": page > 1
+        },
+        "filters_applied": {
+            "commune": commune,
+            "theme": theme,
+            "type": type,
+            "search": search,
+            "sort": sort
+        }
+    }
+
+
+@app.get("/api/shortlist/pdf")
+async def get_shortlist_pdf(
+    commune: Optional[str] = None,
+    theme: Optional[int] = None,
+    type: Optional[str] = None,
+    search: Optional[str] = None,
+    max_results: int = Query(50, ge=1, le=200, description="Nombre max de partenaires dans le PDF")
+):
+    """
+    Génère un PDF de la shortlist (paysage A4).
+    Accepte les mêmes filtres que /api/shortlist.
+    """
+    from fastapi.responses import Response
+
+    if not Path(DB_PATH).exists():
+        raise HTTPException(status_code=503, detail="Database not initialized")
+
+    # Validation type
+    type_whitelist = {"association", "company", "public"}
+    if type and type not in type_whitelist:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Type invalide. Valeurs autorisées: {', '.join(sorted(type_whitelist))}"
+        )
+
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    # Construction de la clause WHERE (identique à /api/shortlist)
+    where_clauses = ["1=1"]
+    params = []
+
+    if commune:
+        where_clauses.append("c.commune = ?")
+        params.append(commune)
+
+    if theme:
+        where_clauses.append("p.theme_id = ?")
+        params.append(theme)
+
+    if type:
+        where_clauses.append("p.type = ?")
+        params.append(type)
+
+    if search:
+        where_clauses.append("(p.name LIKE ? OR c.name LIKE ? OR p.description LIKE ?)")
+        search_term = f"%{search}%"
+        params.extend([search_term, search_term, search_term])
+
+    where_sql = " AND ".join(where_clauses)
+
+    query = f"""
+        SELECT p.*, c.name as club_name, c.commune
+        FROM partners p
+        LEFT JOIN clubs c ON p.club_id = c.id
+        WHERE {where_sql}
+        ORDER BY p.score DESC
+        LIMIT ?
+    """
+    params.append(max_results)
+
+    cur.execute(query, params)
+    rows = [dict(row) for row in cur.fetchall()]
+    conn.close()
+
+    # Préparer les filtres pour le PDF
+    filters = {
+        "commune": commune,
+        "theme": theme,
+        "theme_label": get_theme_label(theme) if theme else "",
+        "type": type,
+        "search": search,
+    }
+
+    commune_label = commune.capitalize() if commune else None
+
+    pdf_bytes = generate_shortlist_pdf(rows, filters, commune_label)
+
+    # Nom de fichier téléchargeable
+    today = datetime.now().strftime("%Y%m%d")
+    commune_part = f"_{commune}" if commune else ""
+    filename = f"territoire-sport_shortlist{commune_part}_{today}.pdf"
+
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f'attachment; filename="{filename}"',
+            "Content-Length": str(len(pdf_bytes)),
+        }
+    )
+
+
+# ════════════════════════════════════════════════════════════════
+# Auth API — Endpoints de gestion des tokens partenaires
+# ════════════════════════════════════════════════════════════════
+
+@app.post("/api/auth/token")
+async def create_partner_token(
+    client_name: str = Query(..., description="Nom du client (ex: SM Caen, FC Rouen)"),
+    client_email: str = Query(None, description="Email du contact"),
+    quota: int = Query(1000, ge=1, le=100000, description="Quota journalier de requêtes"),
+    _: dict = Depends(verify_token)  # Seul l'admin peut créer des tokens
+):
+    """
+    Crée un nouveau token partenaire (admin seulement).
+    Le token est renvoyé EN CLAIR UNE SEULE FOIS — à transmettre immédiatement au client.
+    """
+    if _["type"] != "admin":
+        raise HTTPException(status_code=403, detail="Seul l'admin peut créer des tokens")
+
+    token = generate_partner_token(client_name, client_email, quota)
+    return {
+        "token": token,
+        "client_name": client_name,
+        "client_email": client_email,
+        "quota_per_day": quota,
+        "warning": "Ce token ne sera plus jamais affiché. Copiez-le maintenant."
+    }
+
+
+@app.get("/api/auth/whoami", dependencies=[Depends(verify_token)])
+async def whoami(auth: dict = Depends(verify_token)):
+    """
+    Retourne les informations d'identité du token utilisé.
+    Utile pour les partenaires qui veulent vérifier leur statut et quota restant.
+    """
+    return {
+        "client_name": auth.get("client_name"),
+        "type": auth.get("type"),
+        "quota_per_day": auth.get("quota_per_day"),
+        "used_today": auth.get("used_today", 0),
+        "remaining_today": (
+            auth.get("quota_per_day", 0) - auth.get("used_today", 0)
+            if auth.get("type") == "partner" else "illimité"
+        )
+    }
+
+
+@app.get("/api/admin/usage", dependencies=[Depends(verify_token)])
+async def usage_stats(_: dict = Depends(verify_token)):
+    """
+    Statistiques d'usage de l'API par token (admin seulement).
+    """
+    if _["type"] != "admin":
+        raise HTTPException(status_code=403, detail="Seul l'admin peut voir les stats d'usage")
+
+    import sqlite3
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    try:
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT
+                client_name,
+                client_email,
+                quota_per_day,
+                request_count,
+                last_used_at,
+                is_active
+            FROM api_tokens
+            ORDER BY request_count DESC
+        """)
+        tokens = [dict(row) for row in cur.fetchall()]
+
+        # Total requêtes aujourd'hui
+        cur.execute(
+            "SELECT COUNT(*) FROM api_token_usage WHERE used_at LIKE ?",
+            (f"{__import__('datetime').datetime.now().strftime('%Y-%m-%d')}%",)
+        )
+        total_today = cur.fetchone()[0]
+
+        return {
+            "total_requests_today": total_today,
+            "active_tokens": len([t for t in tokens if t["is_active"]]),
+            "tokens": tokens
+        }
+    finally:
+        conn.close()
 
 
 @app.get("/api/metrics")
