@@ -46,19 +46,19 @@ def seed():
     cur.execute("SELECT id FROM clubs WHERE id = ?", (club_id,))
     if not cur.fetchone():
         cur.execute("""
-            INSERT INTO clubs (id, name, sport, city, commune, epci, department, size, contact_email, contact_phone, password_hash, created_at)
+            INSERT INTO clubs (id, name, sport, city, epci, department, size, contact_email, contact_phone, email, password_hash, created_at)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
         """, (
             club_id,
             "BATT Argentan — Bayard Argentan Tennis de Table",
             "tennis_de_table",
             "Argentan",
-            "Argentan",
             "Argentan Intercom",
             "61",
             "medium",
             "contact@batt-argentan.fr",
             "02 33 12 34 56",
+            "contact@batt-argentan.fr",
             "demo_hash_batt",
         ))
         print(f"✅ Club créé : BATT Argentan ({club_id})")
@@ -355,7 +355,6 @@ clubs_demo = [
         "name": "Stade Malherbe Caen — Section Tennis de Table",
         "sport": "tennis_de_table",
         "city": "Caen",
-        "commune": "Caen",
         "epci": "Caen la Mer",
         "department": "14",
         "size": "large",
@@ -366,7 +365,6 @@ clubs_demo = [
         "name": "Hockey Club de Caen",
         "sport": "hockey_sur_glace",
         "city": "Caen",
-        "commune": "Caen",
         "epci": "Caen la Mer",
         "department": "14",
         "size": "medium",
@@ -377,7 +375,6 @@ clubs_demo = [
         "name": "USO Mondeville Basket",
         "sport": "basketball",
         "city": "Mondeville",
-        "commune": "Mondeville",
         "epci": "Caen la Mer",
         "department": "14",
         "size": "medium",
@@ -388,7 +385,6 @@ clubs_demo = [
         "name": "Stade Caennais Rugby Club",
         "sport": "rugby",
         "city": "Caen",
-        "commune": "Caen",
         "epci": "Caen la Mer",
         "department": "14",
         "size": "medium",
@@ -399,7 +395,6 @@ clubs_demo = [
         "name": "Caen Padel Club",
         "sport": "padel",
         "city": "Caen",
-        "commune": "Caen",
         "epci": "Caen la Mer",
         "department": "14",
         "size": "small",
@@ -416,19 +411,19 @@ for c in clubs_demo:
     cur.execute("SELECT id FROM clubs WHERE name = ?", (c["name"],))
     if not cur.fetchone():
         cur.execute("""
-            INSERT INTO clubs (id, name, sport, city, commune, epci, department, size, contact_email, contact_phone, password_hash, created_at)
+            INSERT INTO clubs (id, name, sport, city, epci, department, size, contact_email, contact_phone, email, password_hash, created_at)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
         """, (
             str(_uuid.uuid4()),
             c["name"],
             c["sport"],
             c["city"],
-            c["commune"],
             c["epci"],
             c["department"],
             c["size"],
             c["contact_email"],
             c["contact_phone"],
+            c["contact_email"],
             "demo_hash_" + c["sport"]
         ))
 conn.commit()

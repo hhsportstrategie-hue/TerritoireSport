@@ -11,14 +11,51 @@ CREATE TABLE IF NOT EXISTS clubs (
     password_hash   TEXT NOT NULL,
     sport           TEXT NOT NULL,
     city            TEXT NOT NULL,
+    epci            TEXT,
     department      TEXT NOT NULL,
     region          TEXT DEFAULT 'Normandie',
-    size            TEXT NOT NULL,
+    size            TEXT,
     members_count   INTEGER DEFAULT 0,
     description     TEXT,
     website         TEXT,
+    contact_email   TEXT,
+    contact_phone   TEXT,
     created_at      TEXT DEFAULT (datetime('now')),
     updated_at      TEXT DEFAULT (datetime('now'))
+);
+
+-- ── Communes Normandie ───────────────────────────────────────
+CREATE TABLE IF NOT EXISTS communes (
+    id              TEXT PRIMARY KEY,
+    name            TEXT NOT NULL,
+    code_insee      TEXT UNIQUE NOT NULL,
+    department      TEXT,
+    population      INTEGER,
+    latitude        REAL,
+    longitude       REAL,
+    epci            TEXT
+);
+
+-- ── Territories (EPCI, communes, départements) ───────────────
+CREATE TABLE IF NOT EXISTS territories (
+    id              TEXT PRIMARY KEY,
+    name            TEXT NOT NULL,
+    type            TEXT NOT NULL,  -- 'epci', 'commune', 'departement'
+    department      TEXT,
+    region          TEXT,
+    population      INTEGER,
+    description     TEXT
+);
+
+-- ── Projects (bibliothèque + projets actifs clubs) ──────────
+CREATE TABLE IF NOT EXISTS projects (
+    id              TEXT PRIMARY KEY,
+    club_id         TEXT,
+    title           TEXT NOT NULL,
+    description     TEXT,
+    themes          TEXT,  -- JSON array
+    budget          INTEGER,
+    status          TEXT DEFAULT 'library'  -- 'library', 'active', 'completed'
 );
 
 -- ── Diagnostics club ─────────────────────────────────────────
@@ -112,7 +149,8 @@ CREATE TABLE IF NOT EXISTS partners (
     contact_email   TEXT,
     contact_url     TEXT,
     description     TEXT,
-    themes          TEXT NOT NULL
+    themes          TEXT NOT NULL,
+    score           INTEGER DEFAULT 0
 );
 
 -- ── Sources de financement (AAP) ─────────────────────────────
