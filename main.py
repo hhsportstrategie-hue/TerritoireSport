@@ -51,6 +51,12 @@ async def lifespan(app: FastAPI):
         init_db.init_db()
         import seed
         seed.seed()
+        # Seed clubs pilotes (BATT, ES Coutances, AS Cherbourg)
+        try:
+            import seed_clubs_pilotes
+            seed_clubs_pilotes.main()
+        except Exception as e:
+            print(f"⚠️  seed_clubs_pilotes: {e}")
 
     # Initialiser les tables d'auth API
     from auth import _init_tokens_table, init_usage_table
