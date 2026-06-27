@@ -15,7 +15,7 @@ from fastapi.responses import JSONResponse
 from typing import Optional, List
 
 from db_config import DB_PATH
-from auth import verify_token, API_TOKEN
+from auth import verify_token, API_TOKEN, generate_partner_token
 from cache import cached
 from metrics import track_request, get_metrics
 from pagination import pagination_params
@@ -49,6 +49,11 @@ async def lifespan(app: FastAPI):
         init_db.init_db()
         import seed
         seed.seed()
+
+    # Initialiser les tables d'auth API
+    from auth import _init_tokens_table, init_usage_table
+    _init_tokens_table()
+    init_usage_table()
 
     yield
 
@@ -422,6 +427,94 @@ async def get_shortlist(
             "sort": sort
         }
     }
+
+
+# ════════════════════════════════════════════════════════════════
+# Auth API — Endpoints de gestion des tokens partenaires
+# ════════════════════════════════════════════════════════════════
+
+@app.post("/api/auth/token")
+async def create_partner_token(
+    client_name: str = Query(..., description="Nom du client (ex: SM Caen, FC Rouen)"),
+    client_email: str = Query(None, description="Email du contact"),
+    quota: int = Query(1000, ge=1, le=100000, description="Quota journalier de requêtes"),
+    _: dict = Depends(verify_token)  # Seul l'admin peut créer des tokens
+):
+    """
+    Crée un nouveau token partenaire (admin seulement).
+    Le token est renvoyé EN CLAIR UNE SEULE FOIS — à transmettre immédiatement au client.
+    """
+    if _["type"] != "admin":
+        raise HTTPException(status_code=403, detail="Seul l'admin peut créer des tokens")
+
+    token = generate_partner_token(client_name, client_email, quota)
+    return {
+        "token": token,
+        "client_name": client_name,
+        "client_email": client_email,
+        "quota_per_day": quota,
+        "warning": "Ce token ne sera plus jamais affiché. Copiez-le maintenant."
+    }
+
+
+@app.get("/api/auth/whoami", dependencies=[Depends(verify_token)])
+async def whoami(auth: dict = Depends(verify_token)):
+    """
+    Retourne les informations d'identité du token utilisé.
+    Utile pour les partenaires qui veulent vérifier leur statut et quota restant.
+    """
+    return {
+        "client_name": auth.get("client_name"),
+        "type": auth.get("type"),
+        "quota_per_day": auth.get("quota_per_day"),
+        "used_today": auth.get("used_today", 0),
+        "remaining_today": (
+            auth.get("quota_per_day", 0) - auth.get("used_today", 0)
+            if auth.get("type") == "partner" else "illimité"
+        )
+    }
+
+
+@app.get("/api/admin/usage", dependencies=[Depends(verify_token)])
+async def usage_stats(_: dict = Depends(verify_token)):
+    """
+    Statistiques d'usage de l'API par token (admin seulement).
+    """
+    if _["type"] != "admin":
+        raise HTTPException(status_code=403, detail="Seul l'admin peut voir les stats d'usage")
+
+    import sqlite3
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    try:
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT
+                client_name,
+                client_email,
+                quota_per_day,
+                request_count,
+                last_used_at,
+                is_active
+            FROM api_tokens
+            ORDER BY request_count DESC
+        """)
+        tokens = [dict(row) for row in cur.fetchall()]
+
+        # Total requêtes aujourd'hui
+        cur.execute(
+            "SELECT COUNT(*) FROM api_token_usage WHERE used_at LIKE ?",
+            (f"{__import__('datetime').datetime.now().strftime('%Y-%m-%d')}%",)
+        )
+        total_today = cur.fetchone()[0]
+
+        return {
+            "total_requests_today": total_today,
+            "active_tokens": len([t for t in tokens if t["is_active"]]),
+            "tokens": tokens
+        }
+    finally:
+        conn.close()
 
 
 @app.get("/api/metrics")
