@@ -72,13 +72,6 @@ app.add_middleware(
 )
 
 # Router CSV
-# Routers Tunnel d'Ingénierie (intégrés depuis commit e47586d)
-from routes.scoring_checkpoints import router as scoring_checkpoints_router
-from routes.tunnels_thematiques import router as tunnels_thematiques_router
-from routes.shortlist  import router as shortlist_router
-app.include_router(scoring_checkpoints_router)
-app.include_router(tunnels_thematiques_router)
-app.include_router(shortlist_router)
 app.include_router(csv_router)
 
 
@@ -321,40 +314,114 @@ async def get_commune_by_code(code_insee: str):
 async def get_shortlist(
     commune: Optional[str] = None,
     theme: Optional[int] = None,
-    limit: int = Query(20, ge=1, le=100)
+    type: Optional[str] = None,
+    search: Optional[str] = None,
+    page: int = Query(1, ge=1, description="Numéro de page"),
+    page_size: int = Query(20, ge=1, le=100, description="Taille de page"),
+    sort: str = Query("score", description="Tri: score|name|type")
 ):
-    """Shortlist des partenaires potentiels."""
+    """Shortlist paginée des partenaires potentiels, avec filtres."""
     if not Path(DB_PATH).exists():
         raise HTTPException(status_code=503, detail="Database not initialized")
+
+    # Whitelist du champ de tri (sécurité anti-injection SQL)
+    sort_whitelist = {"score", "name", "type"}
+    if sort not in sort_whitelist:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Tri invalide. Valeurs autorisées: {', '.join(sorted(sort_whitelist))}"
+        )
+
+    # Whitelist du type de partenaire
+    type_whitelist = {"association", "entreprise", "collectivite", "etablissement", "medico_social"}
+    if type and type not in type_whitelist:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Type invalide. Valeurs autorisées: {', '.join(sorted(type_whitelist))}"
+        )
 
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
-    query = """
-        SELECT p.*, c.name as club_name, c.commune
-        FROM partners p
-        LEFT JOIN clubs c ON p.club_id = c.id
-        WHERE 1=1
-    """
+    # Construction de la clause WHERE
+    where_clauses = ["1=1"]
     params = []
 
     if commune:
-        query += " AND c.commune = ?"
+        where_clauses.append("c.commune = ?")
         params.append(commune)
 
     if theme:
-        query += " AND p.theme_id = ?"
+        where_clauses.append("p.theme_id = ?")
         params.append(theme)
 
-    query += " ORDER BY p.score DESC LIMIT ?"
-    params.append(limit)
+    if type:
+        where_clauses.append("p.type = ?")
+        params.append(type)
+
+    if search:
+        where_clauses.append("(p.name LIKE ? OR c.name LIKE ? OR p.description LIKE ?)")
+        search_term = f"%{search}%"
+        params.extend([search_term, search_term, search_term])
+
+    where_sql = " AND ".join(where_clauses)
+
+    # Requête COUNT pour le total (pagination)
+    count_query = f"""
+        SELECT COUNT(*)
+        FROM partners p
+        LEFT JOIN clubs c ON p.club_id = c.id
+        WHERE {where_sql}
+    """
+    cur.execute(count_query, params)
+    total = cur.fetchone()[0]
+
+    # Construction ORDER BY selon paramètre sort
+    sort_mapping = {
+        "score": "p.score DESC",
+        "name": "p.name ASC",
+        "type": "p.type ASC, p.score DESC"
+    }
+    order_sql = sort_mapping[sort]
+
+    # Requête paginée
+    offset = (page - 1) * page_size
+    query = f"""
+        SELECT p.*, c.name as club_name, c.commune
+        FROM partners p
+        LEFT JOIN clubs c ON p.club_id = c.id
+        WHERE {where_sql}
+        ORDER BY {order_sql}
+        LIMIT ? OFFSET ?
+    """
+    params.extend([page_size, offset])
 
     cur.execute(query, params)
     rows = [dict(row) for row in cur.fetchall()]
     conn.close()
 
-    return {"shortlist": rows, "count": len(rows)}
+    # Calcul du nombre de pages
+    total_pages = (total + page_size - 1) // page_size if total > 0 else 0
+
+    return {
+        "shortlist": rows,
+        "pagination": {
+            "page": page,
+            "page_size": page_size,
+            "total": total,
+            "total_pages": total_pages,
+            "has_next": page < total_pages,
+            "has_prev": page > 1
+        },
+        "filters_applied": {
+            "commune": commune,
+            "theme": theme,
+            "type": type,
+            "search": search,
+            "sort": sort
+        }
+    }
 
 
 @app.get("/api/metrics")
