@@ -511,10 +511,16 @@
 
         <!-- ÉTAPE 3: Profil -->
         <div class="step-card" id="step-3">
-            <h2><span class="num">3</span> Votre profil</h2>
-            <p class="desc">Résultat de votre diagnostic territorial.</p>
+            <h2><span class="num">3</span> Votre commune</h2>
+            <p class="desc">Sélectionnez votre commune d'implantation pour voir votre diagnostic territorial personnalisé.</p>
+            <div class="form-group">
+                <label for="commune-select">Commune principale</label>
+                <select id="commune-select" style="width:100%; padding:8px; border:1px solid #d1d5db; border-radius:4px;">
+                    <option value="">-- Choisir votre commune --</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" onclick="submitStep3()">Voir mon territoire →</button>
             <div id="result-3"></div>
-            <button class="btn btn-primary" onclick="goToStep(4)">Voir mon territoire →</button>
         </div>
 
         <!-- ÉTAPE 4: Diagnostic Territorial -->
@@ -597,6 +603,8 @@ const state = {
     selected_project: null,
     selected_partners: [],
     selected_aaps: [],
+    commune_code: null,
+    commune_name: null,
     dossier_id: null
 };
 
@@ -703,7 +711,7 @@ async function submitStep2() {
                 <h3>📊 Profil évalué</h3>
                 <p><strong>Score:</strong> ${j.score}/20</p>
                 <p><strong>Profil:</strong> ${j.profile}</p>
-                <p style="margin-top: 12px; color: #6b7280;">${j.description || ''}</p>
+                <p style="margin-top: 12px; color: #6b7280;">${j.description || j.recommendation || ''}</p>
             </div>`;
         markDone(2);
         goToStep(3);
@@ -730,6 +738,10 @@ async function submitStep3() {
     const r = await fetch(API + `/api/communes/${code}`);
     const j = await r.json();
     if (r.ok) {
+        state.commune_code = code;
+        state.commune_name = communeData.name || communeData.nom || '';
+        state.commune_code = code;
+        state.commune_name = communeData.name || communeData.nom || '';
         const communeData = j.commune || j;
         document.getElementById('result-3').innerHTML = `
             <div class="result-box">
@@ -746,7 +758,7 @@ async function submitStep3() {
 }
 
 // ========== STEP 4: Diagnostic territorial ==========
-async function loadStep4() {
+    const code = state.commune_code || document.getElementById('commune-select')?.value;
     const code = document.getElementById('commune-select').value;
     if (!code) return;
     const r = await fetch(API + `/api/communes/${code}/diagnostic-territorial`);
@@ -754,20 +766,34 @@ async function loadStep4() {
     const thematiques = d.thematiques_prioritaires || [];
     const html = thematiques.map(t => `
         <div class="badge badge-orange" style="margin: 4px; padding: 8px 12px; display: inline-block;">${t}</div>
+    const partenairesTxt = d.partenaires_disponibles != null
+        ? `<p style="margin-top: 8px; color: #6b7280;">📊 ${d.partenaires_disponibles} partenaires identifiés sur cette commune</p>`
+        : '';
+    const partenairesTxt = d.partenaires_disponibles != null
+        ? `<p style="margin-top: 8px; color: #6b7280;">📊 ${d.partenaires_disponibles} partenaires identifiés sur cette commune</p>`
+        : '';
     `).join('');
+            ${partenairesTxt}
     document.getElementById('result-4').innerHTML = `
         <div class="result-box">
             <h3>🎯 Thématiques prioritaires</h3>
+            ${partenairesTxt}
             <div>${html || 'Aucune thématique identifiée'}</div>
         </div>`;
 }
 
 // ========== STEP 5: Shortlist partenaires ==========
-async function loadStep5() {
+    const code = state.commune_code || document.getElementById('commune-select')?.value;
     const code = document.getElementById('commune-select').value;
     if (!code) return;
-    // Récupérer le nom de la commune sélectionnée (le shortlist filtre sur le nom, pas le code INSEE)
-    const sel = document.getElementById('commune-select');
+    let communeName = state.commune_name || '';
+    if (!communeName) {
+        const sel = document.getElementById('commune-select');
+        communeName = sel?.options[sel.selectedIndex]?.text.split(' (')[0] || '';
+    }
+        const sel = document.getElementById('commune-select');
+        communeName = sel?.options[sel.selectedIndex]?.text.split(' (')[0] || '';
+    }
     const communeName = sel.options[sel.selectedIndex]?.text.split(' (')[0] || '';
     const thematiques = Array.from(document.querySelectorAll('#result-4 .badge'))
         .map(b => b.textContent.trim());
