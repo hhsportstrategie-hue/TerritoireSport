@@ -383,32 +383,19 @@ async def get_communes(
 
     if search:
         cur.execute(
-            "SELECT DISTINCT commune, COUNT(*) as clubs_count FROM clubs WHERE commune LIKE ? GROUP BY commune ORDER BY commune LIMIT ? OFFSET ?",
+            "SELECT DISTINCT city as commune, COUNT(*) as clubs_count FROM clubs WHERE city LIKE ? GROUP BY city ORDER BY city LIMIT ? OFFSET ?",
             (f"%{search}%", limit, offset)
         )
     else:
         cur.execute(
-            "SELECT DISTINCT commune, COUNT(*) as clubs_count FROM clubs GROUP BY commune ORDER BY commune LIMIT ? OFFSET ?",
+            "SELECT DISTINCT city as commune, COUNT(*) as clubs_count FROM clubs GROUP BY city ORDER BY city LIMIT ? OFFSET ?",
             (limit, offset)
         )
 
     rows = [dict(row) for row in cur.fetchall()]
     conn.close()
-    
-    return {
-        "club_id": club_id,
-        "name": name,
-        "sport": sport,
-        "commune": commune,
-        "departement": departement_code,
-        "niveau": niveau,
-        "licencies": licencies,
-        "latitude": latitude,
-        "longitude": longitude,
-        "epci": epci_name,
-        "code_insee": code_insee,
-        "status": "registered"
-    }
+
+    return {"communes": rows, "total": len(rows)}
 
 
 @app.get("/api/communes/all")
