@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TerritoireSport — Démo</title>
+    <title>TerritoireSport — Démo v2</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
@@ -22,7 +22,10 @@
         }
         header h1 { font-size: 28px; margin-bottom: 4px; }
         header p { opacity: 0.9; font-size: 14px; }
+
         .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+
+        /* Stats */
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -38,6 +41,8 @@
         }
         .stat-card .label { font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
         .stat-card .value { font-size: 32px; font-weight: 700; color: #1e3a8a; margin-top: 4px; }
+
+        /* Layout */
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -45,6 +50,7 @@
             margin-bottom: 24px;
         }
         @media (max-width: 1024px) { .grid { grid-template-columns: 1fr; } }
+
         .card {
             background: white;
             border-radius: 12px;
@@ -57,17 +63,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
         .card-header h2 { font-size: 16px; color: #1e3a8a; }
         .card-body { padding: 20px; max-height: 400px; overflow-y: auto; }
         #map { height: 400px; border-radius: 0 0 12px 12px; }
+
+        /* Items */
         .item {
             padding: 12px 0;
             border-bottom: 1px solid #f3f4f6;
         }
         .item:last-child { border-bottom: none; }
         .item-title { font-weight: 600; color: #1e3a8a; }
-        .item-meta { font-size: 13px; color: #6b7280; margin-top: 2px; }
+        .item-meta { font-size: 13px; color: #6b7280; margin-top: 4px; }
+
+        /* Badges */
         .badge {
             display: inline-block;
             padding: 2px 8px;
@@ -82,43 +94,121 @@
         .badge-purple { background: #e9d5ff; color: #6b21a8; }
         .badge-red { background: #fee2e2; color: #991b1b; }
         .badge-gray { background: #f3f4f6; color: #374151; }
-        .search {
-            width: 100%;
-            padding: 8px 12px;
+
+        /* Filtres & inputs */
+        .filters { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .filter-group label {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        select, input[type="text"] {
+            padding: 6px 10px;
             border: 1px solid #d1d5db;
             border-radius: 6px;
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-        .loading { color: #6b7280; font-style: italic; }
-        .error { color: #dc2626; padding: 12px; background: #fee2e2; border-radius: 6px; }
-        .filters { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-        .filter-btn {
-            padding: 6px 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 16px;
-            background: white;
-            cursor: pointer;
             font-size: 13px;
+            background: white;
+            color: #1a202c;
         }
-        .filter-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
+        select:focus, input:focus { outline: none; border-color: #3b82f6; }
+
+        /* Score */
         .score {
             display: inline-block;
-            background: #1e3a8a;
-            color: white;
             padding: 2px 8px;
             border-radius: 12px;
             font-size: 11px;
             font-weight: 600;
+            color: white;
         }
         .score.high { background: #059669; }
         .score.med { background: #d97706; }
         .score.low { background: #6b7280; }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid #f3f4f6;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .pagination button {
+            padding: 6px 14px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #1a202c;
+        }
+        .pagination button:hover:not(:disabled) { background: #f3f4f6; }
+        .pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
+        .pagination .page-info {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        /* Bouton Export PDF */
+        .btn-export {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: #dc2626;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .btn-export:hover { background: #b91c1c; }
+
+        /* États */
+        .loading { color: #6b7280; font-style: italic; }
+        .error { color: #dc2626; padding: 12px; background: #fee2e2; border-radius: 6px; }
+        .empty {
+            color: #6b7280;
+            text-align: center;
+            padding: 24px;
+            font-style: italic;
+        }
+
+        /* Compteur shortlist */
+        .shortlist-stats {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: #6b7280;
+            font-size: 13px;
+        }
+        footer a { color: #3b82f6; text-decoration: none; }
     </style>
 </head>
 <body>
     <header>
-        <h1>🌍 TerritoireSport — Démo</h1>
+        <h1>🌍 TerritoireSport — Démo v2</h1>
         <p>API de matching clubs sportifs × partenaires × projets sociétaux (Normandie)</p>
     </header>
 
@@ -132,47 +222,83 @@
             <div class="stat-card"><div class="label">AAP</div><div class="value loading">...</div></div>
         </div>
 
-        <!-- Carte + Shortlist -->
-        <div class="grid">
-            <div class="card">
-                <div class="card-header">
-                    <h2>🗺️ Carte des communes normandes</h2>
-                    <span id="map-count" class="loading"></span>
-                </div>
-                <div id="map"></div>
+        <!-- Carte -->
+        <div class="card" style="margin-bottom: 24px;">
+            <div class="card-header">
+                <h2>🗺️ Carte des communes normandes</h2>
+                <span id="map-count" class="loading"></span>
             </div>
+            <div id="map"></div>
+        </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <h2>🏆 Top partenaires (shortlist scoring)</h2>
-                    <span id="shortlist-count" class="loading"></span>
+        <!-- Shortlist avec filtres + pagination + export PDF -->
+        <div class="card" style="margin-bottom: 24px;">
+            <div class="card-header">
+                <h2>🏆 Shortlist de partenaires potentiels</h2>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <span id="shortlist-count" class="shortlist-stats"></span>
+                    <a id="btn-export-pdf" class="btn-export" href="#" target="_blank">
+                        📄 Exporter en PDF
+                    </a>
                 </div>
-                <div class="card-body" id="shortlist">
+            </div>
+            <div class="card-body">
+                <!-- Filtres -->
+                <div class="filter-group">
+                    <label>Thématique</label>
+                    <select id="filter-theme">
+                        <option value="">Toutes</option>
+                        <option value="1">Sport & Santé</option>
+                        <option value="2">Insertion / Cohésion Sociale</option>
+                        <option value="3">Environnement</option>
+                        <option value="4">Éducation / Jeunesse</option>
+                        <option value="6">Économie Locale / Emploi</option>
+                        <option value="12">Handicap</option>
+                    </select>
+
+                    <label>Type</label>
+                    <select id="filter-type">
+                        <option value="">Tous</option>
+                        <option value="association">Associations</option>
+                        <option value="company">Entreprises</option>
+                        <option value="public">Structures publiques</option>
+                    </select>
+
+                    <label>Recherche</label>
+                    <input type="text" id="filter-search" placeholder="Ex: argentan, sport, ..." style="flex:1; min-width:180px;">
+
+                    <label>Tri</label>
+                    <select id="filter-sort">
+                        <option value="score">Score</option>
+                        <option value="name">Nom</option>
+                        <option value="type">Type</option>
+                    </select>
+
+                    <button onclick="resetFilters()" style="padding:6px 12px; border:1px solid #d1d5db; background:white; border-radius:6px; cursor:pointer; font-size:13px;">↻ Reset</button>
+                </div>
+
+                <!-- Résultats -->
+                <div id="shortlist">
                     <div class="loading">Chargement...</div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination" style="display:none;">
+                    <button id="btn-prev" onclick="changePage(-1)">← Précédent</button>
+                    <span class="page-info" id="page-info">Page 1 / 1</span>
+                    <button id="btn-next" onclick="changePage(1)">Suivant →</button>
                 </div>
             </div>
         </div>
 
-        <!-- Clubs + Projets -->
-        <div class="grid">
-            <div class="card">
-                <div class="card-header">
-                    <h2>🏅 Clubs sportifs</h2>
-                    <span id="clubs-count" class="loading"></span>
-                </div>
-                <div class="card-body" id="clubs">
-                    <div class="loading">Chargement...</div>
-                </div>
+        <!-- Projets -->
+        <div class="card" style="margin-bottom: 24px;">
+            <div class="card-header">
+                <h2>📋 Projets sociétaux inspirants</h2>
+                <span id="projects-count" class="loading"></span>
             </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h2>📋 Projets sociétaux</h2>
-                    <span id="projects-count" class="loading"></span>
-                </div>
-                <div class="card-body" id="projects">
-                    <div class="loading">Chargement...</div>
-                </div>
+            <div class="card-body" id="projects">
+                <div class="loading">Chargement...</div>
             </div>
         </div>
 
@@ -188,26 +314,49 @@
         </div>
     </div>
 
+    <footer>
+        <p>TerritoireSport v2 · API : <a href="https://ts-backend-production.up.railway.app/docs" target="_blank">docs</a> · <a href="https://ts-backend-production.up.railway.app/api/auth/whoami" target="_blank">auth/whoami</a></p>
+    </footer>
+
     <script>
         const API = 'https://ts-backend-production.up.railway.app';
 
-        // ── Stats ──
+        // État pagination & filtres
+        let currentPage = 1;
+        const pageSize = 10;
+        let currentPagination = null;
+        let currentFilters = {};
+        let searchTimer = null;
+
+        // ════════════════════════════════════════════════════════════════
+        // Stats globales
+        // ════════════════════════════════════════════════════════════════
+
         fetch(API + '/api/stats')
             .then(r => r.json())
             .then(d => {
-                document.querySelectorAll('.stat-card .value').forEach((el, i) => {
-                    const keys = ['clubs_count', 'communes_count', 'partners_count', 'projects_count'];
-                    el.textContent = d[keys[i]] || 0;
-                    el.classList.remove('loading');
-                });
-                fetch(API + '/api/funding-sources').then(r => r.json()).then(f => {
-                    document.querySelectorAll('.stat-card .value')[4].textContent = f.count;
-                    document.querySelectorAll('.stat-card .value')[4].classList.remove('loading');
-                });
+                const values = document.querySelectorAll('.stat-card .value');
+                values[0].textContent = d.clubs_count || 0;
+                values[1].textContent = d.communes_count || 0;
+                values[2].textContent = d.partners_count || 0;
+                values[3].textContent = d.projects_count || 0;
+                values.forEach(v => v.classList.remove('loading'));
             })
             .catch(e => console.error('Stats error:', e));
 
-        // ── Carte ──
+        fetch(API + '/api/funding-sources')
+            .then(r => r.json())
+            .then(f => {
+                const values = document.querySelectorAll('.stat-card .value');
+                values[4].textContent = f.count || 0;
+                values[4].classList.remove('loading');
+            })
+            .catch(e => console.error('Funding count error:', e));
+
+        // ════════════════════════════════════════════════════════════════
+        // Carte
+        // ════════════════════════════════════════════════════════════════
+
         const map = L.map('map').setView([49.0, 0.5], 7);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap'
@@ -233,96 +382,192 @@
             })
             .catch(e => console.error('Communes error:', e));
 
-        // ── Shortlist ──
-        fetch(API + '/api/shortlist?limit=10')
-            .then(r => r.json())
-            .then(d => {
-                document.getElementById('shortlist-count').textContent = (d.shortlist?.length || 0) + ' résultats';
-                document.getElementById('shortlist-count').classList.remove('loading');
-                const html = (d.shortlist || []).map(p => {
-                    const scoreClass = p.score >= 40 ? 'high' : p.score >= 25 ? 'med' : 'low';
-                    return `<div class="item">
-                        <div class="item-title">${p.name || p.partner_name}</div>
-                        <div class="item-meta">
-                            <span class="score ${scoreClass}">${Math.round(p.score)}</span>
-                            <span class="badge badge-blue">${p.type || 'N/A'}</span>
-                            <span>${p.city || ''}</span>
-                        </div>
-                    </div>`;
-                }).join('');
-                document.getElementById('shortlist').innerHTML = html || '<div class="loading">Aucun résultat</div>';
-            })
-            .catch(e => {
-                document.getElementById('shortlist').innerHTML = '<div class="error">Erreur chargement shortlist</div>';
-            });
+        // ════════════════════════════════════════════════════════════════
+        // Shortlist — pagination + filtres + export PDF
+        // ════════════════════════════════════════════════════════════════
 
-        // ── Clubs (via communes avec clubs) ──
-        fetch(API + '/api/stats')
-            .then(r => r.json())
-            .then(s => {
-                document.getElementById('clubs-count').textContent = (s.clubs_count || 0) + ' clubs';
-                document.getElementById('clubs-count').classList.remove('loading');
-                return fetch(API + '/api/communes/61006');
-            })
-            .then(r => r.json())
-            .then(argentan => {
-                const clubs = argentan.clubs || [];
-                const html = clubs.map(c => `<div class="item">
-                    <div class="item-title">${c.name}</div>
-                    <div class="item-meta">
-                        <span class="badge badge-blue">${c.sport}</span>
-                        <span>${c.commune || ''}</span>
-                    </div>
-                </div>`).join('');
-                document.getElementById('clubs').innerHTML = html || '<div class="loading">Aucun club</div>';
-            })
-            .catch(e => {
-                document.getElementById('clubs').innerHTML = '<div class="error">Erreur chargement clubs</div>';
+        function buildShortlistUrl() {
+            const params = new URLSearchParams({
+                page: currentPage,
+                page_size: pageSize,
             });
+            if (currentFilters.theme) params.append('theme', currentFilters.theme);
+            if (currentFilters.type) params.append('type', currentFilters.type);
+            if (currentFilters.search) params.append('search', currentFilters.search);
+            if (currentFilters.sort) params.append('sort', currentFilters.sort);
+            return API + '/api/shortlist?' + params.toString();
+        }
 
-        // ── Projets ──
+        function loadShortlist() {
+            const url = buildShortlistUrl();
+            document.getElementById('shortlist').innerHTML = '<div class="loading">Chargement...</div>';
+
+            fetch(url)
+                .then(r => r.json())
+                .then(d => {
+                    currentPagination = d.pagination;
+                    currentFilters = d.filters_applied;
+
+                    // Compteur
+                    document.getElementById('shortlist-count').innerHTML =
+                        `<strong>${d.pagination.total}</strong> partenaires`;
+
+                    // Liste
+                    const html = (d.shortlist || []).map(p => {
+                        const scoreClass = p.score >= 70 ? 'high' : p.score >= 40 ? 'med' : 'low';
+                        const themes = (p.themes || '').replace(/[\[\]"]/g, '').split(',').filter(Boolean);
+                        const themesHtml = themes.slice(0, 3).map(t =>
+                            `<span class="badge badge-blue">${t.trim()}</span>`
+                        ).join('');
+                        const contact = p.contact_email || p.contact_url || '';
+                        return `<div class="item">
+                            <div class="item-title">${p.name || p.partner_name || ''}</div>
+                            <div class="item-meta">
+                                <span class="score ${scoreClass}">${Math.round(p.score)}</span>
+                                <span class="badge badge-gray">${p.type || 'N/A'}</span>
+                                <span>${p.city || p.commune || ''}</span>
+                                ${themesHtml}
+                                ${contact ? `· <a href="${contact.startsWith('http') ? contact : 'mailto:' + contact}" target="_blank" style="color:#3b82f6;">Contact</a>` : ''}
+                            </div>
+                        </div>`;
+                    }).join('');
+
+                    document.getElementById('shortlist').innerHTML = html ||
+                        '<div class="empty">Aucun partenaire ne correspond aux critères</div>';
+
+                    // Pagination
+                    updatePagination(d.pagination);
+
+                    // Bouton PDF
+                    updateExportPdf(d.pagination.total);
+                })
+                .catch(e => {
+                    console.error('Shortlist error:', e);
+                    document.getElementById('shortlist').innerHTML =
+                        '<div class="error">Erreur chargement shortlist</div>';
+                });
+        }
+
+        function updatePagination(p) {
+            const pagEl = document.getElementById('pagination');
+            if (p.total_pages <= 1) {
+                pagEl.style.display = 'none';
+                return;
+            }
+            pagEl.style.display = 'flex';
+            document.getElementById('page-info').textContent =
+                `Page ${p.page} / ${p.total_pages} (${p.total} résultats)`;
+            document.getElementById('btn-prev').disabled = !p.has_prev;
+            document.getElementById('btn-next').disabled = !p.has_next;
+        }
+
+        function updateExportPdf(total) {
+            const btn = document.getElementById('btn-export-pdf');
+            if (total === 0) {
+                btn.style.display = 'none';
+                return;
+            }
+            btn.style.display = 'inline-flex';
+            // Construire l'URL PDF avec les mêmes filtres mais plus de résultats
+            const params = new URLSearchParams();
+            if (currentFilters.theme) params.append('theme', currentFilters.theme);
+            if (currentFilters.type) params.append('type', currentFilters.type);
+            if (currentFilters.search) params.append('search', currentFilters.search);
+            params.append('max_results', Math.min(total, 50));
+            btn.href = API + '/api/shortlist/pdf?' + params.toString();
+        }
+
+        function changePage(delta) {
+            currentPage += delta;
+            loadShortlist();
+            // Scroll vers la shortlist
+            document.getElementById('shortlist').scrollIntoView({behavior: 'smooth', block: 'nearest'});
+        }
+
+        function resetFilters() {
+            document.getElementById('filter-theme').value = '';
+            document.getElementById('filter-type').value = '';
+            document.getElementById('filter-search').value = '';
+            document.getElementById('filter-sort').value = 'score';
+            currentPage = 1;
+            loadShortlist();
+        }
+
+        // Event listeners
+        document.getElementById('filter-theme').addEventListener('change', () => {
+            currentPage = 1; loadShortlist();
+        });
+        document.getElementById('filter-type').addEventListener('change', () => {
+            currentPage = 1; loadShortlist();
+        });
+        document.getElementById('filter-sort').addEventListener('change', () => {
+            currentPage = 1; loadShortlist();
+        });
+        document.getElementById('filter-search').addEventListener('input', () => {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(() => {
+                currentPage = 1;
+                loadShortlist();
+            }, 400);  // Debounce 400ms
+        });
+
+        // ════════════════════════════════════════════════════════════════
+        // Projets
+        // ════════════════════════════════════════════════════════════════
+
         fetch(API + '/api/projects?limit=20')
             .then(r => r.json())
             .then(d => {
-                document.getElementById('projects-count').textContent = d.count + ' projets';
+                document.getElementById('projects-count').textContent = (d.count || 0) + ' projets';
                 document.getElementById('projects-count').classList.remove('loading');
-                const html = d.projects.map(p => {
+                const html = (d.projects || []).map(p => {
                     const statusClass = p.status === 'active' ? 'badge-green' : p.status === 'library' ? 'badge-gray' : 'badge-blue';
                     return `<div class="item">
                         <div class="item-title">${p.title}</div>
                         <div class="item-meta">
                             <span class="badge ${statusClass}">${p.status}</span>
-                            <span>${(p.description || '').substring(0, 100)}...</span>
+                            <span>${(p.description || '').substring(0, 120)}...</span>
                         </div>
                     </div>`;
                 }).join('');
-                document.getElementById('projects').innerHTML = html;
+                document.getElementById('projects').innerHTML = html ||
+                    '<div class="empty">Aucun projet</div>';
             })
             .catch(e => {
                 document.getElementById('projects').innerHTML = '<div class="error">Erreur chargement projets</div>';
             });
 
-        // ── Funding ──
+        // ════════════════════════════════════════════════════════════════
+        // Funding
+        // ════════════════════════════════════════════════════════════════
+
         fetch(API + '/api/funding-sources')
             .then(r => r.json())
             .then(d => {
-                document.getElementById('funding-count').textContent = d.count + ' AAP';
+                document.getElementById('funding-count').textContent = (d.count || 0) + ' AAP';
                 document.getElementById('funding-count').classList.remove('loading');
-                const html = d.funding_sources.map(f => {
+                const html = (d.funding_sources || []).map(f => {
                     return `<div class="item">
                         <div class="item-title">${f.name}</div>
                         <div class="item-meta">
                             <span class="badge badge-orange">${f.type || 'AAP'}</span>
-                            <span class="badge badge-gray">Deadline: ${f.deadline}</span>
+                            <span class="badge badge-gray">Deadline: ${f.deadline || 'N/A'}</span>
                             <span>${(f.description || '').substring(0, 120)}...</span>
                         </div>
                     </div>`;
                 }).join('');
-                document.getElementById('funding').innerHTML = html;
+                document.getElementById('funding').innerHTML = html ||
+                    '<div class="empty">Aucun AAP</div>';
             })
             .catch(e => {
                 document.getElementById('funding').innerHTML = '<div class="error">Erreur chargement AAP</div>';
             });
+
+        // ════════════════════════════════════════════════════════════════
+        // Init : charger la première page de shortlist
+        // ════════════════════════════════════════════════════════════════
+
+        loadShortlist();
     </script>
 </body>
 </html>
