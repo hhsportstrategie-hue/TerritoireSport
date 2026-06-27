@@ -1,4 +1,5 @@
--- TerritoireSport — Schéma SQLite v2.1
+-- TerritoireSport — Schéma SQLite v2.2
+-- Mis à jour 2026-06-27 : ajout Tunnel d'Ingénierie + tables checkpoint/routage
 
 PRAGMA foreign_keys = ON;
 
@@ -163,3 +164,90 @@ CREATE INDEX IF NOT EXISTS idx_affinity_club ON affinity_scores(club_id);
 CREATE INDEX IF NOT EXISTS idx_engineering_club ON engineering_projects(club_id);
 CREATE INDEX IF NOT EXISTS idx_funding_matches_club ON club_funding_matches(club_id);
 CREATE INDEX IF NOT EXISTS idx_partner_matches_club ON club_partner_matches(club_id);
+
+-- ══════════════════════════════════════════════════════════════
+-- TUNNEL D'INGÉNIERIE DE PROJET — F7/F8
+-- ══════════════════════════════════════════════════════════════
+
+-- ── Diagnostic ressources (5 questions, score → niveau projet) ──
+CREATE TABLE IF NOT EXISTS diagnostics_ressources (
+    id                  TEXT PRIMARY KEY,
+    club_id             TEXT NOT NULL,
+    reponses            TEXT NOT NULL,    -- JSON: {benevoles, salaries, budget_amorcage, deadline, experience}
+    score_total         INTEGER NOT NULL,
+    niveau              TEXT NOT NULL,    -- 'projet_simple' | 'projet_intermediaire' | 'projet_ambitieux'
+    description         TEXT,
+    projets_recommandes TEXT,             -- JSON array: ["p03","p09",...]
+    completed_at        TEXT NOT NULL
+);
+
+-- ── Projets en cours dans le tunnel ─────────────────────────
+CREATE TABLE IF NOT EXISTS tunnel_projets (
+    id              TEXT PRIMARY KEY,
+    club_id         TEXT NOT NULL,
+    titre           TEXT NOT NULL,
+    description     TEXT,
+    thematique      TEXT,
+    etape_actuelle  INTEGER DEFAULT 1,
+    progression     INTEGER DEFAULT 0,
+    tunnel_slug     TEXT,                -- 'action_directe' | 'transformation' | etc.
+    created_at      TEXT NOT NULL,
+    updated_at      TEXT NOT NULL
+);
+
+-- ── Étapes complétées d'un projet tunnel ────────────────────
+CREATE TABLE IF NOT EXISTS tunnel_etapes (
+    id              TEXT PRIMARY KEY,
+    projet_id       TEXT NOT NULL,
+    etape_numero    INTEGER NOT NULL,
+    contenu         TEXT NOT NULL,       -- JSON: {probleme, beneficiaires, solution, territoire, ...}
+    complete        INTEGER DEFAULT 0,
+    created_at      TEXT NOT NULL,
+    updated_at      TEXT NOT NULL,
+    UNIQUE(projet_id, etape_numero)
+);
+
+-- ── Checkpoints de scoring (1 par étape franchie) ───────────
+CREATE TABLE IF NOT EXISTS tunnel_checkpoints (
+    id              TEXT PRIMARY KEY,
+    projet_id       TEXT NOT NULL,
+    etape_numero    INTEGER NOT NULL,
+    scores          TEXT NOT NULL,       -- JSON: {criteres: scores}
+    score_total     INTEGER NOT NULL,
+    score_max       INTEGER NOT NULL,
+    niveau          TEXT NOT NULL,       -- 'très_favorable' | 'favorable' | 'à_renforcer' | 'bloquant'
+    created_at      TEXT NOT NULL
+);
+
+-- ── Routage : quelle tunnel pour quel profil club ──────────
+CREATE TABLE IF NOT EXISTS tunnel_routages (
+    id                  TEXT PRIMARY KEY,
+    club_id             TEXT NOT NULL,
+    reponses            TEXT NOT NULL,   -- JSON: {nature_projet, nb_partenaires, horizon, budget, experience}
+    score_total         INTEGER NOT NULL,
+    tunnel_recommande   TEXT NOT NULL,   -- slug du tunnel choisi
+    raison              TEXT,
+    created_at          TEXT NOT NULL
+);
+
+-- ── Scoring global de faisabilité (10 critères, /100) ────────
+CREATE TABLE IF NOT EXISTS scoring_faisabilite (
+    id              TEXT PRIMARY KEY,
+    club_id         TEXT NOT NULL,
+    projet_id       TEXT,
+    scores          TEXT NOT NULL,       -- JSON: {10 critères pondérés}
+    score_total     INTEGER NOT NULL,
+    niveau          TEXT NOT NULL,       -- 'très_faisable' | 'faisable' | 'à_renforcer' | 'risqué'
+    couleur         TEXT,
+    recommandation  TEXT,
+    completed_at    TEXT NOT NULL
+);
+
+-- ── Index Tunnel ────────────────────────────────────────────
+CREATE INDEX IF NOT EXISTS idx_diag_ressources_club ON diagnostics_ressources(club_id);
+CREATE INDEX IF NOT EXISTS idx_tunnel_projets_club ON tunnel_projets(club_id);
+CREATE INDEX IF NOT EXISTS idx_tunnel_projets_slug ON tunnel_projets(tunnel_slug);
+CREATE INDEX IF NOT EXISTS idx_tunnel_etapes_projet ON tunnel_etapes(projet_id);
+CREATE INDEX IF NOT EXISTS idx_tunnel_checkpoints_projet ON tunnel_checkpoints(projet_id);
+CREATE INDEX IF NOT EXISTS idx_tunnel_routages_club ON tunnel_routages(club_id);
+CREATE INDEX IF NOT EXISTS idx_scoring_club ON scoring_faisabilite(club_id);

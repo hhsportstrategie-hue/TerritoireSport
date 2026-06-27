@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TerritoireSport — Démo Ping pour Tous (Bayard Argentan)</title>
+  <style>
+    :root{--primary:#1B2A4A;--accent:#2D6A4F;--accent2:#52B788;--gold:#F4A261;--bg:#F8F9FA;--card:#fff;--text:#212529;--muted:#6C757D;--border:#DEE2E6;--radius:12px;--shadow:0 4px 16px rgba(0,0,0,.10);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);}
+    header{background:var(--primary);color:white;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;}
+    header h1{font-size:1.4rem;font-weight:700;}
+    header .badge{background:var(--gold);color:var(--primary);padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:700;}
+    main{max-width:900px;margin:0 auto;padding:2rem 1rem;}
+    .card{background:var(--card);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1.5rem;}
+    .intro{background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);color:white;padding:2rem;border-radius:var(--radius);margin-bottom:2rem;}
+    .intro h2{font-size:1.8rem;margin-bottom:.5rem;}
+    .intro p{opacity:.95;}
+    h3{color:var(--primary);margin-bottom:1rem;font-size:1.3rem;}
+    h4{font-size:1.05rem;}
+    a{color:var(--accent);}
+    .loading{text-align:center;padding:3rem;color:var(--muted);}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏓 TerritoireSport</h1>
+    <span class="badge">DÉMO</span>
+  </header>
+
+  <main>
+    <div class="intro">
+      <h2>Démo : Bayard Argentan Tennis de Table</h2>
+      <p>Projet « Ping pour Tous » — Identification des partenaires territoriaux pour un projet d'inclusion par le tennis de table.</p>
+    </div>
+
+    <div id="shortlist-container">
+      <div class="loading">⏳ Chargement de la shortlist...</div>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/demo.js"></script>
+</body>
+</html>

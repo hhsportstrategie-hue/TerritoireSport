@@ -1,0 +1,1360 @@
+[
+  {
+    "epci_code": "200065563",
+    "epci_nom": "CC Normandie-Cabourg-Pays d'Auge",
+    "departements": [
+      "14"
+    ],
+    "population": 31981,
+    "nb_communes": 38,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1599,
+      "Clubs_sport_prives_salles_fitness": 6,
+      "Sante_cabinets_kines": 10,
+      "Education_formation_privee": 7,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 3,
+      "Banque_assurance_agences": 6,
+      "Potentiel_partenaires_B2B_sport": 26
+    }
+  },
+  {
+    "epci_code": "200065589",
+    "epci_nom": "CC Val ès Dunes",
+    "departements": [
+      "14"
+    ],
+    "population": 20801,
+    "nb_communes": 19,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1040,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 6,
+      "Education_formation_privee": 5,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 17
+    }
+  },
+  {
+    "epci_code": "200065597",
+    "epci_nom": "CU Caen la Mer",
+    "departements": [
+      "14"
+    ],
+    "population": 281165,
+    "nb_communes": 48,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 14058,
+      "Clubs_sport_prives_salles_fitness": 56,
+      "Sante_cabinets_kines": 93,
+      "Education_formation_privee": 70,
+      "Evenementiel_agences": 35,
+      "Communication_medias": 28,
+      "Banque_assurance_agences": 56,
+      "Potentiel_partenaires_B2B_sport": 254
+    }
+  },
+  {
+    "epci_code": "200066710",
+    "epci_nom": "CC Cingal-Suisse Normande",
+    "departements": [
+      "14"
+    ],
+    "population": 23620,
+    "nb_communes": 41,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1181,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 7,
+      "Education_formation_privee": 5,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 18
+    }
+  },
+  {
+    "epci_code": "200066728",
+    "epci_nom": "CC Vallées de l'Orne et de l'Odon",
+    "departements": [
+      "14"
+    ],
+    "population": 26619,
+    "nb_communes": 22,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1330,
+      "Clubs_sport_prives_salles_fitness": 5,
+      "Sante_cabinets_kines": 8,
+      "Education_formation_privee": 6,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 5,
+      "Potentiel_partenaires_B2B_sport": 22
+    }
+  },
+  {
+    "epci_code": "200066801",
+    "epci_nom": "CC Isigny-Omaha Intercom",
+    "departements": [
+      "14"
+    ],
+    "population": 26442,
+    "nb_communes": 59,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1322,
+      "Clubs_sport_prives_salles_fitness": 5,
+      "Sante_cabinets_kines": 8,
+      "Education_formation_privee": 6,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 5,
+      "Potentiel_partenaires_B2B_sport": 22
+    }
+  },
+  {
+    "epci_code": "200066827",
+    "epci_nom": "CC du Pays de Honfleur-Beuzeville",
+    "departements": [
+      "14",
+      "27"
+    ],
+    "population": 26965,
+    "nb_communes": 23,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1348,
+      "Clubs_sport_prives_salles_fitness": 5,
+      "Sante_cabinets_kines": 8,
+      "Education_formation_privee": 6,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 5,
+      "Potentiel_partenaires_B2B_sport": 22
+    }
+  },
+  {
+    "epci_code": "200068799",
+    "epci_nom": "CC Intercom de la Vire au Noireau",
+    "departements": [
+      "14"
+    ],
+    "population": 46158,
+    "nb_communes": 17,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 2307,
+      "Clubs_sport_prives_salles_fitness": 9,
+      "Sante_cabinets_kines": 15,
+      "Education_formation_privee": 11,
+      "Evenementiel_agences": 5,
+      "Communication_medias": 4,
+      "Banque_assurance_agences": 9,
+      "Potentiel_partenaires_B2B_sport": 40
+    }
+  },
+  {
+    "epci_code": "200069516",
+    "epci_nom": "CC Seulles Terre et Mer",
+    "departements": [
+      "14"
+    ],
+    "population": 17561,
+    "nb_communes": 28,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 878,
+      "Clubs_sport_prives_salles_fitness": 3,
+      "Sante_cabinets_kines": 5,
+      "Education_formation_privee": 4,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 3,
+      "Potentiel_partenaires_B2B_sport": 14
+    }
+  },
+  {
+    "epci_code": "200069524",
+    "epci_nom": "CC Pré-Bocage Intercom",
+    "departements": [
+      "14"
+    ],
+    "population": 25151,
+    "nb_communes": 27,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1257,
+      "Clubs_sport_prives_salles_fitness": 5,
+      "Sante_cabinets_kines": 8,
+      "Education_formation_privee": 6,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 5,
+      "Potentiel_partenaires_B2B_sport": 22
+    }
+  },
+  {
+    "epci_code": "200069532",
+    "epci_nom": "CA Lisieux Normandie",
+    "departements": [
+      "14"
+    ],
+    "population": 72636,
+    "nb_communes": 53,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 3631,
+      "Clubs_sport_prives_salles_fitness": 14,
+      "Sante_cabinets_kines": 24,
+      "Education_formation_privee": 18,
+      "Evenementiel_agences": 9,
+      "Communication_medias": 7,
+      "Banque_assurance_agences": 14,
+      "Potentiel_partenaires_B2B_sport": 65
+    }
+  },
+  {
+    "epci_code": "241400415",
+    "epci_nom": "CC Coeur Côte Fleurie",
+    "departements": [
+      "14"
+    ],
+    "population": 20716,
+    "nb_communes": 12,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1035,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 6,
+      "Education_formation_privee": 5,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 17
+    }
+  },
+  {
+    "epci_code": "241400514",
+    "epci_nom": "CC du Pays de Falaise",
+    "departements": [
+      "14"
+    ],
+    "population": 27380,
+    "nb_communes": 58,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1369,
+      "Clubs_sport_prives_salles_fitness": 5,
+      "Sante_cabinets_kines": 9,
+      "Education_formation_privee": 6,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 5,
+      "Potentiel_partenaires_B2B_sport": 23
+    }
+  },
+  {
+    "epci_code": "241400555",
+    "epci_nom": "CC de Bayeux Intercom",
+    "departements": [
+      "14"
+    ],
+    "population": 29805,
+    "nb_communes": 36,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1490,
+      "Clubs_sport_prives_salles_fitness": 5,
+      "Sante_cabinets_kines": 9,
+      "Education_formation_privee": 7,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 5,
+      "Potentiel_partenaires_B2B_sport": 24
+    }
+  },
+  {
+    "epci_code": "241400860",
+    "epci_nom": "CC Coeur de Nacre",
+    "departements": [
+      "14"
+    ],
+    "population": 24236,
+    "nb_communes": 12,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1211,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 8,
+      "Education_formation_privee": 6,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 21
+    }
+  },
+  {
+    "epci_code": "241400878",
+    "epci_nom": "CC Terre d'Auge",
+    "departements": [
+      "14"
+    ],
+    "population": 19841,
+    "nb_communes": 44,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 992,
+      "Clubs_sport_prives_salles_fitness": 3,
+      "Sante_cabinets_kines": 6,
+      "Education_formation_privee": 4,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 3,
+      "Potentiel_partenaires_B2B_sport": 15
+    }
+  },
+  {
+    "epci_code": "200040277",
+    "epci_nom": "CA Agglo du Pays de Dreux",
+    "departements": [
+      "27",
+      "28"
+    ],
+    "population": 116271,
+    "nb_communes": 81,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 5813,
+      "Clubs_sport_prives_salles_fitness": 23,
+      "Sante_cabinets_kines": 38,
+      "Education_formation_privee": 29,
+      "Evenementiel_agences": 14,
+      "Communication_medias": 11,
+      "Banque_assurance_agences": 23,
+      "Potentiel_partenaires_B2B_sport": 104
+    }
+  },
+  {
+    "epci_code": "200065787",
+    "epci_nom": "CC de Pont-Audemer / Val de Risle",
+    "departements": [
+      "27"
+    ],
+    "population": 32598,
+    "nb_communes": 32,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1629,
+      "Clubs_sport_prives_salles_fitness": 6,
+      "Sante_cabinets_kines": 10,
+      "Education_formation_privee": 8,
+      "Evenementiel_agences": 4,
+      "Communication_medias": 3,
+      "Banque_assurance_agences": 6,
+      "Potentiel_partenaires_B2B_sport": 28
+    }
+  },
+  {
+    "epci_code": "200066017",
+    "epci_nom": "CC Lieuvin Pays d'Auge",
+    "departements": [
+      "27"
+    ],
+    "population": 20332,
+    "nb_communes": 51,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1016,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 6,
+      "Education_formation_privee": 5,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 17
+    }
+  },
+  {
+    "epci_code": "200066405",
+    "epci_nom": "CC Roumois Seine",
+    "departements": [
+      "27",
+      "76"
+    ],
+    "population": 41848,
+    "nb_communes": 40,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 2092,
+      "Clubs_sport_prives_salles_fitness": 8,
+      "Sante_cabinets_kines": 13,
+      "Education_formation_privee": 10,
+      "Evenementiel_agences": 5,
+      "Communication_medias": 4,
+      "Banque_assurance_agences": 8,
+      "Potentiel_partenaires_B2B_sport": 36
+    }
+  },
+  {
+    "epci_code": "200066413",
+    "epci_nom": "CC Intercom Bernay Terres de Normandie",
+    "departements": [
+      "27"
+    ],
+    "population": 54049,
+    "nb_communes": 75,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 2702,
+      "Clubs_sport_prives_salles_fitness": 10,
+      "Sante_cabinets_kines": 18,
+      "Education_formation_privee": 13,
+      "Evenementiel_agences": 6,
+      "Communication_medias": 5,
+      "Banque_assurance_agences": 10,
+      "Potentiel_partenaires_B2B_sport": 47
+    }
+  },
+  {
+    "epci_code": "200066462",
+    "epci_nom": "CC Interco Normandie Sud Eure",
+    "departements": [
+      "27",
+      "28"
+    ],
+    "population": 37326,
+    "nb_communes": 41,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1866,
+      "Clubs_sport_prives_salles_fitness": 7,
+      "Sante_cabinets_kines": 12,
+      "Education_formation_privee": 9,
+      "Evenementiel_agences": 4,
+      "Communication_medias": 3,
+      "Banque_assurance_agences": 7,
+      "Potentiel_partenaires_B2B_sport": 32
+    }
+  },
+  {
+    "epci_code": "200069730",
+    "epci_nom": "CC des Quatre Rivières en Bray",
+    "departements": [
+      "27",
+      "76"
+    ],
+    "population": 28467,
+    "nb_communes": 52,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1423,
+      "Clubs_sport_prives_salles_fitness": 5,
+      "Sante_cabinets_kines": 9,
+      "Education_formation_privee": 7,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 5,
+      "Potentiel_partenaires_B2B_sport": 24
+    }
+  },
+  {
+    "epci_code": "200070142",
+    "epci_nom": "CC Lyons Andelle",
+    "departements": [
+      "27"
+    ],
+    "population": 20622,
+    "nb_communes": 30,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1031,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 6,
+      "Education_formation_privee": 5,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 17
+    }
+  },
+  {
+    "epci_code": "200071454",
+    "epci_nom": "CA Evreux Portes de Normandie",
+    "departements": [
+      "27"
+    ],
+    "population": 113337,
+    "nb_communes": 74,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 5666,
+      "Clubs_sport_prives_salles_fitness": 22,
+      "Sante_cabinets_kines": 37,
+      "Education_formation_privee": 28,
+      "Evenementiel_agences": 14,
+      "Communication_medias": 11,
+      "Banque_assurance_agences": 22,
+      "Potentiel_partenaires_B2B_sport": 101
+    }
+  },
+  {
+    "epci_code": "200071843",
+    "epci_nom": "CC du Vexin Normand",
+    "departements": [
+      "27"
+    ],
+    "population": 33079,
+    "nb_communes": 39,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1653,
+      "Clubs_sport_prives_salles_fitness": 6,
+      "Sante_cabinets_kines": 11,
+      "Education_formation_privee": 8,
+      "Evenementiel_agences": 4,
+      "Communication_medias": 3,
+      "Banque_assurance_agences": 6,
+      "Potentiel_partenaires_B2B_sport": 29
+    }
+  },
+  {
+    "epci_code": "200072312",
+    "epci_nom": "CA Seine Normandie Agglomération",
+    "departements": [
+      "27"
+    ],
+    "population": 83284,
+    "nb_communes": 61,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 4164,
+      "Clubs_sport_prives_salles_fitness": 16,
+      "Sante_cabinets_kines": 27,
+      "Education_formation_privee": 20,
+      "Evenementiel_agences": 10,
+      "Communication_medias": 8,
+      "Banque_assurance_agences": 16,
+      "Potentiel_partenaires_B2B_sport": 73
+    }
+  },
+  {
+    "epci_code": "200089456",
+    "epci_nom": "CA Seine-Eure",
+    "departements": [
+      "27"
+    ],
+    "population": 103526,
+    "nb_communes": 60,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 5176,
+      "Clubs_sport_prives_salles_fitness": 20,
+      "Sante_cabinets_kines": 34,
+      "Education_formation_privee": 25,
+      "Evenementiel_agences": 12,
+      "Communication_medias": 10,
+      "Banque_assurance_agences": 20,
+      "Potentiel_partenaires_B2B_sport": 91
+    }
+  },
+  {
+    "epci_code": "242700276",
+    "epci_nom": "CC du Pays de Conches",
+    "departements": [
+      "27"
+    ],
+    "population": 18100,
+    "nb_communes": 25,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 905,
+      "Clubs_sport_prives_salles_fitness": 3,
+      "Sante_cabinets_kines": 6,
+      "Education_formation_privee": 4,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 3,
+      "Potentiel_partenaires_B2B_sport": 15
+    }
+  },
+  {
+    "epci_code": "242700607",
+    "epci_nom": "CC du Pays du Neubourg",
+    "departements": [
+      "27"
+    ],
+    "population": 22499,
+    "nb_communes": 41,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1124,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 7,
+      "Education_formation_privee": 5,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 18
+    }
+  },
+  {
+    "epci_code": "200042604",
+    "epci_nom": "CC de Granville, Terre et Mer",
+    "departements": [
+      "50"
+    ],
+    "population": 45650,
+    "nb_communes": 32,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 2282,
+      "Clubs_sport_prives_salles_fitness": 9,
+      "Sante_cabinets_kines": 15,
+      "Education_formation_privee": 11,
+      "Evenementiel_agences": 5,
+      "Communication_medias": 4,
+      "Banque_assurance_agences": 9,
+      "Potentiel_partenaires_B2B_sport": 40
+    }
+  },
+  {
+    "epci_code": "200042729",
+    "epci_nom": "CC de la Baie du Cotentin",
+    "departements": [
+      "50"
+    ],
+    "population": 22942,
+    "nb_communes": 23,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1147,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 7,
+      "Education_formation_privee": 5,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 18
+    }
+  },
+  {
+    "epci_code": "200043354",
+    "epci_nom": "CC de Villedieu Intercom",
+    "departements": [
+      "50"
+    ],
+    "population": 15779,
+    "nb_communes": 27,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 788,
+      "Clubs_sport_prives_salles_fitness": 3,
+      "Sante_cabinets_kines": 5,
+      "Education_formation_privee": 3,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 3,
+      "Potentiel_partenaires_B2B_sport": 12
+    }
+  },
+  {
+    "epci_code": "200066389",
+    "epci_nom": "CA Saint-Lô Agglo",
+    "departements": [
+      "50"
+    ],
+    "population": 76800,
+    "nb_communes": 61,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 3840,
+      "Clubs_sport_prives_salles_fitness": 15,
+      "Sante_cabinets_kines": 25,
+      "Education_formation_privee": 19,
+      "Evenementiel_agences": 9,
+      "Communication_medias": 7,
+      "Banque_assurance_agences": 15,
+      "Potentiel_partenaires_B2B_sport": 68
+    }
+  },
+  {
+    "epci_code": "200067023",
+    "epci_nom": "CC Coutances Mer et Bocage",
+    "departements": [
+      "50"
+    ],
+    "population": 47611,
+    "nb_communes": 48,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 2380,
+      "Clubs_sport_prives_salles_fitness": 9,
+      "Sante_cabinets_kines": 15,
+      "Education_formation_privee": 11,
+      "Evenementiel_agences": 5,
+      "Communication_medias": 4,
+      "Banque_assurance_agences": 9,
+      "Potentiel_partenaires_B2B_sport": 40
+    }
+  },
+  {
+    "epci_code": "200067031",
+    "epci_nom": "CC Côte Ouest Centre Manche",
+    "departements": [
+      "50"
+    ],
+    "population": 22323,
+    "nb_communes": 30,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1116,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 7,
+      "Education_formation_privee": 5,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 18
+    }
+  },
+  {
+    "epci_code": "200067205",
+    "epci_nom": "CA du Cotentin",
+    "departements": [
+      "50"
+    ],
+    "population": 179231,
+    "nb_communes": 129,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 8961,
+      "Clubs_sport_prives_salles_fitness": 35,
+      "Sante_cabinets_kines": 59,
+      "Education_formation_privee": 44,
+      "Evenementiel_agences": 22,
+      "Communication_medias": 17,
+      "Banque_assurance_agences": 35,
+      "Potentiel_partenaires_B2B_sport": 160
+    }
+  },
+  {
+    "epci_code": "200069425",
+    "epci_nom": "CA Mont-Saint-Michel-Normandie",
+    "departements": [
+      "50"
+    ],
+    "population": 87186,
+    "nb_communes": 95,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 4359,
+      "Clubs_sport_prives_salles_fitness": 17,
+      "Sante_cabinets_kines": 29,
+      "Education_formation_privee": 21,
+      "Evenementiel_agences": 10,
+      "Communication_medias": 8,
+      "Banque_assurance_agences": 17,
+      "Potentiel_partenaires_B2B_sport": 77
+    }
+  },
+  {
+    "epci_code": "200035103",
+    "epci_nom": "CC de la Vallée de la Haute Sarthe",
+    "departements": [
+      "61"
+    ],
+    "population": 7542,
+    "nb_communes": 31,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 377,
+      "Clubs_sport_prives_salles_fitness": 2,
+      "Sante_cabinets_kines": 2,
+      "Education_formation_privee": 1,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 1,
+      "Potentiel_partenaires_B2B_sport": 6
+    }
+  },
+  {
+    "epci_code": "200035111",
+    "epci_nom": "CC des Sources de l'Orne",
+    "departements": [
+      "61"
+    ],
+    "population": 11954,
+    "nb_communes": 23,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 597,
+      "Clubs_sport_prives_salles_fitness": 2,
+      "Sante_cabinets_kines": 3,
+      "Education_formation_privee": 2,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 2,
+      "Potentiel_partenaires_B2B_sport": 8
+    }
+  },
+  {
+    "epci_code": "200035814",
+    "epci_nom": "CA Flers Agglo",
+    "departements": [
+      "61"
+    ],
+    "population": 52388,
+    "nb_communes": 42,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 2619,
+      "Clubs_sport_prives_salles_fitness": 10,
+      "Sante_cabinets_kines": 17,
+      "Education_formation_privee": 13,
+      "Evenementiel_agences": 6,
+      "Communication_medias": 5,
+      "Banque_assurance_agences": 10,
+      "Potentiel_partenaires_B2B_sport": 46
+    }
+  },
+  {
+    "epci_code": "200036069",
+    "epci_nom": "CC du Pays de Mortagne-au-Perche",
+    "departements": [
+      "61"
+    ],
+    "population": 13531,
+    "nb_communes": 33,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 676,
+      "Clubs_sport_prives_salles_fitness": 2,
+      "Sante_cabinets_kines": 4,
+      "Education_formation_privee": 3,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 2,
+      "Potentiel_partenaires_B2B_sport": 10
+    }
+  },
+  {
+    "epci_code": "200068435",
+    "epci_nom": "CC Coeur du Perche",
+    "departements": [
+      "61"
+    ],
+    "population": 10964,
+    "nb_communes": 12,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 548,
+      "Clubs_sport_prives_salles_fitness": 2,
+      "Sante_cabinets_kines": 3,
+      "Education_formation_privee": 2,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 2,
+      "Potentiel_partenaires_B2B_sport": 8
+    }
+  },
+  {
+    "epci_code": "200068443",
+    "epci_nom": "CC Andaine - Passais",
+    "departements": [
+      "61"
+    ],
+    "population": 12758,
+    "nb_communes": 12,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 637,
+      "Clubs_sport_prives_salles_fitness": 2,
+      "Sante_cabinets_kines": 4,
+      "Education_formation_privee": 3,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 2,
+      "Potentiel_partenaires_B2B_sport": 10
+    }
+  },
+  {
+    "epci_code": "200068450",
+    "epci_nom": "CC Terres d'Argentan Interco",
+    "departements": [
+      "61"
+    ],
+    "population": 33370,
+    "nb_communes": 49,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1668,
+      "Clubs_sport_prives_salles_fitness": 6,
+      "Sante_cabinets_kines": 11,
+      "Education_formation_privee": 8,
+      "Evenementiel_agences": 4,
+      "Communication_medias": 3,
+      "Banque_assurance_agences": 6,
+      "Potentiel_partenaires_B2B_sport": 29
+    }
+  },
+  {
+    "epci_code": "200068468",
+    "epci_nom": "CC des Pays de L'Aigle",
+    "departements": [
+      "61"
+    ],
+    "population": 24782,
+    "nb_communes": 32,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1239,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 8,
+      "Education_formation_privee": 6,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 21
+    }
+  },
+  {
+    "epci_code": "200068856",
+    "epci_nom": "CC des Hauts du Perche",
+    "departements": [
+      "61"
+    ],
+    "population": 7864,
+    "nb_communes": 10,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 393,
+      "Clubs_sport_prives_salles_fitness": 2,
+      "Sante_cabinets_kines": 2,
+      "Education_formation_privee": 1,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 1,
+      "Potentiel_partenaires_B2B_sport": 6
+    }
+  },
+  {
+    "epci_code": "200069458",
+    "epci_nom": "CC des Vallées d'Auge et du Merlerault",
+    "departements": [
+      "61"
+    ],
+    "population": 14096,
+    "nb_communes": 42,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 704,
+      "Clubs_sport_prives_salles_fitness": 2,
+      "Sante_cabinets_kines": 4,
+      "Education_formation_privee": 3,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 2,
+      "Potentiel_partenaires_B2B_sport": 10
+    }
+  },
+  {
+    "epci_code": "200071504",
+    "epci_nom": "CC des Collines du Perche Normand",
+    "departements": [
+      "61"
+    ],
+    "population": 11864,
+    "nb_communes": 16,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 593,
+      "Clubs_sport_prives_salles_fitness": 2,
+      "Sante_cabinets_kines": 3,
+      "Education_formation_privee": 2,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 2,
+      "Potentiel_partenaires_B2B_sport": 8
+    }
+  },
+  {
+    "epci_code": "200071520",
+    "epci_nom": "CC Domfront Tinchebray Interco",
+    "departements": [
+      "61"
+    ],
+    "population": 15744,
+    "nb_communes": 15,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 787,
+      "Clubs_sport_prives_salles_fitness": 3,
+      "Sante_cabinets_kines": 5,
+      "Education_formation_privee": 3,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 3,
+      "Potentiel_partenaires_B2B_sport": 12
+    }
+  },
+  {
+    "epci_code": "200071652",
+    "epci_nom": "CC du Pays Fertois et du Bocage Carrougien",
+    "departements": [
+      "61"
+    ],
+    "population": 4808,
+    "nb_communes": 19,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 240,
+      "Clubs_sport_prives_salles_fitness": 2,
+      "Sante_cabinets_kines": 2,
+      "Education_formation_privee": 1,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 1,
+      "Potentiel_partenaires_B2B_sport": 6
+    }
+  },
+  {
+    "epci_code": "200072676",
+    "epci_nom": "CC Maine Saosnois",
+    "departements": [
+      "61",
+      "72"
+    ],
+    "population": 27375,
+    "nb_communes": 51,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1368,
+      "Clubs_sport_prives_salles_fitness": 5,
+      "Sante_cabinets_kines": 9,
+      "Education_formation_privee": 6,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 5,
+      "Potentiel_partenaires_B2B_sport": 23
+    }
+  },
+  {
+    "epci_code": "246100390",
+    "epci_nom": "CC du Val d'Orne",
+    "departements": [
+      "61"
+    ],
+    "population": 5595,
+    "nb_communes": 17,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 279,
+      "Clubs_sport_prives_salles_fitness": 2,
+      "Sante_cabinets_kines": 2,
+      "Education_formation_privee": 1,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 1,
+      "Potentiel_partenaires_B2B_sport": 6
+    }
+  },
+  {
+    "epci_code": "246100663",
+    "epci_nom": "CU d'Alençon",
+    "departements": [
+      "61",
+      "72"
+    ],
+    "population": 55102,
+    "nb_communes": 31,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 2755,
+      "Clubs_sport_prives_salles_fitness": 11,
+      "Sante_cabinets_kines": 18,
+      "Education_formation_privee": 13,
+      "Evenementiel_agences": 6,
+      "Communication_medias": 5,
+      "Banque_assurance_agences": 11,
+      "Potentiel_partenaires_B2B_sport": 48
+    }
+  },
+  {
+    "epci_code": "200010700",
+    "epci_nom": "CA Caux Seine Agglo",
+    "departements": [
+      "76"
+    ],
+    "population": 77990,
+    "nb_communes": 50,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 3899,
+      "Clubs_sport_prives_salles_fitness": 15,
+      "Sante_cabinets_kines": 25,
+      "Education_formation_privee": 19,
+      "Evenementiel_agences": 9,
+      "Communication_medias": 7,
+      "Banque_assurance_agences": 15,
+      "Potentiel_partenaires_B2B_sport": 68
+    }
+  },
+  {
+    "epci_code": "200023414",
+    "epci_nom": "Métropole Rouen Normandie",
+    "departements": [
+      "76"
+    ],
+    "population": 503000,
+    "nb_communes": 71,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 25150,
+      "Clubs_sport_prives_salles_fitness": 100,
+      "Sante_cabinets_kines": 167,
+      "Education_formation_privee": 125,
+      "Evenementiel_agences": 62,
+      "Communication_medias": 50,
+      "Banque_assurance_agences": 100,
+      "Potentiel_partenaires_B2B_sport": 454
+    }
+  },
+  {
+    "epci_code": "200068534",
+    "epci_nom": "CC Terroir de Caux",
+    "departements": [
+      "76"
+    ],
+    "population": 37698,
+    "nb_communes": 79,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1884,
+      "Clubs_sport_prives_salles_fitness": 7,
+      "Sante_cabinets_kines": 12,
+      "Education_formation_privee": 9,
+      "Evenementiel_agences": 4,
+      "Communication_medias": 3,
+      "Banque_assurance_agences": 7,
+      "Potentiel_partenaires_B2B_sport": 32
+    }
+  },
+  {
+    "epci_code": "200069722",
+    "epci_nom": "CC Interrégionale Aumale - Blangy-sur-Bresle",
+    "departements": [
+      "76",
+      "80"
+    ],
+    "population": 21154,
+    "nb_communes": 44,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1057,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 7,
+      "Education_formation_privee": 5,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 18
+    }
+  },
+  {
+    "epci_code": "200069821",
+    "epci_nom": "CA Fécamp Caux Littoral Agglomération",
+    "departements": [
+      "76"
+    ],
+    "population": 37393,
+    "nb_communes": 33,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1869,
+      "Clubs_sport_prives_salles_fitness": 7,
+      "Sante_cabinets_kines": 12,
+      "Education_formation_privee": 9,
+      "Evenementiel_agences": 4,
+      "Communication_medias": 3,
+      "Banque_assurance_agences": 7,
+      "Potentiel_partenaires_B2B_sport": 32
+    }
+  },
+  {
+    "epci_code": "200069839",
+    "epci_nom": "CC de la Côte d'Albâtre",
+    "departements": [
+      "76"
+    ],
+    "population": 27397,
+    "nb_communes": 63,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1369,
+      "Clubs_sport_prives_salles_fitness": 5,
+      "Sante_cabinets_kines": 9,
+      "Education_formation_privee": 6,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 5,
+      "Potentiel_partenaires_B2B_sport": 23
+    }
+  },
+  {
+    "epci_code": "200069847",
+    "epci_nom": "CC Plateau de Caux",
+    "departements": [
+      "76"
+    ],
+    "population": 21340,
+    "nb_communes": 40,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1067,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 7,
+      "Education_formation_privee": 5,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 18
+    }
+  },
+  {
+    "epci_code": "200070068",
+    "epci_nom": "CC Bray-Eawy",
+    "departements": [
+      "76"
+    ],
+    "population": 24737,
+    "nb_communes": 46,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1236,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 8,
+      "Education_formation_privee": 6,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 21
+    }
+  },
+  {
+    "epci_code": "200070449",
+    "epci_nom": "CC Inter-Caux-Vexin",
+    "departements": [
+      "76"
+    ],
+    "population": 56138,
+    "nb_communes": 64,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 2806,
+      "Clubs_sport_prives_salles_fitness": 11,
+      "Sante_cabinets_kines": 18,
+      "Education_formation_privee": 14,
+      "Evenementiel_agences": 7,
+      "Communication_medias": 5,
+      "Banque_assurance_agences": 11,
+      "Potentiel_partenaires_B2B_sport": 50
+    }
+  },
+  {
+    "epci_code": "200084952",
+    "epci_nom": "CU Le Havre Seine Métropole",
+    "departements": [
+      "76"
+    ],
+    "population": 267308,
+    "nb_communes": 54,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 13365,
+      "Clubs_sport_prives_salles_fitness": 53,
+      "Sante_cabinets_kines": 89,
+      "Education_formation_privee": 66,
+      "Evenementiel_agences": 33,
+      "Communication_medias": 26,
+      "Banque_assurance_agences": 53,
+      "Potentiel_partenaires_B2B_sport": 241
+    }
+  },
+  {
+    "epci_code": "247600505",
+    "epci_nom": "CC Campagne-de-Caux",
+    "departements": [
+      "76"
+    ],
+    "population": 15068,
+    "nb_communes": 22,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 753,
+      "Clubs_sport_prives_salles_fitness": 3,
+      "Sante_cabinets_kines": 5,
+      "Education_formation_privee": 3,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 3,
+      "Potentiel_partenaires_B2B_sport": 12
+    }
+  },
+  {
+    "epci_code": "247600588",
+    "epci_nom": "CC des Villes Soeurs",
+    "departements": [
+      "76",
+      "80"
+    ],
+    "population": 35390,
+    "nb_communes": 28,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1769,
+      "Clubs_sport_prives_salles_fitness": 7,
+      "Sante_cabinets_kines": 11,
+      "Education_formation_privee": 8,
+      "Evenementiel_agences": 4,
+      "Communication_medias": 3,
+      "Banque_assurance_agences": 7,
+      "Potentiel_partenaires_B2B_sport": 30
+    }
+  },
+  {
+    "epci_code": "247600604",
+    "epci_nom": "CC de Londinières",
+    "departements": [
+      "76"
+    ],
+    "population": 5166,
+    "nb_communes": 16,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 258,
+      "Clubs_sport_prives_salles_fitness": 2,
+      "Sante_cabinets_kines": 2,
+      "Education_formation_privee": 1,
+      "Evenementiel_agences": 1,
+      "Communication_medias": 1,
+      "Banque_assurance_agences": 1,
+      "Potentiel_partenaires_B2B_sport": 6
+    }
+  },
+  {
+    "epci_code": "247600620",
+    "epci_nom": "CC Yvetot Normandie",
+    "departements": [
+      "76"
+    ],
+    "population": 26248,
+    "nb_communes": 19,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1312,
+      "Clubs_sport_prives_salles_fitness": 5,
+      "Sante_cabinets_kines": 8,
+      "Education_formation_privee": 6,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 5,
+      "Potentiel_partenaires_B2B_sport": 22
+    }
+  },
+  {
+    "epci_code": "247600646",
+    "epci_nom": "CC Caux - Austreberthe",
+    "departements": [
+      "76"
+    ],
+    "population": 24855,
+    "nb_communes": 9,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1242,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 8,
+      "Education_formation_privee": 6,
+      "Evenementiel_agences": 3,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 21
+    }
+  },
+  {
+    "epci_code": "247600729",
+    "epci_nom": "CC Falaises du Talou",
+    "departements": [
+      "76"
+    ],
+    "population": 23382,
+    "nb_communes": 24,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 1169,
+      "Clubs_sport_prives_salles_fitness": 4,
+      "Sante_cabinets_kines": 7,
+      "Education_formation_privee": 5,
+      "Evenementiel_agences": 2,
+      "Communication_medias": 2,
+      "Banque_assurance_agences": 4,
+      "Potentiel_partenaires_B2B_sport": 18
+    }
+  },
+  {
+    "epci_code": "247600786",
+    "epci_nom": "CA de la Région Dieppoise",
+    "departements": [
+      "76"
+    ],
+    "population": 46088,
+    "nb_communes": 16,
+    "acteurs_economiques": {
+      "Entreprises_total_estime": 2304,
+      "Clubs_sport_prives_salles_fitness": 9,
+      "Sante_cabinets_kines": 15,
+      "Education_formation_privee": 11,
+      "Evenementiel_agences": 5,
+      "Communication_medias": 4,
+      "Banque_assurance_agences": 9,
+      "Potentiel_partenaires_B2B_sport": 40
+    }
+  }
+]

@@ -72,6 +72,13 @@ app.add_middleware(
 )
 
 # Router CSV
+# Routers Tunnel d'Ingénierie (intégrés depuis commit e47586d)
+from routes.scoring_checkpoints import router as scoring_checkpoints_router
+from routes.tunnels_thematiques import router as tunnels_thematiques_router
+from routes.shortlist  import router as shortlist_router
+app.include_router(scoring_checkpoints_router)
+app.include_router(tunnels_thematiques_router)
+app.include_router(shortlist_router)
 app.include_router(csv_router)
 
 

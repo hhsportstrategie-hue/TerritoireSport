@@ -1,0 +1,244 @@
+{
+  "name": "Tunnel d'Ingénierie de Projet",
+  "version": "1.0",
+  "description": "Tunnel guidé en 7 étapes pour aider un club sportif amateur à construire un projet à impact territorial, du concept initial jusqu'à l'export des livrables.",
+  "public_cible": "Président·e / chargé·e de développement de club amateur (≤ 500 licenciés, 0-2 salariés)",
+  "duree_estimation_totale": "8-12 heures sur 2-4 semaines",
+  "pre_requis": [
+    "Diagnostic ressources réalisé (5 questions)",
+    "Au moins 1 projet type identifié dans la library"
+  ],
+  "etapes": [
+    {
+      "numero": 1,
+      "slug": "concept",
+      "titre": "Cadrer le concept",
+      "duree_estimee": "1h",
+      "objectif": "Transformer une intuition en problème clairement formulé",
+      "questions_guide": [
+        "Quel problème territorial votre club peut-il résoudre ?",
+        "Qui sont les bénéficiaires directs (combien, où, quels besoins) ?",
+        "Quelle est la solution envisagée (en 1 phrase) ?",
+        "Pourquoi maintenant ? Quel déclencheur ?",
+        "Quel est votre territoire d'action (commune, EPCI, département) ?"
+      ],
+      "donnees_pre_remplies": [
+        "Liste des problèmes types détectés sur votre territoire (depuis veille AAP + cas inspirants)",
+        "Statistiques INSEE de votre commune/EPCI",
+        "Bénéficiaires potentiels identifiés dans la base SIRENE/FINESS/RNA"
+      ],
+      "livrable": "Fiche concept (1 page) : problème, bénéficiaires, solution, territoire",
+      "template": "fiche_concept.md",
+      "criteres_validation": [
+        "Problème chiffré ou sourcé",
+        "Bénéficiaires identifiés nominativement",
+        "Solution différente de l'existant",
+        "Alignement avec les valeurs du club"
+      ],
+      "pieges_eviter": [
+        "Vouloir résoudre un problème trop large",
+        "Confondre activité du club et projet à impact",
+        "Pas de validation terrain des bénéficiaires"
+      ]
+    },
+    {
+      "numero": 2,
+      "slug": "acteurs",
+      "titre": "Identifier les acteurs et partenaires",
+      "duree_estimee": "2h",
+      "objectif": "Cartographier tous les acteurs utiles (acteurs publics, privés, associatifs) et identifier 3-5 partenaires potentiels",
+      "questions_guide": [
+        "Quels acteurs publics de mon territoire sont concernés ? (mairie, EPCI, département, région)",
+        "Quelles associations locales peuvent être partenaires ?",
+        "Quelles entreprises locales ont un intérêt à s'associer ?",
+        "Quels acteurs institutionnels (DRAJES, ARS, CPAM, DDCS) ?",
+        "Quel est le rôle de chacun : financeur, opérationnel, bénéficiaire, relais ?"
+      ],
+      "donnees_pre_remplies": [
+        "Liste des acteurs publics de votre EPCI (depuis base FINESS + RNA)",
+        "Annuaire des entreprises locales (SIRENE filtré par code NAF pertinent)",
+        "Mapping des associations sport/santé/social de votre territoire",
+        "Contacts utiles : DRAJES, ARS, DDCS, services mairie"
+      ],
+      "livrable": "Cartographie acteurs (1 tableau) : nom, rôle, contact, statut (contacté / partenaire confirmé)",
+      "template": "cartographie_acteurs.md",
+      "criteres_validation": [
+        "Minimum 3 partenaires identifiés",
+        "Au moins 1 acteur public",
+        "Au moins 1 partenaire opérationnel (pas que financeur)",
+        "Premier contact pris avec chacun"
+      ],
+      "pieges_eviter": [
+        "Ne chercher que des financeurs",
+        "Oublier les bénéficiaires comme acteurs",
+        "Pas de distinction financeur/opérationnel/relais"
+      ]
+    },
+    {
+      "numero": 3,
+      "slug": "budget",
+      "titre": "Construire le budget prévisionnel",
+      "duree_estimee": "1h30",
+      "objectif": "Estimer le coût total du projet et identifier les postes clés",
+      "questions_guide": [
+        "Quels sont les postes de dépenses principaux ? (RH, matériel, communication, location, transport)",
+        "Quel est le montant total estimé ?",
+        "Quelle part peut être autofinancée ?",
+        "Quel montant reste à financer ?",
+        "Quel est le coût par bénéficiaire ?"
+      ],
+      "donnees_pre_remplies": [
+        "Fourchettes budgets des projets types similaires (library)",
+        "Coûts moyens par poste (barème Région/ANS)",
+        "Grille tarifaire prestataires locaux (repère)"
+      ],
+      "livrable": "Budget prévisionnel (1 tableau) : poste, montant, source financement",
+      "template": "budget_previsionnel.md",
+      "criteres_validation": [
+        "Tous les postes principaux chiffrés",
+        "Distinction autofinancement / subvention / sponsoring",
+        "Coût par bénéficiaire calculé",
+        "Marge de sécurité 10% prévue"
+      ],
+      "pieges_eviter": [
+        "Sous-estimer les coûts de coordination",
+        "Oublier la communication",
+        "Pas de provision pour imprévu"
+      ]
+    },
+    {
+      "numero": 4,
+      "slug": "aap",
+      "titre": "Identifier les appels à projets et financements",
+      "duree_estimee": "1h30",
+      "objectif": "Identifier 3-5 AAP pertinents et vérifier l'éligibilité",
+      "questions_guide": [
+        "Quels AAP correspondent à ma thématique ?",
+        "Quels AAP correspondent à mon territoire ?",
+        "Quels AAP correspondent à ma taille de club ?",
+        "Quelles sont les dates de clôture ?",
+        "Quel est le taux de financement possible ?"
+      ],
+      "donnees_pre_remplies": [
+        "Liste AAP actifs par thématique × territoire × taille club (depuis veille AAP)",
+        "Critères d'éligibilité de chaque AAP",
+        "Calendrier des clôtures",
+        "Modèles de dossiers AAP (structure)"
+      ],
+      "livrable": "Tableau AAP (1 page) : nom AAP, montant max, taux, échéance, statut (à déposer / déposé / refusé / accepté)",
+      "template": "tableau_aap.md",
+      "criteres_validation": [
+        "Minimum 3 AAP identifiés",
+        "Échéances connues",
+        "Éligibilité vérifiée",
+        "1 AAP principal + 2 backups"
+      ],
+      "pieges_eviter": [
+        "Ne miser que sur un AAP",
+        "Sous-estimer le temps de montage du dossier",
+        "Oublier les AAP privés (fondations, entreprises)"
+      ]
+    },
+    {
+      "numero": 5,
+      "slug": "plan_action",
+      "titre": "Détailler le plan d'action",
+      "duree_estimee": "2h",
+      "objectif": "Découper le projet en actions concrètes avec calendrier et responsables",
+      "questions_guide": [
+        "Quelles sont les grandes phases du projet ?",
+        "Quelles actions dans chaque phase ?",
+        "Qui est responsable de chaque action ?",
+        "Quelles sont les dates clés ?",
+        "Quels sont les jalons de validation ?"
+      ],
+      "donnees_pre_remplies": [
+        "Calendrier type d'un projet de 12 mois",
+        "Modèles de Gantt simplifié",
+        "Référentiel compétences des bénévoles"
+      ],
+      "livrable": "Plan d'action (Gantt simplifié) : phase, action, responsable, date début/fin, statut",
+      "template": "plan_action.md",
+      "criteres_validation": [
+        "Toutes les phases couvertes",
+        "Responsable identifié pour chaque action",
+        "Dates réalistes",
+        "Jalons de validation définis"
+      ],
+      "pieges_eviter": [
+        "Plan trop ambitieux",
+        "Pas de responsable identifié",
+        "Pas de jalons intermédiaires"
+      ]
+    },
+    {
+      "numero": 6,
+      "slug": "argumentaire",
+      "titre": "Construire l'argumentaire partenaires",
+      "duree_estimee": "1h30",
+      "objectif": "Préparer un argumentaire spécifique pour chaque type de partenaire",
+      "questions_guide": [
+        "Qu'est-ce qui'intéresse un financeur public ? (impact, conformité, indicateurs)",
+        "Qu'est-ce qui'intéresse un financeur privé ? (visibilité, RSE, engagement)",
+        "Qu'est-ce qui'intéresse un partenaire opérationnel ? (complémentarité, réciprocité)",
+        "Quelle est la proposition de valeur pour chacun ?",
+        "Quels indicateurs d'impact mettre en avant ?"
+      ],
+      "donnees_pre_remplies": [
+        "Modèles d'argumentaire par type de partenaire",
+        "Indicateurs d'impact standardisés (référentiel Région/ANS)",
+        "Exemples de dossiers réussis (cas inspirants)"
+      ],
+      "livrable": "Argumentaire partenaires (1 page par type) : financeur public, privé, opérationnel",
+      "template": "argumentaire_partenaires.md",
+      "criteres_validation": [
+        "1 argumentaire par type de partenaire",
+        "Proposition de valeur claire",
+        "Indicateurs d'impact chiffrés",
+        "Appel à l'action explicite"
+      ],
+      "pieges_eviter": [
+        "Argumentaire générique",
+        "Trop de chiffres, pas assez d'histoire",
+        "Pas de call-to-action"
+      ]
+    },
+    {
+      "numero": 7,
+      "slug": "export",
+      "titre": "Exporter les livrables",
+      "duree_estimee": "30min",
+      "objectif": "Produire tous les documents finalisés pour le terrain",
+      "questions_guide": [
+        "Quels documents pour les partenaires ?",
+        "Quels documents pour les financeurs ?",
+        "Quels documents pour les bénéficiaires ?",
+        "Quels documents pour la communication ?",
+        "Comment archiver le projet ?"
+      ],
+      "donnees_pre_remples": [
+        "Modèles de documents finalisés (PDF, DOCX)",
+        "Charte graphique du club",
+        "Bannières réseaux sociaux"
+      ],
+      "livrable": "Pack projet complet : fiche projet, budget, plan, argumentaires, dossiers AAP, supports com",
+      "template": "pack_projet_export.md",
+      "criteres_validation": [
+        "Tous les documents prêts à l'emploi",
+        "Charte graphique respectée",
+        "Archivage projet (date, contacts, décisions)"
+      ],
+      "pieges_eviter": [
+        "Documents non finalisés",
+        "Pas de version archivée",
+        "Oublier la communication"
+      ]
+    }
+  ],
+  "indicateurs_progression": {
+    "etape_complete": "Tous les critères de validation remplis",
+    "projet_pret": "7 étapes complétées + 1 AAP principal identifié + 3 partenaires confirmés",
+    "delai_moyen_construction": "3-4 semaines (avec accompagnement)",
+    "delai_moyen_autonomie": "6-8 semaines (sans accompagnement)"
+  }
+}

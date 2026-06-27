@@ -1,0 +1,99 @@
+{
+  "name": "Diagnostic Ressources Club",
+  "version": "1.0",
+  "description": "Diagnostic en 5 questions pour évaluer les capacités réelles d'un club à porter un projet à impact",
+  "duree": "10 minutes",
+  "questions": [
+    {
+      "numero": 1,
+      "slug": "benevoles",
+      "question": "Combien de bénévoles actifs avez-vous ?",
+      "options": [
+        {"value": "0-2", "label": "0 à 2 bénévoles", "score": 1, "capacite": "micro-projets"},
+        {"value": "3-5", "label": "3 à 5 bénévoles", "score": 2, "capacite": "projets simples"},
+        {"value": "6-15", "label": "6 à 15 bénévoles", "score": 3, "capacite": "projets intermédiaires"},
+        {"value": "16+", "label": "16+ bénévoles", "score": 4, "capacite": "projets complexes"}
+      ],
+      "impact_projets": "Détermine le niveau de complexité du projet. 0-2 = projets clé en main. 16+ = projets multi-partenaires."
+    },
+    {
+      "numero": 2,
+      "slug": "salaries",
+      "question": "Combien de salariés avez-vous ?",
+      "options": [
+        {"value": "0", "label": "Aucun salarié", "score": 1, "capacite": "projets 100% bénévoles"},
+        {"value": "1", "label": "1 salarié", "score": 2, "capacite": "projets avec coordination légère"},
+        {"value": "2-3", "label": "2-3 salariés", "score": 3, "capacite": "projets avec coordination dédiée"},
+        {"value": "4+", "label": "4+ salariés", "score": 4, "capacite": "projets multi-postes"}
+      ],
+      "impact_projets": "Détermine la capacité de coordination. Sans salarié = coordination bénévole = projets simples."
+    },
+    {
+      "numero": 3,
+      "slug": "budget_amorçage",
+      "question": "De quel budget d'amorçage disposez-vous ?",
+      "options": [
+        {"value": "0", "label": "0€", "score": 1, "capacite": "projets 0 budget"},
+        {"value": "100-500", "label": "100-500€", "score": 2, "capacite": "projets micro-budget"},
+        {"value": "500-2000", "label": "500-2 000€", "score": 3, "capacite": "projets avec autofinancement"},
+        {"value": "2000+", "label": "2 000€+", "score": 4, "capacite": "projets avec effet levier"}
+      ],
+      "impact_projets": "Détermine l'effet levier possible. 0 budget = projets 100% financés par AAP. 2000€+ = projets avec autofinancement significatif."
+    },
+    {
+      "numero": 4,
+      "slug": "deadline",
+      "question": "Quel est votre horizon de temps ?",
+      "options": [
+        {"value": "1-3mois", "label": "1-3 mois", "score": 1, "capacite": "projets événementiels"},
+        {"value": "3-6mois", "label": "3-6 mois", "score": 2, "capacite": "projets courts"},
+        {"value": "6-12mois", "label": "6-12 mois", "score": 3, "capacite": "projets standards"},
+        {"value": "12+", "label": "12+ mois", "score": 4, "capacite": "projets structurants"}
+      ],
+      "impact_projets": "Détermine le type de projet. <3 mois = événement. 12+ = projet structurant avec AAP pluriannuel."
+    },
+    {
+      "numero": 5,
+      "slug": "experience",
+      "question": "Avez-vous déjà porté un projet à impact ?",
+      "options": [
+        {"value": "jamais", "label": "Jamais", "score": 1, "capacite": "projets clé en main"},
+        {"value": "1projet", "label": "1 projet", "score": 2, "capacite": "projets similaires"},
+        {"value": "2-3", "label": "2-3 projets", "score": 3, "capacite": "projets intermédiaires"},
+        {"value": "4+", "label": "4+ projets", "score": 4, "capacite": "projets complexes"}
+      ],
+      "impact_projets": "Détermine le niveau d'accompagnement nécessaire. Jamais = besoin d'un projet clé en main. 4+ = autonomie."
+    }
+  ],
+  "scoring": {
+    "score_total": "Somme des scores des 5 questions (min 5, max 20)",
+    "interpretation": [
+      {"score_min": 5, "score_max": 8, "niveau": "Micro-projet", "description": "Projets 0-500€, 1-3 mois, clé en main. Ex: atelier découverte, match solidaire.", "projets_recommandes": ["p20", "p21", "p30"]},
+      {"score_min": 9, "score_max": 12, "niveau": "Projet simple", "description": "Projets 500-3000€, 3-6 mois, 1-2 partenaires. Ex: tournoi, collecte, section découverte.", "projets_recommandes": ["p03", "p09", "p13", "p15", "p17", "p18"]},
+      {"score_min": 13, "score_max": 16, "niveau": "Projet intermédiaire", "description": "Projets 3000-10000€, 6-12 mois, 3-5 partenaires. Ex: école du sport, sport-santé, club business.", "projets_recommandes": ["p01", "p04", "p05", "p08", "p10", "p11", "p14"]},
+      {"score_min": 17, "score_max": 20, "niveau": "Projet structurant", "description": "Projets 10000€+, 12+ mois, 5+ partenaires. Ex: académie, section féminine, insertion professionnelle.", "projets_recommandes": ["p02", "p06", "p07", "p12", "p16", "p19"]}
+    ]
+  },
+  "arbre_decision": {
+    "q1_0_2": "→ Recommandation : projets clé en main uniquement. Éviter tout projet nécessitant coordination.",
+    "q1_3_5": "→ Recommandation : projets simples avec 1 référent projet. Éviter projets multi-composantes.",
+    "q1_6_15": "→ Recommandation : projets standards avec comité de pilotage.",
+    "q1_16+": "→ Recommandation : tous types de projets possibles. Constituer un comité de pilotage solide.",
+    "q2_0": "→ Recommandation : coordination 100% bénévole. Prévoir 2h/semaine de coordination minimum.",
+    "q2_1": "→ Recommandation : salarié mobilisable 20-30% de son temps sur le projet.",
+    "q2_2_3": "→ Recommandation : 1 salarié dédié à 50-80% comme chef de projet.",
+    "q2_4+": "→ Recommandation : équipe projet dédiée possible.",
+    "q3_0": "→ Recommandation : recherche 100% financement externe (AAP, sponsoring, mécénat).",
+    "q3_100_500": "→ Recommandation : autofinancement léger + recherche co-financement.",
+    "q3_500_2000": "→ Recommandation : autofinancement significatif + AAP complémentaires.",
+    "q3_2000+": "→ Recommandation : autofinancement comme effet levier pour AAP.",
+    "q4_1_3mois": "→ Recommandation : projets événementiels uniquement. Pas de projet structurel.",
+    "q4_3_6mois": "→ Recommandation : projets courts avec démarrage rapide.",
+    "q4_6_12mois": "→ Recommandation : projets standards avec AAP annuel.",
+    "q4_12+": "→ Recommandation : projets pluriannuels avec AAP pluriannuel.",
+    "q5_jamais": "→ Recommandation : choisir un projet clé en main documenté (cas inspirant).",
+    "q5_1projet": "→ Recommandation : choisir un projet similaire à votre expérience.",
+    "q5_2_3": "→ Recommandation : projets intermédiaires avec accompagnement léger.",
+    "q5_4+": "→ Recommandation : autonomie possible sur tous types de projets."
+  }
+}
