@@ -333,7 +333,7 @@ async def get_shortlist(
         )
 
     # Whitelist du type de partenaire
-    type_whitelist = {"association", "entreprise", "collectivite", "etablissement", "medico_social"}
+    type_whitelist = {"association", "company", "public"}
     if type and type not in type_whitelist:
         raise HTTPException(
             status_code=400,
