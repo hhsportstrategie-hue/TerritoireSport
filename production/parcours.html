@@ -585,811 +585,420 @@
         </div>
     </div>
 
-    <script>
-        const API = 'https://ts-backend-production.up.railway.app';
-        const state = {
-            club_id: null,
-            diagnostic_id: null,
-            profile: null,
-            score: null,
-            commune_code: null,
-            selected_partners: [],
-            selected_project: null,
-            selected_aaps: []
-        };
+    
+<script>
+// ========== STATE ==========
+const API = '';
+const state = {
+    club_id: null,
+    answers: {},
+    score: 0,
+    profile: null,
+    selected_project: null,
+    selected_partners: [],
+    selected_aaps: [],
+    dossier_id: null
+};
 
-        const questions = [
-            // Stratégie (3 questions)
-            "Avez-vous un projet associatif formalisé incluant des actions à impact social ou environnemental ?",
-            "Avez-vous déjà répondu à des appels à projets ou obtenu des financements publics ?",
-            "Mesurez-vous l'impact de vos actions et avez-vous un budget dédié ?",
-            // Partenaires (2 questions - fusion institutions + entreprises + collectivités)
-            "Travaillez-vous régulièrement avec des acteurs de votre territoire (collectivités, institutions, entreprises, autres associations) ?",
-            "Disposez-vous d'un réseau structuré de partenaires privés (sponsors, mécènes, clubs entreprises) ?",
-            // Publics & inclusion (2 questions - fusion handicap + précarité + gouvernance)
-            "Votre club accueille-t-il des publics fragiles ou éloignés du sport (handicap, précarité, santé, mixité) ?",
-            "Votre gouvernance est-elle inclusive (mixité, place des jeunes, ouverture aux bénévoles) ?",
-            // Communication & ouverture (2 questions - fusion com + événements + ancrage)
-            "Avez-vous une communication active et un ancrage territorial identifié dans votre commune ou quartier ?",
-            "Organisez-vous des événements ouverts au public non-adhérent pour faire vivre ce lien au territoire ?",
-            // Engagement interne (1 question - fusion formation + travail en réseau)
-            "Formez-vous et mobilisez-vous vos bénévoles et éducateurs autour de l'engagement sociétal du club ?"
-        ];
+// ========== INIT ==========
+document.addEventListener('DOMContentLoaded', () => {
+    loadStep1();
+    const form = document.getElementById('club-form');
+    if (form) form.addEventListener('submit', submitStep1);
+});
 
-        function goToStep(n) {
-            document.querySelectorAll('.step-card').forEach(c => {
-                c.classList.remove('active', 'current');
-                if (c.classList.contains('done')) return;
-            });
-            document.getElementById(`step-${n}`).classList.add('active', 'current');
-            updateProgress(n);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+// ========== STEP 1: Création club ==========
+async function loadStep1() {}
 
-        function updateProgress(n) {
-            const pct = ((n - 1) / 8) * 100;
-            document.getElementById('progress-fill').style.width = pct + '%';
-            document.getElementById('step-count').textContent = `Étape ${n}/8`;
-        }
+async function submitStep1(e) {
+    e.preventDefault();
+    const data = {
+        name: document.getElementById('club-name').value,
+        sport: document.getElementById('club-sport').value,
+        commune: document.getElementById('club-commune').value,
+        email: document.getElementById('club-email').value
+    };
+    const r = await fetch(API + '/api/clubs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    const j = await r.json();
+    if (r.ok) {
+        state.club_id = j.id;
+        document.getElementById('result-1').innerHTML = `
+            <div class="result-box">
+                <h3>✅ Club créé avec succès</h3>
+                <p><strong>Nom:</strong> ${j.name}</p>
+                <p><strong>Sport:</strong> ${j.sport}</p>
+                <p><strong>Commune:</strong> ${j.commune}</p>
+            </div>`;
+        markDone(1);
+        renderQuestions();
+        goToStep(2);
+    } else {
+        document.getElementById('result-1').innerHTML = `
+            <div class="result-box error">
+                <h3>❌ Erreur</h3>
+                <p>${j.detail || 'Erreur inconnue'}</p>
+            </div>`;
+    }
+}
 
-        function markDone(n) {
-            document.getElementById(`step-${n}`).classList.add('done');
-            document.getElementById(`step-${n}`).classList.remove('current');
-        }
+// ========== STEP 2: Questions ==========
+function renderQuestions() {
+    const questions = [
+        { id: 'q1', text: 'Avez-vous déjà réalisé un projet à impact social/environnemental ?', options: ['Oui, plusieurs', 'Oui, un', 'Non, jamais'] },
+        { id: 'q2', text: 'Avez-vous des partenariats actifs avec des associations locales ?', options: ['Oui, régulièrement', 'Ponctuellement', 'Non'] },
+        { id: 'q3', text: 'Mesurez-vous l\'impact de vos actions ?', options: ['Oui, avec des indicateurs', 'Informellement', 'Non'] },
+        { id: 'q4', text: 'Avez-vous une stratégie RSE ou de développement durable ?', options: ['Oui, formalisée', 'En réflexion', 'Non'] },
+        { id: 'q5', text: 'Avez-vous déjà candidaté à un appel à projets ?', options: ['Oui, et obtenu', 'Oui, sans succès', 'Non'] }
+    ];
+    const html = questions.map(q => `
+        <div class="question-card" style="margin-bottom: 16px; padding: 16px; background: #f9fafb; border-radius: 8px;">
+            <label style="font-weight: 500; display: block; margin-bottom: 8px;">${q.text}</label>
+            <select id="${q.id}" class="form-select" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;">
+                <option value="">-- Choisir --</option>
+                ${q.options.map(o => `<option value="${o}">${o}</option>`).join('')}
+            </select>
+        </div>
+    `).join('');
+    document.getElementById('questions-container').innerHTML = html;
+}
 
-        // ── ÉTAPE 1: Inscription ──
-        async function submitStep1() {
-            const data = {
-                name: document.getElementById('club-name').value,
-                sport: document.getElementById('club-sport').value,
-                commune: document.getElementById('club-commune').value,
-                email: document.getElementById('club-email').value,
-                departement: document.getElementById('club-departement').value,
-                niveau: document.getElementById('club-niveau').value,
-                licencies: parseInt(document.getElementById('club-licencies').value) || 0
-            };
-            const r = await fetch(API + '/api/clubs/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-            const j = await r.json();
-            if (r.ok) {
-                state.club_id = j.club_id;
-                document.getElementById('result-1').innerHTML = `
-                    <div class="result-box">
-                        <h3>✅ Club créé avec succès</h3>
-                        <p><strong>ID:</strong> ${j.club_id}</p>
-                        <p><strong>Nom:</strong> ${j.name}</p>
-                        <p><strong>Sport:</strong> ${j.sport}</p>
-                        <p><strong>Commune:</strong> ${j.commune}</p>
-                    </div>`;
-                markDone(1);
-                renderQuestions();
-                goToStep(2);
-            } else {
-                document.getElementById('result-1').innerHTML = `
-                    <div class="result-box error">
-                        <h3>❌ Erreur</h3>
-                        <p>${j.detail || 'Erreur inconnue'}</p>
-                    </div>`;
-            }
-        }
+async function submitStep2() {
+    const answers = {};
+    document.querySelectorAll('.question-card select').forEach(sel => {
+        answers[sel.id] = sel.value;
+    });
+    const r = await fetch(API + '/api/diagnostic', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ club_id: state.club_id, answers })
+    });
+    const j = await r.json();
+    if (r.ok) {
+        state.score = j.score;
+        state.profile = j.profile;
+        document.getElementById('result-2').innerHTML = `
+            <div class="result-box">
+                <h3>📊 Profil évalué</h3>
+                <p><strong>Score:</strong> ${j.score}/20</p>
+                <p><strong>Profil:</strong> ${j.profile}</p>
+                <p style="margin-top: 12px; color: #6b7280;">${j.description || ''}</p>
+            </div>`;
+        markDone(2);
+        goToStep(3);
+    } else {
+        alert('Erreur: ' + (j.detail || 'inconnue'));
+    }
+}
 
-        // ── ÉTAPE 2: Diagnostic ──
-        async function loadDiagnosticTerritorial() {
-            // Récupérer le code INSEE du club
-            const clubId = state.club_id;
-            if (!clubId) return;
+// ========== STEP 3: Commune ==========
+async function loadStep3() {
+    const r = await fetch(API + '/api/communes/all?limit=20');
+    const d = await r.json();
+    const communes = d.communes || [];
+    const select = document.getElementById('commune-select');
+    if (select) {
+        select.innerHTML = '<option value="">-- Choisir --</option>' +
+            communes.map(c => `<option value="${c.code_insee}">${c.nom} (${c.code_insee})</option>`).join('');
+    }
+}
 
-            try {
-                const r = await fetch(API + '/api/clubs/' + clubId);
-                if (!r.ok) return;
-                const club = await r.json();
+async function submitStep3() {
+    const code = document.getElementById('commune-select').value;
+    if (!code) { alert('Sélectionnez une commune'); return; }
+    const r = await fetch(API + `/api/communes/${code}`);
+    const j = await r.json();
+    if (r.ok) {
+        document.getElementById('result-3').innerHTML = `
+            <div class="result-box">
+                <h3>📍 ${j.nom}</h3>
+                <p><strong>Population:</strong> ${j.population?.toLocaleString() || 'N/A'}</p>
+                <p><strong>Département:</strong> ${j.departement || 'N/A'}</p>
+            </div>`;
+        markDone(3);
+        loadStep4();
+        goToStep(4);
+    }
+}
 
-                if (!club.code_insee) return;
+// ========== STEP 4: Diagnostic territorial ==========
+async function loadStep4() {
+    const code = document.getElementById('commune-select').value;
+    if (!code) return;
+    const r = await fetch(API + `/api/diagnostic/${code}`);
+    const d = await r.json();
+    const thematiques = d.thematiques_prioritaires || [];
+    const html = thematiques.map(t => `
+        <div class="badge badge-orange" style="margin: 4px; padding: 8px 12px; display: inline-block;">${t}</div>
+    `).join('');
+    document.getElementById('result-4').innerHTML = `
+        <div class="result-box">
+            <h3>🎯 Thématiques prioritaires</h3>
+            <div>${html || 'Aucune thématique identifiée'}</div>
+        </div>`;
+}
 
-                const r2 = await fetch(API + '/api/communes/' + club.code_insee + '/diagnostic-territorial');
-                if (!r2.ok) return;
-                const data = await r2.json();
+// ========== STEP 5: Shortlist partenaires ==========
+async function loadStep5() {
+    const code = document.getElementById('commune-select').value;
+    if (!code) return;
+    const thematiques = Array.from(document.querySelectorAll('#result-4 .badge'))
+        .map(b => b.textContent.trim());
+    const params = new URLSearchParams({ commune: code, limit: '10' });
+    if (thematiques.length) params.append('thematiques', thematiques.join(','));
+    const r = await fetch(API + '/api/shortlist?' + params);
+    const d = await r.json();
+    const partners = d.partners || [];
+    if (!partners.length) {
+        document.getElementById('result-5').innerHTML = `
+            <div class="result-box"><p>Aucun partenaire identifié pour cette commune.</p></div>`;
+        return;
+    }
+    const html = partners.map(p => `
+        <div class="partner-card" data-id="${p.id}" onclick="togglePartner(this, '${p.id}')" style="cursor: pointer; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px;">
+            <div style="font-weight: 600;">${p.nom}</div>
+            <div style="font-size: 0.9em; color: #6b7280;">${p.activite_principale || p.type || ''}</div>
+            <div style="margin-top: 6px;"><span class="badge badge-blue">Score: ${p.score}</span></div>
+        </div>
+    `).join('');
+    document.getElementById('result-5').innerHTML = `
+        <div style="margin-bottom: 12px;"><strong>${partners.length} partenaires potentiels</strong> — cliquez pour sélectionner</div>
+        ${html}`;
+}
 
-                if (!data.diagnostic) {
-                    document.getElementById('diagnostic-territorial-2').innerHTML = `
-                        <div class="diag-info">
-                            <p>📍 Commune : <strong>${data.commune.nom}</strong> (${data.commune.code_insee})</p>
-                            <p><em>Aucun diagnostic territorial détaillé disponible pour cette commune.</em></p>
-                        </div>`;
-                    return;
-                }
+function togglePartner(el, id) {
+    el.classList.toggle('selected');
+    if (el.classList.contains('selected')) {
+        el.style.borderColor = '#10b981';
+        el.style.background = '#f0fdf4';
+        state.selected_partners.push(id);
+    } else {
+        el.style.borderColor = '#e5e7eb';
+        el.style.background = 'white';
+        state.selected_partners = state.selected_partners.filter(p => p !== id);
+    }
+}
 
-                const diag = data.diagnostic;
-                const themes = (diag.inclusions_thematiques || []).map(t =>
-                    `<span class="thema-badge">${t}</span>`).join(' ');
+async function submitStep5() {
+    if (state.selected_partners.length === 0) {
+        alert('Sélectionnez au moins 1 partenaire');
+        return;
+    }
+    markDone(5);
+    goToStep(6);
+    loadStep6();
+}
 
-                document.getElementById('diagnostic-territorial-2').innerHTML = `
-                    <div class="diag-territorial">
-                        <h3>📍 Diagnostic territorial — ${data.commune.nom}</h3>
-                        <div class="diag-grid">
-                            <div class="diag-item">
-                                <strong>👥 Population</strong>
-                                <span>${(data.commune.population || 0).toLocaleString()} habitants</span>
-                            </div>
-                            <div class="diag-item">
-                                <strong>💼 Chômage</strong>
-                                <span>${diag.chomage_taux || 'N/A'}%</span>
-                            </div>
-                            <div class="diag-item">
-                                <strong>🏘️ Quartiers difficiles</strong>
-                                <span>${diag.quartiers_difficultes || 'Aucun'}</span>
-                            </div>
-                            <div class="diag-item">
-                                <strong>🛡️ Sécurité</strong>
-                                <span>${diag.securite_niveau || 'N/A'}</span>
-                            </div>
-                            <div class="diag-item">
-                                <strong>🏥 EHPAD</strong>
-                                <span>${diag.ehpad_count || 0} établissement(s)</span>
-                            </div>
-                            <div class="diag-item">
-                                <strong>👴 Intergénérationnel</strong>
-                                <span>${diag.intergenerationnel ? '✅ Opportunité' : '❌'}</span>
-                            </div>
-                            <div class="diag-item">
-                                <strong>🤝 Réinsertion</strong>
-                                <span>${diag.reinsertion ? '✅ Opportunité' : '❌'}</span>
-                            </div>
-                            <div class="diag-item">
-                                <strong>🌱 Enjeux environnement</strong>
-                                <span>${diag.environnement_enjeux || 'N/A'}</span>
-                            </div>
-                        </div>
-                        <div class="diag-themes">
-                            <strong>🎯 Thématiques pertinentes pour votre territoire :</strong>
-                            <div>${themes}</div>
-                        </div>
-                    </div>`;
-            } catch (e) {
-                console.error('Diagnostic territorial error:', e);
-            }
-        }
+// ========== STEP 6: Cas inspirants ==========
+async function loadStep6() {
+    const thematiques = Array.from(document.querySelectorAll('#result-4 .badge'))
+        .map(b => b.textContent.trim());
+    const params = new URLSearchParams({ limit: '5' });
+    if (thematiques.length) params.append('thematiques', thematiques.join(','));
+    const r = await fetch(API + '/api/cas-inspirants/match?' + params);
+    const d = await r.json();
+    const cas = d.cas_inspirants || [];
+    if (!cas.length) {
+        document.getElementById('result-6').innerHTML = `
+            <div class="result-box"><p>Aucun cas inspirant trouvé.</p></div>`;
+        return;
+    }
+    const html = cas.map(c => `
+        <div class="partner-card" data-id="${c.id}" onclick="selectCasInspirant(this, '${c.id}')" style="cursor: pointer; padding: 16px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px;">
+            <div style="font-weight: 600; font-size: 1.05em;">${c.titre || c.name || 'Sans titre'}</div>
+            <div style="color: #6b7280; font-size: 0.9em; margin: 6px 0;">${c.description || ''}</div>
+            <div style="margin-top: 8px;">
+                ${(c.thematiques || []).slice(0, 3).map(t => `<span class="badge badge-green" style="margin-right: 4px; font-size: 0.8em;">${t}</span>`).join('')}
+                ${c.score ? `<span class="badge badge-blue" style="margin-right: 4px; font-size: 0.8em;">Score: ${c.score}</span>` : ''}
+                ${c.budget_reel ? `<span class="badge badge-orange" style="font-size: 0.8em;">Budget: ${c.budget_reel.toLocaleString()} €</span>` : ''}
+            </div>
+        </div>
+    `).join('');
+    document.getElementById('result-6').innerHTML = `
+        <div style="margin-bottom: 12px;"><strong>${cas.length} cas inspirants</strong> — sélectionnez celui qui vous inspire le plus</div>
+        ${html}`;
+}
 
-        function renderQuestions() {
-            const html = questions.map((q, i) => `
-                <div class="question">
-                    <div class="q-text">${i + 1}. ${q}</div>
-                    <div class="options">
-                        <input type="radio" name="q${i}" id="q${i}-0" value="0">
-                        <label for="q${i}-0">Non</label>
-                        <input type="radio" name="q${i}" id="q${i}-1" value="1" checked>
-                        <label for="q${i}-1">Partiellement</label>
-                        <input type="radio" name="q${i}" id="q${i}-2" value="2">
-                        <label for="q${i}-2">Oui</label>
-                    </div>
+function selectCasInspirant(el, id) {
+    document.querySelectorAll('#result-6 .partner-card').forEach(c => {
+        c.style.borderColor = '#e5e7eb';
+        c.style.background = 'white';
+    });
+    el.style.borderColor = '#10b981';
+    el.style.background = '#f0fdf4';
+    state.selected_project = id;
+}
+
+async function submitStep6() {
+    if (!state.selected_project) {
+        alert('Sélectionnez un cas inspirant');
+        return;
+    }
+    markDone(6);
+    goToStep(7);
+    loadStep7();
+}
+
+// ========== STEP 7: AAP ==========
+async function loadStep7() {
+    const r = await fetch(API + '/api/funding-sources');
+    const d = await r.json();
+    const sources = d.funding_sources || [];
+    if (!sources.length) {
+        document.getElementById('result-7').innerHTML = `
+            <div class="result-box"><p>Aucun AAP disponible actuellement.</p></div>`;
+        return;
+    }
+    const html = sources.map(f => {
+        const deadline = f.deadline || 'Non précisée';
+        const isUrgent = f.deadline && new Date(f.deadline) < new Date(Date.now() + 30*24*60*60*1000);
+        const montant = f.amount_max ? `Jusqu'à ${f.amount_max.toLocaleString()} €` : (f.amount_min ? `À partir de ${f.amount_min.toLocaleString()} €` : 'Montant variable');
+        const eligible = (f.eligibility_criteria || []).slice(0, 3).map(e => `<span class="badge badge-green" style="margin: 2px; font-size: 0.75em;">${e}</span>`).join(' ');
+        return `
+        <div class="partner-card" data-id="${f.id}" onclick="toggleAAP(this, '${f.id}')" style="cursor: pointer; padding: 16px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px;">
+            <div style="font-weight: 600; font-size: 1.1em; margin-bottom: 4px;">${f.name}</div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px;">
+                <span class="badge badge-orange">${f.type || 'AAP'}</span>
+                <span style="color: ${isUrgent ? '#dc2626' : '#6b7280'}; font-size: 0.9em; font-weight: ${isUrgent ? 'bold' : 'normal'};">📅 Deadline : ${deadline}${isUrgent ? ' ⚠️' : ''}</span>
+            </div>
+            <div style="color: #6b7280; font-size: 0.9em; margin-bottom: 6px;">💰 ${montant}</div>
+            ${eligible ? `<div>Éligibilité : ${eligible}</div>` : ''}
+            ${f.description ? `<div style="margin-top: 8px; color: #4b5563; font-size: 0.9em;">${f.description.substring(0, 200)}${f.description.length > 200 ? '...' : ''}</div>` : ''}
+            ${f.url ? `<div style="margin-top: 8px;"><a href="${f.url}" target="_blank" style="color: #3b82f6; text-decoration: none; font-size: 0.85em;">🔗 En savoir plus</a></div>` : ''}
+        </div>`;
+    }).join('');
+    document.getElementById('result-7').innerHTML = `
+        <div style="margin-bottom: 16px; padding: 12px; background: #fff7ed; border-radius: 8px;">
+            <strong>📢 ${sources.length} appels à projets</strong> identifiés pour votre profil.
+            <br><span style="font-size: 0.9em; color: #6b7280;">Cliquez sur un AAP pour l'ajouter à votre dossier (${state.selected_aaps.length} sélectionné(s))</span>
+        </div>
+        ${html}`;
+}
+
+function toggleAAP(el, id) {
+    el.classList.toggle('selected');
+    if (el.classList.contains('selected')) {
+        el.style.borderColor = '#10b981';
+        el.style.background = '#f0fdf4';
+        state.selected_aaps.push(id);
+    } else {
+        el.style.borderColor = '#e5e7eb';
+        el.style.background = 'white';
+        state.selected_aaps = state.selected_aaps.filter(a => a !== id);
+    }
+}
+
+async function submitStep7() {
+    if (state.selected_aaps.length === 0) {
+        alert('Sélectionnez au moins 1 AAP');
+        return;
+    }
+    const r = await fetch(API + '/api/dossiers/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            club_id: state.club_id,
+            project_id: state.selected_project,
+            funding_source_ids: state.selected_aaps
+        })
+    });
+    const j = await r.json();
+    if (r.ok) {
+        state.dossier_id = j.dossier_id;
+        renderStep8(j);
+        markDone(7);
+        goToStep(8);
+    } else {
+        alert('Erreur: ' + (j.detail || 'inconnue'));
+    }
+}
+
+// ========== STEP 8: Dossier final ==========
+function renderStep8(j) {
+    const profilLabels = {
+        engaged: '🌟 Engaged (Mature)',
+        emerging: '🌿 Emerging (En progression)',
+        aware: '🌱 Aware (Démarrage)',
+        novice: '🌰 Novice (Débutant)'
+    };
+    const profil = profilLabels[state.profile] || 'Non défini';
+    document.getElementById('result-8').innerHTML = `
+        <div style="background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%); padding: 32px; border-radius: 16px; border: 2px solid #10b981;">
+            <h2 style="color: #059669; margin-bottom: 16px;">🎉 Votre dossier est prêt !</h2>
+            <p style="font-size: 1.1em; color: #374151; margin-bottom: 24px;">
+                Félicitations ! Vous avez parcouru les 8 étapes du parcours TerritoireSport.
+                Voici un récapitulatif de votre projet à impact.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                    <div style="font-size: 0.85em; color: #6b7280;">Votre profil</div>
+                    <div style="font-size: 1.1em; font-weight: bold; color: #111827;">${profil}</div>
+                    <div style="font-size: 0.9em; color: #6b7280;">Score : ${state.score}/20</div>
                 </div>
-            `).join('');
-            document.getElementById('questions-container').innerHTML = html;
-        }
-
-        async function submitStep2() {
-            const answers = {};
-            questions.forEach((_, i) => {
-                const checked = document.querySelector(`input[name="q${i}"]:checked`);
-                answers[`q${i + 1}`] = checked ? parseInt(checked.value) : 1;
-            });
-            const r = await fetch(API + '/api/diagnostics', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ club_id: state.club_id, answers })
-            });
-            const j = await r.json();
-            if (r.ok) {
-                state.diagnostic_id = j.diagnostic_id;
-                state.profile = j.profile;
-                state.score = j.score;
-                document.getElementById('result-2').innerHTML = `
-                    <div class="result-box">
-                        <h3>✅ Diagnostic enregistré</h3>
-                        <p><strong>Score:</strong> ${j.score}/20</p>
-                        <p><strong>Profil:</strong> ${j.profile}</p>
-                    </div>`;
-                markDone(2);
-                renderStep3(j);
-                goToStep(3);
-            } else {
-                document.getElementById('result-2').innerHTML = `<div class="result-box error"><h3>❌ Erreur</h3><p>${j.detail}</p></div>`;
-            }
-        }
-
-        function renderStep3(j) {
-            const profileLabels = {
-                engaged: { label: '🌟 Engaged', color: '#10b981', desc: 'Club mature — projets structurants avec institutionnels' },
-                emerging: { label: '🌿 Emerging', color: '#3b82f6', desc: 'Club en progression — projets pilotes avec 2-3 partenaires' },
-                aware: { label: '🌱 Aware', color: '#f59e0b', desc: 'Club qui démarre — actions simples avec 1-2 partenaires' },
-                novice: { label: '🌰 Novice', color: '#6b7280', desc: 'Club novice — diagnostic approfondi recommandé' }
-            };
-            const p = profileLabels[j.profile] || profileLabels.novice;
-
-            // Calcul du score par axe (5 axes)
-            const scoresByAxis = {
-                strategie: Math.round((j.answers.q0 + j.answers.q1 + j.answers.q2) * 100 / 6),
-                partenaires: Math.round((j.answers.q3 + j.answers.q4) * 100 / 4),
-                inclusion: Math.round((j.answers.q5 + j.answers.q6) * 100 / 4),
-                communication: Math.round((j.answers.q7 + j.answers.q8) * 100 / 4),
-                engagement: Math.round((j.answers.q9) * 100 / 2)
-            };
-
-            // Radar chart en SVG
-            const axes = [
-                { name: 'Stratégie', score: scoresByAxis.strategie },
-                { name: 'Partenaires', score: scoresByAxis.partenaires },
-                { name: 'Inclusion', score: scoresByAxis.inclusion },
-                { name: 'Communication', score: scoresByAxis.communication },
-                { name: 'Engagement', score: scoresByAxis.engagement }
-            ];
-
-            const cx = 150, cy = 150, r = 100;
-            const angleStep = (2 * Math.PI) / axes.length;
-
-            function polarToCartesian(angle, radius) {
-                return [cx + radius * Math.cos(angle - Math.PI/2), cy + radius * Math.sin(angle - Math.PI/2)];
-            }
-
-            // Points du polygone
-            const points = axes.map((a, i) => {
-                const angle = i * angleStep;
-                const [x, y] = polarToCartesian(angle, r * a.score / 100);
-                return `${x},${y}`;
-            }).join(' ');
-
-            // Lignes des axes
-            const axisLines = axes.map((a, i) => {
-                const angle = i * angleStep;
-                const [x, y] = polarToCartesian(angle, r);
-                const labelPos = polarToCartesian(angle, r + 20);
-                return `
-                    <line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#e5e7eb" stroke-width="1"/>
-                    <text x="${labelPos[0]}" y="${labelPos[1]}" text-anchor="middle" font-size="11" fill="#374151" font-weight="500">${a.name}</text>
-                    <text x="${labelPos[0]}" y="${labelPos[1] + 14}" text-anchor="middle" font-size="10" fill="${p.color}" font-weight="bold">${a.score}%</text>
-                `;
-            }).join('');
-
-            // Cercles concentriques
-            const circles = [20, 40, 60, 80, 100].map(pct => {
-                const radius = r * pct / 100;
-                return `<circle cx="${cx}" cy="${cy}" r="${radius}" fill="none" stroke="#f3f4f6" stroke-width="1"/>`;
-            }).join('');
-
-            // Forces & faiblesses
-            const sortedAxes = [...axes].sort((a, b) => b.score - a.score);
-            const forces = sortedAxes.slice(0, 2).map(a => `<li><strong>${a.name}</strong> (${a.score}%) — votre point fort</li>`).join('');
-            const faiblesses = sortedAxes.slice(-2).reverse().map(a => `<li><strong>${a.name}</strong> (${a.score}%) — axe de progression prioritaire</li>`).join('');
-
-            // Recommandations personnalisées selon le profil
-            const recoByProfile = {
-                engaged: [
-                    "Visez des AAP structurants (Région, FEDER, ANS) avec des partenaires institutionnels",
-                    "Positionnez votre club comme tête de réseau sur votre territoire",
-                    "Développez une offre de service aux clubs moins matures (mentorat)"
-                ],
-                emerging: [
-                    "Lancez 2-3 projets pilotes avec des partenaires locaux identifiés",
-                    "Structurez votre projet associatif et formalisez vos engagements",
-                    "Répondez à 1-2 AAP départementaux ou régionaux cette année"
-                ],
-                aware: [
-                    "Commencez par 1 action simple avec 1-2 partenaires de proximité",
-                    "Identifiez 1 AAP accessible (subvention municipale, ANS PSF)",
-                    "Nommez un référent engagement sociétal dans votre gouvernance"
-                ],
-                novice: [
-                    "Faites un diagnostic territorial approfondi (nous pouvons vous accompagner)",
-                    "Identifiez 2-3 acteurs clés de votre commune à rencontrer",
-                    "Commencez par documenter vos pratiques existantes (même informelles)"
-                ]
-            };
-            const recos = recoByProfile[j.profile] || recoByProfile.novice;
-
-            document.getElementById('result-3').innerHTML = `
-                <div class="result-box" style="border-color: ${p.color};">
-                    <h3 style="color: ${p.color}; margin-bottom: 8px;">${p.label}</h3>
-                    <p style="font-size: 1.1em;"><strong>Score global :</strong> ${j.score}/20 (${Math.round(j.score * 100 / 20)}%)</p>
-                    <p style="margin-top: 8px;">${p.desc}</p>
-
-                    <div style="display: flex; gap: 24px; align-items: center; margin: 20px 0; flex-wrap: wrap;">
-                        <svg width="300" height="300" viewBox="0 0 300 300" style="flex-shrink: 0;">
-                            ${circles}
-                            ${axisLines}
-                            <polygon points="${points}" fill="${p.color}" fill-opacity="0.3" stroke="${p.color}" stroke-width="2"/>
-                            ${axes.map((a, i) => {
-                                const angle = i * angleStep;
-                                const [x, y] = polarToCartesian(angle, r * a.score / 100);
-                                return `<circle cx="${x}" cy="${y}" r="4" fill="${p.color}"/>`;
-                            }).join('')}
-                        </svg>
-
-                        <div style="flex: 1; min-width: 200px;">
-                            <h4 style="margin: 0 0 8px 0; color: #10b981;">💪 Vos forces</h4>
-                            <ul style="margin: 0 0 16px 0; padding-left: 20px;">${forces}</ul>
-                            <h4 style="margin: 0 0 8px 0; color: #f59e0b;">🎯 Axes de progression</h4>
-                            <ul style="margin: 0; padding-left: 20px;">${faiblesses}</ul>
-                        </div>
-                    </div>
-
-                    <div style="background: #f9fafb; padding: 16px; border-radius: 8px; margin-top: 16px;">
-                        <h4 style="margin: 0 0 12px 0;">📋 Recommandations personnalisées</h4>
-                        <ol style="margin: 0; padding-left: 24px;">
-                            ${recos.map(r => `<li style="margin-bottom: 8px;">${r}</li>`).join('')}
-                        </ol>
-                    </div>
-
-                    <p style="margin-top: 16px; padding: 12px; background: #eff6ff; border-left: 4px solid #3b82f6; font-style: italic;">
-                        ${j.recommendation || ''}
-                    </p>
-                </div>`;
-        }
-
-        // ── ÉTAPE 4: Diagnostic Territorial ──
-        async function loadStep4() {
-            const commune = document.getElementById('club-commune').value;
-            // Chercher le code INSEE
-            const r = await fetch(API + '/api/communes/all?limit=3000');
-            const d = await r.json();
-            const found = d.communes.find(c => c.name.toLowerCase() === commune.toLowerCase());
-            if (!found) {
-                document.getElementById('result-4').innerHTML = `<div class="result-box error"><h3>❌ Commune non trouvée</h3></div>`;
-                return;
-            }
-            state.commune_code = found.code_insee;
-
-            // Récupérer le diagnostic territorial
-            const r2 = await fetch(API + '/api/communes/' + found.code_insee + '/diagnostic-territorial');
-            const data = await r2.json();
-            const diag = data.diagnostic;
-
-            if (!diag) {
-                document.getElementById('result-4').innerHTML = `
-                    <div class="result-box">
-                        <h3>📍 ${found.name}</h3>
-                        <p>Aucun diagnostic territorial disponible pour cette commune.</p>
-                    </div>`;
-                markDone(3);
-                goToStep(4);
-                setTimeout(loadStep5, 500);
-                return;
-            }
-
-            // Construire le rendu du diagnostic
-            const themes = diag.inclusions_thematiques || [];
-            const themesHtml = themes.map(t => `<span class="badge badge-green" style="margin: 2px;">${t}</span>`).join(' ');
-
-            // Indicateurs visuels (cartes)
-            const chomageColor = diag.chomage_taux > 12 ? '#dc2626' : diag.chomage_taux > 9 ? '#f59e0b' : '#10b981';
-            const securiteColor = diag.securite_niveau === 'élevé' ? '#dc2626' : diag.securite_niveau === 'moyen' ? '#f59e0b' : '#10b981';
-
-            document.getElementById('result-4').innerHTML = `
-                <div class="result-box">
-                    <h3>📍 ${found.name} — Diagnostic territorial</h3>
-                    <p style="color: #6b7280; margin-bottom: 16px;">Population ${found.population?.toLocaleString() || 'N/A'} • EPCI ${found.epci || 'N/A'}</p>
-
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 16px 0;">
-                        <div style="background: #f9fafb; padding: 12px; border-radius: 8px; border-left: 4px solid ${chomageColor};">
-                            <div style="font-size: 0.85em; color: #6b7280;">Chômage</div>
-                            <div style="font-size: 1.5em; font-weight: bold; color: ${chomageColor};">${diag.chomage_taux}%</div>
-                            <div style="font-size: 0.75em; color: #6b7280;">moy. nat. ~7.5%</div>
-                        </div>
-                        <div style="background: #f9fafb; padding: 12px; border-radius: 8px; border-left: 4px solid ${securiteColor};">
-                            <div style="font-size: 0.85em; color: #6b7280;">Sécurité</div>
-                            <div style="font-size: 1.5em; font-weight: bold; color: ${securiteColor};">${diag.securite_niveau || 'N/A'}</div>
-                        </div>
-                        <div style="background: #f9fafb; padding: 12px; border-radius: 8px; border-left: 4px solid #3b82f6;">
-                            <div style="font-size: 0.85em; color: #6b7280;">EHPAD</div>
-                            <div style="font-size: 1.5em; font-weight: bold; color: #3b82f6;">${diag.ehpad_count || 0}</div>
-                            <div style="font-size: 0.75em; color: #6b7280;">structure(s)</div>
-                        </div>
-                        <div style="background: #f9fafb; padding: 12px; border-radius: 8px; border-left: 4px solid #8b5cf6;">
-                            <div style="font-size: 0.85em; color: #6b7280;">Quartiers QPV</div>
-                            <div style="font-size: 1.5em; font-weight: bold; color: #8b5cf6;">${diag.quartiers_difficultes || '0'}</div>
-                        </div>
-                    </div>
-
-                    <h4 style="margin-top: 16px; color: #dc2626;">⚠️ Difficultés identifiées</h4>
-                    <ul style="margin: 8px 0; padding-left: 20px;">
-                        <li><strong>Encadrement périscolaire :</strong> ${diag.encadrement_periscolaire || 'N/A'}</li>
-                        ${diag.jeunes_en_difficulte ? '<li><strong>Jeunes en difficulté :</strong> oui (insertion, décrochage)</li>' : ''}
-                        ${diag.reinsertion ? '<li><strong>Réinsertion professionnelle :</strong> enjeu identifié</li>' : ''}
-                    </ul>
-
-                    <h4 style="margin-top: 16px; color: #2563eb;">🌊 Spécificités & environnement</h4>
-                    <ul style="margin: 8px 0; padding-left: 20px;">
-                        <li><strong>Cours d'eau :</strong> ${diag.pollution_cours_eau || 'N/A'}</li>
-                        <li><strong>EHPAD :</strong> ${diag.ehpad_count || 0} structure(s) — ${diag.intergenerationnel ? 'lien intergénérationnel à construire' : 'peu de liens identifiés'}</li>
-                        <li><strong>Enjeux environnement :</strong> ${diag.environnement_enjeux || 'N/A'}</li>
-                    </ul>
-
-                    <h4 style="margin-top: 16px; color: #059669;">💡 Thématiques sociétales suggérées (${themes.length})</h4>
-                    <div style="margin: 8px 0;">${themesHtml}</div>
-                    <p style="margin-top: 12px; font-style: italic; color: #4b5563;">
-                        Ces thématiques correspondent aux enjeux identifiés sur votre territoire.
-                        Les partenaires de l'étape suivante sont sélectionnés pour y répondre.
-                    </p>
-                </div>`;
-
-            // Stocker les thématiques pour filtrer la shortlist
-            state.territoire_themes = themes;
-            markDone(3);
-            goToStep(4);
-            setTimeout(loadStep5, 500);
-        }
-
-        // ── ÉTAPE 5: Shortlist ──
-        async function loadStep5() {
-            const r = await fetch(API + '/api/shortlist?limit=10');
-            const partners = d.shortlist || [];
-
-            if (partners.length === 0) {
-                document.getElementById('result-5').innerHTML = `
-                    <div class="result-box">
-                        <h3>🔍 Aucun partenaire trouvé</h3>
-                        <p>Le scoring de votre territoire n'a pas remonté de partenaire pertinent.</p>
-                    </div>`;
-                return;
-            }
-
-            const html = partners.map((p, idx) => {
-                const score = Math.round(p.score || 0);
-                const scoreColor = score >= 70 ? '#10b981' : score >= 50 ? '#3b82f6' : score >= 30 ? '#f59e0b' : '#6b7280';
-                const themes = (p.themes || []).slice(0, 3).map(t => `<span class="badge badge-green" style="margin: 2px; font-size: 0.75em;">${t}</span>`).join(' ');
-                const isTop = idx < 3 ? '⭐ ' : '';
-                return `
-                <div class="partner-card" data-id="${p.id}" onclick="togglePartner(this, '${p.id}')" style="cursor: pointer; padding: 16px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; transition: all 0.2s;">
-                    <div style="display: flex; justify-content: space-between; align-items: start; gap: 16px;">
-                        <div style="flex: 1;">
-                            <div style="font-weight: 600; font-size: 1.1em; margin-bottom: 4px;">${isTop}${p.name || p.partner_name}</div>
-                            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px;">
-                                <span class="badge badge-blue">${p.type || 'N/A'}</span>
-                                <span style="color: #6b7280; font-size: 0.9em;">📍 ${p.city || ''}</span>
-                            </div>
-                            ${themes ? `<div style="margin-top: 6px;">${themes}</div>` : ''}
-                        </div>
-                        <div style="text-align: center; min-width: 80px;">
-                            <div style="font-size: 0.75em; color: #6b7280;">Score</div>
-                            <div style="font-size: 1.8em; font-weight: bold; color: ${scoreColor};">${score}</div>
-                            <div style="font-size: 0.7em; color: #6b7280;">/100</div>
-                        </div>
-                    </div>
-                </div>`;
-            }).join('');
-
-            document.getElementById('result-5').innerHTML = `
-                <div class="match-info" style="margin-bottom: 16px; padding: 12px; background: #eff6ff; border-radius: 8px;">
-                    <strong>🎯 ${partners.length} partenaires</strong> scorés selon votre territoire et vos thématiques.
-                    <br><span style="font-size: 0.9em; color: #6b7280;">Cliquez sur une carte pour la sélectionner (${state.selected_partners.length} sélectionnée(s))</span>
+                <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981;">
+                    <div style="font-size: 0.85em; color: #6b7280;">Partenaires</div>
+                    <div style="font-size: 1.1em; font-weight: bold; color: #111827;">${state.selected_partners.length} sélectionné(s)</div>
+                    <div style="font-size: 0.9em; color: #6b7280;">Sur la shortlist</div>
                 </div>
-                ${html}`;
-            const html = partners.map((p, idx) => {
-                const score = Math.round(p.score || 0);
-                const scoreColor = score >= 70 ? '#10b981' : score >= 50 ? '#3b82f6' : score >= 30 ? '#f59e0b' : '#6b7280';
-                const themes = (p.themes || []).slice(0, 3).map(t => `<span class="badge badge-green" style="margin: 2px; font-size: 0.75em;">${t}</span>`).join(' ');
-                const isTop = idx < 3 ? '⭐ ' : '';
-                return `
-                <div class="partner-card" data-id="${p.id}" onclick="togglePartner(this, '${p.id}')" style="cursor: pointer; padding: 16px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; transition: all 0.2s;">
-                    <div style="display: flex; justify-content: space-between; align-items: start; gap: 16px;">
-                        <div style="flex: 1;">
-                            <div style="font-weight: 600; font-size: 1.1em; margin-bottom: 4px;">${isTop}${p.name || p.partner_name}</div>
-                            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px;">
-                                <span class="badge badge-blue">${p.type || 'N/A'}</span>
-                                <span style="color: #6b7280; font-size: 0.9em;">📍 ${p.city || ''}</span>
-                            </div>
-                            ${themes ? `<div style="margin-top: 6px;">${themes}</div>` : ''}
-                        </div>
-                        <div style="text-align: center; min-width: 80px;">
-                            <div style="font-size: 0.75em; color: #6b7280;">Score</div>
-                            <div style="font-size: 1.8em; font-weight: bold; color: ${scoreColor};">${score}</div>
-                            <div style="font-size: 0.7em; color: #6b7280;">/100</div>
-                        </div>
-                    </div>
-                </div>`;
-            }).join('');
-
-            document.getElementById('result-5').innerHTML = `
-                <div class="match-info" style="margin-bottom: 16px; padding: 12px; background: #eff6ff; border-radius: 8px;">
-                    <strong>🎯 ${partners.length} partenaires</strong> scorés selon votre territoire et vos thématiques.
-                    <br><span style="font-size: 0.9em; color: #6b7280;">Cliquez sur une carte pour la sélectionner (${state.selected_partners.length} sélectionnée(s))</span>
+                <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                    <div style="font-size: 0.85em; color: #6b7280;">AAP ciblés</div>
+                    <div style="font-size: 1.1em; font-weight: bold; color: #111827;">${j.funding_sources.length} financement(s)</div>
+                    <div style="font-size: 0.9em; color: #6b7280;">Identifiés pour vous</div>
                 </div>
-                ${html}`;
-            document.getElementById('result-5').innerHTML = html || '<p>Aucun partenaire</p>';
-        }
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 24px;">
+                <h3 style="margin: 0 0 12px 0; color: #111827;">📋 Contenu de votre dossier</h3>
+                <ul style="margin: 0; padding-left: 20px; color: #4b5563; line-height: 1.8;">
+                    <li><strong>Fiche club</strong> : identification, sport, territoire</li>
+                    <li><strong>Diagnostic territorial</strong> : enjeux et thématiques de votre commune</li>
+                    <li><strong>Évaluation maturité</strong> : profil, forces, axes de progression</li>
+                    <li><strong>Cas inspirant de référence</strong> : projet modèle à adapter</li>
+                    <li><strong>Shortlist de partenaires</strong> : ${state.selected_partners.length} contacts qualifiés</li>
+                    <li><strong>Argumentaires AAP</strong> : ${j.funding_sources.length} dossiers adaptés</li>
+                </ul>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;">
+                <a href="${j.download_url}" style="background: #10b981; color: white; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">📥 Télécharger mon dossier</a>
+                <a href="mailto:contact@territoiresport.fr?subject=Demande%20d'accompagnement%20-%20Dossier%20${j.dossier_id}" style="background: #3b82f6; color: white; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">🤝 Demander un accompagnement</a>
+                <button onclick="window.print()" style="background: white; color: #374151; padding: 14px 24px; border-radius: 8px; border: 2px solid #d1d5db; font-weight: 600; cursor: pointer;">🖨️ Imprimer</button>
+            </div>
+            <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 8px;">
+                <h4 style="margin: 0 0 8px 0; color: #92400e;">📌 Prochaines étapes recommandées</h4>
+                <ol style="margin: 0; padding-left: 24px; color: #78350f; line-height: 1.8;">
+                    <li><strong>Semaine 1-2</strong> : prenez contact avec les ${state.selected_partners.length} partenaires sélectionnés pour présenter votre projet</li>
+                    <li><strong>Semaine 3-4</strong> : adaptez le cas inspirant à votre territoire en impliquant vos partenaires</li>
+                    <li><strong>Mois 2</strong> : finalisez votre dossier de candidature AAP avec les éléments collectés</li>
+                    <li><strong>Mois 3</strong> : déposez votre demande avant la deadline du premier AAP</li>
+                    <li><strong>En continu</strong> : documentez votre démarche pour la mesure d'impact</li>
+                </ol>
+            </div>
+            <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e5e7eb; font-size: 0.85em; color: #6b7280;">
+                <strong>Référence dossier</strong> : ${j.dossier_id}<br>
+                <strong>Date de génération</strong> : ${new Date().toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+            </div>
+        </div>`;
+}
 
-        function togglePartner(el, id) {
-            el.classList.toggle('selected');
-            if (el.classList.contains('selected')) {
-                state.selected_partners.push(id);
-            } else {
-                state.selected_partners = state.selected_partners.filter(p => p !== id);
-            }
-        }
+// ========== UTILITIES ==========
+function goToStep(n) {
+    document.querySelectorAll('.step-card').forEach(s => s.classList.remove('active'));
+    document.getElementById('step-' + n).classList.add('active');
+    document.getElementById('step-' + n).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (n === 3) loadStep3();
+    if (n === 5) loadStep5();
+}
 
-        async function submitStep5() {
-            if (state.selected_partners.length === 0) {
-                alert('Sélectionnez au moins 1 partenaire');
-                return;
-            }
-            const r = await fetch(API + '/api/partners/select', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ club_id: state.club_id, partner_ids: state.selected_partners })
-            });
-            const j = await r.json();
-            if (r.ok) {
-                document.getElementById('result-5').insertAdjacentHTML('beforeend', `
-                    <div class="result-box">
-                        <h3>✅ ${j.selected_count} partenaires sélectionnés</h3>
-                    </div>`);
-                markDone(4);
-                loadStep6();
-                goToStep(6);
-            }
-        }
+function markDone(n) {
+    const indicator = document.getElementById('step-' + n + '-status');
+    if (indicator) {
+        indicator.textContent = '✅';
+        indicator.style.color = '#10b981';
+    }
+}
+</script>
 
-        // ── ÉTAPE 6: Cas inspirants matchants ──
-        async function loadStep6() {
-            // Récupérer le profil club pour le matching
-            const clubProfile = state.club_profile || {};
-            const thematiques = (clubProfile.thematiques || []).join(',');
-            const budgetMax = clubProfile.budget_max || '';
-            const niveauClub = clubProfile.niveau || '';
-
-            // Construire l'URL avec les filtres
-            let url = API + '/api/cas-inspirants/match?limit=5';
-            if (thematiques) url += '&thematiques=' + encodeURIComponent(thematiques);
-            if (budgetMax) url += '&budget_max=' + budgetMax;
-            if (niveauClub) url += '&niveau_club=' + niveauClub;
-
-            const r = await fetch(url);
-            const d = await r.json();
-            const casList = d.cas_inspirants || [];
-
-            // Info sur le matching
-            const matchInfo = document.getElementById('match-info-6');
-            if (thematiques) {
-                matchInfo.innerHTML = `<div class="match-badge">🎯 Matching basé sur vos thématiques : <strong>${thematiques}</strong></div>`;
-            } else {
-                matchInfo.innerHTML = `<div class="match-badge">💡 Sélectionnez vos thématiques à l'étape 2 pour un matching personnalisé</div>`;
-            }
-
-            if (casList.length === 0) {
-                document.getElementById('result-6').innerHTML = '<p class="empty">Aucun cas inspirant trouvé. Essayez d'ajuster vos critères.</p>';
-                return;
-            }
-
-            const html = casList.map((c, idx) => {
-                const themaBadges = (c.thematiques || []).map(t => `<span class="thema-badge">${t.replace(/_/g, ' ')}</span>`).join(' ');
-                const scoreColor = c.score >= 70 ? 'green' : c.score >= 50 ? 'orange' : 'gray';
-                const budget = c.budget_reel ? c.budget_reel.toLocaleString() + ' €' : 'Non communiqué';
-                const transpo = c.transposabilite || 'N/A';
-                const sources = (c.sources || []).slice(0, 2).map(s => `<a href="${s.url || '#'}" target="_blank" style="color: #3b82f6; text-decoration: none; font-size: 0.8em;">🔗 ${s.title || 'Source'}</a>`).join(' · ');
-                const sources = (c.sources || []).slice(0, 2).map(s => `<a href="${s.url || '#'}" target="_blank" style="color: #3b82f6; text-decoration: none; font-size: 0.8em;">🔗 ${s.title || 'Source'}</a>`).join(' · ');
-                const repro = c.reproductibilite || 'N/A';
-                <div class="cas-card" data-id="${c.id}" onclick="selectCasInspirant(this, '${c.id}')" style="cursor: pointer; padding: 20px; border: 2px solid #e5e7eb; border-radius: 12px; margin-bottom: 16px; transition: all 0.2s; position: relative;">
-                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
-                        <div>
-                            <div style="font-size: 0.85em; color: #6b7280;">#${idx + 1} • 📍 ${c.structure || 'N/A'}</div>
-                            <div style="font-weight: 700; font-size: 1.2em; margin-top: 4px; color: #111827;">${c.titre}</div>
-                        </div>
-                        <div style="text-align: right;">
-                            <div style="font-size: 0.7em; color: #6b7280; text-transform: uppercase;">Score match</div>
-                            <div style="font-size: 1.5em; font-weight: bold; color: var(--${scoreColor});">${c.score}</div>
-                            <div style="font-size: 0.7em; color: #6b7280;">/100</div>
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 12px;">${themaBadges}</div>
-                    <div style="color: #4b5563; line-height: 1.6; margin-bottom: 12px;">${(c.description || '').substring(0, 250)}${(c.description || '').length > 250 ? '...' : ''}</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 12px; border-top: 1px solid #f3f4f6; font-size: 0.85em; color: #6b7280;">
-                        <span>💰 Budget : <strong>${budget}</strong></span>
-                        <span>🔧 Repro : <strong>${repro}/5</strong></span>
-                        <span>📋 Transpo : <strong>${transpo}/5</strong></span>
-                    </div>
-                    ${c.score_details ? `<div style="margin-top: 8px; font-size: 0.8em; color: #9ca3af;">Détail : thématiques ${c.score_details.thematiques || 0} + partenaires ${c.score_details.partenaires || 0} + ampleur ${c.score_details.ampleur || 0}</div>` : ''}
-                    ${sources ? `<div style="margin-top: 8px;">${sources}</div>` : ''}
-                    <div style="margin-top: 12px; text-align: right; font-size: 0.85em; color: #3b82f6; font-weight: 500;">Cliquer pour sélectionner ce cas →</div>
-                </div>`;
-                        <span>📋 Transpo : <strong>${transpo}/5</strong></span>
-                    </div>
-                    ${c.score_details ? `<div style="margin-top: 8px; font-size: 0.8em; color: #9ca3af;">Détail : thématiques ${c.score_details.thematiques || 0} + partenaires ${c.score_details.partenaires || 0} + ampleur ${c.score_details.ampleur || 0}</div>` : ''}
-                    ${sources ? `<div style="margin-top: 8px;">${sources}</div>` : ''}
-                    <div style="margin-top: 12px; text-align: right; font-size: 0.85em; color: #3b82f6; font-weight: 500;">Cliquer pour sélectionner ce cas →</div>
-                </div>`;
-                </div>`;
-            }).join('');
-
-            document.getElementById('result-6').innerHTML = html;
-        }
-
-        function reloadStep6() {
-            const thematique = document.getElementById('filter-thematique').value;
-            const budgetMax = document.getElementById('filter-budget').value;
-
-            // Mettre à jour le profil club avec les filtres
-            if (!state.club_profile) state.club_profile = {};
-            if (thematique) {
-                state.club_profile.thematiques = [thematique];
-            }
-            if (budgetMax) {
-                state.club_profile.budget_max = parseInt(budgetMax);
-            }
-
-            loadStep6();
-        }
-
-        function selectCasInspirant(el, id) {
-            document.querySelectorAll('.cas-card').forEach(c => c.classList.remove('selected'));
-            el.classList.add('selected');
-            state.selected_cas = id;
-        }
-
-        async function submitStep6() {
-            if (!state.selected_cas) {
-                alert('Sélectionnez un cas inspirant');
-                return;
-            }
-
-            // Sauvegarder la sélection
-            state.selected_cas_data = state.selected_cas;
-
-            document.getElementById('result-6').insertAdjacentHTML('beforeend', `
-                <div class="result-box">
-                    <h3>✅ Cas inspirant "${state.selected_cas}" sélectionné</h3>
-                    <p>Votre projet sera adapté à partir de ce cas. Passons aux appels à projets matchants.</p>
-                </div>`);
-            markDone(5);
-            loadStep7();
-            goToStep(7);
-        }
-
-        // ── ÉTAPE 7: AAP ──
-        async function loadStep7() {
-            const r = await fetch(API + '/api/funding-sources');
-            const sources = d.funding_sources || [];
-
-            if (sources.length === 0) {
-                document.getElementById('result-7').innerHTML = `
-                    <div class="result-box">
-                        <h3>🔍 Aucun AAP disponible actuellement</h3>
-                        <p>Revenez bientôt ou contactez-nous pour être alerté des nouveaux AAP.</p>
-                    </div>`;
-                return;
-            }
-
-            const html = sources.map(f => {
-                const deadline = f.deadline || 'Non précisée';
-                const isUrgent = f.deadline && new Date(f.deadline) < new Date(Date.now() + 30*24*60*60*1000);
-                const montant = f.amount_max ? `Jusqu'à ${f.amount_max.toLocaleString()} €` : (f.amount_min ? `À partir de ${f.amount_min.toLocaleString()} €` : 'Montant variable');
-                const eligible = (f.eligibility_criteria || []).slice(0, 3).map(e => `<span class="badge badge-green" style="margin: 2px; font-size: 0.75em;">${e}</span>`).join(' ');
-                const eligible = (f.eligible || []).slice(0, 3).map(e => `<span class="badge badge-green" style="margin: 2px; font-size: 0.75em;">${e}</span>`).join(' ');
-
-                return `
-                <div class="partner-card" data-id="${f.id}" onclick="toggleAAP(this, '${f.id}')" style="cursor: pointer; padding: 16px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px;">
-                    <div style="display: flex; justify-content: space-between; align-items: start; gap: 16px;">
-                        <div style="flex: 1;">
-                            <div style="font-weight: 600; font-size: 1.1em; margin-bottom: 4px;">${f.name}</div>
-                            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px;">
-                                <span class="badge badge-orange">${f.type || 'AAP'}</span>
-                                <span style="color: ${deadlineColor}; font-size: 0.9em; font-weight: ${isUrgent ? 'bold' : 'normal'};">📅 Deadline : ${deadline}${isUrgent ? ' ⚠️' : ''}</span>
-                            </div>
-                            <div style="color: #6b7280; font-size: 0.9em; margin-bottom: 6px;">💰 ${montant}</div>
-                            ${eligible ? `<div>Éligibilité : ${eligible}</div>` : ''}
-                            ${f.description ? `<div style="margin-top: 8px; color: #4b5563; font-size: 0.9em;">${f.description.substring(0, 200)}${f.description.length > 200 ? '...' : ''}</div>` : ''}
-                            ${f.url ? `<div style="margin-top: 8px;"><a href="${f.url}" target="_blank" style="color: #3b82f6; text-decoration: none; font-size: 0.85em;">🔗 En savoir plus</a></div>` : ''}
-                        </div>
-                    </div>
-                </div>`;
-            }).join('');
-
-            document.getElementById('result-7').innerHTML = `
-                <div class="match-info" style="margin-bottom: 16px; padding: 12px; background: #fff7ed; border-radius: 8px;">
-                    <strong>📢 ${sources.length} appels à projets</strong> identifiés pour votre profil.
-                    <br><span style="font-size: 0.9em; color: #6b7280;">Cliquez sur un AAP pour l'ajouter à votre dossier (${state.selected_aaps.length} sélectionné(s))</span>
-                </div>
-                ${html}`;
-
-            const html = sources.map(f => {
-                const deadline = f.deadline || 'Non précisée';
-                const isUrgent = f.deadline && new Date(f.deadline) < new Date(Date.now() + 30*24*60*60*1000);
-                const deadlineColor = isUrgent ? '#dc2626' : '#6b7280';
-                const montant = f.montant_max ? `Jusqu'à ${f.montant_max.toLocaleString()} €` : 'Montant variable';
-                const eligible = (f.eligible || []).slice(0, 3).map(e => `<span class="badge badge-green" style="margin: 2px; font-size: 0.75em;">${e}</span>`).join(' ');
-
-                return `
-                <div class="partner-card" data-id="${f.id}" onclick="toggleAAP(this, '${f.id}')" style="cursor: pointer; padding: 16px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px;">
-                    <div style="display: flex; justify-content: space-between; align-items: start; gap: 16px;">
-                        <div style="flex: 1;">
-                            <div style="font-weight: 600; font-size: 1.1em; margin-bottom: 4px;">${f.name}</div>
-                            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px;">
-                                <span class="badge badge-orange">${f.type || 'AAP'}</span>
-                                <span style="color: ${deadlineColor}; font-size: 0.9em; font-weight: ${isUrgent ? 'bold' : 'normal'};">📅 Deadline : ${deadline}${isUrgent ? ' ⚠️' : ''}</span>
-                            </div>
-                            <div style="color: #6b7280; font-size: 0.9em; margin-bottom: 6px;">💰 ${montant}</div>
-                            ${eligible ? `<div>Éligibilité : ${eligible}</div>` : ''}
-                            ${f.description ? `<div style="margin-top: 8px; color: #4b5563; font-size: 0.9em;">${f.description.substring(0, 200)}${f.description.length > 200 ? '...' : ''}</div>` : ''}
-                            ${f.url ? `<div style="margin-top: 8px;"><a href="${f.url}" target="_blank" style="color: #3b82f6; text-decoration: none; font-size: 0.85em;">🔗 En savoir plus</a></div>` : ''}
-                        </div>
-                    </div>
-                </div>`;
-            }).join('');
-
-            document.getElementById('result-7').innerHTML = `
-                <div class="match-info" style="margin-bottom: 16px; padding: 12px; background: #fff7ed; border-radius: 8px;">
-                    <strong>📢 ${sources.length} appels à projets</strong> identifiés pour votre profil.
-                    <br><span style="font-size: 0.9em; color: #6b7280;">Cliquez sur un AAP pour l'ajouter à votre dossier (${state.selected_aaps.length} sélectionné(s))</span>
-                </div>
-                ${html}`;
-            document.getElementById('result-7').innerHTML = html;
-        }
-
-        function toggleAAP(el, id) {
-            el.classList.toggle('selected');
-            if (el.classList.contains('selected')) {
-                state.selected_aaps.push(id);
-            } else {
-                state.selected_aaps = state.selected_aaps.filter(a => a !== id);
-            }
-        }
-
-        async function submitStep7() {
-            if (state.selected_aaps.length === 0) {
-                alert('Sélectionnez au moins 1 AAP');
-                return;
-            }
-            const r = await fetch(API + '/api/dossiers/generate', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    club_id: state.club_id,
-                    project_id: state.selected_project,
-                    funding_source_ids: state.selected_aaps
-                })
-            });
-            const j = await r.json();
-            if (r.ok) {
-                renderStep8(j);
-                markDone(6);
-                markDone(7);
-                goToStep(8);
-            }
-        }
-
-        function renderStep8(j) {
-            document.getElementById('result-8').innerHTML = `
-                <div class="summary-box">
-                    <h2>🎉 Dossier généré avec succès</h2>
-                    <div class="item">
-                        <strong>Dossier ID</strong>
-                        ${j.dossier_id}
-                    </div>
-                    <div class="item">
-                        <strong>Club</strong>
-                        ${state.club_id}
-                    </div>
-                    <div class="item">
-                        <strong>Projet sélectionné</strong>
-                        ${j.project_id}
-                    </div>
-                    <div class="item">
-                        <strong>AAP ciblés</strong>
-                        ${j.funding_sources.length} financement(s)
-                    </div>
-                    <div class="item">
-                        <strong>URL de téléchargement</strong>
-                        ${j.download_url}
-                    </div>
-                    <p style="margin-top: 16px; font-style: italic;">
-                        Votre dossier de candidature est prêt. Vous pouvez maintenant le télécharger, le compléter avec vos données spécifiques, et le soumettre aux AAP sélectionnés.
-                    </p>
-                </div>`;
-        }
-
-        // Lancer le chargement de l'étape 4 quand on clique "Voir mon territoire"
-        document.querySelector('#step-3 .btn-primary').onclick = loadStep4;
-    </script>
 </body>
 </html>
