@@ -5,6 +5,7 @@ Version complète avec tous les endpoints essentiels.
 import os
 import sqlite3
 import json
+from datetime import datetime
 from pathlib import Path
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Query, Depends, Header
@@ -21,6 +22,7 @@ from metrics import track_request, get_metrics
 from pagination import pagination_params
 from rate_limit import check_rate_limit
 from csv_export import router as csv_router
+from pdf_export import generate_shortlist_pdf, get_theme_label
 
 
 # ── Lifespan ─────────────────────────────────────────────────────
@@ -427,6 +429,100 @@ async def get_shortlist(
             "sort": sort
         }
     }
+
+
+@app.get("/api/shortlist/pdf")
+async def get_shortlist_pdf(
+    commune: Optional[str] = None,
+    theme: Optional[int] = None,
+    type: Optional[str] = None,
+    search: Optional[str] = None,
+    max_results: int = Query(50, ge=1, le=200, description="Nombre max de partenaires dans le PDF")
+):
+    """
+    Génère un PDF de la shortlist (paysage A4).
+    Accepte les mêmes filtres que /api/shortlist.
+    """
+    from fastapi.responses import Response
+
+    if not Path(DB_PATH).exists():
+        raise HTTPException(status_code=503, detail="Database not initialized")
+
+    # Validation type
+    type_whitelist = {"association", "company", "public"}
+    if type and type not in type_whitelist:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Type invalide. Valeurs autorisées: {', '.join(sorted(type_whitelist))}"
+        )
+
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    # Construction de la clause WHERE (identique à /api/shortlist)
+    where_clauses = ["1=1"]
+    params = []
+
+    if commune:
+        where_clauses.append("c.commune = ?")
+        params.append(commune)
+
+    if theme:
+        where_clauses.append("p.theme_id = ?")
+        params.append(theme)
+
+    if type:
+        where_clauses.append("p.type = ?")
+        params.append(type)
+
+    if search:
+        where_clauses.append("(p.name LIKE ? OR c.name LIKE ? OR p.description LIKE ?)")
+        search_term = f"%{search}%"
+        params.extend([search_term, search_term, search_term])
+
+    where_sql = " AND ".join(where_clauses)
+
+    query = f"""
+        SELECT p.*, c.name as club_name, c.commune
+        FROM partners p
+        LEFT JOIN clubs c ON p.club_id = c.id
+        WHERE {where_sql}
+        ORDER BY p.score DESC
+        LIMIT ?
+    """
+    params.append(max_results)
+
+    cur.execute(query, params)
+    rows = [dict(row) for row in cur.fetchall()]
+    conn.close()
+
+    # Préparer les filtres pour le PDF
+    filters = {
+        "commune": commune,
+        "theme": theme,
+        "theme_label": get_theme_label(theme) if theme else "",
+        "type": type,
+        "search": search,
+    }
+
+    commune_label = commune.capitalize() if commune else None
+
+    pdf_bytes = generate_shortlist_pdf(rows, filters, commune_label)
+
+    # Nom de fichier téléchargeable
+    today = datetime.now().strftime("%Y%m%d")
+    commune_part = f"_{commune}" if commune else ""
+    filename = f"territoire-sport_shortlist{commune_part}_{today}.pdf"
+
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f'attachment; filename="{filename}"',
+            "Content-Length": str(len(pdf_bytes)),
+        }
+    )
 
 
 # ════════════════════════════════════════════════════════════════
