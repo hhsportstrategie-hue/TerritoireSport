@@ -386,8 +386,8 @@ async def get_commune_by_code(code_insee: str):
         conn.close()
         raise HTTPException(status_code=404, detail="Commune not found")
 
-    # Clubs dans cette commune
-    cur.execute("SELECT id, name, sport FROM clubs WHERE commune = ?", (commune["name"],))
+    cur.execute("SELECT id, name, sport FROM clubs WHERE city = ?", (commune["name"],))
+    cur.execute("SELECT id, name, sport FROM clubs WHERE city = ?", (commune["name"],))
     clubs = [dict(row) for row in cur.fetchall()]
 
     # Partenaires dans cette commune
