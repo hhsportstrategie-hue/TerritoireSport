@@ -26,15 +26,30 @@ from pdf_export import generate_shortlist_pdf, get_theme_label
 
 
 # ── Lifespan ─────────────────────────────────────────────────────
+import asyncio as _asyncio
+
+# Lock global pour sérialiser les écritures SQLite (évite 'database is locked')
+_write_lock = _asyncio.Lock()
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     db_file = Path(DB_PATH)
     db_file.parent.mkdir(parents=True, exist_ok=True)
 
+    # Activer WAL mode au démarrage pour permettre lectures concurrentes pendant les writes
+    try:
+        _init_conn = sqlite3.connect(DB_PATH, timeout=30)
+        _init_conn.execute("PRAGMA journal_mode=WAL")
+        _init_conn.execute("PRAGMA busy_timeout=30000")
+        _init_conn.close()
+        print("  ✓ SQLite: WAL mode + busy_timeout=30s activés")
+    except Exception as e:
+        print(f"  ⚠ Impossible d'activer WAL: {e}")
+
     # Appliquer le schéma
     schema_path = Path("data/schema.sql")
     if schema_path.exists():
-        conn = sqlite3.connect(DB_PATH)
+        conn = sqlite3.connect(DB_PATH, timeout=30)
         conn.executescript(schema_path.read_text())
         conn.commit()
 
@@ -78,7 +93,7 @@ async def lifespan(app: FastAPI):
         import json as _json
         with open(cas_json_path) as f:
             cas_data = _json.load(f)
-        conn = sqlite3.connect(DB_PATH)
+        conn = sqlite3.connect(DB_PATH, timeout=30)
         existing = {row[0] for row in conn.execute("SELECT id FROM cas_inspirants").fetchall()}
         added = 0
         for cas in cas_data:
@@ -122,7 +137,7 @@ async def lifespan(app: FastAPI):
         import json as _json
         with open(geo_json_path) as f:
             geo_migration = _json.load(f)
-        conn = sqlite3.connect(DB_PATH)
+        conn = sqlite3.connect(DB_PATH, timeout=30)
         cur = conn.cursor()
         # Corriger les départements des partenaires
         for city, dept in geo_migration.get("dept_corrections", {}).items():
@@ -143,7 +158,7 @@ async def lifespan(app: FastAPI):
         print(f"  ✓ Migration géocodage appliquée : {n_p} partenaires + {n_c} cas inspirants")
 
     # Seed si la DB est vide
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     cur = conn.cursor()
     cur.execute("SELECT COUNT(*) FROM clubs")
     count = cur.fetchone()[0]
@@ -254,7 +269,7 @@ async def health():
     schema = {}
     if db_exists:
         try:
-            conn = sqlite3.connect(DB_PATH)
+            conn = sqlite3.connect(DB_PATH, timeout=30)
             cur = conn.cursor()
             for table in ("clubs", "communes", "partners", "engineering_projects", "diagnostics"):
                 try:
@@ -312,7 +327,7 @@ async def get_stats():
     if not Path(DB_PATH).exists():
         return {"error": "Database not found"}
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
@@ -352,7 +367,7 @@ async def get_communes(
     if not Path(DB_PATH).exists():
         raise HTTPException(status_code=503, detail="Database not initialized")
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
@@ -397,7 +412,7 @@ async def get_all_communes(
     if not Path(DB_PATH).exists():
         raise HTTPException(status_code=503, detail="Database not initialized")
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
@@ -427,7 +442,7 @@ async def get_commune_by_code(code_insee: str):
     if not Path(DB_PATH).exists():
         raise HTTPException(status_code=503, detail="Database not initialized")
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
@@ -486,7 +501,7 @@ async def get_shortlist(
             detail=f"Type invalide. Valeurs autorisées: {', '.join(sorted(type_whitelist))}"
         )
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
@@ -604,7 +619,7 @@ async def get_shortlist_pdf(
             detail=f"Type invalide. Valeurs autorisées: {', '.join(sorted(type_whitelist))}"
         )
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
@@ -728,7 +743,7 @@ async def usage_stats(_: dict = Depends(verify_token)):
         raise HTTPException(status_code=403, detail="Seul l'admin peut voir les stats d'usage")
 
     import sqlite3
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     try:
         cur = conn.cursor()
@@ -779,7 +794,7 @@ async def get_projects(
     if not Path(DB_PATH).exists():
         raise HTTPException(status_code=503, detail="Database not initialized")
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
@@ -826,7 +841,7 @@ async def get_project(project_id: str):
     if not Path(DB_PATH).exists():
         raise HTTPException(status_code=503, detail="Database not initialized")
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
@@ -869,7 +884,7 @@ async def get_cas_inspirants(
     if not Path(DB_PATH).exists():
         raise HTTPException(status_code=503, detail="Database not initialized")
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
@@ -922,7 +937,7 @@ async def match_cas_inspirants(
     if not Path(DB_PATH).exists():
         raise HTTPException(status_code=503, detail="Database not initialized")
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
@@ -935,7 +950,7 @@ async def match_cas_inspirants(
     # Récupérer les coords de la commune si fournie
     commune_lat = commune_lon = None
     if commune_code:
-        conn2 = sqlite3.connect(DB_PATH)
+        conn2 = sqlite3.connect(DB_PATH, timeout=30)
         row = conn2.execute("SELECT latitude, longitude FROM communes WHERE code_insee = ?", (commune_code,)).fetchone()
         if row:
             commune_lat, commune_lon = row[0], row[1]
@@ -944,7 +959,7 @@ async def match_cas_inspirants(
     # Récupérer le nom du club courant pour exclure ses propres cas inspirants
     current_club_name = None
     if club_id:
-        conn3 = sqlite3.connect(DB_PATH)
+        conn3 = sqlite3.connect(DB_PATH, timeout=30)
         row = conn3.execute("SELECT name FROM clubs WHERE id = ?", (club_id,)).fetchone()
         if row:
             current_club_name = (row[0] or "").lower()
@@ -1055,7 +1070,7 @@ async def get_funding_sources(
     if not Path(DB_PATH).exists():
         raise HTTPException(status_code=503, detail="Database not initialized")
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
@@ -1142,7 +1157,7 @@ async def register_club(payload: dict):
         print(f"⚠️  Géocodage échoué pour {commune}: {e}")
 
     try:
-        conn = sqlite3.connect(DB_PATH)
+        conn = sqlite3.connect(DB_PATH, timeout=30)
         cur = conn.cursor()
         # Mapping aligné sur le schéma clubs + colonnes des migrations
         cur.execute("""
@@ -1209,7 +1224,7 @@ async def register_club(payload: dict):
 @app.get("/api/clubs/{club_id}")
 async def get_club(club_id: str):
     """Récupère les informations d'un club."""
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
     cur.execute("SELECT * FROM clubs WHERE id = ?", (club_id,))
@@ -1265,7 +1280,7 @@ async def create_diagnostic(payload: dict):
     
     diagnostic_id = str(_uuid.uuid4())
     
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     cur = conn.cursor()
     cur.execute("""
         INSERT INTO diagnostics (id, club_id, score, profile, answers, completed_at)
@@ -1311,7 +1326,7 @@ async def create_diagnostic(payload: dict):
 @app.get("/api/diagnostics/{diagnostic_id}")
 async def get_diagnostic(diagnostic_id: str):
     """Récupérer un diagnostic par ID."""
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     cur = conn.cursor()
     cur.execute("SELECT id, club_id, score, profile, answers, completed_at FROM diagnostics WHERE id = ?", (diagnostic_id,))
     row = cur.fetchone()
@@ -1339,7 +1354,7 @@ async def select_partners(payload: dict):
     if not club_id or not partner_ids:
         raise HTTPException(status_code=400, detail="club_id et partner_ids requis")
     
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     cur = conn.cursor()
     
     # Récupérer les détails des partenaires sélectionnés
@@ -1368,7 +1383,7 @@ async def customize_project(payload: dict):
     if not club_id or not project_id:
         raise HTTPException(status_code=400, detail="club_id et project_id requis")
     
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     cur = conn.cursor()
     cur.execute("SELECT id, title, description, themes, budget, status FROM projects WHERE id = ?", (project_id,))
     row = cur.fetchone()
@@ -1455,7 +1470,7 @@ async def get_parcours_partenaire():
 @app.get("/api/communes/{code}/diagnostic-territorial")
 async def get_diagnostic_territorial(code: str):
     """Diagnostic territorial d'une commune : réalités, spécificités, difficultés."""
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
     
