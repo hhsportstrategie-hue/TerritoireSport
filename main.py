@@ -356,7 +356,7 @@ async def get_stats():
     stats["projects_count"] = cur.fetchone()[0]
 
     # Communes
-    cur.execute("SELECT COUNT(DISTINCT commune) FROM clubs")
+    cur.execute("SELECT COUNT(DISTINCT city) FROM clubs")
     stats["communes_count"] = cur.fetchone()[0]
 
     # EPCI
@@ -644,7 +644,7 @@ async def get_shortlist_pdf(
     where_sql = " AND ".join(where_clauses)
 
     query = f"""
-        SELECT p.*, c.name as club_name, c.commune
+        SELECT p.*, c.name as club_name, c.city as commune
         FROM partners p
         LEFT JOIN clubs c ON p.club_id = c.id
         WHERE {where_sql}
