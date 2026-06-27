@@ -54,12 +54,6 @@ async def lifespan(app: FastAPI):
             ("clubs", "longitude", "REAL"),
             ("clubs", "code_insee", "TEXT"),
             ("clubs", "epci_code", "TEXT"),
-            ("clubs", "niveau", "TEXT DEFAULT 'amateur'"),
-            ("clubs", "licencies", "INTEGER DEFAULT 0"),
-            ("clubs", "latitude", "REAL"),
-            ("clubs", "longitude", "REAL"),
-            ("clubs", "code_insee", "TEXT"),
-            ("clubs", "epci_code", "TEXT"),
             ("clubs", "contact_phone", "TEXT"),
         ]
         for table, col, col_type in migrations:
@@ -1038,46 +1032,55 @@ async def register_club(payload: dict):
                 longitude = coords[0]
                 latitude = coords[1]
                 epci_name = c.get("nomEpci") or c.get("nom")  # fallback safe
-                epci_name = c.get("nom")  # L'API renvoie 'nom' pour la commune, pas 'nomEpci'
                 if not departement_code:
                     departement_code = c.get("codeDepartement")
     except Exception as e:
         print(f"⚠️  Géocodage échoué pour {commune}: {e}")
-    
-    conn = sqlite3.connect(DB_PATH)
-    cur = conn.cursor()
-    # Mapping aligné sur le schéma clubs + colonnes des migrations
-    cur.execute("""
-        INSERT INTO clubs (
-            id, name, email, password_hash, sport, city, epci, department, region,
-            size, members_count, contact_email, created_at, updated_at,
-            niveau, licencies, latitude, longitude, code_insee, epci_code
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (
-        club_id,                                 # id
-        name,                                    # name
-        email,                                   # email (UNIQUE NOT NULL)
-        "demo_hash",                             # password_hash
-        sport,                                   # sport
-        commune,                                 # city (= commune dans ce projet)
-        epci_name or "",                         # epci (texte libre)
-        departement_code or "",                  # department
-        "Normandie",                             # region (défaut)
-        niveau,                                  # size (mapping: niveau -> size)
-        licencies,                               # members_count
-        email,                                   # contact_email (par défaut = email principal)
-        datetime.now().isoformat(),              # created_at
-        datetime.now().isoformat(),              # updated_at
-        niveau,                                  # niveau (colonne ajoutée par migration)
-        licencies,                               # licencies (idem)
-        latitude,                                # latitude (géocodage geo.api.gouv.fr)
-        longitude,                               # longitude (idem)
-        code_insee,                              # code_insee (idem)
-        epci_code,                               # epci_code (idem)
-    ))
-    conn.commit()
-    conn.close()
+
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cur = conn.cursor()
+        # Mapping aligné sur le schéma clubs + colonnes des migrations
+        cur.execute("""
+            INSERT INTO clubs (
+                id, name, email, password_hash, sport, city, epci, department, region,
+                size, members_count, contact_email, created_at, updated_at,
+                niveau, licencies, latitude, longitude, code_insee, epci_code
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (
+            club_id,                                 # id
+            name,                                    # name
+            email,                                   # email (UNIQUE NOT NULL)
+            "demo_hash",                             # password_hash
+            sport,                                   # sport
+            commune,                                 # city (= commune dans ce projet)
+            epci_name or "",                         # epci (texte libre)
+            departement_code or "",                  # department
+            "Normandie",                             # region (défaut)
+            niveau,                                  # size (mapping: niveau -> size)
+            licencies,                               # members_count
+            email,                                   # contact_email (par défaut = email principal)
+            datetime.now().isoformat(),              # created_at
+            datetime.now().isoformat(),              # updated_at
+            niveau,                                  # niveau (colonne ajoutée par migration)
+            licencies,                               # licencies (idem)
+            latitude,                                # latitude (géocodage geo.api.gouv.fr)
+            longitude,                               # longitude (idem)
+            code_insee,                              # code_insee (idem)
+            epci_code,                               # epci_code (idem)
+        ))
+        conn.commit()
+        conn.close()
+    except sqlite3.IntegrityError as e:
+        print(f"❌ IntegrityError sur register_club: {e}")
+        print(f"   Payload: name={name}, email={email}, commune={commune}")
+        raise HTTPException(status_code=409, detail=f"Club déjà existant ou contrainte violée: {e}")
+    except Exception as e:
+        import traceback
+        print(f"❌ Erreur register_club: {e}")
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Erreur interne register: {e}")
     
 
 
