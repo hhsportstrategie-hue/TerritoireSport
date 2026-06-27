@@ -37,6 +37,28 @@ async def lifespan(app: FastAPI):
         conn = sqlite3.connect(DB_PATH)
         conn.executescript(schema_path.read_text())
         conn.commit()
+
+        # Migrations idempotentes : ajoutent les colonnes manquantes aux tables existantes
+        # (CREATE TABLE IF NOT EXISTS ne modifie pas les tables déjà créées)
+        migrations = [
+            ("engineering_projects", "title", "TEXT"),
+            ("engineering_projects", "description", "TEXT"),
+            ("engineering_projects", "themes", "TEXT"),
+            ("engineering_projects", "budget", "INTEGER"),
+            ("partners", "score", "INTEGER DEFAULT 0"),
+            ("clubs", "epci", "TEXT"),
+            ("clubs", "contact_email", "TEXT"),
+            ("clubs", "contact_phone", "TEXT"),
+        ]
+        for table, col, col_type in migrations:
+            try:
+                existing = {row[1] for row in conn.execute(f"PRAGMA table_info({table})").fetchall()}
+                if col not in existing:
+                    conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {col_type}")
+                    print(f"  ↻ Migration : {table}.{col} ajoutée")
+            except Exception as e:
+                print(f"  ⚠ Migration {table}.{col}: {e}")
+        conn.commit()
         conn.close()
 
     # Seed si la DB est vide
