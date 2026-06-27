@@ -304,17 +304,23 @@ async def create_project(
         project_id = f"proj-{secrets.token_hex(6)}"
         now = datetime.utcnow().isoformat()
 
+        # Stocker title/description/themes/budget en JSON pour rétrocompatibilité
+        import json as _json
+        themes_json = _json.dumps(project.themes) if hasattr(project, 'themes') and project.themes else None
+
         conn.execute(
             """
             INSERT INTO engineering_projects (
-                id, club_id, theme_id, public_cible, objectifs, activites,
+                id, club_id, title, description, themes, budget,
+                theme_id, public_cible, objectifs, activites,
                 ressources, calendrier, indicateurs, status, current_step,
                 created_at, updated_at
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'active', 1, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'active', 1, ?, ?)
             """,
             (
-                project_id, club_id, project.theme_id, project.public_cible,
+                project_id, club_id, project.title, project.description, themes_json, project.budget,
+                project.theme_id, project.public_cible,
                 project.objectifs, project.activites, project.ressources,
                 project.calendrier, project.indicateurs, now, now,
             ),
