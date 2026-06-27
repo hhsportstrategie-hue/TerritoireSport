@@ -1213,9 +1213,25 @@ async def create_diagnostic(payload: dict):
     if not club_id or not answers:
         raise HTTPException(status_code=400, detail="club_id et answers requis")
     
-    # Calcul du score total
-    total_score = sum(int(v) for v in answers.values() if str(v).isdigit())
-    
+    # Calcul du score total : mapping texte → points
+    SCORE_MAP = {
+        # q1 : projets à impact
+        "Oui, plusieurs": 4, "Oui, un": 2, "Non, jamais": 0,
+        # q2 : partenariats
+        "Oui, régulièrement": 4, "Ponctuellement": 2, "Non": 0,
+        # q3 : mesure d'impact
+        "Oui, avec des indicateurs": 4, "Informellement": 2, "Non": 0,
+        # q4 : RSE
+        "Oui, formalisée": 4, "En réflexion": 2, "Non": 0,
+        # q5 : AAP
+        "Oui, et obtenu": 4, "Oui, sans succès": 2, "Non": 0,
+    }
+    total_score = sum(SCORE_MAP.get(v, 0) for v in answers.values())
+
+    # Si le mapping texte n'a rien donné (réponses hors liste), fallback sur l'ancienne logique
+    if total_score == 0 and any(answers.values()):
+        total_score = sum(int(v) for v in answers.values() if str(v).isdigit())
+
     # Détermination du profil
     if total_score >= 15:
         profile = "engaged"
@@ -1237,6 +1253,20 @@ async def create_diagnostic(payload: dict):
     conn.commit()
     conn.close()
     
+    # Extraction des signaux projet (q6, q7, q8) pour personnaliser la suite
+    public_cible = answers.get('q6', '')
+    motivation = answers.get('q7', '')
+    budget_estime = answers.get('q8', '')
+
+    # Mapping motivation → thématiques
+    motivation_to_themes = {
+        'Lien social / inclusion': ['cohesion', 'insertion', 'egalite'],
+        'Santé / bien-être': ['sante', 'sport_sante', 'prevention'],
+        'Environnement / écologie': ['environnement', 'transition', 'climat'],
+        'Éducation / transmission': ['education', 'jeunesse', 'transmission']
+    }
+    thematiques_suggerees = motivation_to_themes.get(motivation, [])
+
     return {
         "diagnostic_id": diagnostic_id,
         "club_id": club_id,
@@ -1244,6 +1274,10 @@ async def create_diagnostic(payload: dict):
         "profile": profile,
         "max_score": 20,
         "answers": answers,
+        "public_cible": public_cible,
+        "motivation": motivation,
+        "budget_estime": budget_estime,
+        "thematiques_suggerees": thematiques_suggerees,
         "recommendation": {
             "engaged": "Votre club est mature. Concentrez-vous sur des projets structurants avec partenaires institutionnels.",
             "emerging": "Votre club est en progression. Visez des projets pilotes avec 2-3 partenaires locaux.",

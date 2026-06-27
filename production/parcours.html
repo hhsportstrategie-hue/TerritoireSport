@@ -674,21 +674,40 @@ async function submitStep1(e) {
 // ========== STEP 2: Questions ==========
 function renderQuestions() {
     const questions = [
-        { id: 'q1', text: 'Avez-vous déjà réalisé un projet à impact social/environnemental ?', options: ['Oui, plusieurs', 'Oui, un', 'Non, jamais'] },
-        { id: 'q2', text: 'Avez-vous des partenariats actifs avec des associations locales ?', options: ['Oui, régulièrement', 'Ponctuellement', 'Non'] },
-        { id: 'q3', text: 'Mesurez-vous l\'impact de vos actions ?', options: ['Oui, avec des indicateurs', 'Informellement', 'Non'] },
-        { id: 'q4', text: 'Avez-vous une stratégie RSE ou de développement durable ?', options: ['Oui, formalisée', 'En réflexion', 'Non'] },
-        { id: 'q5', text: 'Avez-vous déjà candidaté à un appel à projets ?', options: ['Oui, et obtenu', 'Oui, sans succès', 'Non'] }
+        // Maturité sociétale (5 questions)
+        { id: 'q1', text: 'Avez-vous déjà réalisé un projet à impact social/environnemental ?', options: ['Oui, plusieurs', 'Oui, un', 'Non, jamais'], section: 'maturite' },
+        { id: 'q2', text: 'Avez-vous des partenariats actifs avec des associations locales ?', options: ['Oui, régulièrement', 'Ponctuellement', 'Non'], section: 'maturite' },
+        { id: 'q3', text: 'Mesurez-vous l\'impact de vos actions ?', options: ['Oui, avec des indicateurs', 'Informellement', 'Non'], section: 'maturite' },
+        { id: 'q4', text: 'Avez-vous une stratégie RSE ou de développement durable ?', options: ['Oui, formalisée', 'En réflexion', 'Non'], section: 'maturite' },
+        { id: 'q5', text: 'Avez-vous déjà candidaté à un appel à projets ?', options: ['Oui, et obtenu', 'Oui, sans succès', 'Non'], section: 'maturite' },
+        // Type de projet (3 questions)
+        { id: 'q6', text: 'Quel public votre projet vise-t-il en priorité ?', options: ['Personnes âgées', 'Jeunes en difficulté', 'Personnes en situation de handicap', 'Tout public'], section: 'projet' },
+        { id: 'q7', text: 'Quelle est votre principale motivation ?', options: ['Lien social / inclusion', 'Santé / bien-être', 'Environnement / écologie', 'Éducation / transmission'], section: 'projet' },
+        { id: 'q8', text: 'Quel budget estimé pour votre premier projet ?', options: ['Moins de 1 000 €', '1 000 - 5 000 €', '5 000 - 15 000 €', 'Plus de 15 000 €'], section: 'projet' }
     ];
-    const html = questions.map(q => `
-        <div class="question-card" style="margin-bottom: 16px; padding: 16px; background: #f9fafb; border-radius: 8px;">
-            <label style="font-weight: 500; display: block; margin-bottom: 8px;">${q.text}</label>
-            <select id="${q.id}" class="form-select" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;">
-                <option value="">-- Choisir --</option>
-                ${q.options.map(o => `<option value="${o}">${o}</option>`).join('')}
-            </select>
-        </div>
-    `).join('');
+    // Groupement par section
+    const sections = [
+        { id: 'maturite', title: 'Maturité sociétale de votre club', subtitle: '5 questions sur vos pratiques actuelles' },
+        { id: 'projet', title: 'Votre projet en tête', subtitle: '3 questions pour personnaliser la suite' }
+    ];
+    const html = sections.map(sec => {
+        const qSec = questions.filter(q => q.section === sec.id);
+        return `
+            <div style="margin-bottom: 24px;">
+                <h4 style="color: #1f2937; margin-bottom: 4px;">${sec.title}</h4>
+                <p style="color: #6b7280; font-size: 0.9em; margin-bottom: 12px;">${sec.subtitle}</p>
+                ${qSec.map(q => `
+                    <div class="question-card" style="margin-bottom: 12px; padding: 14px; background: #f9fafb; border-radius: 8px;">
+                        <label style="font-weight: 500; display: block; margin-bottom: 8px; color: #374151;">${q.text}</label>
+                        <select id="${q.id}" class="form-select" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;">
+                            <option value="">-- Choisir --</option>
+                            ${q.options.map(o => `<option value="${o}">${o}</option>`).join('')}
+                        </select>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }).join('');
     document.getElementById('questions-container').innerHTML = html;
 }
 
