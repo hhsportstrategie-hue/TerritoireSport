@@ -95,6 +95,10 @@ CREATE TABLE IF NOT EXISTS affinity_scores (
 CREATE TABLE IF NOT EXISTS engineering_projects (
     id              TEXT PRIMARY KEY,
     club_id         TEXT NOT NULL REFERENCES clubs(id) ON DELETE CASCADE,
+    title           TEXT,
+    description     TEXT,
+    themes          TEXT,
+    budget          INTEGER,
     inspiration_id  TEXT,
     theme_id        TEXT,
     public_cible    TEXT,
