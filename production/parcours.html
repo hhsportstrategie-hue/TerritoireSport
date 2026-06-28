@@ -221,6 +221,7 @@
         <div class="step-card" id="step-2">
             <h2><span class="num">2</span> Questionnaire sur votre club</h2>
             <p class="desc">Répondez à ces 8 questions — elles permettent de calibrer votre maturité et de personnaliser la suite.</p>
+            <div id="step-2-warning"></div>
             <div id="questions-container"></div>
             <div class="btn-row">
                 <button type="button" class="btn btn-secondary" onclick="goToStep(1)">← Retour</button>
@@ -451,19 +452,30 @@ async function submitStep1() {
     btn.disabled = true;
     btn.innerHTML = '<span class="loader"></span> Création…';
 
+    // Champs alignés sur le contrat de l'API /api/clubs/register :
+    //   name, sport, commune, email, departement, niveau, licencies (obligatoires)
+    // L'API fait UNIQUE sur email → si vide, on génère un email placeholder
+    const emailValue = document.getElementById('club-contact-email').value.trim()
+        || `no-email-${Date.now()}@territoiresport.local`;
+    const departementCode = state.commune_code ? state.commune_code.slice(0, 2) : '';
     const payload = {
         name: document.getElementById('club-name').value.trim(),
         sport: document.getElementById('club-sport').value.trim(),
+        commune: state.commune_name,
+        email: emailValue,
+        departement: departementCode,
         niveau: document.getElementById('club-level').value,
         licencies: parseInt(document.getElementById('club-licencies').value) || 0,
-        salaries_etp: parseFloat(document.getElementById('club-salaries').value) || 0,
-        city: state.commune_name,
-        code_insee: communeCode,
-        contact_name: document.getElementById('club-contact-name').value.trim(),
-        contact_email: document.getElementById('club-contact-email').value.trim(),
-        contact_phone: document.getElementById('club-contact-phone').value.trim(),
+        // Métadonnées locales (non envoyées à l'API, gardées en mémoire pour l'étape 7)
+        _meta: {
+            code_insee: communeCode,
+            salaries_etp: parseFloat(document.getElementById('club-salaries').value) || 0,
+            contact_name: document.getElementById('club-contact-name').value.trim(),
+            contact_phone: document.getElementById('club-contact-phone').value.trim(),
+        },
     };
 
+    let apiWarning = null;
     try {
         const r = await fetch(`${API}/api/clubs/register`, {
             method: 'POST',
@@ -478,15 +490,21 @@ async function submitStep1() {
         } else if (r.ok && data.id) {
             state.club_id = data.id;
         } else {
-            // mode dégradé : ID local
+            // mode dégradé : ID local + mémoriser l'erreur pour l'afficher
             state.club_id = 'local-' + Date.now();
-            console.warn('API /clubs/register KO, mode dégradé activé', r.status, data);
+            apiWarning = `Inscription non enregistrée côté serveur (HTTP ${r.status}) — vous pouvez quand même continuer le parcours.`;
+            console.warn('API /clubs/register KO', r.status, data);
         }
     } catch (err) {
         state.club_id = 'local-' + Date.now();
-        console.warn('API /clubs/register KO, mode dégradé', err);
+        apiWarning = 'Inscription non enregistrée (réseau indisponible) — vous pouvez quand même continuer le parcours.';
+        console.warn('API /clubs/register KO', err);
     }
 
+    if (apiWarning) {
+        state.api_warnings = state.api_warnings || [];
+        state.api_warnings.push(apiWarning);
+    }
     state.commune_code = communeCode;
     goToStep(2);
     renderStep2();
@@ -496,6 +514,12 @@ async function submitStep1() {
 
 // ---------- ÉTAPE 2 : Questionnaire club ----------
 function renderStep2() {
+    // Afficher les avertissements éventuels en haut
+    const warnContainer = document.getElementById('step-2-warning');
+    if (warnContainer && state.api_warnings && state.api_warnings.length > 0) {
+        warnContainer.innerHTML = state.api_warnings
+            .map(w => `<div class="alert alert-warn">⚠️ ${w}</div>`).join('');
+    }
     const questions = [
         // Maturité sociétale (5)
         { id: 'q1', text: 'Avez-vous déjà réalisé un projet à impact social/environnemental ?',
