@@ -8,720 +8,517 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: #f5f7fa;
-            color: #1a202c;
-            line-height: 1.6;
+            background: #f5f7fa; color: #1a202c; line-height: 1.6;
         }
         header {
             background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            color: white;
-            padding: 24px 32px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: white; padding: 24px 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         header h1 { font-size: 28px; margin-bottom: 4px; }
         header p { opacity: 0.9; font-size: 14px; }
         .container { max-width: 900px; margin: 0 auto; padding: 24px; }
-
         .progress-bar {
-            background: white;
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-bottom: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            background: white; border-radius: 12px; padding: 16px 20px;
+            margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            display: flex; align-items: center; gap: 12px;
         }
         .progress-bar .label { font-weight: 600; color: #1e3a8a; }
-        .progress-bar .bar {
-            flex: 1;
-            height: 8px;
-            background: #e5e7eb;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .progress-bar .fill {
-            height: 100%;
-            background: linear-gradient(90deg, #3b82f6, #10b981);
-            width: 0%;
-            transition: width 0.3s;
-        }
+        .progress-bar .bar { flex: 1; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; }
+        .progress-bar .fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #10b981); width: 0%; transition: width 0.3s; }
         .progress-bar .step-count { font-size: 14px; color: #6b7280; }
-
         .step-card {
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 16px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            display: none;
+            background: white; border-radius: 12px; padding: 28px;
+            margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); display: none;
         }
         .step-card.active { display: block; }
         .step-card.done { border-left: 4px solid #10b981; }
         .step-card.current { border-left: 4px solid #3b82f6; }
-
         .step-card h2 {
-            color: #1e3a8a;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            color: #1e3a8a; margin-bottom: 8px; font-size: 22px;
+            display: flex; align-items: center; gap: 12px;
         }
         .step-card h2 .num {
-            background: #1e3a8a;
-            color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
+            background: #3b82f6; color: white; width: 32px; height: 32px;
+            border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+            font-size: 16px; font-weight: 600;
         }
         .step-card.done h2 .num { background: #10b981; }
-        .step-card .desc { color: #4b5563; margin-bottom: 16px; }
-
-        .form-group { margin-bottom: 12px; }
-        .form-group label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 4px;
-            color: #374151;
-        }
+        .step-card .desc { color: #6b7280; margin-bottom: 20px; font-size: 15px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 6px; color: #374151; font-size: 14px; }
         .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 14px;
+            width: 100%; padding: 10px 12px; border: 1px solid #d1d5db;
+            border-radius: 6px; font-size: 14px; font-family: inherit;
         }
-        .form-group textarea { resize: vertical; min-height: 80px; }
-
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-grid .form-group.full { grid-column: 1 / -1; }
         .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 24px; border-radius: 8px; border: none;
+            font-weight: 600; cursor: pointer; font-size: 15px;
+            transition: transform 0.15s, box-shadow 0.15s;
         }
-        .btn-primary {
-            background: #3b82f6;
-            color: white;
+        .btn-primary { background: linear-gradient(135deg, #3b82f6, #1e3a8a); color: white; }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(59,130,246,0.3); }
+        .btn-primary:disabled { background: #9ca3af; cursor: not-allowed; transform: none; }
+        .btn-secondary { background: white; color: #374151; border: 1px solid #d1d5db; }
+        .btn-secondary:hover { background: #f9fafb; }
+        .btn-row { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+        .commune-autocomplete { position: relative; }
+        .commune-dropdown {
+            position: absolute; top: 100%; left: 0; right: 0;
+            background: white; border: 1px solid #d1d5db; border-top: none;
+            border-radius: 0 0 6px 6px; max-height: 240px; overflow-y: auto;
+            z-index: 100; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        .btn-primary:hover { background: #2563eb; }
-        .btn-primary:disabled { background: #9ca3af; cursor: not-allowed; }
-        .btn-secondary {
-            background: #e5e7eb;
-            color: #374151;
+        .commune-dropdown.show { display: block; }
+        .commune-dropdown-item {
+            padding: 10px 12px; cursor: pointer; border-bottom: 1px solid #f3f4f6;
         }
-        .btn-secondary:hover { background: #d1d5db; }
-
-        .questions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 12px;
-            margin-bottom: 16px;
+        .commune-dropdown-item:hover { background: #eff6ff; }
+        .commune-dropdown-item .dept { color: #6b7280; font-size: 12px; margin-left: 6px; }
+        .question-card {
+            margin-bottom: 14px; padding: 16px; background: #f9fafb;
+            border-radius: 8px; border: 1px solid #e5e7eb;
         }
-        .question {
-            background: #f9fafb;
-            padding: 12px;
-            border-radius: 6px;
+        .question-card label { font-weight: 500; display: block; margin-bottom: 8px; color: #1f2937; }
+        .badge {
+            display: inline-block; padding: 4px 10px; border-radius: 12px;
+            font-size: 12px; font-weight: 600; margin-right: 4px;
         }
-        .question .q-text { font-size: 13px; margin-bottom: 8px; color: #374151; }
-        .question .options { display: flex; gap: 8px; }
-        .question .options label {
-            flex: 1;
-            text-align: center;
-            padding: 6px;
-            border: 1px solid #d1d5db;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-green { background: #d1fae5; color: #065f46; }
+        .badge-purple { background: #ede9fe; color: #5b21b6; }
+        .badge-amber { background: #fef3c7; color: #92400e; }
+        .card-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px; margin-top: 16px;
         }
-        .question .options input { display: none; }
-        .question .options input:checked + label {
-            background: #3b82f6;
-            color: white;
-            border-color: #3b82f6;
+        .partner-card, .cas-card {
+            background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px;
+            padding: 14px; transition: transform 0.15s, box-shadow 0.15s;
         }
-
-        .result-box {
-            background: #f0fdf4;
-            border: 1px solid #10b981;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 16px;
+        .partner-card:hover, .cas-card:hover {
+            transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-        .result-box.error {
-            background: #fee2e2;
-            border-color: #dc2626;
+        .partner-card h4, .cas-card h4 { color: #1e3a8a; margin-bottom: 6px; font-size: 15px; }
+        .partner-card .meta, .cas-card .meta { font-size: 12px; color: #6b7280; margin-bottom: 8px; }
+        .partner-card .desc, .cas-card .desc { font-size: 13px; color: #374151; line-height: 1.5; }
+        .loader {
+            display: inline-block; width: 18px; height: 18px;
+            border: 2px solid #ffffff; border-top-color: transparent;
+            border-radius: 50%; animation: spin 0.8s linear infinite;
         }
-        .result-box h3 { color: #065f46; margin-bottom: 8px; }
-        .result-box.error h3 { color: #991b1b; }
-
-        .partner-card, .project-card {
-            background: #f9fafb;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 8px;
-            border: 1px solid #e5e7eb;
-            cursor: pointer;
-            transition: all 0.2s;
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .alert {
+            padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; font-size: 14px;
         }
-        .partner-card:hover, .project-card:hover {
-            border-color: #3b82f6;
-            background: #eff6ff;
+        .alert-warn { background: #fef3c7; color: #78350f; border-left: 4px solid #f59e0b; }
+        .alert-info { background: #dbeafe; color: #1e40af; border-left: 4px solid #3b82f6; }
+        .alert-ok { background: #d1fae5; color: #065f46; border-left: 4px solid #10b981; }
+        .thematiques-row { margin: 16px 0; }
+        .thematique-chip {
+            display: inline-block; padding: 6px 12px; margin: 4px 6px 4px 0;
+            background: #eff6ff; color: #1e40af; border-radius: 16px;
+            font-size: 13px; cursor: pointer; transition: background 0.15s;
         }
-        .partner-card.selected, .project-card.selected {
-            border-color: #10b981;
-            background: #f0fdf4;
+        .thematique-chip:hover { background: #dbeafe; }
+        .thematique-chip.selected { background: #3b82f6; color: white; }
+        .diagnostic-section {
+            background: #f9fafb; padding: 16px; border-radius: 8px; margin-bottom: 14px;
         }
-
-        /* Étape 2 — Diagnostic territorial */
-        .diag-territorial {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border: 1px solid #bae6fd;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+        .diagnostic-section h3 { color: #1e3a8a; margin-bottom: 8px; font-size: 16px; }
+        .diagnostic-section ul { margin-left: 20px; color: #374151; font-size: 14px; }
+        .diagnostic-section li { margin-bottom: 4px; }
+        .summary-table {
+            width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 14px;
         }
-        .diag-territorial h3 {
-            color: #0c4a6e;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+        .summary-table th, .summary-table td {
+            padding: 8px 12px; text-align: left; border-bottom: 1px solid #e5e7eb;
         }
-        .diag-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-        .diag-item {
-            background: white;
-            padding: 0.75rem;
-            border-radius: 6px;
-            border: 1px solid #e0f2fe;
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-        .diag-item strong {
-            color: #0369a1;
-            font-size: 0.85rem;
-        }
-        .diag-item span {
-            color: #334155;
-            font-size: 0.9rem;
-        }
-        .diag-themes {
-            background: white;
-            padding: 0.75rem;
-            border-radius: 6px;
-            border: 1px solid #e0f2fe;
-        }
-        .diag-themes strong {
-            color: #0369a1;
-            font-size: 0.9rem;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        .diag-themes div {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.25rem;
-        }
-        .diag-info {
-            background: #f1f5f9;
-            padding: 1rem;
-            border-radius: 6px;
-            color: #475569;
-        }
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-        }
-
-        /* Étape 6 — Cas inspirants */
-        .match-info { margin-bottom: 1rem; }
-        .match-badge {
-            background: #ecfdf5;
-            border-left: 4px solid var(--primary);
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-        }
-        .filters-bar {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .filters-bar label {
-            display: flex;
-            flex-direction: column;
-            font-size: 0.85rem;
-            color: #64748b;
-        }
-        .filters-bar select {
-            padding: 0.5rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            margin-top: 0.25rem;
-            min-width: 180px;
-        }
-        .cas-card {
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 1.25rem;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .cas-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-        .cas-card.selected {
-            border-color: var(--primary);
-            background: #f0f9ff;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-        .cas-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-        .cas-rank {
-            background: #1e293b;
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        .cas-score {
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        .score-green { background: #dcfce7; color: #166534; }
-        .score-orange { background: #fed7aa; color: #9a3412; }
-        .score-gray { background: #f1f5f9; color: #475569; }
-        .cas-title {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 0.25rem;
-        }
-        .cas-structure {
-            font-size: 0.85rem;
-            color: #64748b;
-            margin-bottom: 0.5rem;
-        }
-        .cas-thematiques {
-            margin-bottom: 0.75rem;
-        }
-        .thema-badge {
-            display: inline-block;
-            background: #eff6ff;
-            color: #1e40af;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            margin-right: 0.25rem;
-            margin-bottom: 0.25rem;
-        }
-        .cas-desc {
-            color: #475569;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 0.75rem;
-        }
-        .cas-meta {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            padding-top: 0.75rem;
-            border-top: 1px solid #f1f5f9;
-        }
-        .meta-item {
-            font-size: 0.8rem;
-            color: #64748b;
-        }
-        .cas-score-details {
-            margin-top: 0.5rem;
-            color: #94a3b8;
-            font-size: 0.75rem;
-        }
-        .empty {
-            text-align: center;
-            padding: 2rem;
-            color: #94a3b8;
-            font-style: italic;
-        }
-        .partner-card .name, .project-card .name { font-weight: 600; color: #1e3a8a; }
-        .partner-card .meta, .project-card .meta { font-size: 12px; color: #6b7280; margin-top: 4px; }
-
-        .summary-box {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            color: white;
-            border-radius: 12px;
-            padding: 24px;
-            margin-top: 24px;
-        }
-        .summary-box h2 { margin-bottom: 16px; }
-        .summary-box .item {
-            background: rgba(255,255,255,0.1);
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 8px;
-        }
-        .summary-box .item strong { display: block; margin-bottom: 4px; }
-
-        .nav {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-        .nav a {
-            padding: 8px 16px;
-            background: white;
-            border-radius: 6px;
-            text-decoration: none;
-            color: #1e3a8a;
-            font-weight: 500;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        .summary-table th { background: #f3f4f6; color: #1f2937; font-weight: 600; }
+        @media print {
+            header, .progress-bar, .btn-row, .alert-warn, .alert-info { display: none; }
+            .step-card { display: block !important; box-shadow: none; border: 1px solid #e5e7eb; }
+            .step-card + .step-card { page-break-before: always; }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>🚀 TerritoireSport — Parcours Utilisateur</h1>
-        <p>De l'inscription à l'ingénierie de projet — version interactive</p>
+        <h1>TerritoireSport</h1>
+        <p>Diagnostic territorial & ingénierie de projet pour clubs sportifs normands</p>
     </header>
-
     <div class="container">
-        <div class="nav">
-            <a href="/demo">📊 Démo données</a>
-            <a href="/architecture">🏗️ Architecture</a>
-            <a href="/parcours">🚀 Parcours (cette page)</a>
-            <a href="/docs">📖 Swagger</a>
-        </div>
-
-        <!-- Progress bar -->
         <div class="progress-bar">
-            <span class="label">Progression</span>
+            <span class="label">Étape</span>
             <div class="bar"><div class="fill" id="progress-fill"></div></div>
-            <span class="step-count" id="step-count">Étape 1/8</span>
+            <span class="step-count" id="step-count">1 / 7</span>
         </div>
 
-        <!-- ÉTAPE 1: Inscription -->
         <div class="step-card active current" id="step-1">
-            <h2><span class="num">1</span> Inscription du club</h2>
-            <p class="desc">Créez votre compte club sportif.</p>
-            <div class="form-group">
-                <label>Nom du club</label>
-                <input type="text" id="club-name" placeholder="Ex: BATT Argentan" value="BATT Argentan">
-            </div>
-            <div class="form-group">
-                <label>Sport principal</label>
-                <select id="club-sport">
-                    <optgroup label="Sports collectifs">
-                        <option value="football">Football</option>
-                        <option value="rugby">Rugby</option>
-                        <option value="basketball">Basketball</option>
-                        <option value="handball">Handball</option>
-                        <option value="hockey_sur_glace">Hockey sur glace</option>
-                        <option value="volley_ball">Volley-ball</option>
-                    </optgroup>
-                    <optgroup label="Sports individuels">
-                        <option value="tennis_de_table">Tennis de table</option>
-                        <option value="padel">Padel</option>
-                        <option value="athletisme">Athlétisme</option>
-                        <option value="cyclisme">Cyclisme</option>
-                        <option value="judo">Judo</option>
-                        <option value="natation">Natation</option>
-                    </optgroup>
-                    <optgroup label="Sports normands emblématiques">
-                        <option value="equitation">Équitation</option>
-                        <option value="voile">Voile</option>
-                        <option value="aviron">Aviron</option>
-                        <option value="golf">Golf</option>
-                    </optgroup>
-                    <optgroup label="Autres">
-                        <option value="multi_sports">Multi-sports</option>
-                        <option value="autre">Autre</option>
-                    </optgroup>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Commune</label>
-                <input type="text" id="club-commune" placeholder="Ex: Argentan" value="Argentan">
-            </div>
-            <div class="form-group">
-                <label>Email de contact</label>
-                <input type="email" id="club-email" placeholder="contact@club.fr" value="contact@batt.fr">
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Département</label>
-                    <select id="club-departement">
-                        <option value="14">14 — Calvados</option>
-                        <option value="27">27 — Eure</option>
-                        <option value="50">50 — Manche</option>
-                        <option value="61">61 — Orne</option>
-                        <option value="76">76 — Seine-Maritime</option>
-                    </select>
+            <h2><span class="num">1</span> Inscription de votre club</h2>
+            <p class="desc">Présentez votre club et localisez-le. La commune permettra de déclencher votre diagnostic territorial pendant que vous répondez au questionnaire.</p>
+            <form id="form-step-1">
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label for="club-name">Nom du club *</label>
+                        <input type="text" id="club-name" required placeholder="Ex: Bayard Argentan Tennis de Table">
+                    </div>
+                    <div class="form-group">
+                        <label for="club-sport">Sport principal *</label>
+                        <input type="text" id="club-sport" required placeholder="Ex: Tennis de Table">
+                    </div>
+                    <div class="form-group">
+                        <label for="club-level">Niveau</label>
+                        <select id="club-level">
+                            <option value="loisir">Loisir</option>
+                            <option value="amateur">Amateur</option>
+                            <option value="regional" selected>Régional</option>
+                            <option value="national">National</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="club-licencies">Nombre de licenciés</label>
+                        <input type="number" id="club-licencies" min="0" placeholder="Ex: 120">
+                    </div>
+                    <div class="form-group">
+                        <label for="club-salaries">Salariés (ETP)</label>
+                        <input type="number" id="club-salaries" min="0" step="0.5" placeholder="Ex: 2">
+                    </div>
+                    <div class="form-group full commune-autocomplete">
+                        <label for="club-commune-search">Commune d'implantation *</label>
+                        <input type="text" id="club-commune-search" autocomplete="off" required
+                               placeholder="Tapez 2 caractères… (ex: 'arg' pour Argentan)">
+                        <input type="hidden" id="club-commune-code" required>
+                        <div class="commune-dropdown" id="commune-dropdown"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="club-contact-name">Nom du contact</label>
+                        <input type="text" id="club-contact-name" placeholder="Prénom Nom">
+                    </div>
+                    <div class="form-group">
+                        <label for="club-contact-email">Email</label>
+                        <input type="email" id="club-contact-email" placeholder="contact@club.fr">
+                    </div>
+                    <div class="form-group">
+                        <label for="club-contact-phone">Téléphone</label>
+                        <input type="tel" id="club-contact-phone" placeholder="06 12 34 56 78">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Niveau</label>
-                    <select id="club-niveau">
-                        <option value="amateur">Loisir / Amateur</option>
-                        <option value="semi-pro">Semi-pro / Régional</option>
-                        <option value="pro">Professionnel</option>
-                    </select>
+                <div class="btn-row">
+                    <span></span>
+                    <button type="submit" class="btn btn-primary" id="btn-step-1">
+                        Créer mon club →
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label>Licenciés</label>
-                    <input type="number" id="club-licencies" placeholder="Ex: 150" value="150" min="0">
-                </div>
-            </div>
-            <button class="btn btn-primary" onclick="submitStep1()">Créer mon compte →</button>
-            <div id="result-1"></div>
+            </form>
         </div>
 
-        <!-- ÉTAPE 2: Diagnostic -->
         <div class="step-card" id="step-2">
-            <h2><span class="num">2</span> Diagnostic territorial</h2>
-            <p class="desc">Découvrez les spécificités de votre commune, puis répondez à 12 questions sur votre maturité sociétale.</p>
-
-            <div id="diagnostic-territorial-2"></div>
-
-            <h3 style="margin-top: 1.5rem;">📋 Vos pratiques actuelles</h3>
-            <div class="questions-grid" id="questions-container"></div>
-            <button class="btn btn-primary" onclick="submitStep2()">Soumettre mon diagnostic →</button>
-            <div id="result-2"></div>
+            <h2><span class="num">2</span> Questionnaire sur votre club</h2>
+            <p class="desc">Répondez à ces 8 questions — elles permettent de calibrer votre maturité et de personnaliser la suite.</p>
+            <div id="questions-container"></div>
+            <div class="btn-row">
+                <button type="button" class="btn btn-secondary" onclick="goToStep(1)">← Retour</button>
+                <button type="button" class="btn btn-primary" id="btn-step-2" onclick="submitStep2()">
+                    Valider et lancer le diagnostic →
+                </button>
+            </div>
         </div>
 
-        <!-- ÉTAPE 3: Profil -->
         <div class="step-card" id="step-3">
-            <h2><span class="num">3</span> Votre commune</h2>
-            <p class="desc">Sélectionnez votre commune d'implantation pour voir votre diagnostic territorial personnalisé.</p>
-            <div class="form-group">
-                <label for="commune-select">Commune principale</label>
-                <select id="commune-select" style="width:100%; padding:8px; border:1px solid #d1d5db; border-radius:4px;">
-                    <option value="">-- Choisir votre commune --</option>
-                </select>
+            <h2><span class="num">3</span> Diagnostic territorial</h2>
+            <p class="desc">Voici les spécificités de <strong id="diag-commune-name">votre commune</strong> et les thématiques sociétales les plus pertinentes pour votre projet.</p>
+            <div id="diagnostic-loading" class="alert alert-info">
+                <span class="loader" style="border-color:#1e40af;border-top-color:transparent;"></span>
+                Chargement du diagnostic territorial…
             </div>
-            <button class="btn btn-primary" onclick="submitStep3()">Voir mon territoire →</button>
-            <div id="result-3"></div>
+            <div id="diagnostic-content" style="display:none;"></div>
+            <div class="btn-row">
+                <button type="button" class="btn btn-secondary" onclick="goToStep(2)">← Retour</button>
+                <button type="button" class="btn btn-primary" id="btn-step-3" onclick="goToStep(4)" disabled>
+                    Voir les acteurs du territoire →
+                </button>
+            </div>
         </div>
 
-        <!-- ÉTAPE 4: Diagnostic Territorial -->
         <div class="step-card" id="step-4">
-            <h2><span class="num">4</span> Diagnostic territorial</h2>
-            <p class="desc">Réalités, spécificités et difficultés de votre territoire — avec suggestions de thématiques.</p>
-            <div id="result-4"></div>
-            <button class="btn btn-primary" onclick="goToStep(5)">Voir les partenaires matchant ces enjeux →</button>
-        </div>
-
-
-        <!-- ÉTAPE 5: Shortlist -->
-        <div class="step-card" id="step-5">
-            <h2><span class="num">5</span> Shortlist de partenaires</h2>
-            <p class="desc">Sélectionnez 3-5 partenaires parmi les mieux scorés.</p>
-            <div id="result-5"></div>
-            <button class="btn btn-primary" onclick="submitStep5()">Valider ma sélection →</button>
-        </div>
-
-        <!-- ÉTAPE 6: Cas inspirants matchants -->
-        <div class="step-card" id="step-6">
-            <h2><span class="num">6</span> Cas inspirants matchants</h2>
-            <p class="desc">Découvrez 5 projets inspirants similaires au vôtre, déjà réalisés par d'autres clubs. Sélectionnez celui que vous voulez adapter.</p>
-
-            <div class="match-info" id="match-info-6"></div>
-
-            <div class="filters-bar">
-                <label>Filtrer par thématique :
-                    <select id="filter-thematique" onchange="reloadStep6()">
-                        <option value="">Toutes</option>
-                        <option value="education_jeunesse">Éducation / Jeunesse</option>
-                        <option value="cohesion_sociale">Cohésion sociale</option>
-                        <option value="inclusion_handicap">Inclusion / Handicap</option>
-                        <option value="environnement_ecologie">Environnement</option>
-                        <option value="insertion_emploi">Insertion / Emploi</option>
-                        <option value="sante_bien_etre">Santé / Bien-être</option>
-                        <option value="egalite_chances">Égalité des chances</option>
-                    </select>
-                </label>
-                <label>Budget max :
-                    <select id="filter-budget" onchange="reloadStep6()">
-                        <option value="">Tous</option>
-                        <option value="1000">≤ 1 000 €</option>
-                        <option value="3000">≤ 3 000 €</option>
-                        <option value="5000">≤ 5 000 €</option>
-                        <option value="10000">≤ 10 000 €</option>
-                    </select>
-                </label>
+            <h2><span class="num">4</span> Acteurs non-marchands du territoire</h2>
+            <p class="desc">Associations et structures publiques identifiées autour de <strong id="acteurs-commune-name">votre commune</strong>. Cliquez pour voir les détails.</p>
+            <div id="acteurs-loading" class="alert alert-info">
+                <span class="loader" style="border-color:#1e40af;border-top-color:transparent;"></span>
+                Chargement des acteurs…
             </div>
-
-            <div id="result-6"></div>
-            <button class="btn btn-primary" onclick="submitStep6()">Valider mon cas inspirant →</button>
+            <div id="acteurs-content" style="display:none;"></div>
+            <div class="btn-row">
+                <button type="button" class="btn btn-secondary" onclick="goToStep(3)">← Retour</button>
+                <button type="button" class="btn btn-primary" onclick="goToStep(5)">
+                    Voir des exemples inspirants →
+                </button>
+            </div>
         </div>
 
-        <!-- ÉTAPE 7: AAP -->
+        <div class="step-card" id="step-5">
+            <h2><span class="num">5</span> Exemples de projets inspirants</h2>
+            <p class="desc">Sélectionnés selon votre commune et vos thématiques. Utilisez-les pour vous inspirer, pas pour les copier.</p>
+            <div id="cas-loading" class="alert alert-info">
+                <span class="loader" style="border-color:#1e40af;border-top-color:transparent;"></span>
+                Recherche de cas inspirants…
+            </div>
+            <div id="cas-content" style="display:none;"></div>
+            <div class="btn-row">
+                <button type="button" class="btn btn-secondary" onclick="goToStep(4)">← Retour</button>
+                <button type="button" class="btn btn-primary" onclick="goToStep(6)">
+                    Voir les partenaires économiques →
+                </button>
+            </div>
+        </div>
+
+        <div class="step-card" id="step-6">
+            <h2><span class="num">6</span> Acteurs économiques & appels à projets</h2>
+            <p class="desc">Entreprises locales susceptibles de soutenir votre projet + AAP ouverts en lien avec vos thématiques.</p>
+            <div id="eco-loading" class="alert alert-info">
+                <span class="loader" style="border-color:#1e40af;border-top-color:transparent;"></span>
+                Chargement…
+            </div>
+            <div id="eco-content" style="display:none;"></div>
+            <div class="btn-row">
+                <button type="button" class="btn btn-secondary" onclick="goToStep(5)">← Retour</button>
+                <button type="button" class="btn btn-primary" onclick="goToStep(7)">
+                    Générer mon dossier d'ingénierie →
+                </button>
+            </div>
+        </div>
+
         <div class="step-card" id="step-7">
-            <h2><span class="num">7</span> Appels à projets</h2>
-            <p class="desc">Sélectionnez les AAP matchant votre projet.</p>
-            <div id="result-7"></div>
-            <button class="btn btn-primary" onclick="submitStep7()">Générer mon dossier →</button>
+            <h2><span class="num">7</span> Votre dossier d'ingénierie de projet</h2>
+            <p class="desc">Synthèse générée à partir de toutes vos réponses. Imprimez ou téléchargez en PDF via votre navigateur.</p>
+            <div id="template-content"></div>
+            <div class="btn-row">
+                <button type="button" class="btn btn-secondary" onclick="window.print()">🖨️ Imprimer / PDF</button>
+                <button type="button" class="btn btn-primary" onclick="restartParcours()">↻ Recommencer</button>
+            </div>
         </div>
 
-        <!-- ÉTAPE 8: Dossier final -->
-        <div class="step-card" id="step-8">
-            <h2><span class="num">8</span> Dossier de candidature</h2>
-            <p class="desc">Votre dossier est prêt.</p>
-            <div id="result-8"></div>
-        </div>
     </div>
-
-    
 <script>
-// ========== STATE ==========
-const API = '';
+
+// ============================================================
+// TerritoireSport — Parcours utilisateur (refonte v2)
+// 7 étapes : Inscription → Questionnaire → Diagnostic territoire
+//          → Acteurs non-marchands → Cas inspirants → Acteurs
+//          économiques + AAP → Dossier d'ingénierie
+// ============================================================
+
+const API = '';  // même origine
+const TOTAL_STEPS = 7;
 const state = {
     club_id: null,
-    answers: {},
-    score: 0,
-    profile: null,
-    selected_project: null,
-    selected_partners: [],
-    selected_aaps: [],
     commune_code: null,
     commune_name: null,
-    dossier_id: null
+    diagnostic_id: null,
+    diagnostic_data: null,
+    thematiques_selectionnees: [],
+    cas_inspirants: [],
+    partenaires_non_marchands: [],
+    partenaires_economiques: [],
+    aap_pertinents: [],
 };
 
-// ========== INIT ==========
-document.addEventListener('DOMContentLoaded', () => {
-    loadStep1();
-    const form = document.getElementById('club-form');
-    if (form) form.addEventListener('submit', submitStep1);
-    // Demo mode : pré-remplit + auto-login avec BATT Argentan
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('demo') === 'batt') {
-        autoLoginBatt();
+// ---------- Navigation ----------
+function goToStep(n) {
+    for (let i = 1; i <= TOTAL_STEPS; i++) {
+        const card = document.getElementById(`step-${i}`);
+        if (!card) continue;
+        card.classList.remove('active', 'current', 'done');
+        if (i < n) card.classList.add('done');
+        if (i === n) { card.classList.add('active', 'current'); }
     }
-});
+    document.getElementById('progress-fill').style.width = `${(n / TOTAL_STEPS) * 100}%`;
+    document.getElementById('step-count').textContent = `${n} / ${TOTAL_STEPS}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Lazy-load par étape
+    if (n === 3 && !state.diagnostic_data) loadStep3();
+    if (n === 4 && state.partenaires_non_marchands.length === 0) loadStep4();
+    if (n === 5 && state.cas_inspirants.length === 0) loadStep5();
+    if (n === 6 && state.partenaires_economiques.length === 0) loadStep6();
+    if (n === 7) renderStep7();
+}
 
-// ========== STEP 1: Création club ==========
-async function submitStep1(e) {
-    if (e) e.preventDefault();
-    const data = {
-        name: document.getElementById('club-name').value,
-        sport: document.getElementById('club-sport').value,
-        commune: document.getElementById('club-commune').value,
-        email: document.getElementById('club-email').value
-    };
-    let r, j;
+// ---------- Démo BATT Argentan ----------
+async function autoDemoBatt() {
+    console.log('Mode démo BATT Argentan activé');
+    document.getElementById('club-name').value = 'Bayard Argentan Tennis de Table';
+    document.getElementById('club-sport').value = 'Tennis de Table';
+    document.getElementById('club-level').value = 'regional';
+    document.getElementById('club-licencies').value = '120';
+    document.getElementById('club-salaries').value = '1';
+    document.getElementById('club-contact-name').value = 'Contact BATT';
+    document.getElementById('club-contact-email').value = 'contact@batt-argentan.fr';
+    // Pré-remplir commune Argentan via API
     try {
-        r = await fetch(API + '/api/clubs/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-        j = await r.json();
+        const r = await fetch(`${API}/api/communes/all?search=Argentan&limit=5`);
+        const d = await r.json();
+        const c = (d.communes || []).find(x => x.name.toLowerCase().includes('argentan')) || d.communes[0];
+        if (c) {
+            document.getElementById('club-commune-search').value = c.name;
+            document.getElementById('club-commune-code').value = c.code_insee;
+            state.commune_code = c.code_insee;
+            state.commune_name = c.name;
+        }
+    } catch (e) {
+        // mode dégradé : on remplit quand même, le user pourra corriger
+        document.getElementById('club-commune-search').value = 'Argentan';
+    }
+}
+
+// ---------- ÉTAPE 1 : Inscription + autocomplete commune ----------
+function initStep1() {
+    const input = document.getElementById('club-commune-search');
+    const dropdown = document.getElementById('commune-dropdown');
+    let timer = null;
+
+    input.addEventListener('input', () => {
+        clearTimeout(timer);
+        const q = input.value.trim();
+        document.getElementById('club-commune-code').value = '';
+        if (q.length < 2) { dropdown.classList.remove('show'); return; }
+        timer = setTimeout(() => searchCommunes(q), 250);
+    });
+
+    input.addEventListener('focus', () => {
+        if (dropdown.children.length > 0) dropdown.classList.add('show');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.commune-autocomplete')) dropdown.classList.remove('show');
+    });
+
+    document.getElementById('form-step-1').addEventListener('submit', (e) => {
+        e.preventDefault();
+        submitStep1();
+    });
+}
+
+async function searchCommunes(q) {
+    try {
+        const r = await fetch(`${API}/api/communes/all?search=${encodeURIComponent(q)}&limit=20`);
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const d = await r.json();
+        renderCommuneDropdown(d.communes || []);
     } catch (err) {
-        // Mode dégradé : génère un ID local pour permettre de continuer
-        state.club_id = 'local-' + Date.now();
-        document.getElementById('result-1').innerHTML = `
-            <div class="result-box">
-                <h3>⚠️ Sauvegarde serveur indisponible</h3>
-                <p><strong>Nom:</strong> ${data.name}</p>
-                <p><strong>Sport:</strong> ${data.sport}</p>
-                <p><strong>Commune:</strong> ${data.commune}</p>
-                <p style="font-size:0.85em;color:#6b7280;margin-top:8px;">Votre parcours reste en local sur cet appareil.</p>
-            </div>`;
-        markDone(1);
-        renderQuestions();
-        goToStep(2);
+        console.warn('Autocomplete communes KO', err);
+        document.getElementById('commune-dropdown').innerHTML =
+            '<div style="padding:10px;color:#dc2626;font-size:13px;">Erreur réseau. Réessayez ou saisissez une commune voisine.</div>';
+        document.getElementById('commune-dropdown').classList.add('show');
+    }
+}
+
+function renderCommuneDropdown(communes) {
+    const dropdown = document.getElementById('commune-dropdown');
+    if (communes.length === 0) {
+        dropdown.innerHTML = '<div style="padding:10px;color:#6b7280;font-size:13px;">Aucune commune trouvée. Essayez avec moins de lettres ou le nom d'une commune voisine.</div>';
+    } else {
+        dropdown.innerHTML = communes.map(c => `
+            <div class="commune-dropdown-item" data-code="${c.code_insee}" data-name="${c.name.replace(/"/g,'&quot;')}">
+                ${c.name}<span class="dept">(${c.department || ''})</span>
+            </div>
+        `).join('');
+        dropdown.querySelectorAll('.commune-dropdown-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.getElementById('club-commune-search').value = item.dataset.name;
+                document.getElementById('club-commune-code').value = item.dataset.code;
+                state.commune_code = item.dataset.code;
+                state.commune_name = item.dataset.name;
+                dropdown.classList.remove('show');
+            });
+        });
+    }
+    dropdown.classList.add('show');
+}
+
+async function submitStep1() {
+    const communeCode = document.getElementById('club-commune-code').value;
+    if (!communeCode) {
+        alert('Veuillez sélectionner une commune dans la liste (cliquez sur une suggestion).');
         return;
     }
-    if (r.ok) {
-        state.club_id = j.club_id || j.id;
-        document.getElementById('result-1').innerHTML = `
-            <div class="result-box">
-                <h3>✅ Club créé avec succès</h3>
-                <p><strong>Nom:</strong> ${j.name || data.name}</p>
-                <p><strong>Sport:</strong> ${j.sport || data.sport}</p>
-                <p><strong>Commune:</strong> ${j.commune || data.commune}</p>
-            </div>`;
-        markDone(1);
-        renderQuestions();
-        goToStep(2);
-    } else {
-        document.getElementById('result-1').innerHTML = `
-            <div class="result-box error">
-                <h3>❌ Erreur</h3>
-                <p>${j.detail || 'Erreur inconnue'}</p>
-            </div>`;
-    }
-}
+    const btn = document.getElementById('btn-step-1');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="loader"></span> Création…';
 
-async function autoLoginBatt() {
-    const banner = document.getElementById('demo-banner');
-    if (banner) banner.style.display = 'block';
+    const payload = {
+        name: document.getElementById('club-name').value.trim(),
+        sport: document.getElementById('club-sport').value.trim(),
+        niveau: document.getElementById('club-level').value,
+        licencies: parseInt(document.getElementById('club-licencies').value) || 0,
+        salaries_etp: parseFloat(document.getElementById('club-salaries').value) || 0,
+        city: state.commune_name,
+        code_insee: communeCode,
+        contact_name: document.getElementById('club-contact-name').value.trim(),
+        contact_email: document.getElementById('club-contact-email').value.trim(),
+        contact_phone: document.getElementById('club-contact-phone').value.trim(),
+    };
+
     try {
-        const r = await fetch(API + '/api/parcours/clubs/login', {
+        const r = await fetch(`${API}/api/clubs/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: 'contact@batt-argentan.fr', password: 'batt2026' })
+            body: JSON.stringify(payload),
         });
-        if (!r.ok) throw new Error('login failed: ' + r.status);
-        const data = await r.json();
-        state.club_id = data.club_id;
-        state.commune_code = '61006';
-        state.commune_name = 'Argentan';
-        // Pré-remplit le formulaire pour cohérence visuelle
-        const nameField = document.getElementById('club-name');
-        if (nameField) nameField.value = data.name || 'BATT Argentan';
-        const emailField = document.getElementById('club-email');
-        if (emailField) emailField.value = 'contact@batt-argentan.fr';
-        const communeField = document.getElementById('club-commune');
-        if (communeField) communeField.value = 'Argentan';
-        markDone(1);
-        if (typeof renderQuestions === 'function') renderQuestions();
-        goToStep(2);
+        let data = {};
+        try { data = await r.json(); } catch (e) {}
+
+        if (r.ok && data.club_id) {
+            state.club_id = data.club_id;
+        } else if (r.ok && data.id) {
+            state.club_id = data.id;
+        } else {
+            // mode dégradé : ID local
+            state.club_id = 'local-' + Date.now();
+            console.warn('API /clubs/register KO, mode dégradé activé', r.status, data);
+        }
     } catch (err) {
-        console.error('Demo login failed:', err);
-        alert('Mode démo indisponible. Réessaie plus tard.');
+        state.club_id = 'local-' + Date.now();
+        console.warn('API /clubs/register KO, mode dégradé', err);
     }
+
+    state.commune_code = communeCode;
+    goToStep(2);
+    renderStep2();
+    btn.disabled = false;
+    btn.innerHTML = 'Créer mon club →';
 }
 
-// ========== STEP 2: Questions ==========
-function renderQuestions() {
+// ---------- ÉTAPE 2 : Questionnaire club ----------
+function renderStep2() {
     const questions = [
-        // Maturité sociétale (5 questions)
-        { id: 'q1', text: 'Avez-vous déjà réalisé un projet à impact social/environnemental ?', options: ['Oui, plusieurs', 'Oui, un', 'Non, jamais'], section: 'maturite' },
-        { id: 'q2', text: 'Avez-vous des partenariats actifs avec des associations locales ?', options: ['Oui, régulièrement', 'Ponctuellement', 'Non'], section: 'maturite' },
-        { id: 'q3', text: 'Mesurez-vous l\'impact de vos actions ?', options: ['Oui, avec des indicateurs', 'Informellement', 'Non'], section: 'maturite' },
-        { id: 'q4', text: 'Avez-vous une stratégie RSE ou de développement durable ?', options: ['Oui, formalisée', 'En réflexion', 'Non'], section: 'maturite' },
-        { id: 'q5', text: 'Avez-vous déjà candidaté à un appel à projets ?', options: ['Oui, et obtenu', 'Oui, sans succès', 'Non'], section: 'maturite' },
-        // Type de projet (3 questions)
-        { id: 'q6', text: 'Quel public votre projet vise-t-il en priorité ?', options: ['Personnes âgées', 'Jeunes en difficulté', 'Personnes en situation de handicap', 'Tout public'], section: 'projet' },
-        { id: 'q7', text: 'Quelle est votre principale motivation ?', options: ['Lien social / inclusion', 'Santé / bien-être', 'Environnement / écologie', 'Éducation / transmission'], section: 'projet' },
-        { id: 'q8', text: 'Quel budget estimé pour votre premier projet ?', options: ['Moins de 1 000 €', '1 000 - 5 000 €', '5 000 - 15 000 €', 'Plus de 15 000 €'], section: 'projet' }
+        // Maturité sociétale (5)
+        { id: 'q1', text: 'Avez-vous déjà réalisé un projet à impact social/environnemental ?',
+          options: ['Oui, plusieurs', 'Oui, un', 'Non, jamais'], section: 'maturite' },
+        { id: 'q2', text: 'Avez-vous des partenariats actifs avec des associations locales ?',
+          options: ['Oui, régulièrement', 'Ponctuellement', 'Non'], section: 'maturite' },
+        { id: 'q3', text: 'Mesurez-vous l'impact de vos actions ?',
+          options: ['Oui, avec des indicateurs', 'Informellement', 'Non'], section: 'maturite' },
+        { id: 'q4', text: 'Avez-vous une stratégie RSE ou de développement durable ?',
+          options: ['Oui, formalisée', 'En réflexion', 'Non'], section: 'maturite' },
+        { id: 'q5', text: 'Avez-vous déjà candidaté à un appel à projets ?',
+          options: ['Oui, et obtenu', 'Oui, sans succès', 'Non'], section: 'maturite' },
+        // Type de projet (3)
+        { id: 'q6', text: 'Quel public votre projet vise-t-il en priorité ?',
+          options: ['Personnes âgées', 'Jeunes en difficulté', 'Personnes en situation de handicap', 'Tout public'], section: 'projet' },
+        { id: 'q7', text: 'Quelle est votre principale motivation ?',
+          options: ['Lien social / inclusion', 'Santé / bien-être', 'Environnement / écologie', 'Éducation / transmission'], section: 'projet' },
+        { id: 'q8', text: 'Quel budget estimé pour votre premier projet ?',
+          options: ['Moins de 1 000 €', '1 000 - 5 000 €', '5 000 - 15 000 €', 'Plus de 15 000 €'], section: 'projet' },
     ];
-    // Groupement par section
     const sections = [
         { id: 'maturite', title: 'Maturité sociétale de votre club', subtitle: '5 questions sur vos pratiques actuelles' },
-        { id: 'projet', title: 'Votre projet en tête', subtitle: '3 questions pour personnaliser la suite' }
+        { id: 'projet', title: 'Votre projet en tête', subtitle: '3 questions pour personnaliser la suite' },
     ];
     const html = sections.map(sec => {
         const qSec = questions.filter(q => q.section === sec.id);
@@ -730,9 +527,9 @@ function renderQuestions() {
                 <h4 style="color: #1f2937; margin-bottom: 4px;">${sec.title}</h4>
                 <p style="color: #6b7280; font-size: 0.9em; margin-bottom: 12px;">${sec.subtitle}</p>
                 ${qSec.map(q => `
-                    <div class="question-card" style="margin-bottom: 12px; padding: 14px; background: #f9fafb; border-radius: 8px;">
-                        <label style="font-weight: 500; display: block; margin-bottom: 8px; color: #374151;">${q.text}</label>
-                        <select id="${q.id}" class="form-select" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px;">
+                    <div class="question-card">
+                        <label>${q.text}</label>
+                        <select id="${q.id}" class="form-select" style="width:100%;padding:8px;border:1px solid #d1d5db;border-radius:4px;">
                             <option value="">-- Choisir --</option>
                             ${q.options.map(o => `<option value="${o}">${o}</option>`).join('')}
                         </select>
@@ -746,472 +543,515 @@ function renderQuestions() {
 
 async function submitStep2() {
     const answers = {};
+    let allFilled = true;
     document.querySelectorAll('.question-card select').forEach(sel => {
         answers[sel.id] = sel.value;
+        if (!sel.value) allFilled = false;
     });
-    const r = await fetch(API + '/api/diagnostics', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ club_id: state.club_id, answers })
-    });
-    const j = await r.json();
-    if (r.ok) {
-        state.score = j.score;
-        state.profile = j.profile;
-        state.thematiques_suggerees = j.thematiques_suggerees || [];
-        state.public_cible = j.public_cible || '';
-        state.motivation = j.motivation || '';
-        document.getElementById('result-2').innerHTML = `
-            <div class="result-box">
-                <h3>📊 Profil évalué</h3>
-                <p><strong>Score:</strong> ${j.score}/20</p>
-                <p><strong>Profil:</strong> ${j.profile}</p>
-                <p style="margin-top: 12px; color: #6b7280;">${j.description || j.recommendation || ''}</p>
-            </div>`;
-        markDone(2);
-        goToStep(3);
-    } else {
-        alert('Erreur: ' + (j.detail || 'inconnue'));
-    }
-}
-
-// ========== STEP 3: Commune ==========
-async function loadStep3() {
-    const r = await fetch(API + '/api/communes/all?limit=20');
-    const d = await r.json();
-    const communes = d.communes || [];
-    const select = document.getElementById('commune-select');
-    if (select) {
-        select.innerHTML = '<option value="">-- Choisir --</option>' +
-            communes.map(c => `<option value="${c.code_insee}">${c.name} (${c.code_insee})</option>`).join('');
-    }
-}
-
-async function submitStep3() {
-    const code = document.getElementById('commune-select').value;
-    if (!code) { alert('Sélectionnez une commune'); return; }
-    const r = await fetch(API + `/api/communes/${code}`);
-    const j = await r.json();
-    if (r.ok) {
-        state.commune_code = code;
-        state.commune_name = communeData.name || communeData.nom || '';
-        state.commune_code = code;
-        state.commune_name = communeData.name || communeData.nom || '';
-        const communeData = j.commune || j;
-        document.getElementById('result-3').innerHTML = `
-            <div class="result-box">
-                <h3>📍 ${communeData.name || communeData.nom}</h3>
-                <p><strong>Population:</strong> ${(communeData.population || 0).toLocaleString() || 'N/A'}</p>
-                <p><strong>Code INSEE:</strong> ${communeData.code_insee || code}</p>
-            </div>`;
-        markDone(3);
-        loadStep4();
-        goToStep(4);
-    } else {
-        alert('Erreur: ' + (j.detail || 'inconnue'));
-    }
-}
-
-// ========== STEP 4: Diagnostic territorial ==========
-async function loadStep4() {
-    const code = state.commune_code || document.getElementById('commune-select')?.value;
-    if (!code) return;
-    const r = await fetch(API + `/api/communes/${code}/diagnostic-territorial`);
-    const d = await r.json();
-    
-    // Thématiques prioritaires
-    const thematiques = d.thematiques_prioritaires || [];
-    const thematiquesHtml = thematiques.length
-        ? thematiques.map(t => `
-            <span class="badge badge-orange" style="margin: 4px; padding: 8px 14px; display: inline-block; font-size: 0.95em;">${t}</span>
-        `).join('')
-        : '<p style="color: #6b7280;">Aucune thématique identifiée pour cette commune</p>';
-    
-    // Lecture humaine (résumé en une phrase)
-    const lectureHtml = d.lecture_humaine
-        ? `<div style="background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%); padding: 16px 20px; border-radius: 10px; border-left: 4px solid #3b82f6; margin-bottom: 20px;">
-            <p style="margin: 0; color: #1e40af; font-size: 1.05em; line-height: 1.6;">📍 ${d.lecture_humaine}</p>
-        </div>`
-        : '';
-    
-    // Clubs locaux
-    const clubsLocaux = d.clubs_locaux || [];
-    const clubsHtml = clubsLocaux.length
-        ? `<div style="margin-top: 20px;">
-            <h4 style="color: #1f2937; margin-bottom: 10px;">🏟️ Clubs sportifs sur votre commune (${clubsLocaux.length})</h4>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px;">
-                ${clubsLocaux.map(c => `
-                    <div style="background: white; border: 1px solid #e5e7eb; padding: 10px 14px; border-radius: 8px;">
-                        <div style="font-weight: 600; color: #111827;">${c.name}</div>
-                        <div style="font-size: 0.85em; color: #6b7280;">${c.sport}</div>
-                    </div>
-                `).join('')}
-            </div>
-        </div>`
-        : '';
-    
-    // Partenaires proches
-    const partenaires = [...(d.partenaires_locaux || []), ...(d.partenaires_proches || [])];
-    const partenairesHtml = partenaires.length
-        ? `<div style="margin-top: 20px;">
-            <h4 style="color: #1f2937; margin-bottom: 10px;">🤝 Partenaires potentiels à proximité (${partenaires.length})</h4>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px;">
-                ${partenaires.slice(0, 8).map(p => `
-                    <div style="background: white; border: 1px solid #e5e7eb; padding: 10px 14px; border-radius: 8px;">
-                        <div style="font-weight: 600; color: #111827;">${p.name}</div>
-                        <div style="font-size: 0.85em; color: #6b7280;">${p.city} • ${p.distance_km} km</div>
-                        ${p.themes && p.themes.length ? `<div style="font-size: 0.8em; color: #9ca3af; margin-top: 4px;">${p.themes.slice(0, 2).join(' • ')}</div>` : ''}
-                    </div>
-                `).join('')}
-            </div>
-        </div>`
-        : '';
-    
-    // Cas inspirants à proximité
-    const cas = d.cas_inspirants_proches || [];
-    const casHtml = cas.length
-        ? `<div style="margin-top: 20px;">
-            <h4 style="color: #1f2937; margin-bottom: 10px;">💡 Cas inspirants dans votre zone (${cas.length})</h4>
-            <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
-                ${cas.map(c => `
-                    <div style="background: linear-gradient(90deg, #fef3c7 0%, #fefce8 100%); border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 8px;">
-                        <div style="font-weight: 600; color: #78350f;">${c.title}</div>
-                        <div style="font-size: 0.85em; color: #92400e; margin-top: 4px;">📍 ${c.city} • ${c.distance_km} km${c.budget ? ` • Budget ${c.budget.toLocaleString('fr-FR')} €` : ''}</div>
-                    </div>
-                `).join('')}
-            </div>
-        </div>`
-        : '';
-    
-    document.getElementById('result-4').innerHTML = `
-        <div class="result-box">
-            ${lectureHtml}
-            <h3 style="color: #1f2937; margin-bottom: 12px;">🎯 Thématiques prioritaires</h3>
-            <div style="margin-bottom: 8px;">${thematiquesHtml}</div>
-            ${clubsHtml}
-            ${partenairesHtml}
-            ${casHtml}
-        </div>`;
-}
-
-// ========== STEP 5: Shortlist partenaires ==========
-async function loadStep5() {
-    const code = state.commune_code || document.getElementById('commune-select')?.value;
-    if (!code) return;
-    let communeName = state.commune_name || '';
-    if (!communeName) {
-        const sel = document.getElementById('commune-select');
-        communeName = sel?.options[sel.selectedIndex]?.text.split(' (')[0] || '';
-    }
-    const thematiques = Array.from(document.querySelectorAll('#result-4 .badge'))
-        .map(b => b.textContent.trim());
-    const params = new URLSearchParams({ commune: communeName, limit: '10' });
-    if (thematiques.length) params.append('thematiques', thematiques.join(','));
-    const r = await fetch(API + '/api/shortlist?' + params);
-    const d = await r.json();
-    const partners = d.shortlist || d.partners || [];
-    if (!partners.length) {
-        document.getElementById('result-5').innerHTML = `
-            <div class="result-box"><p>Aucun partenaire identifié pour ${communeName}. Essayez une autre commune.</p></div>`;
+    if (!allFilled) {
+        alert('Veuillez répondre à toutes les questions avant de valider.');
         return;
     }
-    const html = partners.map(p => `
-        <div class="partner-card" data-id="${p.id}" onclick="togglePartner(this, '${p.id}')" style="cursor: pointer; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; background: white;">
-            <div style="font-weight: 600;">${p.name || p.nom}</div>
-            <div style="font-size: 0.9em; color: #6b7280;">${p.category || p.type || ''}</div>
-            <div style="margin-top: 6px;"><span class="badge badge-blue">Score: ${p.score || 'N/A'}</span> ${(p.themes || []).slice(0,3).map(t => `<span class="badge badge-orange" style="margin-left:4px;">${t}</span>`).join('')}</div>
-        </div>
-    `).join('');
-    document.getElementById('result-5').innerHTML = `
-        <div style="margin-bottom: 12px;"><strong>${partners.length} partenaires potentiels</strong> à ${communeName} — cliquez pour sélectionner</div>
-        ${html}`;
-}
-
-function togglePartner(el, id) {
-    el.classList.toggle('selected');
-    if (el.classList.contains('selected')) {
-        el.style.borderColor = '#10b981';
-        el.style.background = '#f0fdf4';
-        state.selected_partners.push(id);
-    } else {
-        el.style.borderColor = '#e5e7eb';
-        el.style.background = 'white';
-        state.selected_partners = state.selected_partners.filter(p => p !== id);
-    }
-}
-
-async function submitStep5() {
-    if (state.selected_partners.length === 0) {
-        alert('Sélectionnez au moins 1 partenaire');
-        return;
-    }
-    markDone(5);
-    goToStep(6);
-    loadStep6();
-}
-
-// ========== STEP 6: Cas inspirants ==========
-async function loadStep6() {
-    // Récupérer les thématiques depuis le diagnostic (étape 4 ou state)
-    let thematiques = Array.from(document.querySelectorAll('#result-4 .badge'))
-        .map(b => b.textContent.trim());
-    // Si on a les thematiques suggérées par le diagnostic (q7 motivation), les prioriser
-    if (state.thematiques_suggerees && state.thematiques_suggerees.length) {
-        const suggerees = state.thematiques_suggerees;
-        // Préfixer les suggérées pour qu'elles soient en premier
-        thematiques = [...new Set([...suggerees, ...thematiques])];
-    }
-    const params = new URLSearchParams({ limit: '5' });
-    if (state.commune_code) params.append('commune_code', state.commune_code);
-    if (state.club_id) params.append('club_id', state.club_id);
-    if (thematiques.length) params.append('thematiques', thematiques.join(','));
-    let cas = [];
+    const btn = document.getElementById('btn-step-2');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="loader"></span> Envoi…';
     try {
-        const r = await fetch(API + '/api/cas-inspirants/match?' + params);
+        const r = await fetch(`${API}/api/diagnostics`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ club_id: state.club_id, answers }),
+        });
         if (r.ok) {
             const d = await r.json();
-            cas = d.cas_inspirants || [];
+            state.diagnostic_id = d.diagnostic_id || d.id;
         }
-    } catch (e) {
-        console.warn('Cas inspirants match endpoint error:', e);
+    } catch (err) {
+        console.warn('POST /api/diagnostics KO', err);
     }
-    // Fallback : si le match n'a rien donné ou a planté, essayer le listing brut
-    if (cas.length === 0) {
-        try {
-            const r2 = await fetch(API + '/api/cas-inspirants?limit=5');
-            if (r2.ok) {
-                const d2 = await r2.json();
-                cas = d2.cas_inspirants || [];
-            }
-        } catch (e2) {
-            console.warn('Cas inspirants fallback error:', e2);
-        }
-    }
-    if (!cas.length) {
-        document.getElementById('result-6').innerHTML = `
-            <div class="result-box"><p>Aucun cas inspirant trouvé.</p></div>`;
-        return;
-    }
-    const html = cas.map(c => `
-        <div class="partner-card" data-id="${c.id}" onclick="selectCasInspirant(this, '${c.id}')" style="cursor: pointer; padding: 16px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px;">
-            <div style="font-weight: 600; font-size: 1.05em;">${c.titre || c.name || 'Sans titre'}</div>
-            <div style="color: #6b7280; font-size: 0.9em; margin: 6px 0;">${c.description || ''}</div>
-            <div style="margin-top: 8px;">
-                ${(c.thematiques || []).slice(0, 3).map(t => `<span class="badge badge-green" style="margin-right: 4px; font-size: 0.8em;">${t}</span>`).join('')}
-                ${c.score ? `<span class="badge badge-blue" style="margin-right: 4px; font-size: 0.8em;">Score: ${c.score}</span>` : ''}
-                ${c.budget_reel ? `<span class="badge badge-orange" style="font-size: 0.8em;">Budget: ${c.budget_reel.toLocaleString()} €</span>` : ''}
-                ${c.distance_km != null ? `<span class="badge ${c.distance_km <= 30 ? 'badge-green' : c.distance_km <= 100 ? 'badge-blue' : ''}" style="font-size: 0.8em;">📍 ${c.distance_km} km</span>` : ''}
-            </div>
-        </div>
-    `).join('');
-    document.getElementById('result-6').innerHTML = `
-        <div style="margin-bottom: 12px;"><strong>${cas.length} cas inspirants</strong> — sélectionnez celui qui vous inspire le plus</div>
-        ${html}`;
+    // Map motivations → thématiques suggérées
+    state.thematiques_selectionnees = suggestThematiques(answers);
+    btn.disabled = false;
+    btn.innerHTML = 'Valider et lancer le diagnostic →';
+    goToStep(3);
 }
 
-function selectCasInspirant(el, id) {
-    document.querySelectorAll('#result-6 .partner-card').forEach(c => {
-        c.style.borderColor = '#e5e7eb';
-        c.style.background = 'white';
-    });
-    el.style.borderColor = '#10b981';
-    el.style.background = '#f0fdf4';
-    state.selected_project = id;
-}
-
-async function submitStep6() {
-    if (!state.selected_project) {
-        alert('Sélectionnez un cas inspirant');
-        return;
-    }
-    markDone(6);
-    goToStep(7);
-    loadStep7();
-}
-
-// ========== STEP 7: AAP ==========
-async function loadStep7() {
-    const r = await fetch(API + '/api/funding-sources');
-    const d = await r.json();
-    const sources = d.funding_sources || [];
-    if (!sources.length) {
-        document.getElementById('result-7').innerHTML = `
-            <div class="result-box"><p>Aucun AAP disponible actuellement.</p></div>`;
-        return;
-    }
-    const html = sources.map(f => {
-        const deadline = f.deadline || 'Non précisée';
-        const isUrgent = f.deadline && new Date(f.deadline) < new Date(Date.now() + 30*24*60*60*1000);
-        const montant = f.amount_max ? `Jusqu'à ${f.amount_max.toLocaleString()} €` : (f.amount_min ? `À partir de ${f.amount_min.toLocaleString()} €` : 'Montant variable');
-        const eligible = (f.eligibility_criteria || []).slice(0, 3).map(e => `<span class="badge badge-green" style="margin: 2px; font-size: 0.75em;">${e}</span>`).join(' ');
-        return `
-        <div class="partner-card" data-id="${f.id}" onclick="toggleAAP(this, '${f.id}')" style="cursor: pointer; padding: 16px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px;">
-            <div style="font-weight: 600; font-size: 1.1em; margin-bottom: 4px;">${f.name}</div>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px;">
-                <span class="badge badge-orange">${f.type || 'AAP'}</span>
-                <span style="color: ${isUrgent ? '#dc2626' : '#6b7280'}; font-size: 0.9em; font-weight: ${isUrgent ? 'bold' : 'normal'};">📅 Deadline : ${deadline}${isUrgent ? ' ⚠️' : ''}</span>
-            </div>
-            <div style="color: #6b7280; font-size: 0.9em; margin-bottom: 6px;">💰 ${montant}</div>
-            ${eligible ? `<div>Éligibilité : ${eligible}</div>` : ''}
-            ${f.description ? `<div style="margin-top: 8px; color: #4b5563; font-size: 0.9em;">${f.description.substring(0, 200)}${f.description.length > 200 ? '...' : ''}</div>` : ''}
-            ${f.url ? `<div style="margin-top: 8px;"><a href="${f.url}" target="_blank" style="color: #3b82f6; text-decoration: none; font-size: 0.85em;">🔗 En savoir plus</a></div>` : ''}
-        </div>`;
-    }).join('');
-    document.getElementById('result-7').innerHTML = `
-        <div style="margin-bottom: 16px; padding: 12px; background: #fff7ed; border-radius: 8px;">
-            <strong>📢 ${sources.length} appels à projets</strong> identifiés pour votre profil.
-            <br><span style="font-size: 0.9em; color: #6b7280;">Cliquez sur un AAP pour l'ajouter à votre dossier (${state.selected_aaps.length} sélectionné(s))</span>
-        </div>
-        ${html}`;
-}
-
-function toggleAAP(el, id) {
-    el.classList.toggle('selected');
-    if (el.classList.contains('selected')) {
-        el.style.borderColor = '#10b981';
-        el.style.background = '#f0fdf4';
-        state.selected_aaps.push(id);
-    } else {
-        el.style.borderColor = '#e5e7eb';
-        el.style.background = 'white';
-        state.selected_aaps = state.selected_aaps.filter(a => a !== id);
-    }
-}
-
-async function submitStep7() {
-    if (state.selected_aaps.length === 0) {
-        alert('Sélectionnez au moins 1 AAP');
-        return;
-    }
-    const r = await fetch(API + '/api/dossiers/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            club_id: state.club_id,
-            project_id: state.selected_project,
-            funding_source_ids: state.selected_aaps
-        })
-    });
-    const j = await r.json();
-    if (r.ok) {
-        state.dossier_id = j.dossier_id;
-        renderStep8(j);
-        markDone(7);
-        goToStep(8);
-    } else {
-        alert('Erreur: ' + (j.detail || 'inconnue'));
-    }
-}
-
-// ========== STEP 8: Dossier final ==========
-function renderStep8(j) {
-    const profilLabels = {
-        engaged: '🌟 Engaged (Mature)',
-        emerging: '🌿 Emerging (En progression)',
-        aware: '🌱 Aware (Démarrage)',
-        novice: '🌰 Novice (Débutant)'
+function suggestThematiques(answers) {
+    const map = {
+        'Lien social / inclusion': [2, 15],
+        'Santé / bien-être': [1, 14],
+        'Environnement / écologie': [3, 16],
+        'Éducation / transmission': [4, 13],
     };
-    const profil = profilLabels[state.profile] || 'Non défini';
-    document.getElementById('result-8').innerHTML = `
-        <div style="background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%); padding: 32px; border-radius: 16px; border: 2px solid #10b981;">
-            <h2 style="color: #059669; margin-bottom: 16px;">🎉 Votre dossier est prêt !</h2>
-            <p style="font-size: 1.1em; color: #374151; margin-bottom: 24px;">
-                Félicitations ! Vous avez parcouru les 8 étapes du parcours TerritoireSport.
-                Voici un récapitulatif de votre projet à impact.
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
-                <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #3b82f6;">
-                    <div style="font-size: 0.85em; color: #6b7280;">Votre profil</div>
-                    <div style="font-size: 1.1em; font-weight: bold; color: #111827;">${profil}</div>
-                    <div style="font-size: 0.9em; color: #6b7280;">Score : ${state.score}/20</div>
-                </div>
-                <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #10b981;">
-                    <div style="font-size: 0.85em; color: #6b7280;">Partenaires</div>
-                    <div style="font-size: 1.1em; font-weight: bold; color: #111827;">${state.selected_partners.length} sélectionné(s)</div>
-                    <div style="font-size: 0.9em; color: #6b7280;">Sur la shortlist</div>
-                </div>
-                <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #f59e0b;">
-                    <div style="font-size: 0.85em; color: #6b7280;">AAP ciblés</div>
-                    <div style="font-size: 1.1em; font-weight: bold; color: #111827;">${j.funding_sources.length} financement(s)</div>
-                    <div style="font-size: 0.9em; color: #6b7280;">Identifiés pour vous</div>
-                </div>
-            </div>
-            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 24px;">
-                <h3 style="margin: 0 0 12px 0; color: #111827;">📋 Contenu de votre dossier</h3>
-                <ul style="margin: 0; padding-left: 20px; color: #4b5563; line-height: 1.8;">
-                    <li><strong>Fiche club</strong> : identification, sport, territoire</li>
-                    <li><strong>Diagnostic territorial</strong> : enjeux et thématiques de votre commune</li>
-                    <li><strong>Évaluation maturité</strong> : profil, forces, axes de progression</li>
-                    <li><strong>Cas inspirant de référence</strong> : projet modèle à adapter</li>
-                    <li><strong>Shortlist de partenaires</strong> : ${state.selected_partners.length} contacts qualifiés</li>
-                    <li><strong>Argumentaires AAP</strong> : ${j.funding_sources.length} dossiers adaptés</li>
-                </ul>
-            </div>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;">
-                <a href="${j.download_url}" style="background: #10b981; color: white; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">📥 Télécharger mon dossier</a>
-                <a href="mailto:contact@territoiresport.fr?subject=Demande%20d'accompagnement%20-%20Dossier%20${j.dossier_id}" style="background: #3b82f6; color: white; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">🤝 Demander un accompagnement</a>
-                <button onclick="window.print()" style="background: white; color: #374151; padding: 14px 24px; border-radius: 8px; border: 2px solid #d1d5db; font-weight: 600; cursor: pointer;">🖨️ Imprimer</button>
-            </div>
-            <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 8px;">
-                <h4 style="margin: 0 0 8px 0; color: #92400e;">📌 Prochaines étapes recommandées</h4>
-                <ol style="margin: 0; padding-left: 24px; color: #78350f; line-height: 1.8;">
-                    <li><strong>Semaine 1-2</strong> : prenez contact avec les ${state.selected_partners.length} partenaires sélectionnés pour présenter votre projet</li>
-                    <li><strong>Semaine 3-4</strong> : adaptez le cas inspirant à votre territoire en impliquant vos partenaires</li>
-                    <li><strong>Mois 2</strong> : finalisez votre dossier de candidature AAP avec les éléments collectés</li>
-                    <li><strong>Mois 3</strong> : déposez votre demande avant la deadline du premier AAP</li>
-                    <li><strong>En continu</strong> : documentez votre démarche pour la mesure d'impact</li>
-                </ol>
-            </div>
-            <div style="background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%); padding: 20px; border-radius: 12px; margin-top: 24px; border-left: 4px solid #4f46e5;">
-                <h4 style="margin: 0 0 12px 0; color: #3730a3;">⚡ Vos 3 actions pour cette semaine</h4>
-                <div style="display: grid; gap: 10px;">
-                    <label style="display: flex; gap: 10px; align-items: start; background: white; padding: 10px 14px; border-radius: 8px; cursor: pointer;">
-                        <input type="checkbox" style="margin-top: 4px;">
-                        <span><strong>Contacter 2 partenaires</strong> de votre shortlist (préparer un message court et personnalisé)</span>
-                    </label>
-                    <label style="display: flex; gap: 10px; align-items: start; background: white; padding: 10px 14px; border-radius: 8px; cursor: pointer;">
-                        <input type="checkbox" style="margin-top: 4px;">
-                        <span><strong>Lire le cas inspirant</strong> sélectionné en détail (rubrique 'description' et 'partenaires')</span>
-                    </label>
-                    <label style="display: flex; gap: 10px; align-items: start; background: white; padding: 10px 14px; border-radius: 8px; cursor: pointer;">
-                        <input type="checkbox" style="margin-top: 4px;">
-                        <span><strong>Identifier 2-3 financeurs potentiels</strong> parmi les AAP et ouvrir les liens</span>
-                    </label>
-                </div>
-                <p style="margin: 14px 0 0 0; font-size: 0.9em; color: #4338ca;">💡 <em>Cochez au fur et à mesure. Cette liste est imprimable avec votre dossier.</em></p>
-            </div>
-
-            <div style="background: #fce7f3; border-radius: 12px; padding: 20px; margin-top: 16px; text-align: center;">
-                <h4 style="margin: 0 0 8px 0; color: #831843;">🤝 Rejoignez la communauté des clubs engagés</h4>
-                <p style="margin: 0 0 14px 0; color: #9d174d; font-size: 0.95em;">Échangez avec d'autres clubs qui montent des projets similaires. Partagez vos avancées, posez vos questions, trouvez des partenaires.</p>
-                <a href="https://t.me/+VHvotreLien" target="_blank" style="background: #0088cc; color: white; padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; margin-right: 8px;">📱 Groupe Telegram</a>
-                <a href="mailto:contact@territoiresport.fr?subject=Témoignage%20-%20Dossier%20${j.dossier_id}" style="background: white; color: #831843; padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; border: 2px solid #f9a8d4;">✍️ Témoigner après mon projet</a>
-            </div>
-
-            <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e5e7eb; font-size: 0.85em; color: #6b7280;">
-                <strong>Référence dossier</strong> : ${j.dossier_id}<br>
-                <strong>Date de génération</strong> : ${new Date().toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-            </div>
-        </div>`;
+    const mot = answers.q7 || '';
+    const thems = new Set(map[mot] || [2]);
+    // Ajoute par public cible
+    if (answers.q6 === 'Personnes âgées') thems.add(11);
+    if (answers.q6 === 'Jeunes en difficulté') thems.add(2);
+    if (answers.q6 === 'Personnes en situation de handicap') thems.add(12);
+    return Array.from(thems);
 }
 
-// ========== UTILITIES ==========
-function goToStep(n) {
-    document.querySelectorAll('.step-card').forEach(s => s.classList.remove('active'));
-    document.getElementById('step-' + n).classList.add('active');
-    document.getElementById('step-' + n).scrollIntoView({ behavior: 'smooth', block: 'start' });
-    if (n === 3) loadStep3();
-    if (n === 5) loadStep5();
-}
-
-function markDone(n) {
-    const indicator = document.getElementById('step-' + n + '-status');
-    if (indicator) {
-        indicator.textContent = '✅';
-        indicator.style.color = '#10b981';
+// ---------- ÉTAPE 3 : Diagnostic territorial ----------
+async function loadStep3() {
+    document.getElementById('diag-commune-name').textContent = state.commune_name || 'votre commune';
+    try {
+        const r = await fetch(`${API}/api/communes/${state.commune_code}/diagnostic-territorial`);
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const data = await r.json();
+        state.diagnostic_data = data;
+        renderStep3(data);
+    } catch (err) {
+        console.warn('Diagnostic territorial KO', err);
+        renderStep3Error(err);
     }
 }
-</script>
 
+function renderStep3(data) {
+    document.getElementById('diagnostic-loading').style.display = 'none';
+    const container = document.getElementById('diagnostic-content');
+    const commune = data.commune || {};
+    const clubsLocaux = data.clubs || [];
+    const partenaires = data.partenaires || data.partenaires_proches || [];
+
+    let html = `
+        <div class="diagnostic-section">
+            <h3>📍 ${commune.name} (${commune.department || ''})</h3>
+            <p style="color:#6b7280;font-size:13px;">
+                Population : <strong>${(commune.population || 0).toLocaleString('fr-FR')}</strong> habitants
+                ${commune.epci ? ` · EPCI : ${commune.epci}` : ''}
+            </p>
+        </div>
+    `;
+
+    if (clubsLocaux.length > 0) {
+        html += `
+            <div class="diagnostic-section">
+                <h3>🏅 Clubs sportifs présents (${clubsLocaux.length})</h3>
+                <ul>${clubsLocaux.slice(0, 5).map(c => `<li>${c.name} — ${c.sport || 'sport'}</li>`).join('')}</ul>
+                ${clubsLocaux.length > 5 ? `<p style="color:#6b7280;font-size:13px;margin-top:6px;">… et ${clubsLocaux.length - 5} autres</p>` : ''}
+            </div>
+        `;
+    }
+
+    if (partenaires.length > 0) {
+        html += `
+            <div class="diagnostic-section">
+                <h3>🤝 Acteurs à proximité (${partenaires.length})</h3>
+                <ul>${partenaires.slice(0, 5).map(p => `<li>${p.name} — ${p.city || ''}${p.distance_km ? ` (${p.distance_km} km)` : ''}</li>`).join('')}</ul>
+                ${partenaires.length > 5 ? `<p style="color:#6b7280;font-size:13px;margin-top:6px;">… et ${partenaires.length - 5} autres</p>` : ''}
+            </div>
+        `;
+    }
+
+    // Thématiques suggérées (issues du questionnaire + profil club)
+    const themesRes = [
+        { id: 1, name: 'Sport & Santé', color: '#10b981' },
+        { id: 2, name: 'Insertion / Cohésion', color: '#3b82f6' },
+        { id: 3, name: 'Environnement', color: '#22c55e' },
+        { id: 4, name: 'Éducation / Jeunesse', color: '#f59e0b' },
+        { id: 5, name: 'Culture / Patrimoine', color: '#8b5cf6' },
+        { id: 6, name: 'Économie Locale', color: '#ef4444' },
+        { id: 11, name: 'Intergénérationnel', color: '#ec4899' },
+        { id: 12, name: 'Handicap', color: '#14b8a6' },
+        { id: 14, name: 'Santé Mentale', color: '#0ea5e9' },
+        { id: 15, name: 'Égalité des Chances', color: '#d946ef' },
+    ];
+    const thematiques = themesRes.filter(t => state.thematiques_selectionnees.includes(t.id));
+    if (thematiques.length > 0) {
+        html += `
+            <div class="diagnostic-section">
+                <h3>🎯 Thématiques recommandées pour votre projet</h3>
+                <p style="color:#6b7280;font-size:13px;margin-bottom:8px;">Basées sur vos réponses au questionnaire :</p>
+                <div>${thematiques.map(t => `<span class="badge" style="background:${t.color}22;color:${t.color};">${t.name}</span>`).join('')}</div>
+            </div>
+        `;
+    }
+
+    html += `
+        <div class="alert alert-info" style="margin-top:16px;">
+            💡 <strong>Lecture :</strong> votre territoire a ${clubsLocaux.length} club(s) identifié(s) et ${partenaires.length} partenaire(s) à proximité.
+            Ces données vont alimenter les étapes suivantes.
+        </div>
+    `;
+    container.innerHTML = html;
+    container.style.display = 'block';
+    document.getElementById('btn-step-3').disabled = false;
+}
+
+function renderStep3Error(err) {
+    document.getElementById('diagnostic-loading').style.display = 'none';
+    const container = document.getElementById('diagnostic-content');
+    container.innerHTML = `
+        <div class="alert alert-warn">
+            ⚠️ Le diagnostic territorial détaillé n'a pas pu être chargé (${err.message}).
+            <br>Vous pouvez continuer manuellement vers l'étape suivante — les acteurs seront cherchés par ville.
+        </div>
+    `;
+    container.style.display = 'block';
+    document.getElementById('btn-step-3').disabled = false;
+}
+
+// ---------- ÉTAPE 4 : Acteurs non-marchands ----------
+async function loadStep4() {
+    document.getElementById('acteurs-commune-name').textContent = state.commune_name || 'votre commune';
+    try {
+        // On récupère tous les partenaires (associations + publics) filtrés par ville
+        const params = new URLSearchParams({
+            page_size: 50,
+        });
+        if (state.commune_name) params.set('commune', state.commune_name);
+        const r = await fetch(`${API}/api/shortlist?${params}`);
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const d = await r.json();
+        const partners = (d.partners || []).filter(p => p.type === 'association' || p.type === 'public');
+        state.partenaires_non_marchands = partners;
+        renderStep4(partners);
+    } catch (err) {
+        console.warn('Acteurs non-marchands KO', err);
+        renderStep4Error(err);
+    }
+}
+
+function renderStep4(partners) {
+    document.getElementById('acteurs-loading').style.display = 'none';
+    const container = document.getElementById('acteurs-content');
+    if (partners.length === 0) {
+        container.innerHTML = `
+            <div class="alert alert-warn">
+                Aucun acteur non-marchand identifié pour ${state.commune_name} dans notre base.
+                <br>Essayez d'élargir en explorant les communes voisines ou contactez-nous pour enrichir la base.
+            </div>
+        `;
+    } else {
+        container.innerHTML = `
+            <p style="color:#6b7280;font-size:14px;margin-bottom:12px;"><strong>${partners.length}</strong> structure(s) identifiée(s) (associations + structures publiques)</p>
+            <div class="card-grid">
+                ${partners.map(p => `
+                    <div class="partner-card">
+                        <h4>${p.name}</h4>
+                        <div class="meta">
+                            <span class="badge badge-${p.type === 'association' ? 'purple' : 'blue'}">${p.type}</span>
+                            ${p.city || ''}${p.department ? ` (${p.department})` : ''}
+                        </div>
+                        <div class="desc">${(p.description || '—').slice(0, 140)}${(p.description || '').length > 140 ? '…' : ''}</div>
+                        ${(p.themes || []).length > 0 ? `
+                            <div style="margin-top:8px;">
+                                ${p.themes.slice(0, 3).map(t => `<span class="badge badge-green">${t}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                        ${p.contact_email ? `<div style="margin-top:8px;font-size:12px;color:#6b7280;">📧 ${p.contact_email}</div>` : ''}
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+    container.style.display = 'block';
+}
+
+function renderStep4Error(err) {
+    document.getElementById('acteurs-loading').style.display = 'none';
+    const container = document.getElementById('acteurs-content');
+    container.innerHTML = `
+        <div class="alert alert-warn">
+            ⚠️ Erreur de chargement des acteurs (${err.message}). Vous pouvez continuer — les cas inspirants seront cherchés par commune.
+        </div>
+    `;
+    container.style.display = 'block';
+}
+
+// ---------- ÉTAPE 5 : Cas inspirants ----------
+async function loadStep5() {
+    try {
+        const params = new URLSearchParams();
+        if (state.commune_code) params.set('commune_code', state.commune_code);
+        if (state.club_id) params.set('club_id', state.club_id);
+        if (state.thematiques_selectionnees.length > 0) {
+            params.set('thematiques', state.thematiques_selectionnees.join(','));
+        }
+        params.set('limit', 8);
+        const r = await fetch(`${API}/api/cas-inspirants/match?${params}`);
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const d = await r.json();
+        const cas = d.cas_inspirants || d.results || d.cas || [];
+        state.cas_inspirants = cas;
+        renderStep5(cas);
+    } catch (err) {
+        console.warn('Cas inspirants KO', err);
+        renderStep5Error(err);
+    }
+}
+
+function renderStep5(cas) {
+    document.getElementById('cas-loading').style.display = 'none';
+    const container = document.getElementById('cas-content');
+    if (cas.length === 0) {
+        container.innerHTML = `
+            <div class="alert alert-warn">
+                Aucun cas inspirant trouvé avec ces critères. Essayez d'élargir les thématiques ou consultez la bibliothèque complète.
+            </div>
+        `;
+    } else {
+        container.innerHTML = `
+            <p style="color:#6b7280;font-size:14px;margin-bottom:12px;"><strong>${cas.length}</strong> cas inspirant(s) sélectionnés pour vous</p>
+            <div class="card-grid">
+                ${cas.map(c => `
+                    <div class="cas-card">
+                        <h4>${c.name || c.title || 'Cas inspirant'}</h4>
+                        <div class="meta">
+                            ${c.territoire ? `📍 ${c.territoire}` : ''}
+                            ${c.niveau_club ? ` · ${c.niveau_club}` : ''}
+                            ${c.budget_reel ? ` · ${c.budget_reel.toLocaleString('fr-FR')} €` : ''}
+                        </div>
+                        <div class="desc">${(c.description || c.resume || '').slice(0, 180)}${(c.description || c.resume || '').length > 180 ? '…' : ''}</div>
+                        ${(c.thematiques || []).length > 0 ? `
+                            <div style="margin-top:8px;">
+                                ${c.thematiques.slice(0, 3).map(t => `<span class="badge badge-amber">${t}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                `).join('')}
+            </div>
+            <div class="alert alert-info" style="margin-top:16px;">
+                💡 Ces cas sont des <strong>inspiration</strong>, pas des modèles à copier. Adaptez-les à votre contexte.
+            </div>
+        `;
+    }
+    container.style.display = 'block';
+}
+
+function renderStep5Error(err) {
+    document.getElementById('cas-loading').style.display = 'none';
+    const container = document.getElementById('cas-content');
+    container.innerHTML = `
+        <div class="alert alert-warn">
+            ⚠️ Erreur de chargement des cas inspirants (${err.message}).
+        </div>
+    `;
+    container.style.display = 'block';
+}
+
+// ---------- ÉTAPE 6 : Acteurs économiques + AAP ----------
+async function loadStep6() {
+    try {
+        // Acteurs économiques (entreprises)
+        const params = new URLSearchParams({ page_size: 30 });
+        if (state.commune_name) params.set('commune', state.commune_name);
+        params.set('type', 'company');
+        const rEco = await fetch(`${API}/api/shortlist?${params}`);
+        const ecoData = rEco.ok ? await rEco.json() : { partners: [] };
+        state.partenaires_economiques = ecoData.partners || [];
+
+        // AAP pertinents
+        const rAap = await fetch(`${API}/api/funding-sources?limit=20`);
+        const aapData = rAap.ok ? await rAap.json() : { funding_sources: [] };
+        let aap = aapData.funding_sources || [];
+        // Filtre par thématiques si on en a
+        if (state.thematiques_selectionnees.length > 0) {
+            aap = aap.filter(a => {
+                const themes = a.themes || [];
+                return themes.some(t => state.thematiques_selectionnees.includes(t.id || t));
+            });
+        }
+        state.aap_pertinents = aap;
+        renderStep6();
+    } catch (err) {
+        console.warn('Étape 6 KO', err);
+        renderStep6Error(err);
+    }
+}
+
+function renderStep6() {
+    document.getElementById('eco-loading').style.display = 'none';
+    const container = document.getElementById('eco-content');
+    let html = '';
+
+    // Acteurs économiques
+    html += `<h3 style="color:#1e3a8a;margin:16px 0 12px;">🏢 Acteurs économiques (${state.partenaires_economiques.length})</h3>`;
+    if (state.partenaires_economiques.length === 0) {
+        html += `<div class="alert alert-warn">Aucun acteur économique identifié pour cette commune.</div>`;
+    } else {
+        html += `<div class="card-grid">${state.partenaires_economiques.map(p => `
+            <div class="partner-card">
+                <h4>${p.name}</h4>
+                <div class="meta">
+                    <span class="badge badge-blue">${p.type}</span>
+                    ${p.city || ''}
+                </div>
+                <div class="desc">${(p.description || '—').slice(0, 140)}${(p.description || '').length > 140 ? '…' : ''}</div>
+                ${p.contact_email ? `<div style="margin-top:8px;font-size:12px;color:#6b7280;">📧 ${p.contact_email}</div>` : ''}
+            </div>
+        `).join('')}</div>`;
+    }
+
+    // AAP
+    html += `<h3 style="color:#1e3a8a;margin:24px 0 12px;">💰 Appels à projets pertinents (${state.aap_pertinents.length})</h3>`;
+    if (state.aap_pertinents.length === 0) {
+        html += `<div class="alert alert-warn">Aucun AAP identifié pour vos thématiques. Consultez la plateforme de veille AAP pour des recherches plus larges.</div>`;
+    } else {
+        html += `<div class="card-grid">${state.aap_pertinents.map(a => `
+            <div class="cas-card">
+                <h4>${a.name || a.title}</h4>
+                <div class="meta">
+                    ${a.organization ? `🏛️ ${a.organization}` : ''}
+                    ${a.deadline ? ` · 📅 ${a.deadline}` : ''}
+                    ${(a.amount_min || a.amount_max) ? ` · 💶 ${a.amount_min ? a.amount_min.toLocaleString('fr-FR') + ' €' : ''}${a.amount_max ? ' - ' + a.amount_max.toLocaleString('fr-FR') + ' €' : ''}` : ''}
+                </div>
+                <div class="desc">${(a.description || '').slice(0, 200)}${(a.description || '').length > 200 ? '…' : ''}</div>
+                ${a.url ? `<div style="margin-top:8px;"><a href="${a.url}" target="_blank" style="color:#3b82f6;font-size:13px;">🔗 Voir l'appel à projets</a></div>` : ''}
+            </div>
+        `).join('')}</div>`;
+    }
+    container.innerHTML = html;
+    container.style.display = 'block';
+}
+
+function renderStep6Error(err) {
+    document.getElementById('eco-loading').style.display = 'none';
+    const container = document.getElementById('eco-content');
+    container.innerHTML = `
+        <div class="alert alert-warn">
+            ⚠️ Erreur de chargement (${err.message}). Vous pouvez quand même générer votre dossier à l'étape suivante.
+        </div>
+    `;
+    container.style.display = 'block';
+}
+
+// ---------- ÉTAPE 7 : Dossier d'ingénierie ----------
+function renderStep7() {
+    const today = new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+    const answers = {};
+    document.querySelectorAll('.question-card select').forEach(sel => {
+        answers[sel.id] = sel.value || '—';
+    });
+    const clubName = document.getElementById('club-name').value || '—';
+    const sport = document.getElementById('club-sport').value || '—';
+    const niveau = document.getElementById('club-level').value || '—';
+    const licencies = document.getElementById('club-licencies').value || '—';
+    const salaries = document.getElementById('club-salaries').value || '—';
+
+    const themesLabels = {
+        1: 'Sport & Santé', 2: 'Insertion / Cohésion Sociale', 3: 'Environnement',
+        4: 'Éducation / Jeunesse', 5: 'Culture / Patrimoine', 6: 'Économie Locale / Emploi',
+        7: 'Citoyenneté', 8: 'Innovation / Technologie', 9: 'Alimentation', 10: 'Tourisme',
+        11: 'Intergénérationnel', 12: 'Handicap', 13: 'Éducation Populaire', 14: 'Santé Mentale',
+        15: 'Égalité des Chances', 16: 'Écologie', 17: 'Patrimoine Immatériel', 18: 'Innovation Sociale', 19: 'Urgence Sociale',
+    };
+    const thematiquesTxt = state.thematiques_selectionnees
+        .map(id => themesLabels[id] || id).join(', ') || '—';
+
+    const html = `
+        <div style="margin-bottom:24px;">
+            <h2 style="color:#1e3a8a;font-size:24px;margin-bottom:4px;">${clubName}</h2>
+            <p style="color:#6b7280;font-size:14px;">${sport} · ${state.commune_name || '—'} · Dossier généré le ${today}</p>
+        </div>
+
+        <div class="diagnostic-section">
+            <h3>1. Identification du club</h3>
+            <table class="summary-table">
+                <tr><th>Sport principal</th><td>${sport}</td></tr>
+                <tr><th>Niveau</th><td>${niveau}</td></tr>
+                <tr><th>Commune</th><td>${state.commune_name || '—'} (${state.commune_code || '—'})</td></tr>
+                <tr><th>Licenciés</th><td>${licencies}</td></tr>
+                <tr><th>Salariés (ETP)</th><td>${salaries}</td></tr>
+                <tr><th>Contact</th><td>${document.getElementById('club-contact-name').value || '—'} · ${document.getElementById('club-contact-email').value || '—'}</td></tr>
+            </table>
+        </div>
+
+        <div class="diagnostic-section">
+            <h3>2. Diagnostic interne</h3>
+            <table class="summary-table">
+                <tr><th>Question</th><th>Réponse</th></tr>
+                <tr><td>Projets à impact déjà réalisés</td><td>${answers.q1}</td></tr>
+                <tr><td>Partenariats associatifs</td><td>${answers.q2}</td></tr>
+                <tr><td>Mesure d'impact</td><td>${answers.q3}</td></tr>
+                <tr><td>Démarche RSE / DD</td><td>${answers.q4}</td></tr>
+                <tr><td>Expérience AAP</td><td>${answers.q5}</td></tr>
+            </table>
+        </div>
+
+        <div class="diagnostic-section">
+            <h3>3. Intentions de projet</h3>
+            <table class="summary-table">
+                <tr><th>Public visé</th><td>${answers.q6}</td></tr>
+                <tr><th>Motivation principale</th><td>${answers.q7}</td></tr>
+                <tr><th>Budget estimé</th><td>${answers.q8}</td></tr>
+                <tr><th>Thématiques retenues</th><td>${thematiquesTxt}</td></tr>
+            </table>
+        </div>
+
+        <div class="diagnostic-section">
+            <h3>4. Acteurs non-marchands identifiés (${state.partenaires_non_marchands.length})</h3>
+            ${state.partenaires_non_marchands.length === 0 ? '<p style="color:#6b7280;">Aucun acteur non-marchand identifié — retournez à l'étape 4 pour relancer la recherche.</p>' : `
+                <table class="summary-table">
+                    <tr><th>Nom</th><th>Type</th><th>Commune</th><th>Contact</th></tr>
+                    ${state.partenaires_non_marchands.slice(0, 10).map(p => `
+                        <tr>
+                            <td>${p.name}</td>
+                            <td>${p.type}</td>
+                            <td>${p.city || '—'}</td>
+                            <td>${p.contact_email || '—'}</td>
+                        </tr>
+                    `).join('')}
+                </table>
+            `}
+        </div>
+
+        <div class="diagnostic-section">
+            <h3>5. Cas inspirants (${state.cas_inspirants.length})</h3>
+            ${state.cas_inspirants.length === 0 ? '<p style="color:#6b7280;">Aucun cas inspirant trouvé — explorez la bibliothèque complète.</p>' : `
+                <ul>${state.cas_inspirants.slice(0, 8).map(c => `<li><strong>${c.name || c.title}</strong> — ${c.territoire || ''} ${c.budget_reel ? `(${c.budget_reel.toLocaleString('fr-FR')} €)` : ''}</li>`).join('')}</ul>
+            `}
+        </div>
+
+        <div class="diagnostic-section">
+            <h3>6. Acteurs économiques (${state.partenaires_economiques.length})</h3>
+            ${state.partenaires_economiques.length === 0 ? '<p style="color:#6b7280;">Aucun acteur économique identifié.</p>' : `
+                <ul>${state.partenaires_economiques.slice(0, 10).map(p => `<li>${p.name} — ${p.city || ''} ${p.contact_email ? `(${p.contact_email})` : ''}</li>`).join('')}</ul>
+            `}
+        </div>
+
+        <div class="diagnostic-section">
+            <h3>7. Appels à projets pertinents (${state.aap_pertinents.length})</h3>
+            ${state.aap_pertinents.length === 0 ? '<p style="color:#6b7280;">Aucun AAP identifié pour vos thématiques.</p>' : `
+                <ul>${state.aap_pertinents.slice(0, 10).map(a => `<li><strong>${a.name}</strong> — ${a.organization || ''} ${a.deadline ? `(échéance ${a.deadline})` : ''} ${a.url ? `— <a href="${a.url}" target="_blank">🔗 lien</a>` : ''}</li>`).join('')}</ul>
+            `}
+        </div>
+
+        <div class="diagnostic-section">
+            <h3>8. Prochaines étapes recommandées</h3>
+            <ol>
+                <li>Contacter 2-3 acteurs non-marchands pour amorcer un partenariat</li>
+                <li>Identifier 1 AAP réaliste parmi ceux listés (échéance la plus proche)</li>
+                <li>Construire un budget prévisionnel détaillé à partir d'un cas inspirant proche</li>
+                <li>Demander un RDV avec votre EPCI ou la Région Normandie pour un co-financement</li>
+                <li>Mesurer l'impact dès le démarrage (indicateurs simples : nb participants, satisfaction, retombées)</li>
+            </ol>
+        </div>
+
+        <div class="alert alert-info" style="margin-top:24px;">
+            📋 <strong>Ce dossier est une base de travail.</strong> Imprimez-le ou exportez-le en PDF via votre navigateur (Ctrl+P → Enregistrer en PDF).
+            <br>Pour aller plus loin : diagnostic approfondi, montage de projet, ingénierie partenariale → contactez H3P Solutions.
+        </div>
+    `;
+    document.getElementById('template-content').innerHTML = html;
+}
+
+// ---------- Reset ----------
+function restartParcours() {
+    if (!confirm('Recommencer le parcours ? Toutes vos réponses seront perdues.')) return;
+    location.reload();
+}
+
+// ---------- Init ----------
+window.addEventListener('DOMContentLoaded', () => {
+    initStep1();
+    // Mode démo via ?demo=batt
+    const params = new URLSearchParams(location.search);
+    if (params.get('demo') === 'batt') {
+        autoDemoBatt();
+    }
+    goToStep(1);
+});
+</script>
 </body>
 </html>
