@@ -613,11 +613,14 @@ document.addEventListener('DOMContentLoaded', () => {
     loadStep1();
     const form = document.getElementById('club-form');
     if (form) form.addEventListener('submit', submitStep1);
+    // Demo mode : pré-remplit + auto-login avec BATT Argentan
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('demo') === 'batt') {
+        autoLoginBatt();
+    }
 });
 
 // ========== STEP 1: Création club ==========
-async function loadStep1() {}
-
 async function submitStep1(e) {
     if (e) e.preventDefault();
     const data = {
@@ -635,15 +638,15 @@ async function submitStep1(e) {
         });
         j = await r.json();
     } catch (err) {
-        // Mode dégradé : générer un ID local pour permettre de continuer
+        // Mode dégradé : génère un ID local pour permettre de continuer
         state.club_id = 'local-' + Date.now();
         document.getElementById('result-1').innerHTML = `
             <div class="result-box">
-                <h3>✅ Club créé (mode local)</h3>
+                <h3>⚠️ Sauvegarde serveur indisponible</h3>
                 <p><strong>Nom:</strong> ${data.name}</p>
                 <p><strong>Sport:</strong> ${data.sport}</p>
                 <p><strong>Commune:</strong> ${data.commune}</p>
-                <p style="font-size:0.85em;color:#6b7280;margin-top:8px;">⚠️ Sauvegarde serveur indisponible, votre parcours reste en local.</p>
+                <p style="font-size:0.85em;color:#6b7280;margin-top:8px;">Votre parcours reste en local sur cet appareil.</p>
             </div>`;
         markDone(1);
         renderQuestions();
@@ -668,6 +671,36 @@ async function submitStep1(e) {
                 <h3>❌ Erreur</h3>
                 <p>${j.detail || 'Erreur inconnue'}</p>
             </div>`;
+    }
+}
+
+async function autoLoginBatt() {
+    const banner = document.getElementById('demo-banner');
+    if (banner) banner.style.display = 'block';
+    try {
+        const r = await fetch(API + '/api/parcours/clubs/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: 'contact@batt-argentan.fr', password: 'batt2026' })
+        });
+        if (!r.ok) throw new Error('login failed: ' + r.status);
+        const data = await r.json();
+        state.club_id = data.club_id;
+        state.commune_code = '61006';
+        state.commune_name = 'Argentan';
+        // Pré-remplit le formulaire pour cohérence visuelle
+        const nameField = document.getElementById('club-name');
+        if (nameField) nameField.value = data.name || 'BATT Argentan';
+        const emailField = document.getElementById('club-email');
+        if (emailField) emailField.value = 'contact@batt-argentan.fr';
+        const communeField = document.getElementById('club-commune');
+        if (communeField) communeField.value = 'Argentan';
+        markDone(1);
+        if (typeof renderQuestions === 'function') renderQuestions();
+        goToStep(2);
+    } catch (err) {
+        console.error('Demo login failed:', err);
+        alert('Mode démo indisponible. Réessaie plus tard.');
     }
 }
 
